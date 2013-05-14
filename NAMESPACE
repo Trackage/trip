@@ -1,0 +1,49 @@
+# $Id: NAMESPACE 110 2013-03-28 03:13:38Z sluque $
+
+# Import all packages listed as Imports or Depends
+import(
+  methods,
+  sp,
+  spatstat
+)
+
+importClassesFrom(maptools,
+                  ppp, psp, owin)
+
+## does this mean require(spatstat) not needed in as.ppp.trip?
+importFrom(maptools, as.ppp.SpatialPointsDataFrame)
+
+## to fix tripRbind: no visible global function definition for 'spRbind'
+importFrom(maptools, spRbind)
+
+
+## Export all names not starting with a dot
+exportPattern("^[^\\.]")
+
+exportClassPattern("^$")               # to over-ride classes implied above
+
+exportClasses("TimeOrderedRecords",
+              "trip")
+
+exportMethods("trip",
+              "as.trip",
+              "points",
+              "text",
+              "lines",
+              "plot",
+              "show",
+              "subset",
+              "summary",
+              "show",
+              "recenter")
+
+S3method("print", "trip")
+S3method("print", "summary.TORdata")
+S3method("dim", "trip")
+S3method("names", "trip")
+S3method("names<-", "trip")
+S3method("as.data.frame", "trip")
+S3method("as.ppp", "trip")
+S3method("as.psp", "trip")
+## S3method("as.ltraj", "trip")
+S3method("cut", "trip")

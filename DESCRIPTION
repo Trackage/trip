@@ -1,0 +1,21 @@
+Package: trip
+Type: Package
+Title: Spatial analysis of animal track data
+Authors@R: c(person("Michael", "Sumner", role = c("aut", "cre"),
+                    email = "mdsumner@gmail.com"),
+            person("Sebastian", "Luque", role = "ctb",
+                    email = "spluque@gmail.com"))
+Version: 1.1-14
+Depends: methods, sp (>= 0.9-64), spatstat (>= 1.18-4)
+Imports: maptools, sp
+Suggests: adehabitatLT, lattice
+Author: Michael Sumner[aut, cre], Sebastian Luque [ctb]
+Maintainer: Michael D. Sumner <mdsumner@gmail.com>
+Description: Functions for accessing and manipulating spatial data for
+	     animal tracking.  Filter for speed and create time spent plots
+	     from animal track data.
+Collate: AllClass.R AllGenerics.R AllMethod.R trip.R trip.split.R
+        trip2other.R tripGrid.R trackDistance.R filter.penSS.R
+        oc.theme.R readDiag.R speedfilter.R
+License: GPL (>=2)
+Packaged: 2013-05-14 11:41:09 UTC; mdsumner

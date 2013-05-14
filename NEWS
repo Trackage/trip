@@ -1,0 +1,170 @@
+
+        CHANGES IN trip VERSION 1.1-12
+
+	o fix for ltraj2trip
+
+        CHANGES IN trip VERSION 1.1-11
+
+ACKNOWLEDGEMENTS
+
+	o Thanks to Sebastian Luque for ltraj2trip patch
+
+
+
+
+
+
+        CHANGES IN trip VERSION 1.1-12
+
+	o reduced time taken by examples by removal with dontrun,
+	thanks to CRAN maintainers
+
+        CHANGES IN trip VERSION 1.1-11
+
+ACKNOWLEDGEMENTS
+
+	o Thanks to Sebastian Luque for advice on NAMESPACE fixes
+
+	o thanks to Andrew Irwin for update on trackDistance documentation
+
+
+OVERVIEW
+
+        o added a NAMESPACE file and package updates to make
+        everything work, maptools is now Imports, rgdal, adehabitatLT
+        and lattice are Suggests
+	
+	o modified dependency on adehabitat to adehabitatLT
+
+	o removed class definitions for ppp, psp and owin, now
+	imported from maptools
+
+        o update to trackDistance documentation
+
+
+        CHANGES IN trip VERSION 1.1-10
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+        o Suppressed warnings from owin for duplicate points used in
+        pixellate/tripGrid.
+
+	o spatstat is now required, not just suggested.
+
+BUG FIXES
+
+	o superimpose used rather than deprecated superimposePSP
+
+        o consistency for S3 generic / method arguments in as.ppp.trip
+        and as.psp.trip
+
+        o fixed incomplete "[" method documentation for trip
+
+
+	CHANGES IN trip VERSION 1.1-9
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+	o speed improvement in speedfilter, 6x or more
+
+
+	CHANGES IN trip VERSION 1.1-8
+
+ACKNOWLEDGEMENTS
+
+	 o Thanks to Sebastian Luque for pointing out a problem with
+	 zero-length lines.
+
+	 o Thanks to Francois Rousseu for bug report in readDiag.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+ 	o new function filter.penSS to provide non-destructive filter
+	for track data.
+
+	o colours for plotting lines(trip) has been updated, with
+	smarter defaults and leveraging new capacity in sp for passing
+	in lwd/lty/col etc.
+
+	o trackDistance has been completely replaced as a wrapper to
+	an R-level gcdist. This can provide a roughly 3x speed-up for
+	running trackDistance and speedfilter.
+
+	o Removed "push" argument from trackDistance.
+
+	o New as.ppp and as.psp methods to convert from trip to
+	spatstat's point and line classes.
+
+	o New as(trip, "SpatialLinesDataFrame") method to convert to
+	sp lines.
+
+        o spTransform method for trip objects.
+
+	o trip now Suggests rgdal for spTransform use.
+
+	o new as.ltraj.trip methods for ltraj class in adehabitat
+
+	o trip now Suggests adehabitat for coercion to ltraj
+
+ BUG FIXES
+
+	o readDiag would fail when no invalid records were present.
+
+	o Zero-length lines would propagate NaNs to the entire
+	tripGrid for method "density" (fixed by spatstat > 1.19-1).
+
+
+	CHANGES IN trip VERSION 1.1-6
+
+ACKNOWLEDGEMENTS
+
+
+	 o Thanks to Adrian Baddeley for updates to pixellate.psp in
+	 spatstat 1.18-3 and 1.18-4.
+
+	 o Thanks to Edzer Pebesma for updates to the CVS development
+	 version of sp, methods for split and SpatialPixelsDataFrame.
+
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+
+
+	o New function trip.split.exact to cut trip events at specific
+	time-based boundaries.
+
+	o Added method argument, including density and pixellate to
+	 tripGrid, using density.psp and pixellate.psp.
+
+
+	 o trip.R: updated tripGrid, replaced old interpolation
+	approximation with spatstat exact line/cross/cell logic
+	(pixellate.psp). Zero length line segments are supported by
+	trip, and their contribution is recorded by point in cell
+	measurement.  tripGrid.interp still exists for the old
+	approach, and kde method.
+
+	o added verbose argument to readArgos to suppress reporting of
+	duplicate time modifications.
+
+	o added summary of trip duration total to print.summary.tordata.
+
+BUG FIXES
+	o improvements to makeGridTopology which would sometimes give a silly result
+
+	o removed boilerplate tags in many Rd files
+
+	o removed unused \dots argument in speedfilter
+
+	o trip.R: validtordata required the ID component of a trip to
+	be numeric or factor. This now allows character.
+
+	o trip.R: updated setMethod("[", "trip" to use same argument
+	handling as SpatialPointsDataFrame
+
+	o Fixed harmless warning error in readArgos for longitudes > 180.
+
+
+	CHANGES IN trip VERSION 1.1-4
+
+	o trip.R: removed setReplaceMethod required by r50609 in R-devel.

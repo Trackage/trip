@@ -1,0 +1,62 @@
+
+* Remove dependencies, all imports
+
+
+* Can tripTransform be removed without requiring rgdal for installation?
+
+
+* Incorporate Pinaud's ideas/requests
+
+
+* Explore rgeos Intersect for tripGrid alternative
+
+
+* Namespace
+
+What about this?
+
+
+* TimeOrderedRecords approach
+
+[MDS]: I think TimeOrderedRecords is a bit of overkill, it was originally
+suggested by Roger but I think it's really an overuse of S4
+formalism. Sometimes I think it would be best to keep the data.frame in the
+original order, but build indexes for the records sorted by time/id, just
+by time (with some duplication sorting rule for id), and perhaps other
+things. Then all downstream work would use the sort index that was
+appropriate (or provided/overrided at runtime), and the validation would
+then be on the creation of those indexes - warn perhaps that the native
+order is not valid, and fail when a required sort index cannot be built
+unambiguously (duplicated time/id records). Then even fullly duplicated
+records could just be ignored by analyses, and just warn the user that
+perhaps things need fixing.
+
+
+* Helper functions
+
+[MDS]: trip also needs helper functions to calculate distance and speed
+within individual trips, it should provide total distance and average speed
+summary() too (with appropriate overrides for various kinds of distance
+calcualtion).
+
+[SPL]: Perhaps the summary method for trip should return this information
+in the summary.TORdata class.
+
+
+* Write S3 methods for coercion (as.*) to other classes
+
+
+* DONE
+
+** Make trip.split.exact() a cut() method
+
+** Investigate uses of "trackDistance" for handling projection option
+   vs. default
+
+
+* Emacs local variables
+
+#+STARTUP: content
+# Local Variables:
+# mode: org
+# End:
