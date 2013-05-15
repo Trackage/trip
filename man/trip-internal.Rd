@@ -1,4 +1,4 @@
-%% $Id: trip-internal.Rd 115 2013-04-25 17:26:50Z sluque $
+%% $Id$
 \name{trip-internal}
 \alias{trip-internal}
 
@@ -9,7 +9,6 @@
 \alias{.gcdist.c}
 \alias{.intpFun}
 \alias{.tripRbind}
-%\alias{spTransform,trip-method}
 
 
 \title{Internal trip Functions}
