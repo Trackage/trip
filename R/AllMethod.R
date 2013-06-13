@@ -168,6 +168,13 @@ setMethod("summary", signature(object="trip"),
               tids <- getTimeID(object)
               time <- tids[, 1]
               ids <- tids[, 2]
+              ## list of distances only, km/hr or units of projection
+              dists <- .distances(object)
+              ## list of time diferences only, in hours
+              dtimes <- lapply(split(time, ids), function(x) diff(unclass(x)/3600))
+              speeds <- vector("list", length(dtimes))
+              for (i in seq_along(speeds)) speeds[[i]] <- dists[[i]] / dtimes[[i]]
+    
               obj <- within(obj, {
                   class <- class(object)
                   tmins <- tapply(time, ids, min) +
@@ -182,19 +189,25 @@ setMethod("summary", signature(object="trip"),
                   })
                   tripDurationSeconds <- tapply(time, ids, function(x) {
                       x <- diff(range(unclass(x)))
-                  })
+                  }
+                                                )
+                  meanSpeed <- sapply(speeds, mean)
+                  maxSpeed <- sapply(speeds, max)
               })
               class(obj) <- "summary.TORdata"
               ## invisible(obj)
               obj
           })
 
+
 print.summary.TORdata <- function(x, ...) {
     dsumm <- data.frame(tripID=x$tripID,
                         No.Records=x$nRecords,
                         startTime=x$tmins,
                         endTime=x$tmaxs,
-                        tripDuration=x$tripDuration)
+                        tripDuration=x$tripDuration, 
+                        meanSpeed = x$meanSpeed, 
+                        maxSpeed = x$maxSpeed)
     torns <- x[["TORnames"]]
     names(dsumm)[1] <- paste(names(dsumm)[1],
                              " (\"", torns[2], "\")", sep="")
@@ -202,6 +215,8 @@ print.summary.TORdata <- function(x, ...) {
                              " (\"", torns[1], "\")", sep="")
     names(dsumm)[4] <- paste(names(dsumm)[4],
                              " (\"", torns[1], "\")", sep="")
+    
+    
     rownames(dsumm) <- seq(nrow(dsumm))
     ## dsumm <- as.data.frame(lapply(dsumm, as.character))
     cat(paste("\nObject of class ", x[["class"]], "\n", sep=""))
