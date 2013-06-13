@@ -191,6 +191,7 @@ setMethod("summary", signature(object="trip"),
                       x <- diff(range(unclass(x)))
                   }
                                                 )
+                  tripDistance <- sapply(dists, sum)
                   meanSpeed <- sapply(speeds, mean)
                   maxSpeed <- sapply(speeds, max)
               })
@@ -206,6 +207,7 @@ print.summary.TORdata <- function(x, ...) {
                         startTime=x$tmins,
                         endTime=x$tmaxs,
                         tripDuration=x$tripDuration, 
+                        tripDistance=x$tripDistance,
                         meanSpeed = x$meanSpeed, 
                         maxSpeed = x$maxSpeed)
     torns <- x[["TORnames"]]
