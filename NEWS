@@ -1,4 +1,8 @@
 
+        CHANGES IN trip VERSION 1.1-15
+
+  o added function to summary.trip to give summaries of speed
+
         CHANGES IN trip VERSION 1.1-12
 
 	o fix for ltraj2trip
