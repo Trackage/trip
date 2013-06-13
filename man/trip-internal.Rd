@@ -9,6 +9,7 @@
 \alias{.gcdist.c}
 \alias{.intpFun}
 \alias{.tripRbind}
+\alias{.distances}
 
 
 \title{Internal trip Functions}

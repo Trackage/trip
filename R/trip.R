@@ -380,6 +380,13 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 }
 
 
+.distances <- function(x) {
+  proj <- is.projected(x)
+  if (is.na(proj)) proj <- FALSE
+  
+  lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = proj))
+  
+}
 
 ###_ + Emacs local variables
 ## Local variables:
