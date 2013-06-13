@@ -25,6 +25,22 @@ setMethod("spTransform", signature("trip", "CRS"),
               trip(pts, getTORnames(x))
           })
 
+## method to allow transformation with a character only
+setMethod("spTransform", signature("Spatial", "character"), 
+          function(x, CRSobj, ...) {
+            
+            .local <- function (object, pstring, ...) 
+            {
+              crs <- try(CRS(pstring))
+              if (inherits(crs, "try-error")) { stop(sprintf("cannot determine valid CRS from %s", pstring))
+              } else {
+                spTransform(x, crs)
+              }
+            }
+            
+            .local(x, pstring = CRSobj, ...)
+            
+          })
 
 ###_ + Functions
 
