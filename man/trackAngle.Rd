@@ -28,8 +28,7 @@ trackAngle(xy)
 
 
 \details{
-  See \code{\link[maptools]{gzAzimuth}} for the underlying
-  functionality. 
+  This is an optimized hybrid of \code{\link[raster]{bearing}} and \code{\link[maptools]{gzAzimuth}}. 
 
 }
 

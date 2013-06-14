@@ -10,6 +10,7 @@
 \alias{.intpFun}
 \alias{.tripRbind}
 \alias{.distances}
+\alias{.abdali}
 
 
 \title{Internal trip Functions}
@@ -23,9 +24,7 @@
 \details{
   
   These are not to be called by the user (or in some cases are just
-  waiting for proper documentation to be written, or for me to work out
-  how NAMESPACES really work :).
-  
+  waiting for proper documentation to be written). 
 }
 
 
