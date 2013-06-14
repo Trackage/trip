@@ -1,7 +1,21 @@
 
         CHANGES IN trip VERSION 1.1-15
 
-  o added function to summary.trip to give summaries of speed
+  o modification to to summary.trip to give summaries of distance, speed
+
+  o implemented trackAngle() to provide turning angles along trips
+
+  o method for spTransform("trip", "character")
+
+        CHANGES IN trip VERSION 1.1-14
+
+  o much of the source was overhauled and tidied up
+
+  o cut.trip added to replace old function trip.split.exact which is deprecated
+
+  o tripTransform deprecated, replaced by method for spTransform (generic from sp)
+
+  
 
         CHANGES IN trip VERSION 1.1-12
 
@@ -12,8 +26,6 @@
 ACKNOWLEDGEMENTS
 
 	o Thanks to Sebastian Luque for ltraj2trip patch
-
-
 
 
 

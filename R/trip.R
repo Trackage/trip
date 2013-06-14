@@ -25,7 +25,7 @@ setMethod("spTransform", signature("trip", "CRS"),
               trip(pts, getTORnames(x))
           })
 
-## method to allow transformation with a character only
+## method to allow transformation with character only
 setMethod("spTransform", signature("Spatial", "character"), 
           function(x, CRSobj, ...) {
             
