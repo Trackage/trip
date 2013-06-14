@@ -15,6 +15,7 @@
 \alias{show,trip-method}
 \alias{show,summary.TORdata-method}
 \alias{spTransform,trip,CRS-method}
+\alias{spTransform,trip,character-method}
 \alias{print.trip}
 \alias{print.summary.TORdata}
 \alias{summary,trip-method}
@@ -82,6 +83,7 @@
 \S4method{subset}{trip}(x, \ldots)
 
 \S4method{spTransform}{trip,CRS}(x, CRSobj, \ldots)
+\S4method{spTransform}{trip,character}(x, CRSobj, \ldots)
 
 }
 
