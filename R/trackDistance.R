@@ -52,7 +52,36 @@ trackDistance <- function(x1, y1, x2, y2, longlat=TRUE) {
     } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
 
+trackAngle <- function(x) {
+  UseMethod("trackAngle")
+}
 
+trackAngle.trip <- function(x) {
+  isproj <- is.projected(x)
+  if (is.na(isproj)) {
+    warning("object CRS is NA, assuming longlat")
+  } else {
+    if (isproj) {
+      x <- try(spTransform(x, "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"))
+      if (inherits(x, "try-error")) {
+        stop("Object x is projected, attempts to transform to longlat failed. Is rgdal installed?")
+      }
+    }
+  }
+  st <- split(x, x[[getTORnames(x)[2]]])
+  unlist(lapply(st, function(x1) trackAngle(coordinates(x1))))
+                      
+}
+trackAngle.default <- function(xy) {
+  angles <- abs(c(trackAzimuth(xy), 0) - c(0,
+                                           rev(trackAzimuth(xy[nrow(xy):1L, ]))))
+ 
+  angles <- ifelse(angles > 180, 360 - angles,
+                   angles)
+  angles[is.na(angles)] <- 180
+  angles[c(1L, length(angles))] <- rep(as.numeric(NA), 2L)
+  angles
+}
 
 ###_ + Emacs local variables
 ## Local variables:

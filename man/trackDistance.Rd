@@ -1,16 +1,16 @@
 %% $Id: trackDistance.Rd 96 2013-03-26 13:33:36Z sluque $
 \name{trackDistance}
 \alias{trackDistance}
+
 %\alias{gcdist}
 %- Also NEED an '\alias' for EACH other topic documented here.
 
-
-\title{Determine distance along a track}
+\title{Determine distances along a track}
 
 
 \description{
 
-  Calculate the distance between subsequent 2-D coordinates using
+  Calculate the distances  between subsequent 2-D coordinates using
   Euclidean or Great Circle distance (WGS84 ellipsoid) methods.
 
 }
@@ -20,9 +20,8 @@
 
 trackDistance(x1, y1, x2, y2, longlat=TRUE) 
 
-%gcdist(lon1, lat1, lon2, lat2)
 }
-%- maybe also 'usage' for other objects documented here.
+
 
 
 \arguments{

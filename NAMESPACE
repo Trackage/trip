@@ -15,7 +15,7 @@ importFrom(maptools, as.ppp.SpatialPointsDataFrame)
 
 ## to fix tripRbind: no visible global function definition for 'spRbind'
 importFrom(maptools, spRbind)
-
+importFrom(maptools, trackAzimuth)
 
 ## Export all names not starting with a dot
 exportPattern("^[^\\.]")
