@@ -69,10 +69,9 @@ trackAngle.trip <- function(x) {
     }
   }
   st <- split(x, x[[getTORnames(x)[2]]])
-  unlist(lapply(st, function(x1) c(NA, trackAngle(coordinates(x1)), NA)))
-
+  unlist(lapply(st, function(x1) trackAngle(coordinates(x1))))
+                      
 }
-
 trackAngle.default <- function(xy) {
   n <- nrow(xy)
   ## MDSumner 2013-06-14 not sure what to expose here, will start with optimized gzAzimuth(abdali)/bearing() hybrid
@@ -82,7 +81,7 @@ trackAngle.default <- function(xy) {
   ##} else {
   ##  if(!type == "abdali") stop(sprintf("type '%s' not implemented", type))
     angle <- .abdali(xy[2:(n-1),],xy[3:n,]) - .abdali(xy[2:(n-1),],xy[1:(n-2),])
-
+    
   ##}
   angle <- (angle+180)%%360-180
   abs(angle)
@@ -91,10 +90,10 @@ trackAngle.default <- function(xy) {
 
 ## "abdali", replacement for raster::bearing
 
-.abdali <- function (p1, p2)
+.abdali <- function (p1, p2) 
 {
   stopifnot(nrow(p1) == nrow(p2))
-
+  
   toRad <- pi/180
   p1 <- p1 * toRad
   p2 <- p2 * toRad
@@ -106,7 +105,7 @@ trackAngle.default <- function(xy) {
   p1 <- p1[keep, , drop = FALSE]
   p2 <- p2[keep, , drop = FALSE]
   dLon = p2[, 1] - p1[, 1]
-  y = sin(dLon)
+  y = sin(dLon) 
   x = cos(p1[, 2]) * tan(p2[, 2]) - sin(p1[, 2]) * cos(dLon)
   azm = atan2(y, x)/toRad
   res[keep] <- (azm + 360)%%360
