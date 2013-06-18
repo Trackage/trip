@@ -75,15 +75,15 @@ trackAngle.trip <- function(x) {
 
 }
 
-trackAngle.default <- function(xy) {
-  n <- nrow(xy)
+trackAngle.default <- function(x) {
+  n <- nrow(x)
   ## MDSumner 2013-06-14 not sure what to expose here, will start with optimized gzAzimuth(abdali)/bearing() hybrid
   ##if (type == "geosphere") {
   ##  require(geosphere)
   ##  angle <- bearing(xy[2:(n-1),],xy[3:n,]) - bearing(xy[2:(n-1),],xy[1:(n-2),])
   ##} else {
   ##  if(!type == "abdali") stop(sprintf("type '%s' not implemented", type))
-    angle <- .abdali(xy[2:(n-1),],xy[3:n,]) - .abdali(xy[2:(n-1),],xy[1:(n-2),])
+    angle <- .abdali(x[2:(n-1),],x[3:n,]) - .abdali(x[2:(n-1),],x[1:(n-2),])
 
   ##}
   angle <- (angle+180)%%360-180

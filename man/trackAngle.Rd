@@ -1,6 +1,8 @@
 
 \name{trackAngle}
 \alias{trackAngle}
+\alias{trackAngle.default}
+\alias{trackAngle.trip}
 
 %\alias{gcdist}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -17,18 +19,18 @@
 
 
 \usage{
-trackAngle(xy)
+trackAngle(x)
 }
 
 \arguments{
   
-  \item{xy}{matrix of 2-columns, with x/y coordinates}
+  \item{x}{trip object, or matrix of 2-columns, with x/y coordinates}
 
 }
 
 
 \details{
-  This is an optimized hybrid of \code{\link[raster]{bearing}} and \code{\link[maptools]{gzAzimuth}}. 
+  This is an optimized hybrid of "raster::bearing" and \code{\link[maptools]{gzAzimuth}}. 
 
 }
 

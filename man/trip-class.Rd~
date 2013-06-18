@@ -18,7 +18,7 @@
 \alias{spTransform,trip,character-method}
 \alias{print.trip}
 \alias{print.summary.TORdata}
-\alias{as.data.frame.summary.TORdata}
+\alias{as.data.frame.summary.TORdata)
 \alias{summary,trip-method}
 \alias{text,trip-method}
 \alias{subset,trip-method}

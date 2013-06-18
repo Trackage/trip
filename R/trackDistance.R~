@@ -33,6 +33,8 @@
     dist
 }
 
+trackDistance <- function(x) UseMethod("trackDistance")
+
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE) {
     if (missing(y1)) {
         if (!is.matrix(x1))

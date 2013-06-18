@@ -1,7 +1,6 @@
 
         CHANGES IN trip VERSION 1.1-15
 
-
   o modification to to summary.trip to give summaries of distance, speed
 
   o implemented trackAngle() to provide turning angles along trips
