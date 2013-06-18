@@ -4,5 +4,6 @@
 .Rproj
 .Rbuildignore
 .R~
-.Rd
+.Rd~
 .R#
+*~
