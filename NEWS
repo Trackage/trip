@@ -1,62 +1,66 @@
+	CHANGES IN trip VERSION 1.1-16
 
-        CHANGES IN trip VERSION 1.1-15
 
 
-  o modification to to summary.trip to give summaries of distance, speed
 
-  o implemented trackAngle() to provide turning angles along trips
+	CHANGES IN trip VERSION 1.1-15
 
-  o method for spTransform("trip", "character")
+OVERVIEW
+	
+   o modification to to summary.trip to give summaries of distance, speed
+   
+   o implemented trackAngle() to provide turning angles along trips
+	
+   o method for spTransform("trip", "character")
 
-        CHANGES IN trip VERSION 1.1-14
+     	  
+	CHANGES IN trip VERSION 1.1-14
 
-  o much of the source was overhauled and tidied up
+   o much of the source was overhauled and tidied up
 
-  o cut.trip added to replace old function trip.split.exact which is deprecated
+   o cut.trip added to replace old function trip.split.exact which is deprecated
 
-  o tripTransform deprecated, replaced by method for spTransform (generic from sp)
+   o tripTransform deprecated, replaced by method for spTransform
+   (generic from sp)
 
-  
 
         CHANGES IN trip VERSION 1.1-12
 
-	o fix for ltraj2trip
+   o fix for ltraj2trip
+
+
+ACKNOWLEDGEMENTS
+	
+   o Thanks to Sebastian Luque for ltraj2trip patch
+
+
+        CHANGES IN trip VERSION 1.1-12
+
+   o reduced time taken by examples by removal with dontrun, thanks
+	to CRAN maintainers
+
 
         CHANGES IN trip VERSION 1.1-11
 
 ACKNOWLEDGEMENTS
 
-	o Thanks to Sebastian Luque for ltraj2trip patch
+   o Thanks to Sebastian Luque for advice on NAMESPACE fixes
 
-
-
-
-        CHANGES IN trip VERSION 1.1-12
-
-	o reduced time taken by examples by removal with dontrun,
-	thanks to CRAN maintainers
-
-        CHANGES IN trip VERSION 1.1-11
-
-ACKNOWLEDGEMENTS
-
-	o Thanks to Sebastian Luque for advice on NAMESPACE fixes
-
-	o thanks to Andrew Irwin for update on trackDistance documentation
+   o thanks to Andrew Irwin for update on trackDistance documentation
 
 
 OVERVIEW
 
-        o added a NAMESPACE file and package updates to make
-        everything work, maptools is now Imports, rgdal, adehabitatLT
-        and lattice are Suggests
+   o added a NAMESPACE file and package updates to make everything
+   work, maptools is now Imports, rgdal, adehabitatLT and lattice are
+   Suggests
 	
-	o modified dependency on adehabitat to adehabitatLT
+   o modified dependency on adehabitat to adehabitatLT
 
-	o removed class definitions for ppp, psp and owin, now
-	imported from maptools
+   o removed class definitions for ppp, psp and owin, now imported
+   from maptools
 
-        o update to trackDistance documentation
+   o update to trackDistance documentation
 
 
         CHANGES IN trip VERSION 1.1-10
