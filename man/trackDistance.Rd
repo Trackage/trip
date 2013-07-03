@@ -1,6 +1,8 @@
 %% $Id: trackDistance.Rd 96 2013-03-26 13:33:36Z sluque $
 \name{trackDistance}
 \alias{trackDistance}
+\alias{trackDistance.default}
+\alias{trackDistance.trip}
 
 %\alias{gcdist}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -18,7 +20,7 @@
 
 \usage{
 
-trackDistance(x1, y1, x2, y2, longlat=TRUE) 
+trackDistance(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) 
 
 }
 
@@ -26,7 +28,7 @@ trackDistance(x1, y1, x2, y2, longlat=TRUE)
 
 \arguments{
   
-  \item{x1}{matrix of 2-columns, with x/y coordinates OR a vector of x
+  \item{x1}{trip object, matrix of 2-columns, with x/y coordinates OR a vector of x
     start coordinates}
 
   \item{x2}{vector of x end coordinates, if x1 is not a matrix}
@@ -37,6 +39,9 @@ trackDistance(x1, y1, x2, y2, longlat=TRUE)
 
   \item{longlat}{if FALSE, Euclidean distance, if TRUE Great Circle
     distance}
+  \item{prev}{if TRUE and x1 is a trip, the return value has a padded
+  end value (\"prev\"ious), rather than start (\"next\")}
+
 
  % \item{lon1, lon2}{vectors of paired longitude coordinates}
  % \item{lat1, lat2}{vectors of paired latitude coordinates}
@@ -47,6 +52,12 @@ trackDistance(x1, y1, x2, y2, longlat=TRUE)
 
 
 \details{
+
+  If \code{x1} is a trip object, arguments \code{x2}, \code{x3},
+  \code{y2} are ignored and the return result has an extra element for
+  the start point of each individual trip, with value 0.0.  
+
+  The \code{prev} argument is ignore unless x1 is a trip.
 
   Distance values are in the units of the input coordinate system when
   longlat is FALSE, and in kilometres when longlat is TRUE.
