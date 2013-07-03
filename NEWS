@@ -1,5 +1,6 @@
 	CHANGES IN trip VERSION 1.1-16
 
+ o trackDistance is now generic, with a new argument "prev"
 
 
 
