@@ -74,8 +74,7 @@
 
 \S4method{plot}{trip,missing}(x, y, \ldots)
 \S4method{lines}{trip}(x,
-      col=hsv(seq(0, 0.9, length=length(summary(x)$tripID)),
-                  0.8, 0.95), \ldots)
+      col=hsv(seq(0, 0.9, length=length(unique(x[[getTORnames(x)[2]]]))), 0.8, 0.95), \ldots)
 \S4method{points}{trip}(x, \ldots)
 \S4method{text}{trip}(x, \ldots)
 
