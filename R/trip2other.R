@@ -52,7 +52,7 @@ as.trip.SpatialLinesDataFrame <- function(from) {
 }
 as.SpatialLinesDataFrame.trip <- function(from) {
     split.from <- split(from, from[[getTORnames(from)[2]]])
-    sdf <- summary(from)
+    sdf <- suppressWarnings(summary(from))
     df <- data.frame(tripID=sdf$tripID, tripStart=sdf$tmins,
                      tripEnd=sdf$tmaxs,
                      tripDur=as.vector(sdf$tripDurationSeconds),

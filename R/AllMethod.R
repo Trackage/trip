@@ -79,10 +79,11 @@ setMethod("text", signature(x="trip"),
 ## MDS 2010-07-06
 setMethod("lines", signature(x="trip"),
           function(x,
-                   col=hsv(seq(0, 0.9, length=length(summary(x)$tripID)),
+                   col=hsv(seq(0, 0.9, length = length(unique(x[[getTORnames(x)[2]]]))),
                      0.8, 0.95),
                    ...) {
               plot(as(x, "SpatialLinesDataFrame"),  col=col, add=TRUE, ...)
+           
           })
 
 setMethod("plot", signature(x="trip", y="missing"),
