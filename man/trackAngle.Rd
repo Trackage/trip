@@ -1,4 +1,3 @@
-
 \name{trackAngle}
 \alias{trackAngle}
 \alias{trackAngle.default}
@@ -29,7 +28,9 @@ trackAngle(x)
 }
 
 
-\details{
+\details{ If \code{x} is a trip object, the return result has an extra
+   element for the start and end point of each individual trip, with value NA.
+
   This is an optimized hybrid of "raster::bearing" and \code{\link[maptools]{gzAzimuth}}. 
 
 }
