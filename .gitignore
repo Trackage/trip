@@ -1,9 +1,9 @@
-.Rproj.user
-.Rhistory
-.RData
-.Rproj
-.Rbuildignore
-.R~
-.Rd~
-.R#
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Rproj
+*.Rbuildignore
+*.R~
+*.Rd~
+*.R#
 *~
