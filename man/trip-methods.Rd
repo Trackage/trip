@@ -149,7 +149,28 @@ tr <- trip(dat, c("gmt", "seal"))
 
 if (require(adehabitatLT)) {
     data(porpoise)
-    (porpoise <- as.trip(porpoise))
+    porpoise <- as.trip(porpoise)
+    proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
+    summary(porpoise)
+
+}
+
+\dontrun{
+## extended example to check that our projection metadata is correct
+library(maptools)
+data(wrld_simpl)
+library(rgeos)
+library(raster)
+
+## 3 degrees either side (for half a zone . . .)
+ext <- as(extent(spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
+proj4string(ext) <- CRS(proj4string(wrld_simpl))
+## crop to the buffered tracks, and project to its native CRS
+w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext), CRS(proj4string(porpoise)))
+
+plot(w)
+lines(porpoise)
+
 }
 
 }
