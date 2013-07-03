@@ -1,8 +1,8 @@
-\name{.explode}
-\alias{.explode}
-\title{.explode}
+\name{explode}
+\alias{explode}
+\title{explode}
 \usage{
-  .explode(x, ...)
+  explode(x, ...)
 }
 \arguments{
   \item{x}{trip object}
@@ -25,7 +25,7 @@
 ## Continuing the example from '?trip-methods:
 utils::example("trip-methods", package="trip",
            ask=FALSE, echo=FALSE)
-spldf <- trip:::.explode(tr)
+spldf <- trip:::explode(tr)
 summary(tr)
 }
 
