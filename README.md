@@ -24,7 +24,7 @@ The package is easily built with RStudio
 
 6. Create an Rstudio project in the folder containing this README file.
 
-7. Click 'Build and Reload` to make the package immediately available to RStudio, or 'Build Source Package` or `Build Binary Package` from the `Build` tab to make source or binary packages.
+7. Click 'Build and Reload' to make the package immediately available to RStudio, or 'Build Source Package` or `Build Binary Package` from the `Build` tab to make source or binary packages.
 
 
 
@@ -33,4 +33,4 @@ The package is easily built with RStudio
 - **Probability image**.  The SGAT (and tripEstimation) packages have
     functions for dealing with spatial track summaries that are
     atomized to the level of each time step, this would be a good
-    feature to provide to replace the existing tripGrid function.
+    feature to replace the existing tripGrid function.
