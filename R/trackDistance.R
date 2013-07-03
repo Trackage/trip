@@ -33,9 +33,10 @@
     dist
 }
 
-trackDistance <- function(x) UseMethod("trackDistance")
+##trackDistance <- function(x) UseMethod("trackDistance")
+trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
-trackDistance <- function(x1, y1, x2, y2, longlat=TRUE) {
+trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
     if (missing(y1)) {
         if (!is.matrix(x1))
             stop("x1 is not a matrix and multiple arguments not specified")
@@ -53,6 +54,11 @@ trackDistance <- function(x1, y1, x2, y2, longlat=TRUE) {
         trip:::.gcdist.c(x1, y1, x2, y2)
     } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
+
+trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
+    unlist(lapply(.distances(x1), function(x) if (prev) {c(x, 0)} else {c(0, x)}))
+}
+
 
 trackAngle <- function(x) {
   UseMethod("trackAngle")
