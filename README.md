@@ -6,7 +6,7 @@ spent plots from animal track data.
 
 ## Installing
 
-A) The package is easily installed from CRAN using 'install.packages("trip")' from R itself. 
+A) The package is easily installed from CRAN using 'install.packages("trip")' from R. 
 
 OR 
 
@@ -37,6 +37,8 @@ the 'Build' tab to make source or binary package.
 ## TODO
 
 - **Probability image**.  The SGAT (and tripEstimation) packages have
-    functions for dealing with spatial track summaries that are
-    atomized to the level of each time step, this would be a good
-    feature to replace the existing tripGrid function.
+functions for dealing with spatial track summaries that are
+atomized to the level of each time step. There are methods for combining summaries from
+multiple tracks and for casting arbitrary durations (by sum) to standard image structures. This would be a good
+feature to replace the existing tripGrid function by storing the 
+individual grid summaries for each implicit line segment.
