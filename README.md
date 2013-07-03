@@ -6,7 +6,11 @@ spent plots from animal track data.
 
 ## Installing
 
-The package is easily built with RStudio
+A) The package is easily installed from CRAN using 'install.packages("trip")' from R itself. 
+
+OR 
+
+B) The package can be easily built with RStudio. 
 
 1. Install R
 
@@ -24,7 +28,9 @@ The package is easily built with RStudio
 
 6. Create an Rstudio project in the folder containing this README file.
 
-7. Click 'Build and Reload' to make the package immediately available to RStudio, or 'Build Source Package` or `Build Binary Package` from the `Build` tab to make source or binary packages.
+7. Click 'Build and Reload' to make the package immediately available
+to RStudio, or 'Build Source Package' or `Build Binary Package' from
+the 'Build' tab to make source or binary package.
 
 
 
