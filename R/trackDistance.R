@@ -34,6 +34,40 @@
 }
 
 ##trackDistance <- function(x) UseMethod("trackDistance")
+
+
+#' Determine distances along a track
+#' 
+#' 
+#' Calculate the distances between subsequent 2-D coordinates using Euclidean
+#' or Great Circle distance (WGS84 ellipsoid) methods.
+#' 
+#' 
+#' If \code{x1} is a trip object, arguments \code{x2}, \code{x3}, \code{y2} are
+#' ignored and the return result has an extra element for the start point of
+#' each individual trip, with value 0.0.
+#' 
+#' The \code{prev} argument is ignore unless x1 is a trip.
+#' 
+#' Distance values are in the units of the input coordinate system when longlat
+#' is FALSE, and in kilometres when longlat is TRUE.
+#' 
+#' This originally used \code{\link[sp]{spDistsN1}} but now implements the sp
+#' \code{gcdist} source directly in R.
+#' 
+#' @aliases trackDistance trackDistance.default trackDistance.trip
+#' @param x1 trip object, matrix of 2-columns, with x/y coordinates OR a vector
+#' of x start coordinates
+#' @param x2 vector of x end coordinates, if x1 is not a matrix
+#' @param y1 vector of y start coordinates, if x1 is not a matrix
+#' @param y2 vector of y end coordinates, if x1 is not a matrix
+#' @param longlat if FALSE, Euclidean distance, if TRUE Great Circle distance
+#' @param prev if TRUE and x1 is a trip, the return value has a padded end
+#' value (\"prev\"ious), rather than start (\"next\")
+#' @return Vector of distances between coordinates.
+#' @references Original source taken from sp package.
+#' @keywords manip
+#' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
 trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
@@ -60,6 +94,25 @@ trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
 }
 
 
+
+
+#' Determine distances or angles along a track
+#' 
+#' 
+#' Calculate the angles between subsequent 2-D coordinates using Great Circle
+#' distance (spherical) methods.
+#' 
+#' If \code{x} is a trip object, the return result has an extra element for the
+#' start and end point of each individual trip, with value NA.
+#' 
+#' This is an optimized hybrid of "raster::bearing" and
+#' \code{\link[maptools]{gzAzimuth}}.
+#' 
+#' @aliases trackAngle trackAngle.default trackAngle.trip
+#' @param x trip object, or matrix of 2-columns, with x/y coordinates
+#' @return Vector of angles (degrees) between coordinates.
+#' @keywords manip
+#' @export trackAngle
 trackAngle <- function(x) {
   UseMethod("trackAngle")
 }

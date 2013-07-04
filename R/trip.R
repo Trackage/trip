@@ -48,6 +48,29 @@ setMethod("spTransform", signature("Spatial", "character"),
 ## are passed in correctly - and figure out which arguments are really
 ## useful anyway
 
+
+
+#' Function to ensure dates and times are in order with trip ID
+#' 
+#' 
+#' A convenience function, that removes duplicate rows, sorts by the date-times
+#' within ID, and removes duplicates from a data frame or
+#' SpatialPointsDataFrame.
+#' 
+#' 
+#' @param x \code{\link{data.frame}} or
+#' \code{\link[sp]{SpatialPointsDataFrame}}
+#' @param tor character vector of names of date-times and trip ID columns
+#' @return \code{\link{data.frame}} or
+#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' @note
+#' 
+#' It's really important that data used are of a given quality, but this
+#' function makes the most common trip problems easy to apply.
+#' @author Michael D. Sumner
+#' @seealso \code{\link{trip}}
+#' @keywords manip
+#' @export forceCompliance
 forceCompliance <- function(x, tor) {
     isSpatial <- is(x, "SpatialPointsDataFrame")
     if (isSpatial) {
@@ -129,6 +152,56 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
     newPts
 }
 
+
+
+#' Generate a grid of time spent using approximate methods
+#' 
+#' 
+#' Create a grid of time spent from an object of class \code{trip} by
+#' approximating the time between locations for separate trip events.
+#' 
+#' 
+#' This set of functions was the the original tripGrid from prior to version
+#' 1.1-6. \code{tripGrid} should be used for more exact and fast calculations
+#' assuming linear motion between fixes.
+#' 
+#' The intention is for \code{tripGrid.interp} to be used for exploring
+#' approximate methods of line-to-cell gridding.
+#' 
+#' Trip locations are first interpolated, based on an equal-time spacing
+#' between records. These interpolated points are then "binned" to a grid of
+#' cells.  The time spacing is specified by the "dur"ation argument to
+#' \code{interpequal} in seconds (i.e. \code{dur=3600} is used for 1 hour).
+#' Shorter time periods will require longer computation with a closer
+#' approximation to the total time spent in the gridded result.
+#' 
+#' Currently there are methods "count" and "kde" for quantifying time spent,
+#' corresponding to the functions "countPoints" and "kdePoints". "kde" uses
+#' kernel density to smooth the locations, "count" simply counts the points
+#' falling in a grid cell.
+#' 
+#' @aliases tripGrid.interp interpequal countPoints kdePoints
+#' @param x object of class trip
+#' @param grid GridTopology - will be generated automatically if NULL
+#' @param method name of method for quantifying time spent, see Details
+#' @param \dots other arguments passed to \code{interpequal} or
+#' \code{kdePoints}
+#' @param dur The \"dur\"ation of time used to interpolate between available
+#' locations (see Details)
+#' @param quiet logical - report on difference between time summed and time in
+#' trip?
+#' @param h numeric vector of two elements specifying bandwidth for kernel
+#' density
+#' @param resetTime logical - reset the values of the kde grid to match the sum
+#' of the total time?
+#' @return
+#' 
+#' \code{tripGrid} returns an object of class \code{SpatialGridDataFrame}, with
+#' one column "z" containing the time spent in each cell in seconds. If
+#' kdePoints is used the units are not related to the time values and must be
+#' scaled for further use.
+#' @keywords manip
+#' @export tripGrid.interp
 tripGrid.interp <- function(x, grid=NULL, method="count", dur=NULL, ...) {
     method <- paste(method, "Points", sep="")
     if (!exists(method)) stop("no such method: ", method)
@@ -209,6 +282,29 @@ countPoints <- function (x, dur=1, grid=NULL)
 }
 
 
+
+
+#' Generate a GridTopology from a Spatial object
+#' 
+#' 
+#' Sensible defaults are assumed, to match the extents of data to a manageable
+#' grid.
+#' 
+#' Approximations for kilometres in longlat can be made using \code{cellsize}
+#' and \code{adjust2longlat}.
+#' 
+#' 
+#' @param obj any Spatial object, or other object for which \code{bbox} will
+#' work
+#' @param cells.dim the number of cells of the grid, x then y
+#' @param xlim x limits of the grid
+#' @param ylim y limits of the grid
+#' @param buffer proportional size of the buffer to add to the grid limits
+#' @param cellsize pixel cell size
+#' @param adjust2longlat assume cell size is in kilometres and provide simple
+#' adjustment for earth-radius cells at the north-south centre of the grid
+#' @keywords manip
+#' @export makeGridTopology
 makeGridTopology <- function (obj, cells.dim=c(100, 100),
                               xlim=NULL, ylim=NULL, buffer=0, cellsize=NULL,
                               adjust2longlat=FALSE) {
@@ -267,6 +363,48 @@ makeGridTopology <- function (obj, cells.dim=c(100, 100),
         cellsize=cellsize, cells.dim=as.integer(cells.dim))
 }
 
+
+
+#' Adjust duplicate DateTime values
+#' 
+#' 
+#' Duplicated DateTime values within ID are adjusted forward (recursively) by
+#' one second until no duplicates are present. This is considered reasonable
+#' way of avoiding the nonsensical problem of duplicate times.
+#' 
+#' 
+#' This function is used to remove duplicate time records in animal track data,
+#' rather than removing the record completely.
+#' 
+#' @param time vector of DateTime values
+#' @param id vector of ID values, matching DateTimes that are assumed sorted
+#' within ID
+#' @return
+#' 
+#' The adjusted DateTime vector is returned.
+#' @section Warning:
+#' 
+#' I have no idea what goes on at CLS when they output data that are either not
+#' ordered by time or have duplicates. If this problem exists in your data it's
+#' probably worth finding out why.
+#' @author Michael D. Sumner
+#' @seealso \code{\link{readArgos}}
+#' @references http://staff.acecrc.org.au/~mdsumner/
+#' @keywords manip
+#' @examples
+#' 
+#' 
+#' ## DateTimes with a duplicate within ID
+#' tms <- Sys.time() + c(1:6, 6, 7:10) *10 
+#' id <- rep("a", length(tms))
+#' range(diff(tms))
+#'     
+#' ## duplicate record is now moved one second forward
+#' tms.adj <- adjust.duplicateTimes(tms, id)
+#' range(diff(tms.adj))
+#' 
+#' 
+#' @export adjust.duplicateTimes
 adjust.duplicateTimes <- function (time, id) {
     dups <- unlist(tapply(time, id, duplicated), use.names=FALSE)
     if (any(dups)) {
@@ -276,6 +414,41 @@ adjust.duplicateTimes <- function (time, id) {
     time
 }
 
+
+
+#' Assign numeric values for Argos "class"
+#' 
+#' 
+#' Assign numeric values for Argos "class" by matching the levels available to
+#' given numbers. An adjustment is made to allow sigma to be specified in
+#' kilometeres, and the values returned are the approximate values for longlat
+#' degrees.  It is assumed that the levels are part of an "ordered" factor from
+#' least precise to most precise.
+#' 
+#' 
+#' The available levels in Argos are \code{levels=c("Z", "B", "A", "0", "1",
+#' "2", "3")}.
+#' 
+#' The actual sigma values given by default are (as far as can be determined) a
+#' reasonable stab at what Argos believes.
+#' 
+#' @param x factor of Argos location quality "classes"
+#' @param sigma numeric values (by default in kilometres)
+#' @param adjust a numeric adjustment to convert from kms to degrees
+#' @return
+#' 
+#' Numeric values for given levels.
+#' @keywords manip
+#' @examples
+#' 
+#' 
+#' cls <- ordered(sample(c("Z", "B", "A", "0", "1", "2", "3"), 30,
+#'                       replace=TRUE),
+#'                levels=c("Z", "B", "A", "0", "1", "2", "3"))
+#' argos.sigma(cls)
+#' 
+#' 
+#' @export argos.sigma
 argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
                         adjust=111.12) {
     sigma <- sigma / adjust
@@ -283,6 +456,83 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
     sigma[x]
 }
 
+
+
+#' Read Argos "DAT" or "DIAG" files
+#' 
+#' 
+#' Return a (Spatial) data frame of location records from raw Argos files.
+#' Multiple files may be read, and each set of records is appended to the data
+#' frame in turn.  Basic validation of the data is enforced by default.
+#' 
+#' 
+#' \code{readArgos} performs basic validation checks for class \code{trip} are
+#' made, and enforced based on \code{correct.all}:
+#' 
+#' No duplicate records in the data, these are simply removed.  Records are
+#' ordered by DateTime ("date", "time", "gmt") within ID ("ptt").  No duplicate
+#' DateTime values within ID are allowed: to enforce this the time values are
+#' moved forward by one second - this is done recursively and is not robust.
+#' 
+#' If validation fails the function will return a
+#' \code{\link[sp]{SpatialPointsDataFrame}}.  Files that are not obviously of
+#' the required format are skipped.
+#' 
+#' Argos location quality data "class" are ordered, assuming that the available
+#' levels is \code{levels=c("Z", "B", "A", "0", "1", "2", "3")}.
+#' 
+#' A projection string is added to the data, assuming the PROJ.4 longlat - if
+#' any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
+#' 
+#' \code{readDiag} simply builds a \code{data.frame}.
+#' 
+#' @aliases readArgos readDiag
+#' @param x vector of file names of Argos "DAT" or "DIAG" files.
+#' @param correct.all logical - enforce validity of data as much as possible?
+#' (see Details)
+#' @param dtFormat the DateTime format used by the Argos data "date" and "time"
+#' pasted together
+#' @param tz timezone - GMT/UTC is assumed
+#' @param duplicateTimes.eps what is the tolerance for times being duplicate?
+#' @param p4 PROJ.4 projection string, "+proj=longlat +ellps=WGS84" is assumed
+#' @param verbose if TRUE, details on date-time adjustment is reported
+#' @return
+#' 
+#' \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
+#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' 
+#' \code{readDiag} returns a \code{data.frame} with 8 columns:
+#' @returnItem lon1,lat1 first pair of coordinates
+#' @returnItem lon2,lat2 second pair of coordinates
+#' @returnItem gmt DateTimes as POSIXct
+#' @returnItem id Platform Transmitting Terminal (PTT) ID
+#' @returnItem lq Argos location quality class
+#' @returnItem iq some other thing
+#' @section Warning :
+#' 
+#' This works on some Argos files I have seen, it is not a guaranteed method
+#' and is in no way linked officially to Argos.
+#' @author Michael D. Sumner
+#' @seealso
+#' 
+#' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
+#' \code{\link{adjust.duplicateTimes}}, for manipulating these data, and
+#' \code{\link{argos.sigma}} for relating a numeric value to Argos quality
+#' "classes".
+#' 
+#' \code{\link{sepIdGaps}} for splitting the IDs in these data on some minimum
+#' gap.
+#' 
+#' \code{\link{order}}, \code{\link{duplicated}}, , \code{\link{ordered}} for
+#' general manipulation of this type.
+#' @references
+#' 
+#' The Argos data documentation is at
+#' \url{http://www.argos-system.org/manual/}.  Specific details on the PRV
+#' ("provide data") format were found here
+#' \url{http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm}.
+#' @keywords IO manip
+#' @export readArgos
 readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        tz="GMT", duplicateTimes.eps=1e-2,
                        p4="+proj=longlat +ellps=WGS84", verbose=FALSE) {
@@ -378,6 +628,44 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
 }
 
 
+
+
+#' Separate a set of IDs based on gaps
+#' 
+#' 
+#' A new set of ID levels can be created by separating those given based on a
+#' minimum gap in another set of data. This is useful for separating
+#' instruments identified only by their ID into separate events in time.
+#' 
+#' 
+#' The assumption is that a week is a long time for a tag not to record
+#' anything.
+#' 
+#' @param id existing ID levels
+#' @param gapdata data matching \code{id} with gaps to use as separators
+#' @param minGap the minimum "gap" to use in gapdata to create a new ID level
+#' @return
+#' 
+#' A new set of ID levels, named following the pattern that "ID" split into 3
+#' would provided "ID", "ID\_2" and "ID\_3".
+#' @section Warning:
+#' 
+#' It is assumed that each vector provides is sorted by \code{gapdata} within
+#' \code{id}. No checking is done, and so it is suggested that this only be
+#' used on ID columns within existing, validated \code{trip} objects.
+#' @author Michael D. Sumner
+#' @seealso \code{\link{trip}}
+#' @keywords manip
+#' @examples
+#' 
+#' 
+#' id <- gl(2, 8)
+#' gd <- Sys.time() + 1:16
+#' gd[c(4:6, 12:16)] <- gd[c(4:6, 12:16)] + 10000
+#' sepIdGaps(id, gd, 1000)
+#'   
+#' 
+#' @export sepIdGaps
 sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
     toSep <- tapply(gapdata, id,
                     function(x) which(diff(unclass(x) ) > minGap))

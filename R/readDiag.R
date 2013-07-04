@@ -1,5 +1,7 @@
 # $Id: readDiag.R 68 2013-03-20 03:11:06Z sluque $
 
+##' @rdname readArgos
+##' @export
 readDiag <- function (x) {
     data <- NULL
     for (fl in x) {

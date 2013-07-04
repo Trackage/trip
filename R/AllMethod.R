@@ -2,6 +2,36 @@
 
 ###_ + TimeOrderedRecords
 
+
+
+#' The TimeOrderedRecords class
+#' 
+#' A simple class to act as a place-holder for DateTime and ID records in
+#' spatial data.
+#' 
+#' The main use of this class and creator function is for
+#' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
+#' TimeOrderedRecords for the class \code{trip}.  #'
+#' 
+#' @aliases TimeOrderedRecords TimeOrderedRecords-class
+#' @param x Character vector of 2 elements specifying the data columns of
+#' DateTimes and IDs
+#' @return \code{TimeOrderedRecords} holds a 2-element character vector, naming
+#' the data columns of DateTimes and IDs.
+#' @note Future versions may change significantly, this class is very basic and
+#' could probably be implemented in a better way. Specifying TOR columns by
+#' formula would be a useful addition.
+#' @section Slots: \describe{ \item{list("TOR.columns")}{2-element vector of
+#' class \code{"character"}}\item{:}{2-element vector of class
+#' \code{"character"}} }
+#' @seealso \code{\link{trip}} for creating trip objects, and
+#' \code{\link{trip-class}} for that class
+#' @examples
+#' 
+#' tor <- new("TimeOrderedRecords", TOR.columns=c("datetime", "ID"))
+#' tor <- TimeOrderedRecords(c("datetime", "ID"))
+#' 
+#' @export TimeOrderedRecords
 TimeOrderedRecords <- function(x) {
     new("TimeOrderedRecords", TOR.columns=x)
 }

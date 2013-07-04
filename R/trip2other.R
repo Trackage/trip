@@ -50,6 +50,60 @@ as.trip.SpatialLinesDataFrame <- function(from) {
     .Deprecated("as.SpatialLinesDataFrame.trip")
     as.SpatialLinesDataFrame.trip(from)
 }
+
+
+#' Coercion from \code{trip} objects to other classes
+#' 
+#' Coercing \code{trip} objects to other classes.
+#' 
+#' 
+#' @aliases as.SpatialLinesDataFrame.trip
+#' coerce,trip,SpatialLinesDataFrame-method as.ltraj.trip
+#' coerce,ltraj,trip-method as.ppp.trip as.psp.trip coerce,trip,psp-method
+#' coerce,trip,ppp-method
+#' @param from \code{trip} object for \code{as.SpatialLinesDataFrame.trip}, but
+#' see \code{\link[spatstat]{as.psp}} for that method.
+#' @param X,x,xy \code{trip} object.
+#' @param typeII see \code{\link[adehabitatLT]{as.ltraj}}.
+#' @param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning
+#' angles.
+#' @param list() Ignored.
+#' @param fatal Logical value, see Details of \code{\link[spatstat]{as.ppp}}.
+#' @param to See \code{\link[spatstat]{as.psp}}.
+#' @section Methods:
+#' 
+#' \describe{
+#' 
+#' \item{coerce}{\code{signature(from="trip", to="SpatialLinesDataFrame")}}
+#' 
+#' \item{coerce}{\code{signature(from="trip", to="ltraj")}}
+#' 
+#' \item{coerce}{\code{signature(from="trip", to="ppp")}}
+#' 
+#' \item{coerce}{\code{signature(from="trip", to="psp")}}
+#' 
+#' }
+#' @author Michael D. Sumner
+#' @keywords spatial manip
+#' @examples
+#' 
+#' 
+#' ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'                ask=FALSE, echo=FALSE)
+#' 
+#' as.SpatialLinesDataFrame.trip(tr)
+#' as(tr, "SpatialLinesDataFrame")
+#' 
+#' if (require(adehabitatLT)) {
+#'     as.ltraj.trip(tr)
+#' }
+#' 
+#' as.ppp(tr)
+#' as.psp(tr)
+#' 
+#' 
+#' @export as.SpatialLinesDataFrame.trip
 as.SpatialLinesDataFrame.trip <- function(from) {
     split.from <- split(from, from[[getTORnames(from)[2]]])
     sdf <- suppressWarnings(summary(from))

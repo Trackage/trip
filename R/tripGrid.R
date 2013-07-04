@@ -17,6 +17,38 @@
            y=seq(mn[2], mx[2], length=x@cells.dim[2])))
 }
 
+
+
+#' Generate a grid of time spent by line-to-cell gridding
+#' 
+#' 
+#' Create a grid of time spent from an object of class \code{trip} by exact
+#' cell crossing methods, weighted by the time between locations for separate
+#' trip events.
+#' 
+#' 
+#' Zero-length lines cannot be summed directly, their time value is summed by
+#' assuming the line is a point. A warning is given. The density method returns
+#' proportionate values, not summed time durations.
+#' 
+#' See \code{pixellate.psp} and \code{pixellate.ppp} for the details on the
+#' method used. See \code{density.psp} for method="density".
+#' 
+#' Trip events are assumed to start and end as per the object passed in. To
+#' work with inferred "cutoff" positions see \code{split.trip.exact}.
+#' 
+#' @param x object of class \code{trip}
+#' @param grid GridTopology - will be generated automatically if NULL
+#' @param method pixellate or density
+#' @param list() pass arguments to density.psp if that method is chosen (and
+#' temporary mechanism to direct users of legacy methods to
+#' \code{\link{tripGrid.interp}})
+#' @return
+#' 
+#' \code{tripGrid} returns an object of class \code{SpatialGridDataFrame}, with
+#' one column "z" containing the time spent in each cell in seconds.
+#' @keywords manip
+#' @export tripGrid
 tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 {
     if (method %in% c("kde", "count")) {

@@ -1,5 +1,57 @@
 # $Id: speedfilter.R 99 2013-03-27 14:13:27Z sluque $
 
+
+
+#' Filter track data for speed
+#' 
+#' 
+#' Create a filter of a track for "bad" points implying a speed of motion that
+#' is unrealistic.
+#' 
+#' 
+#' Using an algorithm (McConnnell et al, 1992), points are tested for speed
+#' between previous / next and 2nd previous / next points.  Contiguous sections
+#' with an root mean square speed above a given maximum have their highest rms
+#' point removed, then rms is recalculated, until all points are below the
+#' maximum.  By default an (internal) root mean square function is used, this
+#' can be specified by the user.
+#' 
+#' If the coordinates of the \code{trip} data are not projected, or NA the
+#' distance calculation assumeds longlat and kilometres (great circle). For
+#' projected coordinates the speed must match the units of the coordinate
+#' system.  (The PROJ.4 argument "units=km" is suggested).
+#' 
+#' @param x trip object
+#' @param max.speed speed in kilometres per hour
+#' @param test cut the algorithm short and just return first pass
+#' @return
+#' 
+#' Logical vector matching positions in the coordinate records that pass the
+#' filter.
+#' @note
+#' 
+#' This algorithm was originally taken from IDL code by David Watts at the
+#' Australian Antarctic Division, and used in various other environments before
+#' the development of this version.
+#' @section Warning:
+#' 
+#' This algorithm is not considered to be particularly relevant to the problems
+#' involved with location uncertainty in animal tracking.  It is provided
+#' merely as an illustrative benchmark for further work.
+#' 
+#' It is possible for the filter to become stuck in an infinite loop, depending
+#' on the function passed to the filter.  Several minutes is probably too long
+#' for hundreds of points, test on smaller sections if unsure.
+#' @author Michael D. Sumner
+#' @seealso \code{\link{trip}}
+#' @references
+#' 
+#' The algorithm comes from McConnell, B. J. and Chambers, C. and Fedak, M. A.
+#' (1992) Foraging ecology of southern elephant seals in relation to the
+#' bathymetry and productivity of the southern ocean.  Antarctic Science
+#' \emph{4} 393-398
+#' @keywords manip
+#' @export speedfilter
 speedfilter <- function (x, max.speed=NULL, test=FALSE) {
     if (!is(x, "trip"))
         stop("only trip objects supported")

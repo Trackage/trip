@@ -1,18 +1,27 @@
 ## explode a trip into line segments
 
-##' Break a trip into its component line segments
-##'
-##' Function to create a SpatialLinesDataFrame from a trip object, resulting in a line segment for each implicit segment along the tracks. The object stores the start and end times, duration and the ID of the segment. 
-##' @title explode
-##' @param x trip object
-##' @param ... reserved for future methods
-##' @return SpatialLinesDataFrame
-##' @examples
-##' ## Continuing the example from '?trip-methods:
-##' utils::example("trip-methods", package="trip",
-##'            ask=FALSE, echo=FALSE)
-##' spldf <- trip:::explode(tr)
-##' summary(tr)
+
+
+#' explode
+#' 
+#' Break a trip into its component line segments
+#' 
+#' Function to create a SpatialLinesDataFrame from a trip object, resulting in
+#' a line segment for each implicit segment along the tracks. The object stores
+#' the start and end times, duration and the ID of the segment.
+#' 
+#' @param x trip object
+#' @param ... reserved for future methods
+#' @return SpatialLinesDataFrame
+#' @examples
+#' 
+#' ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'            ask=FALSE, echo=FALSE)
+#' spldf <- trip:::explode(tr)
+#' summary(tr)
+#' 
+#' @export explode
 explode <- function(x, ...) {
   tor <- getTORnames(x)
   id <- x[[tor[2]]]
