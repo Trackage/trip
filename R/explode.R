@@ -1,6 +1,3 @@
-## explode a trip into line segments
-
-
 
 #' explode
 #' 

@@ -1,6 +1,8 @@
 # $Id: trackDistance.R 74 2013-03-21 15:28:34Z sluque $
 
 ## taken from package sp/src/gcdist.c
+
+##' @rdname trip-internal
 .gcdist.c <- function(lon1, lat1, lon2, lat2) {
     DE2RA <- pi / 180
     a <- 6378.137            # /* WGS-84 equatorial radius in km */
@@ -151,7 +153,7 @@ trackAngle.default <- function(x) {
 
 
 ## "abdali", replacement for raster::bearing
-
+##' @rdname trip-internal
 .abdali <- function (p1, p2)
 {
   stopifnot(nrow(p1) == nrow(p2))

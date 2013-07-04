@@ -16,5 +16,5 @@ Description: Functions for accessing and manipulating spatial data for
 	     from animal track data.
 Collate: AllClass.R AllGenerics.R AllMethod.R trip.R trip.split.R
         trip2other.R tripGrid.R trackDistance.R filter.penSS.R
-        oc.theme.R readDiag.R speedfilter.R explode.R
+        oc.theme.R speedfilter.R explode.R trip-deprecated.R trip-package.R
 License: GPL-3

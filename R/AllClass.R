@@ -14,7 +14,7 @@
 ##'  }
 ##'
 ##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
-##' @name TimeOrderedRecords
+##' @name TimeOrderedRecords-class
 ##' @rdname TimeOrderedRecords-class
 ##' @aliases TimeOrderedRecords-class
 ##' @exportClass TimeOrderedRecords
@@ -40,10 +40,93 @@ setValidity("TimeOrderedRecords", function(object) {
     }
 })
 
+
+#' Class \code{"trip"}
+#' 
+#' 
+#' An extension of \code{\link[sp]{SpatialPointsDataFrame}} by including
+#' \code{"TimeOrderedRecords"}.  The records within the data frame are
+#' explicitly ordered by DateTime data within IDs.
+#' 
+#' 
+#' @name trip-class
+#' @aliases trip-class dim.trip names.trip names<-.trip
+#' [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method lines,trip-method
+#' plot,trip,missing-method points,trip-method recenter,trip-method
+#' show,trip-method show,summary.TORdata-method spTransform,trip,CRS-method
+#' spTransform,trip,character-method print.trip print.summary.TORdata
+#' as.data.frame.summary.TORdata summary,trip-method text,trip-method
+#' subset,trip-method as.data.frame.trip
+#' @exportClass trip
+#' @docType class
+#' @param x,object,obj A \code{trip} object.
+#' @param i,j For "[", rows and columns, respectively, of SpatialDataFrame to
+#' subset.  For "[[<-", integer corresponding to the Datetime or ID vector, or
+#' the string naming it.
+#' @param list() Arguments passed to other methods.
+#' @param ,drop,y,col Arguments passed to other methods.
+#' @param value Object to replace time or ID column with.
+#' @param CRSobj See \code{\link[sp]{spTransform}}.
+#' @section Objects from the Class:
+#' 
+#' Objects can be created by calls of the form
+#' \code{trip(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords")}.
+#' The object contains all the slots present within a
+#' \code{\link[sp]{SpatialPointsDataFrame}}, particularly \code{data} which
+#' contains columns of at least those specified by \code{TOR.columns}.
+#' @author Michael D. Sumner
+#' @seealso
+#' 
+#' \code{\link{trip}} for examples of directly using the class.
+#' 
+#' \code{\link{trip-accessors}} describes methods for accessing information on
+#' \code{trip} objects.
+#' @keywords classes
+#' @examples
+#' 
+#' 
+#' showClass("trip")
+#' 
+#' ## Examples of general methods
+#' ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'                ask=FALSE, echo=FALSE)
+#' summary(tr)
+#' plot(tr)
+#' lines(tr)
+#' 
+#' dim(tr)
+#' names(tr)
+#' subset(tr, id == "2")
+#' as.data.frame(tr)
+#' 
+#' tr[1:3, ]
+#' tr[, 1]
+#' tr[[1]]
+#' 
+#' if (exists("porpoise")) {
+#'     dim(porpoise)
+#'     names(porpoise)
+#'     porpoise[porpoise[["id"]] == "GUS", ]
+#' }
+#' 
+#' 
 setClass("trip",
          contains=c("TimeOrderedRecords", "SpatialPointsDataFrame"))
 
 
+##' 
+#' Internal trip Functions
+#' 
+#' Internal trip functions
+#' 
+#' 
+#' These are not to be called by the user (or in some cases are just waiting
+#' for proper documentation to be written).
+#' @name trip-internal
+#' @aliases trip-internal .validTORdata .oc.col .single.trip.split .g2ow
+#' .gcdist.c .intpFun .tripRbind .distances .abdali
+#' @keywords internal
 .validTORdata <- function(object) {
     if (!is(object@data, "data.frame"))
         stop("only data frames supported for data slots")

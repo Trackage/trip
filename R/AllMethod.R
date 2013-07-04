@@ -2,41 +2,49 @@
 
 ###_ + TimeOrderedRecords
 
-
-
-#' The TimeOrderedRecords class
-#' 
-#' A simple class to act as a place-holder for DateTime and ID records in
-#' spatial data.
-#' 
-#' The main use of this class and creator function is for
-#' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
-#' TimeOrderedRecords for the class \code{trip}.  #'
-#' 
-#' @aliases TimeOrderedRecords TimeOrderedRecords-class
-#' @param x Character vector of 2 elements specifying the data columns of
-#' DateTimes and IDs
-#' @return \code{TimeOrderedRecords} holds a 2-element character vector, naming
-#' the data columns of DateTimes and IDs.
-#' @note Future versions may change significantly, this class is very basic and
-#' could probably be implemented in a better way. Specifying TOR columns by
-#' formula would be a useful addition.
-#' @section Slots: \describe{ \item{list("TOR.columns")}{2-element vector of
-#' class \code{"character"}}\item{:}{2-element vector of class
-#' \code{"character"}} }
-#' @seealso \code{\link{trip}} for creating trip objects, and
-#' \code{\link{trip-class}} for that class
-#' @examples
-#' 
-#' tor <- new("TimeOrderedRecords", TOR.columns=c("datetime", "ID"))
-#' tor <- TimeOrderedRecords(c("datetime", "ID"))
-#' 
-#' @export TimeOrderedRecords
 TimeOrderedRecords <- function(x) {
     new("TimeOrderedRecords", TOR.columns=x)
 }
 
+
+
+
+
+
+
+#' 
+#' Functions to retrieve DateTime and ID data from within (Spatial) data
+#' frames.
+#' 
+#' 
+#' Functions for retrieving the names of the columns used for DateTime and ID,
+#' as well as the data.
+#' 
+#' @name trip-accessors
+#' @aliases trip-accessors getTORnames getTimeID
+#' @param obj \code{trip} object.
+#' @return
+#' 
+#' \code{getTORnames} retrieves the column names from an object extending the
+#' class \code{TimeOrderedRecords}, and \code{getTimeID} returns the data as a
+#' data frame from an object extending the class \code{TimeOrderedRecords}.
+#' @seealso
+#' 
+#' \code{\link{trip-class}}, for the use of this class with
+#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' 
+#' \code{\link{trip}}
+#' @keywords manip
+#' @examples
+#' 
+#' 
+#' tor <- TimeOrderedRecords(c("time", "id"))
+#' getTORnames(tor)
+#' 
+#' 
 getTORnames <- function(obj) obj@TOR.columns
+
+##' @rdname trip-accessors
 getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 
 

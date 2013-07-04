@@ -2,6 +2,43 @@
 
 ## ltraj from adehabitat
 
+
+#' Coercion from other classes to \code{trip} objects
+#' 
+#' Coercing objects to \code{trip} class
+#' 
+#' 
+#' @name as.trip-methods
+#' @aliases as.trip-methods as.trip as.trip,ltraj-method ltraj2trip
+#' coerce,trip,ltraj-method
+#' @docType methods
+#' @param x,ltr ltraj object
+#' @param list() Arguments passed to other methods. Ignored for \code{ltraj}
+#' method.
+#' @section Methods:
+#' 
+#' \describe{
+#' 
+#' \item{coerce}{\code{signature(from="ltraj", to="trip")}}
+#' 
+#' \item{as.trip}{\code{signature(x="ltraj")}}
+#' 
+#' }
+#' @author Michael D. Sumner
+#' @keywords methods spatial manip
+#' @examples
+#' 
+#' 
+#' ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'                ask=FALSE, echo=FALSE)
+#' 
+#' if (require(adehabitatLT)) {
+#'     l <- as.ltraj.trip(tr)
+#'     ltraj2trip(l)
+#'     as.trip(l)
+#' }
+#' 
 as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
     require(adehabitatLT) ||
         stop("adehabitatLT package is required, but unavailable")
@@ -46,10 +83,7 @@ as.psp.trip <- function(x, ..., from, to) {
 
 setAs("trip", "psp", function(from) as.psp.trip(from))
 
-as.trip.SpatialLinesDataFrame <- function(from) {
-    .Deprecated("as.SpatialLinesDataFrame.trip")
-    as.SpatialLinesDataFrame.trip(from)
-}
+
 
 
 #' Coercion from \code{trip} objects to other classes

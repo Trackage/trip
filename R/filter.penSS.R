@@ -5,7 +5,7 @@
 #' Non-destructive smoothing filter
 #' 
 #' 
-#' Non-destructuve filter for track data using penalty smoothing on velocity.
+#' Non-destructive filter for track data using penalty smoothing on velocity.
 #' 
 #' 
 #' Destructive filters such as \code{\link{speedfilter}} can be recast using a
@@ -18,14 +18,14 @@
 #' When lambda=0 the smoothed track reproduces the raw track exactly.
 #' Increasing lambda favours tracks requiring less extreme velocities, at the
 #' expense of reproducing the original locations.
-#' 
+#' @name filter.penSS
 #' @param tr A \code{trip} object.
 #' @param lambda Smoothing parameter, see Details.
 #' @param first Fix the first location and prevent it from being updated by the
 #' filter.
 #' @param last Fix the last location and prevent it from being updated by the
 #' filter.
-#' @param list() %% ~~Describe \code{\dots} here~~
+#' @param \code{\dots}
 #' @return
 #' 
 #' A trip object with updated coordinate values based on the filter - all the

@@ -14,6 +14,7 @@
 ## bound.dates <- seq(min(tr$tms)-1, max(tr$tms)+1, length=5)
 ## trip.list <- trip.split.exact(tr, bound.dates)
 
+##' @rdname trip-internal
 .tripRbind <- function (obj, x) {
     ## not needed, and not possible since classes imported using
     ## NAMESPACE MDS 2012-10-09
@@ -28,6 +29,7 @@
     trip(x, tor1)
 }
 
+##' @rdname trip-internal
 .single.trip.split <- function(tr1, boundary.dates) {
     diff.d <- diff(unclass(boundary.dates))
     if (any(diff.d < 0))
@@ -105,10 +107,7 @@
     lapply(res, trip, tor)
 }
 
-trip.split.exact <- function(x, dates) {
-    .Deprecated("cut.trip")
-    cut(x, dates)
-}
+
 
 
 #' 

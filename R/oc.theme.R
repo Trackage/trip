@@ -32,6 +32,7 @@
 #' @export oc.theme
 oc.theme <- function(x=50) list(regions=list(col=oc.colors(x)))
 
+##' @rdname trip-internal
 .oc.col <- c("#FFFFFF", "#A00AFF", "#A013FF", "#A01DFF", "#A027FF",
              "#A031FF", "#A03BFF", "#A045FF", "#A050FF", "#A05AFF",
              "#9C5FFF", "#9560FF", "#8F60FF", "#8860FF", "#8160FF",

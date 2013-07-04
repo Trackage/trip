@@ -8,6 +8,8 @@
 
 ## replaces tripGrid, old version is now called tripGrid.interp
 
+
+##' @rdname trip-internal
 .g2ow <- function(x) {
     mn <- x@cellcentre.offset - x@cellsize / 2
     mx <- mn + x@cells.dim * x@cellsize
