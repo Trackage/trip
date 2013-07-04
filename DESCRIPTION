@@ -14,7 +14,7 @@ Maintainer: Michael D. Sumner <mdsumner@gmail.com>
 Description: Functions for accessing and manipulating spatial data for
 	     animal tracking.  Filter for speed and create time spent plots
 	     from animal track data.
-Collate: AllClass.R AllGenerics.R AllMethod.R trip.R trip.split.R
+Collate: AllClass.R  AllMethod.R trip.R trip.split.R
         trip2other.R tripGrid.R trackDistance.R filter.penSS.R
         oc.theme.R speedfilter.R explode.R trip-deprecated.R trip-package.R
 License: GPL-3
