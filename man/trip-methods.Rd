@@ -118,6 +118,7 @@ coordinates(d) <- ~x+y
 proj4string(d) <- CRS("+proj=laea")
 (tr <- trip(d, c("tms", "id")))
 
+%% I really don't want adehabitatMA to be loaded as a requirement here
 \dontrun{
 ## a simple example with the common fixes required for basic track data
 
@@ -147,6 +148,8 @@ coordinates(dat) <- c("long", "lat")
 tr <- trip(dat, c("gmt", "seal"))
 }
 
+
+\dontrun{
 if (require(adehabitatLT)) {
     data(porpoise)
     porpoise <- as.trip(porpoise)
@@ -155,7 +158,7 @@ if (require(adehabitatLT)) {
 
 }
 
-\dontrun{
+
 ## extended example to check that our projection metadata is correct
 library(maptools)
 data(wrld_simpl)
