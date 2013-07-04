@@ -1,5 +1,32 @@
 # $Id: AllClass.R 81 2013-03-21 17:26:50Z sluque $
 
+##' The TimeOrderedRecords class
+##'
+##' A simple class to act as a place-holder for DateTime and ID records in spatial data.
+##'
+##' The main use of this class and creator function is for
+##' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
+##' TimeOrderedRecords for the class \code{trip}.
+##'                                        #'
+##'@section Slots:
+##'  \describe{
+##'    \item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
+##'  }
+##'
+##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
+##' @name TimeOrderedRecords
+##' @rdname TimeOrderedRecords-class
+##' @aliases TimeOrderedRecords-class
+##' @exportClass TimeOrderedRecords
+##' @return  \code{TimeOrderedRecords} holds a 2-element character vector, naming the data columns
+##' of DateTimes and IDs.
+##' @note  Future versions may change significantly, this class is
+##' very basic and could probably be implemented in a better
+##' way. Specifying TOR columns by formula would be a useful addition.
+##' @seealso \code{\link{trip}} for creating trip objects, and \code{\link{trip-class}} for that class
+##' @examples
+##' tor <- new("TimeOrderedRecords", TOR.columns=c("datetime", "ID"))
+##' tor <- TimeOrderedRecords(c("datetime", "ID"))
 setClass("TimeOrderedRecords", representation(TOR.columns="character"))
 
 setValidity("TimeOrderedRecords", function(object) {
@@ -15,6 +42,7 @@ setValidity("TimeOrderedRecords", function(object) {
 
 setClass("trip",
          contains=c("TimeOrderedRecords", "SpatialPointsDataFrame"))
+
 
 .validTORdata <- function(object) {
     if (!is(object@data, "data.frame"))
