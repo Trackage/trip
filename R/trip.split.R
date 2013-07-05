@@ -123,7 +123,7 @@
 #' @param x A trip object.
 #' @param dates A vector of date-time boundaries. These must encompass all the
 #' time range of the entire trip object.
-#' @param list() Unused arguments.
+#' @param \dots Unused arguments.
 #' @return
 #' 
 #' A list of trip objects, named by the time boundary in which they lie.
@@ -192,6 +192,8 @@
 #' 
 #' }
 #' 
+#' @method cut trip
+#' @S3method cut trip
 #' @export cut.trip
 cut.trip <- function(x, dates, ...) {
     tor <- getTORnames(x)
@@ -233,8 +235,3 @@ cut.trip <- function(x, dates, ...) {
 }
 
 
-
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:

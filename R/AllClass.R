@@ -44,7 +44,7 @@ setValidity("TimeOrderedRecords", function(object) {
 #' 
 #' @name trip-class
 #' @rdname trip-class
-#' @aliases trip-class 
+#' @aliases trip-class lines,trip-method plot,trip,missing-method show,trip-method show,summary.TORdata-method summary,trip-method subset,trip-method
 #' @exportClass trip
 #' @docType class
 #' @section Objects from the Class:

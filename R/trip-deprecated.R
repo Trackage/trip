@@ -7,12 +7,12 @@
 #' tripTransform
 #' @param x see \code{\link{cut.trip}}
 #' @param dates see \code{\link{cut.trip}}
-#' @param from see \code{\link{as.SpatialLinesDataFrame.trip}}
+#' @param from trip object
 #' @param crs CRS object, or PROJ.4 string accepted by \code{\link[sp]{CRS}}
 #' @param \dots Further arguments to \code{\link[rgdal]{spTransform}}
 #' @seealso
 #' 
-#' \code{\link{cut.trip}}, \code{\link{as.SpatialLinesDataFrame.trip}}
+#' \code{\link{cut.trip}}, \code{\link{as.Other}}
 #' @keywords manip
 trip.split.exact <- function(x, dates) {
   .Deprecated("cut.trip")
@@ -22,7 +22,8 @@ trip.split.exact <- function(x, dates) {
 ##' @rdname trip-deprecated
 as.trip.SpatialLinesDataFrame <- function(from) {
   .Deprecated("as.SpatialLinesDataFrame.trip")
-  as.SpatialLinesDataFrame.trip(from)
+  ##as.SpatialLinesDataFrame.trip(from)
+  as(from, "SpatialLinesDataFrame")
 }
 
 ## removed depends sp, suggests rgdal deprecate this, replace with

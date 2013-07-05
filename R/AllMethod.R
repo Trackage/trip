@@ -9,7 +9,7 @@
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
-#' trip,trip,TimeOrderedRecords-method
+#' trip,trip,TimeOrderedRecords-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
 #' @docType methods
 #' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
 #' be coerced to one, containing at least two columns with the DateTime and ID
@@ -90,37 +90,32 @@
 #' 
 #' 
 #' \dontrun{
-#' if (require(adehabitatLT)) {
-#'     data(porpoise)
-#'     porpoise <- as.trip(porpoise)
-#'     proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
-#'     summary(porpoise)
+#'    if (require(adehabitatLT)) {
+#'      data(porpoise)
+#'      porpoise <- as.trip(porpoise)
+#'      proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
+#'      summary(porpoise)
 #' 
+#'    }
+#' 
+#' 
+#'    ## extended example to check that our projection metadata is correct
+#'    library(maptools)
+#'    data(wrld_simpl)
+#'    library(rgeos)
+#'    library(raster)
+#' 
+#'    ## 3 degrees either side (for half a zone . . .)
+#'    ext <- as(extent(spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
+#'    proj4string(ext) <- CRS(proj4string(wrld_simpl))
+#'    ## crop to the buffered tracks, and project to its native CRS
+#'    w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext), CRS(proj4string(porpoise)))
+#' 
+#'    plot(w)
+#'    lines(porpoise)
 #' }
-#' 
-#' 
-#' ## extended example to check that our projection metadata is correct
-#' library(maptools)
-#' data(wrld_simpl)
-#' library(rgeos)
-#' library(raster)
-#' 
-#' ## 3 degrees either side (for half a zone . . .)
-#' ext <- as(extent(spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
-#' proj4string(ext) <- CRS(proj4string(wrld_simpl))
-#' ## crop to the buffered tracks, and project to its native CRS
-#' w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext), CRS(proj4string(porpoise)))
-#' 
-#' plot(w)
-#' lines(porpoise)
-#' 
-#' }
-#' 
-#'
 setGeneric("trip",
              function(obj, TORnames) standardGeneric("trip"))
-
-##if (!isGeneric("trip"))
 
 if (!isGeneric("points"))
   setGeneric("points",
@@ -138,9 +133,7 @@ if (!isGeneric("subset"))
   setGeneric("subset",
              function(x, ...) standardGeneric("subset"))
 
-##if (!isGeneric("as.trip"))
-  setGeneric("as.trip",
-             function(x, ...) standardGeneric("as.trip"))
+
 
 
 ##' TimeOrderedRecords
@@ -150,6 +143,7 @@ if (!isGeneric("subset"))
 ##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
 ##' @return  \code{TimeOrderedRecords} holds a 2-element character vector, naming the data columns
 ##' of DateTimes and IDs.
+##' @export
 ##' @examples
 ##' ##' tor <- TimeOrderedRecords(c("datetime", "ID"))
 TimeOrderedRecords <- function(x) {
@@ -187,10 +181,14 @@ TimeOrderedRecords <- function(x) {
 #' tor <- TimeOrderedRecords(c("time", "id"))
 #' getTORnames(tor)
 #' 
-#' 
+NULL
+
+#' @rdname trip-accessors
+#' @export
 getTORnames <- function(obj) obj@TOR.columns
 
 ##' @rdname trip-accessors
+##' @export
 getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 
  
@@ -258,7 +256,7 @@ setMethod("text", signature(x="trip"),
 ## setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
 ##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
 
-## MDS 2010-07-06
+#' @exportMethod lines 
 setMethod("lines", signature(x="trip"),
           function(x,
                    col=hsv(seq(0, 0.9, length = length(unique(x[[getTORnames(x)[2]]]))),
@@ -267,7 +265,7 @@ setMethod("lines", signature(x="trip"),
               plot(as(x, "SpatialLinesDataFrame"),  col=col, add=TRUE, ...)
            
           })
-
+#' @exportMethod  plot 
 setMethod("plot", signature(x="trip", y="missing"),
           function(x, y, ...) {
               plot(as(x, "SpatialPoints"), ...)
@@ -276,6 +274,7 @@ setMethod("plot", signature(x="trip", y="missing"),
 
 ###_ + Subsetting trip
 
+#' @exportMethod subset 
 setMethod("subset", signature(x="trip"),
           function(x,  ...) {
               spdf <- subset(as(x, "SpatialPointsDataFrame"), ...)
@@ -298,6 +297,8 @@ setMethod("subset", signature(x="trip"),
                   } else return(trip(spdf, tor))
               }
           })
+
+
 
 setMethod("[", signature(x="trip"),
           function(x, i, j, ... , drop=TRUE) {
@@ -344,6 +345,7 @@ setMethod("[", signature(x="trip"),
 
 ###_ + Summary, print, and show
 
+#' @exportMethod summary
 setMethod("summary", signature(object="trip"),
           function(object, ...) {
               obj <- list(spdf=summary(as(object,
@@ -429,6 +431,7 @@ print.summary.TORdata <- function(x, ...) {
     cat("\n")
 }
 
+#' @exportMethod show
 setMethod("show", signature(object="summary.TORdata"),
           function(object) print.summary.TORdata(object))
 
@@ -499,31 +502,4 @@ setMethod("recenter", signature(obj="trip"),
                        data=obj@data, coords.nrs=obj@coords.nrs),
                    obj@TOR.columns)
           })
-
-
-
-ltraj2trip <- function (ltr)
-{
-    require(adehabitatLT) ||
-        stop("adehabitatLT package is required, but unavailable")
-    if (!inherits(ltr, "ltraj"))
-        stop("ltr should be of class \"ltraj\"")
-    ltr <-  lapply(ltr, function(x) {
-        x$id=attr(x,  "id")
-        x$burst=attr(x,  "burst")
-        x})
-    tr <- do.call("rbind", ltr)
-    class(tr) <- "data.frame"
-    xy <- tr[!is.na(tr$x), c("x", "y")]
-    tr <- tr[!is.na(tr$x), ]
-    tr$y <- tr$x <- NULL
-    res <- SpatialPointsDataFrame(xy, tr)
-    trip(res, c("date", "id"))
-}
-
-setMethod("as.trip", signature(x="ltraj"),
-          function(x, ...) ltraj2trip(x))
-
-setAs("ltraj", "trip", function(from) as.trip(from))
-
 

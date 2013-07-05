@@ -25,7 +25,7 @@
 #' filter.
 #' @param last Fix the last location and prevent it from being updated by the
 #' filter.
-#' @param \code{\dots}
+#' @param \dots Arguments passed on to \code{\link{nlm}}
 #' @return
 #' 
 #' A trip object with updated coordinate values based on the filter - all the

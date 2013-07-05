@@ -177,16 +177,9 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
 #' @param x object of class trip
 #' @param grid GridTopology - will be generated automatically if NULL
 #' @param method name of method for quantifying time spent, see Details
-#' @param \dots other arguments passed to \code{interpequal} or
-#' \code{kdePoints}
 #' @param dur The \"dur\"ation of time used to interpolate between available
 #' locations (see Details)
-#' @param quiet logical - report on difference between time summed and time in
-#' trip?
-#' @param h numeric vector of two elements specifying bandwidth for kernel
-#' density
-#' @param resetTime logical - reset the values of the kde grid to match the sum
-#' of the total time?
+#' @param \dots other arguments passed to \code{interpequal} or \code{kdePoints}
 #' @return
 #' 
 #' \code{tripGrid} returns an object of class \code{SpatialGridDataFrame}, with
@@ -216,6 +209,10 @@ tripGrid.interp <- function(x, grid=NULL, method="count", dur=NULL, ...) {
     res
 }
 
+#' @param h kernel bandwidth
+#' @param resetTime rescale result back to the total duration of the input
+#' @rdname tripGrid.interp
+##' @importFrom MASS bandwidth.nrd
 kdePoints <- function (x, h=NULL, grid=NULL, resetTime=TRUE, ...) {
     coords <- coordinates(x)
     xx <- coords[ , 1]
@@ -245,6 +242,7 @@ kdePoints <- function (x, h=NULL, grid=NULL, resetTime=TRUE, ...) {
     SpatialGridDataFrame(grid, data.frame(z=as.vector(z)), CRS(proj4string(x)))
 }
 
+#' @rdname tripGrid.interp
 countPoints <- function (x, dur=1, grid=NULL)
 {
     coords <- coordinates(x)
@@ -722,20 +720,4 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
     }
     unsplit(tripID, id)
 }
-
-##' @rdname trip-internal
-.distances <- function(x) {
-  proj <- is.projected(x)
-  if (is.na(proj)) proj <- FALSE
-
-  
-  lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = !proj))
-  
-}
-
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:
-
 

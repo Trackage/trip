@@ -11,12 +11,13 @@ Depends:
     sp (>= 0.9-64),
     spatstat (>= 1.18-4)
 Imports:
-    maptools,
     sp,
+    maptools,
     MASS
 Suggests:
-    adehabitatLT,
-    lattice
+    maptools,
+    lattice,
+    adehabitatLT
 Description: Functions for accessing and manipulating spatial data for
     animal tracking.  Filter for speed and create time spent plots
     from animal track data.
@@ -24,7 +25,6 @@ License: GPL-3
 Collate:
     'AllClass.R'
     'AllMethod.R'
-    'explode.R'
     'filter.penSS.R'
     'oc.theme.R'
     'speedfilter.R'
@@ -32,5 +32,6 @@ Collate:
     'trip-deprecated.R'
     'trip.R'
     'trip.split.R'
-    'trip2other.R'
     'tripGrid.R'
+    'other2trip.R'
+    'trip2Other.R'

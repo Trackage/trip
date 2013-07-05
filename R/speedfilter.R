@@ -1,7 +1,3 @@
-# $Id: speedfilter.R 99 2013-03-27 14:13:27Z sluque $
-
-
-
 #' Filter track data for speed
 #' 
 #' 
@@ -150,8 +146,3 @@ speedfilter <- function (x, max.speed=NULL, test=FALSE) {
 }
 
 
-
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:

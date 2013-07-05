@@ -1,4 +1,3 @@
-# $Id: tripGrid.R 107 2013-03-27 23:55:42Z sluque $
 
 ## TODO:
 ## a version of tripGrid that takes Lines, so
@@ -7,17 +6,6 @@
 ## allow sigmas argument for density version, for each line segment
 
 ## replaces tripGrid, old version is now called tripGrid.interp
-
-
-##' @rdname trip-internal
-.g2ow <- function(x) {
-    mn <- x@cellcentre.offset - x@cellsize / 2
-    mx <- mn + x@cells.dim * x@cellsize
-    owin(c(mn[1], mx[1]), c(mn[2], mx[2]),
-         mask=matrix(TRUE, x@cells.dim[2], x@cells.dim[1]),
-         xy=list(x=seq(mn[1], mx[1], length=x@cells.dim[1]),
-           y=seq(mn[2], mx[2], length=x@cells.dim[2])))
-}
 
 
 
@@ -42,7 +30,7 @@
 #' @param x object of class \code{trip}
 #' @param grid GridTopology - will be generated automatically if NULL
 #' @param method pixellate or density
-#' @param list() pass arguments to density.psp if that method is chosen (and
+#' @param \dots pass arguments to density.psp if that method is chosen (and
 #' temporary mechanism to direct users of legacy methods to
 #' \code{\link{tripGrid.interp}})
 #' @return
@@ -72,7 +60,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
     res <- as.image.SpatialGridDataFrame(spgdf)
     tor <- x@TOR.columns
     trip.list <- split.data.frame(x[, tor], x[[tor[2]]])
-    ow <- trip:::.g2ow(grid)
+    ow <- .g2ow(grid)
     sm <- 0
     zero.lengths <- FALSE
     sz <- 0
@@ -136,9 +124,14 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
     image2Grid(res, p4=proj4string(x))
 }
 
+##' @rdname trip-internal
+.g2ow <- function(x) {
+  mn <- x@cellcentre.offset - x@cellsize / 2
+  mx <- mn + x@cells.dim * x@cellsize
+  owin(c(mn[1], mx[1]), c(mn[2], mx[2]),
+       mask=matrix(TRUE, x@cells.dim[2], x@cells.dim[1]),
+       xy=list(x=seq(mn[1], mx[1], length=x@cells.dim[1]),
+               y=seq(mn[2], mx[2], length=x@cells.dim[2])))
+}
 
 
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:

@@ -1,6 +1,15 @@
-# $Id: trackDistance.R 74 2013-03-21 15:28:34Z sluque $
 
 ## taken from package sp/src/gcdist.c
+
+##' @rdname trip-internal
+.distances <- function(x) {
+  proj <- is.projected(x)
+  if (is.na(proj)) proj <- FALSE
+  
+  
+  lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = !proj))
+  
+}
 
 ##' @rdname trip-internal
 .gcdist.c <- function(lon1, lat1, lon2, lat2) {
@@ -192,7 +201,3 @@ trackAngle.default <- function(x) {
 ##1 trackAngle(x, type = "geosphere")          300    8.49    5.241      8.49        0         NA        NA
 
 
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:
