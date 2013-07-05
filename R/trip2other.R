@@ -1,8 +1,3 @@
-# $Id: trip2other.R 109 2013-03-28 03:09:51Z sluque $
-
-## ltraj from adehabitat
-
-
 #' Coercion from other classes to \code{trip} objects
 #' 
 #' Coercing objects to \code{trip} class
@@ -55,14 +50,19 @@ setAs("trip", "ltraj", function(from) as.ltraj.trip(from))
 ##  ??lines, weights, pixellate - as.psp.trip (default is dTime)
 ##  points, weights, pixellate - as.ppp.trip
 ##  points, sigma, density - as.ppp.trip
-
 ## do we want IDs or times? (let the user do it?)
+
+## @importClassesFrom maptools owin ppp psp
+##' @importFrom maptools as.ppp.SpatialPointsDataFrame
+##' @export
+##' @rdname as.Other
 as.ppp.trip <- function(X, ..., fatal) {
     as.ppp.SpatialPointsDataFrame(X)
 }
-
 setAs("trip", "ppp", function(from) as.ppp.trip(from))
 
+##' @export
+##' @rdname as.Other
 as.psp.trip <- function(x, ..., from, to) {
     split.X <- split(x, x[[getTORnames(x)[2]]])
     ow <- spatstat::owin(bbox(x)[1,], bbox(x)[2,])
@@ -78,7 +78,6 @@ as.psp.trip <- function(x, ..., from, to) {
     }
     do.call("superimpose", lapply(split.X, as.psp.trip1, ow=ow))
 }
-
 setAs("trip", "psp", function(from) as.psp.trip(from))
 
 
@@ -88,7 +87,7 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' 
 #' Coercing \code{trip} objects to other classes.
 #' 
-#' 
+#' @name as.Other
 #' @aliases as.SpatialLinesDataFrame.trip
 #' coerce,trip,SpatialLinesDataFrame-method as.ltraj.trip
 #' coerce,ltraj,trip-method as.ppp.trip as.psp.trip coerce,trip,psp-method

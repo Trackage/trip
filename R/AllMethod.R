@@ -48,7 +48,7 @@
 #' 
 #' \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simple(istic)
 #' speed filtering and spatial time spent gridding.
-#' @keywords methods manip
+#' @export
 #' @examples
 #' 
 #' 

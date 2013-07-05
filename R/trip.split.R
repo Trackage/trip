@@ -1,5 +1,3 @@
-# $Id: trip.split.R 89 2013-03-24 16:34:38Z sluque $
-
 ## TODO:
 ## tidier!
 ##-----------------------------------------------------------------------------
@@ -14,6 +12,7 @@
 ## bound.dates <- seq(min(tr$tms)-1, max(tr$tms)+1, length=5)
 ## trip.list <- trip.split.exact(tr, bound.dates)
 
+##' @importFrom maptools spRbind
 ##' @rdname trip-internal
 .tripRbind <- function (obj, x) {
     ## not needed, and not possible since classes imported using

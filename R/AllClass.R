@@ -10,7 +10,7 @@
 ##'  \describe{
 ##'    \item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
 ##'  }
-##'
+##' @import sp
 ##' @exportClass TimeOrderedRecords
 ##' @docType class
 ##' @note  Future versions may change significantly, this class is
