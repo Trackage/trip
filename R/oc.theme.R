@@ -15,7 +15,6 @@
 #' @param x Number of colours to generate as part of a theme
 #' @param n Number of colours to generate
 #' @return A set of colours or a theme object.
-#' @author Michael D. Sumner
 #' @seealso
 #' 
 #' Similar functions in sp \code{\link[sp]{sp.theme}},

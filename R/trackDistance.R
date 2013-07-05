@@ -68,7 +68,7 @@
 #' value (\"prev\"ious), rather than start (\"next\")
 #' @return Vector of distances between coordinates.
 #' @references Original source taken from sp package.
-#' @keywords manip
+#' @author Roger Bivand and Michael Sumner
 #' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
@@ -113,7 +113,7 @@ trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
 #' @aliases trackAngle trackAngle.default trackAngle.trip
 #' @param x trip object, or matrix of 2-columns, with x/y coordinates
 #' @return Vector of angles (degrees) between coordinates.
-#' @keywords manip
+#' @author Robert Hijmans, Roger Bivand
 #' @export trackAngle
 trackAngle <- function(x) {
   UseMethod("trackAngle")

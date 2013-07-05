@@ -42,7 +42,7 @@
 #' It is possible for the filter to become stuck in an infinite loop, depending
 #' on the function passed to the filter.  Several minutes is probably too long
 #' for hundreds of points, test on smaller sections if unsure.
-#' @author Michael D. Sumner
+#' @author David Watts and Michael D. Sumner
 #' @seealso \code{\link{trip}}
 #' @references
 #' 

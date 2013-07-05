@@ -1,32 +1,25 @@
-# $Id: AllClass.R 81 2013-03-21 17:26:50Z sluque $
-
-##' The TimeOrderedRecords class
-##'
-##' A simple class to act as a place-holder for DateTime and ID records in spatial data.
+##' A class for the identifiers of DateTime and ID records in spatial data.
 ##'
 ##' The main use of this class and creator function is for
 ##' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
-##' TimeOrderedRecords for the class \code{trip}.
-##'                                        #'
-##'@section Slots:
+##' TimeOrderedRecords for the class \code{trip}. 
+##'                                        
+##' @name TimeOrderedRecords-class
+##' @rdname TimeOrderedRecords-class
+##' @section Slots:
 ##'  \describe{
 ##'    \item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
 ##'  }
 ##'
-##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
-##' @name TimeOrderedRecords-class
-##' @rdname TimeOrderedRecords-class
-##' @aliases TimeOrderedRecords-class
 ##' @exportClass TimeOrderedRecords
-##' @return  \code{TimeOrderedRecords} holds a 2-element character vector, naming the data columns
-##' of DateTimes and IDs.
+##' @docType class
 ##' @note  Future versions may change significantly, this class is
 ##' very basic and could probably be implemented in a better
 ##' way. Specifying TOR columns by formula would be a useful addition.
-##' @seealso \code{\link{trip}} for creating trip objects, and \code{\link{trip-class}} for that class
+##' @seealso \code{\link{TimeOrderedRecords}}, \code{\link{trip}} for creating trip objects, and \code{\link{trip-class}} for that class
 ##' @examples
+##' showClass("TimeOrderedRecords")
 ##' tor <- new("TimeOrderedRecords", TOR.columns=c("datetime", "ID"))
-##' tor <- TimeOrderedRecords(c("datetime", "ID"))
 setClass("TimeOrderedRecords", representation(TOR.columns="character"))
 
 setValidity("TimeOrderedRecords", function(object) {
@@ -41,7 +34,7 @@ setValidity("TimeOrderedRecords", function(object) {
 })
 
 
-#' Class \code{"trip"}
+#' A class for sets of animal trips (track data). 
 #' 
 #' 
 #' An extension of \code{\link[sp]{SpatialPointsDataFrame}} by including
@@ -50,23 +43,10 @@ setValidity("TimeOrderedRecords", function(object) {
 #' 
 #' 
 #' @name trip-class
-#' @aliases trip-class dim.trip names.trip names<-.trip
-#' [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method lines,trip-method
-#' plot,trip,missing-method points,trip-method recenter,trip-method
-#' show,trip-method show,summary.TORdata-method spTransform,trip,CRS-method
-#' spTransform,trip,character-method print.trip print.summary.TORdata
-#' as.data.frame.summary.TORdata summary,trip-method text,trip-method
-#' subset,trip-method as.data.frame.trip
+#' @rdname trip-class
+#' @aliases trip-class 
 #' @exportClass trip
 #' @docType class
-#' @param x,object,obj A \code{trip} object.
-#' @param i,j For "[", rows and columns, respectively, of SpatialDataFrame to
-#' subset.  For "[[<-", integer corresponding to the Datetime or ID vector, or
-#' the string naming it.
-#' @param list() Arguments passed to other methods.
-#' @param ,drop,y,col Arguments passed to other methods.
-#' @param value Object to replace time or ID column with.
-#' @param CRSobj See \code{\link[sp]{spTransform}}.
 #' @section Objects from the Class:
 #' 
 #' Objects can be created by calls of the form
@@ -74,7 +54,6 @@ setValidity("TimeOrderedRecords", function(object) {
 #' The object contains all the slots present within a
 #' \code{\link[sp]{SpatialPointsDataFrame}}, particularly \code{data} which
 #' contains columns of at least those specified by \code{TOR.columns}.
-#' @author Michael D. Sumner
 #' @seealso
 #' 
 #' \code{\link{trip}} for examples of directly using the class.

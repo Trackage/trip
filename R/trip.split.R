@@ -128,7 +128,7 @@
 #' @return
 #' 
 #' A list of trip objects, named by the time boundary in which they lie.
-#' @author Michael D. Sumner
+#' @author Michael D. Sumner and Sebastian Luque
 #' @seealso See also \code{\link{tripGrid}}.
 #' @keywords manip chron
 #' @examples

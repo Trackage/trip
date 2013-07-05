@@ -1,107 +1,3 @@
-# $Id: AllGenerics.R 104 2013-03-27 22:20:20Z sluque $
-
-
-##############################################################
-#' trip
-#'
-#' Some additional details about this S4 generic and its methods.
-#' The extra blank line between this section and the title is
-#' critical for roxygen2 to differentiate the title from the
-#' description section.
-#'
-#' @param obj Description of \code{trip}. The main argument in this
-#'  example. Most often has such and such properties.
-#'
-#' @param TORnames Description of \code{TORnames}. 
-#'
-#' @return A helloworld-ified argument. Oh, you'll see.
-#' 
-#' @seealso \code{\link{trip}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname trip-methods
-#'
-setGeneric("trip",
-             function(obj, TORnames) standardGeneric("trip"))
-
-##if (!isGeneric("trip"))
-
-if (!isGeneric("points"))
-  setGeneric("points",
-             function(x, ...) standardGeneric("points"))
-
-if (!isGeneric("lines"))
-  setGeneric("lines",
-             function(x, ...) standardGeneric("lines"))
-
-if (!isGeneric("text"))
-  setGeneric("text",
-             function(x, ...) standardGeneric("text"))
-
-if (!isGeneric("subset"))
-  setGeneric("subset",
-             function(x, ...) standardGeneric("subset"))
-
-if (!isGeneric("as.trip"))
-  setGeneric("as.trip",
-             function(x, ...) standardGeneric("as.trip"))
-
-
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:
-
-
-# $Id: AllMethod.R 115 2013-04-25 17:26:50Z sluque $
-
-###_ + TimeOrderedRecords
-
-TimeOrderedRecords <- function(x) {
-    new("TimeOrderedRecords", TOR.columns=x)
-}
-
-
-
-#' 
-#' Functions to retrieve DateTime and ID data from within (Spatial) data
-#' frames.
-#' 
-#' 
-#' Functions for retrieving the names of the columns used for DateTime and ID,
-#' as well as the data.
-#' 
-#' @name trip-accessors
-#' @aliases trip-accessors getTORnames getTimeID
-#' @param obj \code{trip} object.
-#' @return
-#' 
-#' \code{getTORnames} retrieves the column names from an object extending the
-#' class \code{TimeOrderedRecords}, and \code{getTimeID} returns the data as a
-#' data frame from an object extending the class \code{TimeOrderedRecords}.
-#' @seealso
-#' 
-#' \code{\link{trip-class}}, for the use of this class with
-#' \code{\link[sp]{SpatialPointsDataFrame}}.
-#' 
-#' \code{\link{trip}}
-#' @keywords manip
-#' @examples
-#' 
-#' 
-#' tor <- TimeOrderedRecords(c("time", "id"))
-#' getTORnames(tor)
-#' 
-#' 
-getTORnames <- function(obj) obj@TOR.columns
-
-##' @rdname trip-accessors
-getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
-
-
-###_ + trip
-#' 
 #' Function to handle animal track data, organized as \code{"trip"}s
 #' 
 #' 
@@ -148,7 +44,6 @@ getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 #' (re)-create a trip object using a \code{TimeOrderedRecords} object.}
 #' 
 #' }
-#' @author Michael D. Sumner
 #' @seealso
 #' 
 #' \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simple(istic)
@@ -221,7 +116,84 @@ getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 #' 
 #' }
 #' 
+#'
+setGeneric("trip",
+             function(obj, TORnames) standardGeneric("trip"))
+
+##if (!isGeneric("trip"))
+
+if (!isGeneric("points"))
+  setGeneric("points",
+             function(x, ...) standardGeneric("points"))
+
+if (!isGeneric("lines"))
+  setGeneric("lines",
+             function(x, ...) standardGeneric("lines"))
+
+if (!isGeneric("text"))
+  setGeneric("text",
+             function(x, ...) standardGeneric("text"))
+
+if (!isGeneric("subset"))
+  setGeneric("subset",
+             function(x, ...) standardGeneric("subset"))
+
+##if (!isGeneric("as.trip"))
+  setGeneric("as.trip",
+             function(x, ...) standardGeneric("as.trip"))
+
+
+##' TimeOrderedRecords
+##' 
+##' Object to identify DateTimes and IDs in a Spatial object. 
+##' 
+##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
+##' @return  \code{TimeOrderedRecords} holds a 2-element character vector, naming the data columns
+##' of DateTimes and IDs.
+##' @examples
+##' ##' tor <- TimeOrderedRecords(c("datetime", "ID"))
+TimeOrderedRecords <- function(x) {
+    new("TimeOrderedRecords", TOR.columns=x)
+}
+
+
+
 #' 
+#' Functions to retrieve DateTime and ID data from within (Spatial) data
+#' frames.
+#' 
+#' 
+#' Functions for retrieving the names of the columns used for DateTime and ID,
+#' as well as the data.
+#' 
+#' @name trip-accessors
+#' @aliases trip-accessors getTORnames getTimeID
+#' @param obj \code{trip} object.
+#' @return
+#' 
+#' \code{getTORnames} retrieves the column names from an object extending the
+#' class \code{TimeOrderedRecords}, and \code{getTimeID} returns the data as a
+#' data frame from an object extending the class \code{TimeOrderedRecords}.
+#' @seealso
+#' 
+#' \code{\link{trip-class}}, for the use of this class with
+#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' 
+#' \code{\link{trip}}
+#' @keywords manip
+#' @examples
+#' 
+#' 
+#' tor <- TimeOrderedRecords(c("time", "id"))
+#' getTORnames(tor)
+#' 
+#' 
+getTORnames <- function(obj) obj@TOR.columns
+
+##' @rdname trip-accessors
+getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
+
+ 
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
           function(obj, TORnames) {
               if (is.factor(obj[[TORnames[2]]]))
@@ -529,7 +501,6 @@ setMethod("recenter", signature(obj="trip"),
           })
 
 
-###_ + Coercions
 
 ltraj2trip <- function (ltr)
 {
@@ -556,11 +527,3 @@ setMethod("as.trip", signature(x="ltraj"),
 setAs("ltraj", "trip", function(from) as.trip(from))
 
 
-###_ + Tests
-
-
-
-###_ + Emacs local variables
-## Local variables:
-## allout-layout: (+ : 0)
-## End:

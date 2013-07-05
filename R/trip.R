@@ -61,9 +61,7 @@ setMethod("spTransform", signature("Spatial", "character"),
 #' 
 #' It's really important that data used are of a given quality, but this
 #' function makes the most common trip problems easy to apply.
-#' @author Michael D. Sumner
 #' @seealso \code{\link{trip}}
-#' @keywords manip
 #' @export forceCompliance
 forceCompliance <- function(x, tor) {
     isSpatial <- is(x, "SpatialPointsDataFrame")
@@ -382,10 +380,7 @@ makeGridTopology <- function (obj, cells.dim=c(100, 100),
 #' I have no idea what goes on at CLS when they output data that are either not
 #' ordered by time or have duplicates. If this problem exists in your data it's
 #' probably worth finding out why.
-#' @author Michael D. Sumner
 #' @seealso \code{\link{readArgos}}
-#' @references http://staff.acecrc.org.au/~mdsumner/
-#' @keywords manip
 #' @examples
 #' 
 #' 
@@ -497,17 +492,18 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 #' \code{\link[sp]{SpatialPointsDataFrame}}.
 #' 
 #' \code{readDiag} returns a \code{data.frame} with 8 columns:
-#' @returnItem lon1,lat1 first pair of coordinates
-#' @returnItem lon2,lat2 second pair of coordinates
-#' @returnItem gmt DateTimes as POSIXct
-#' @returnItem id Platform Transmitting Terminal (PTT) ID
-#' @returnItem lq Argos location quality class
-#' @returnItem iq some other thing
+#' \itemize{
+#' \item {\code{lon1},\code{lat1} first pair of coordinates}
+#' \item {\code{lon1},\code{lat1} second pair of coordinates}
+#' \item {gmt DateTimes as POSIXct}
+#' \item {id Platform Transmitting Terminal (PTT) ID}
+#' \item {lq Argos location quality class}
+#' \item {iq some other thing}
+#' }
 #' @section Warning :
 #' 
 #' This works on some Argos files I have seen, it is not a guaranteed method
 #' and is in no way linked officially to Argos.
-#' @author Michael D. Sumner
 #' @seealso
 #' 
 #' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
@@ -698,7 +694,6 @@ readDiag <- function (x) {
 #' It is assumed that each vector provides is sorted by \code{gapdata} within
 #' \code{id}. No checking is done, and so it is suggested that this only be
 #' used on ID columns within existing, validated \code{trip} objects.
-#' @author Michael D. Sumner
 #' @seealso \code{\link{trip}}
 #' @keywords manip
 #' @examples

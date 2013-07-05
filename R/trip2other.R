@@ -24,8 +24,6 @@
 #' \item{as.trip}{\code{signature(x="ltraj")}}
 #' 
 #' }
-#' @author Michael D. Sumner
-#' @keywords methods spatial manip
 #' @examples
 #' 
 #' 
@@ -117,8 +115,6 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' \item{coerce}{\code{signature(from="trip", to="psp")}}
 #' 
 #' }
-#' @author Michael D. Sumner
-#' @keywords spatial manip
 #' @examples
 #' 
 #' 
