@@ -256,7 +256,7 @@ setMethod("text", signature(x="trip"),
 ## setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
 ##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
 
-#' @exportMethod lines 
+#' @exportMethod lines
 setMethod("lines", signature(x="trip"),
           function(x,
                    col=hsv(seq(0, 0.9, length = length(unique(x[[getTORnames(x)[2]]]))),
@@ -403,6 +403,7 @@ as.data.frame.summary.TORdata <- function(x, row.names = NULL, optional = FALSE,
   dsumm
 }
 
+#' @export
 print.summary.TORdata <- function(x, ...) {
     dsumm <- as.data.frame(x)
   torns <- x[["TORnames"]]
