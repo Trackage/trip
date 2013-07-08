@@ -20,6 +20,8 @@ Suggests:
 Description: Functions for accessing and manipulating spatial data for
     animal tracking.  Filter for speed and create time spent plots
     from animal track data.
+NeedsCompilation: no
+ByteCompile: yes
 License: GPL-3
 Collate:
     'AllClass.R'
