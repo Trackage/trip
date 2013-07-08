@@ -403,6 +403,11 @@ as.data.frame.summary.TORdata <- function(x, row.names = NULL, optional = FALSE,
   dsumm
 }
 
+#' @rdname trip-accessors
+#' @method print summary.TORdata
+#' @S3method print summary.TORdata
+#' @param x trip object
+#' @param \dots currently ignored
 #' @export
 print.summary.TORdata <- function(x, ...) {
     dsumm <- as.data.frame(x)
