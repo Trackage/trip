@@ -9,7 +9,7 @@
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
-#' trip,trip,TimeOrderedRecords-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
+#' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
 #' @docType methods
 #' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
 #' be coerced to one, containing at least two columns with the DateTime and ID
@@ -299,7 +299,7 @@ setMethod("subset", signature(x="trip"),
           })
 
 
-
+##' @rdname trip-methods
 setMethod("[", signature(x="trip"),
           function(x, i, j, ... , drop=TRUE) {
               missing.i <- missing(i)
