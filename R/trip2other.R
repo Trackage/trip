@@ -47,14 +47,14 @@ setAs("trip", "ltraj", function(from) {
 # param typeII see \code{\link[adehabitatLT]{as.ltraj}}
 # param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning
 # angles.
-as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
-    require(adehabitatLT) ||
-        stop("adehabitatLT package is required, but unavailable")
-    tor <- getTORnames(xy)
-    crds <- coordinates(xy)
-    adehabitatLT::as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
-                           id=xy[[tor[2]]], typeII=typeII, slsp=slsp)
-}
+##as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
+##    require(adehabitatLT) ||
+##        stop("adehabitatLT package is required, but unavailable")
+##    tor <- getTORnames(xy)
+##    crds <- coordinates(xy)
+##    adehabitatLT::as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
+##                           id=xy[[tor[2]]], typeII=typeII, slsp=slsp)
+##}
 
 
 ## @importClassesFrom maptools owin ppp psp
