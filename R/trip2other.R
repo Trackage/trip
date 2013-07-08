@@ -27,8 +27,6 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                         df)
 })
 
-##as.SpatialLinesDataFrame.trip <- 
-## don't forget the Deprecated as.trip.SpatialLinesDataFrame
 
 
 setAs("trip", "ltraj", function(from) {
@@ -40,6 +38,11 @@ setAs("trip", "ltraj", function(from) {
 })
 
 
+##' nice idea, but won't work because as.ltraj is masked once adehabitatLT is actually loaded, 
+##'  so can only work if it's always loaded first
+##' importFrom adehabitatLT as.ltraj
+##as.ltraj.default <- adehabitatLT::as.ltraj
+##as.ltraj <- function(x, ...) UseMethod("as.ltraj")
 # name as.ltraj
 # importFrom adehabitatLT as.ltraj
 # S3method as.ltraj trip
@@ -60,7 +63,6 @@ setAs("trip", "ltraj", function(from) {
 ## @importClassesFrom maptools owin ppp psp
 #' @importFrom spatstat as.ppp
 #' @importFrom maptools as.ppp.SpatialPointsDataFrame
-#' @export
 #' @param X \code{trip} object.
 #' @param fatal Logical value, see Details of \code{\link[spatstat]{as.ppp}}
 #' @return ppp object
@@ -72,7 +74,7 @@ setAs("trip", "ltraj", function(from) {
 #'   ## Continuing the example from '?trip-methods:
 #' utils::example("trip-methods", package="trip",
 #'            ask=FALSE, echo=FALSE)
-#'  as.psp.trip(tr)
+#'  as(tr, "ppp")
 #' }
 as.ppp.trip <- function(X, ..., fatal) {
   as.ppp.SpatialPointsDataFrame(X)
