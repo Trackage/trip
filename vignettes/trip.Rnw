@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide}
+\usepackage[authoryear]{natbib}
+\usepackage{amsmath}
+
+\SweaveOpts{engine=R, eps=FALSE, keep.source = FALSE}
+%\VignetteIndexEntry{Illustration of the trip package for animal tracking data}
+%\VignetteDepends{}
+%\VignettePackage{trip}
+%\VignetteKeyword{trip}
+\begin{document}
+
+\title{The trip package}
+\date{2013}
+\author{\textbf{Michael D. Sumner} \\
+%EndAName
+}
+\maketitle
+
+\begin{abstract}
+  The \textbf{trip} package provides tools for working with animal track data. 
+\end{abstract}
+
+
+<<echo=FALSE>>=
+##set.seed(32)
+##options(preferRaster=T)
+@
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+Basic use of the trip package
+
+\section{Data input and validation}
+\label{sec:datainput}
+
+<<echo=TRUE>>=
+library(trip)
+d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+coordinates(d) <- ~x+y
+## this avoids complaints later, but these are not real track data (!)
+proj4string(d) <- CRS("+proj=laea")
+tr <- trip(d, c("tms", "id"))
+summary(tr)
+@
+\section{Simple plotting}
+\label{sec:simplot}
+
+<<label=plot1,echo=FALSE>>=
+plot(tr)
+lines(tr)
+@
+
+\begin{figure}[ht]
+  \centering
+<<echo=TRUE,fig=TRUE>>=
+<<plot1>>
+@
+\caption{Plot of a very simple trip object.}
+  \label{fig:plot1}
+\end{figure}
+
+
+<<label=timespent1,echo=FALSE>>=
+tg <- tripGrid(tr)
+image(tg, col = c("transparent", heat.colors(25)))
+@
+
+\section{Gridding for time spent}
+\label{sec:timespent}
+<<echo=TRUE,fig=TRUE>>=
+<<timespent1>>
+@
+
+
+
+\end{document}
