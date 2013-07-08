@@ -35,9 +35,10 @@ setAs("trip", "ltraj", function(from) {
   if(!require(adehabitatLT)) stop("adhabitatLT not available")
   tor <- getTORnames(from)
   crds <- coordinates(from)
-  adehabitatLT::as.ltraj(as.data.frame(crds), date=crds[[tor[1]]],
+  adehabitatLT::as.ltraj(as.data.frame(crds), date=from[[tor[1]]],
                          id=from[[tor[2]]], typeII=TRUE, slsp="remove")
 })
+
 
 # name as.ltraj
 # importFrom adehabitatLT as.ltraj
@@ -46,14 +47,14 @@ setAs("trip", "ltraj", function(from) {
 # param typeII see \code{\link[adehabitatLT]{as.ltraj}}
 # param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning
 # angles.
-##as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
-##    require(adehabitatLT) ||
-##        stop("adehabitatLT package is required, but unavailable")
-##    tor <- getTORnames(xy)
-##    crds <- coordinates(xy)
-##    adehabitatLT::as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
-##                           id=xy[[tor[2]]], typeII=typeII, slsp=slsp)
-##}
+as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
+    require(adehabitatLT) ||
+        stop("adehabitatLT package is required, but unavailable")
+    tor <- getTORnames(xy)
+    crds <- coordinates(xy)
+    adehabitatLT::as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
+                           id=xy[[tor[2]]], typeII=typeII, slsp=slsp)
+}
 
 
 ## @importClassesFrom maptools owin ppp psp
@@ -66,6 +67,13 @@ setAs("trip", "ltraj", function(from) {
 #' @rdname as.Other
 #' @method as.ppp trip
 #' @S3method as.ppp trip
+#' @examples
+#' \dontrun{
+#'   ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'            ask=FALSE, echo=FALSE)
+#'  as.psp.trip(tr)
+#' }
 as.ppp.trip <- function(X, ..., fatal) {
   as.ppp.SpatialPointsDataFrame(X)
 }
@@ -80,6 +88,13 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @rdname as.Other
 #' @method as.psp trip
 #' @S3method as.psp trip
+#' @examples
+#' \dontrun{
+#'  ## Continuing the example from '?trip-methods:
+#' utils::example("trip-methods", package="trip",
+#'            ask=FALSE, echo=FALSE)
+#'  as.psp.trip(tr)
+#' }
 as.psp.trip <- function(x, ..., from, to) {
   split.X <- split(x, x[[getTORnames(x)[2]]])
   ow <- owin(bbox(x)[1,], bbox(x)[2,])
