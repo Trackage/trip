@@ -9,6 +9,7 @@
 %\VignettePackage{trip}
 %\VignetteKeyword{trip}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \title{The trip package}
 \date{2013}
