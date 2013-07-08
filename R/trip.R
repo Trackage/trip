@@ -212,6 +212,7 @@ tripGrid.interp <- function(x, grid=NULL, method="count", dur=NULL, ...) {
 #' @param h kernel bandwidth
 #' @param resetTime rescale result back to the total duration of the input
 #' @rdname tripGrid.interp
+#' @seealso \code{\link[MASS]{bandwidth.nrd}} for the calculation of bandwidth values used internally when not supplied by the user
 ##' @importFrom MASS bandwidth.nrd
 kdePoints <- function (x, h=NULL, grid=NULL, resetTime=TRUE, ...) {
     coords <- coordinates(x)
