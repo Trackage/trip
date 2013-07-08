@@ -2,9 +2,9 @@
 #' 
 #' These functions will be declared defunct in a future release.
 #' 
-#' @name trip-deprecated
+#' @name trip.split.exact
 #' @aliases trip-deprecated trip.split.exact as.trip.SpatialLinesDataFrame
-#' tripTransform
+#' tripTransform as.ltraj.trip
 #' @param x see \code{\link{cut.trip}}
 #' @param dates see \code{\link{cut.trip}}
 #' @param from trip object
@@ -13,15 +13,43 @@
 #' @seealso
 #' 
 #' \code{\link{cut.trip}}, \code{\link{as.Other}}
-#' @keywords manip
+#' 
+NULL
+
+#' @rdname trip.split.exact
+#' @param from trip object
+#' @export
+as.SpatialLinesDataFrame.trip <- function (from) 
+  {
+    .Deprecated('as(x, "SpatialLinesDataFrame")')
+    as(from, "SpatialLinesDataFrame")
+  }
+
+#' @rdname trip.split.exact
+#' @param x trip
+#' @param dates date-times as which to split
+#' @export
 trip.split.exact <- function(x, dates) {
   .Deprecated("cut.trip")
   cut(x, dates)
 }
 
-##' @rdname trip-deprecated
+#' @rdname trip.split.exact
+#' @param  xy \code{trip} object
+#' @param typeII see \code{\link[adehabitatLT]{as.ltraj}}
+#' @param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning angles
+#' @export
+as.ltraj.trip <- function(xy) {
+  .Deprecated('as(x, "ltraj")')
+  as(xy, "ltraj")
+}
+
+##' @rdname trip.split.exact
+##' @param from trip object
+##' @export
 as.trip.SpatialLinesDataFrame <- function(from) {
-  .Deprecated("as.SpatialLinesDataFrame.trip")
+  .Deprecated('as(x, "SpatialLinesDataFrame") or explode(x) ... the original definition was an error, there is no general coercion method available for SpatialLinesDataFrame=>trip')
+
   ##as.SpatialLinesDataFrame.trip(from)
   as(from, "SpatialLinesDataFrame")
 }
@@ -29,7 +57,11 @@ as.trip.SpatialLinesDataFrame <- function(from) {
 ## removed depends sp, suggests rgdal deprecate this, replace with
 ## spTransform method below
 
-##' @rdname trip-deprecated
+##' @rdname trip.split.exact
+##' @param x trip object
+##' @param crs CRS object
+##' @param \dots ignored
+##' @export
 tripTransform <- function(x, crs, ...) {
   .Deprecated("spTransform")
   if (! inherits(crs, "CRS")) crs <- CRS(crs)
