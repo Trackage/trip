@@ -21,13 +21,15 @@
 #' \code{\link[sp]{bpy.colors}}
 #' @keywords color
 #' @examples
-#' 
-#' 
-#' oc.colors(10)
-#' library(lattice)
-#' trellis.par.set(oc.theme)
-#' 
-#' 
+#' \dontrun{
+#'  oc.colors(10)
+#'  library(lattice)
+#'  trellis.par.set(oc.theme())
+#'  utils::example("trip-methods", package="trip",
+#'                 ask=FALSE, echo=FALSE)
+#'  tg <- tripGrid(tr)
+#'  spplot(tg)
+#' }
 #' @export oc.theme
 oc.theme <- function(x=50) list(regions=list(col=oc.colors(x)))
 
