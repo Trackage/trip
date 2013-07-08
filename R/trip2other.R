@@ -82,7 +82,7 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @S3method as.psp trip
 as.psp.trip <- function(x, ..., from, to) {
   split.X <- split(x, x[[getTORnames(x)[2]]])
-  ow <- spatstat::owin(bbox(x)[1,], bbox(x)[2,])
+  ow <- owin(bbox(x)[1,], bbox(x)[2,])
   as.psp.trip1 <- function(this, ow=NULL) {
     if (is.null(ow)) ow <- owin(bbox(this)[1,], bbox(this)[2,])
     tor <- getTORnames(this)

@@ -8,12 +8,12 @@ Authors@R: c(person("Michael", "Sumner", role = c("aut", "cre"),
 Version: 1.1-16
 Depends:
     methods,
-    sp (>= 0.9-64),
-    spatstat (>= 1.18-4)
+    sp
 Imports:
     sp,
     maptools,
-    MASS
+    MASS,
+    spatstat
 Suggests:
     maptools,
     adehabitatLT

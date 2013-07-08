@@ -39,6 +39,7 @@
 #' one column "z" containing the time spent in each cell in seconds.
 #' @keywords manip
 #' @export tripGrid
+#' @importFrom spatstat pixellate psp ppp lengths.psp density.ppp density.psp owin
 tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 {
     if (method %in% c("kde", "count")) {
@@ -69,19 +70,19 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         ys <- coordinates(this)[, 2]
         dt <- diff(unclass(this[[tor[1]]]))
         sm <- sm + sum(dt)
-        x.psp <- spatstat::psp(xs[-length(xs)], ys[-length(ys)], xs[-1],
+        x.psp <- psp(xs[-length(xs)], ys[-length(ys)], xs[-1],
                                ys[-1], window=ow)
-        lngths <- spatstat::lengths.psp(x.psp)
+        lngths <- lengths.psp(x.psp)
         if (any(!lngths > 0)) {
             ## trim psp objects (0-lines give NaNs)
             zero.lengths <- TRUE
             zeros <- which(!lngths > 0)
             cc <- coordinates(this)[zeros, , drop=FALSE]
             op <- options(warn=-1)
-            x.ppp <- spatstat::ppp(cc[, 1], cc[, 2], window=ow)
+            x.ppp <- ppp(cc[, 1], cc[, 2], window=ow)
             options(op)
             if (method == "pixellate") {
-                v <- spatstat::pixellate(x.ppp, W=ow, weights=dt[zeros])$v
+                v <- pixellate(x.ppp, W=ow, weights=dt[zeros])$v
             }
             if (method == "density") {
                 v <- density(x.ppp, ...)$v
@@ -93,7 +94,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         weights <- dt/ifelse(lngths > 0, lngths, .Machine$double.eps)
         weights <- weights[lngths > 0]
         if (method == "pixellate") {
-            v <- spatstat::pixellate(x.psp, W=ow, weights=weights)$v
+            v <- pixellate(x.psp, W=ow, weights=weights)$v
         }
         if (method == "density") {
             ## v <- density(x.psp, ...)$v
