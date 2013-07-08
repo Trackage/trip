@@ -39,7 +39,7 @@
 #' one column "z" containing the time spent in each cell in seconds.
 #' @keywords manip
 #' @export tripGrid
-#' @importFrom spatstat pixellate psp ppp lengths.psp density.ppp density.psp owin
+#' @importFrom spatstat psp ppp [.psp pixellate pixellate.psp lengths.psp density.ppp density.psp owin
 tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 {
     if (method %in% c("kde", "count")) {
@@ -72,6 +72,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         sm <- sm + sum(dt)
         x.psp <- psp(xs[-length(xs)], ys[-length(ys)], xs[-1],
                                ys[-1], window=ow)
+      
         lngths <- lengths.psp(x.psp)
         if (any(!lngths > 0)) {
             ## trim psp objects (0-lines give NaNs)
@@ -94,7 +95,8 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         weights <- dt/ifelse(lngths > 0, lngths, .Machine$double.eps)
         weights <- weights[lngths > 0]
         if (method == "pixellate") {
-            v <- pixellate(x.psp, W=ow, weights=weights)$v
+ 
+            v <- pixellate.psp(x.psp, W=ow, weights=weights)$v
         }
         if (method == "density") {
             ## v <- density(x.psp, ...)$v
