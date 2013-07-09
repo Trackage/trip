@@ -30,6 +30,7 @@
 #'     ##as.trip(l)
 #' }
 ##' @rdname as.trip-methods
+##' @export
 setGeneric("as.trip",
            function(x, ...) standardGeneric("as.trip"))
 
