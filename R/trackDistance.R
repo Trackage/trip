@@ -78,9 +78,23 @@
 #' @return Vector of distances between coordinates.
 #' @references Original source taken from sp package.
 #' @author Roger Bivand and Michael Sumner
+#' @examples
+#'   ## Continuing the example from '?"trip-methods"':
+#' utils::example("trip-methods", package="trip",
+#'                ask=FALSE, echo=FALSE)
+#'## the method knows this is a trip, so there is a distance for every point, including 0s as the start
+#'## and at transitions between individual trips
+#' trackDistance(tr)              
+#' 
+#' ## the default method does not know about the trips, so this is (n-1) distances between all points
+#' trackDistance(coordinates(tr), longlat = FALSE)
+#' 
+#' ## we get NA at the start, end and at transitions between trips
+#' trackAngle(tr)
 #' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
+##' @export
 trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
     if (missing(y1)) {
         if (!is.matrix(x1))
@@ -100,6 +114,7 @@ trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
     } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
 
+##' @export
 trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
     unlist(lapply(.distances(x1), function(x) if (prev) {c(x, 0)} else {c(0, x)}))
 }
@@ -128,6 +143,7 @@ trackAngle <- function(x) {
   UseMethod("trackAngle")
 }
 
+#' @export
 trackAngle.trip <- function(x) {
   isproj <- is.projected(x)
   if (is.na(isproj)) {
