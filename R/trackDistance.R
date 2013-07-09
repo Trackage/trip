@@ -82,7 +82,7 @@
 #'   ## Continuing the example from '?"trip-methods"':
 #' utils::example("trip-methods", package="trip",
 #'                ask=FALSE, echo=FALSE)
-
+#'
 #'  ## the method knows this is a trip, so there is a distance for every
 #'  ## point, including 0s as the start and at transitions between
 #'  ## individual trips
@@ -93,7 +93,11 @@
 #' ## trackDistance(coordinates(tr), longlat = FALSE)
 #'
 #' ## we get NA at the start, end and at transitions between trips
-#' trackAngle(tr)
+#'
+#'  \dontrun{
+#'  require(rgdal)
+#'  trackAngle(tr)
+#'  }
 #' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
