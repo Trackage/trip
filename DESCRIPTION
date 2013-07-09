@@ -1,7 +1,7 @@
 Package: trip
 Type: Package
 Title: Spatial analysis of animal track data
-Authors@R: c(person("Michael", "Sumner", role = c("aut", "cre"),
+Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "mdsumner@gmail.com"),
     person("Sebastian", "Luque", role = "ctb",
     email = "spluque@gmail.com"))
@@ -23,16 +23,4 @@ Description: Functions for accessing and manipulating spatial data for
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
-Collate:
-    'AllClass.R'
-    'AllMethod.R'
-    'filter.penSS.R'
-    'oc.theme.R'
-    'other2trip.R'
-    'speedfilter.R'
-    'trackDistance.R'
-    'trip-deprecated.R'
-    'trip.R'
-    'trip.split.R'
-    'trip2Other.R'
-    'tripGrid.R'
+

@@ -5,10 +5,10 @@
 .distances <- function(x) {
   proj <- is.projected(x)
   if (is.na(proj)) proj <- FALSE
-  
-  
+
+
   lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = !proj))
-  
+
 }
 
 ##' @rdname trip-internal
@@ -48,24 +48,24 @@
 
 
 #' Determine distances along a track
-#' 
-#' 
+#'
+#'
 #' Calculate the distances between subsequent 2-D coordinates using Euclidean
 #' or Great Circle distance (WGS84 ellipsoid) methods.
-#' 
-#' 
+#'
+#'
 #' If \code{x1} is a trip object, arguments \code{x2}, \code{x3}, \code{y2} are
 #' ignored and the return result has an extra element for the start point of
 #' each individual trip, with value 0.0.
-#' 
+#'
 #' The \code{prev} argument is ignore unless x1 is a trip.
-#' 
+#'
 #' Distance values are in the units of the input coordinate system when longlat
 #' is FALSE, and in kilometres when longlat is TRUE.
-#' 
+#'
 #' This originally used \code{\link[sp]{spDistsN1}} but now implements the sp
 #' \code{gcdist} source directly in R.
-#' 
+#'
 #' @aliases trackDistance trackDistance.default trackDistance.trip
 #' @param x1 trip object, matrix of 2-columns, with x/y coordinates OR a vector
 #' of x start coordinates
@@ -82,13 +82,16 @@
 #'   ## Continuing the example from '?"trip-methods"':
 #' utils::example("trip-methods", package="trip",
 #'                ask=FALSE, echo=FALSE)
-#'## the method knows this is a trip, so there is a distance for every point, including 0s as the start
-#'## and at transitions between individual trips
-#' trackDistance(tr)              
-#' 
-#' ## the default method does not know about the trips, so this is (n-1) distances between all points
-#' trackDistance(coordinates(tr), longlat = FALSE)
-#' 
+
+#'  ## the method knows this is a trip, so there is a distance for every
+#'  ## point, including 0s as the start and at transitions between
+#'  ## individual trips
+#' trackDistance(tr)
+#'
+#' ## the default method does not know about the trips, so this is
+#' ##(n-1) distances between all points
+#' ## trackDistance(coordinates(tr), longlat = FALSE)
+#'
 #' ## we get NA at the start, end and at transitions between trips
 #' trackAngle(tr)
 #' @export trackDistance
@@ -123,17 +126,17 @@ trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
 
 
 #' Determine distances or angles along a track
-#' 
-#' 
+#'
+#'
 #' Calculate the angles between subsequent 2-D coordinates using Great Circle
 #' distance (spherical) methods.
-#' 
+#'
 #' If \code{x} is a trip object, the return result has an extra element for the
 #' start and end point of each individual trip, with value NA.
-#' 
+#'
 #' This is an optimized hybrid of "raster::bearing" and
 #' \code{\link[maptools]{gzAzimuth}}.
-#' 
+#'
 #' @aliases trackAngle trackAngle.default trackAngle.trip
 #' @param x trip object, or matrix of 2-columns, with x/y coordinates
 #' @return Vector of angles (degrees) between coordinates.

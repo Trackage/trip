@@ -17,7 +17,6 @@
 NULL
 
 #' @rdname trip.split.exact
-#' @param from trip object
 #' @export
 as.SpatialLinesDataFrame.trip <- function (from) 
   {
@@ -26,8 +25,6 @@ as.SpatialLinesDataFrame.trip <- function (from)
   }
 
 #' @rdname trip.split.exact
-#' @param x trip
-#' @param dates date-times as which to split
 #' @export
 trip.split.exact <- function(x, dates) {
   .Deprecated("cut.trip")
@@ -36,8 +33,6 @@ trip.split.exact <- function(x, dates) {
 
 #' @rdname trip.split.exact
 #' @param  xy \code{trip} object
-#' @param typeII see \code{\link[adehabitatLT]{as.ltraj}}
-#' @param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning angles
 #' @export
 as.ltraj.trip <- function(xy) {
   .Deprecated('as(x, "ltraj")')
@@ -45,7 +40,6 @@ as.ltraj.trip <- function(xy) {
 }
 
 ##' @rdname trip.split.exact
-##' @param from trip object
 ##' @export
 as.trip.SpatialLinesDataFrame <- function(from) {
   .Deprecated('as(x, "SpatialLinesDataFrame") or explode(x) ... the original definition was an error, there is no general coercion method available for SpatialLinesDataFrame=>trip')
@@ -58,9 +52,6 @@ as.trip.SpatialLinesDataFrame <- function(from) {
 ## spTransform method below
 
 ##' @rdname trip.split.exact
-##' @param x trip object
-##' @param crs CRS object
-##' @param \dots ignored
 ##' @export
 tripTransform <- function(x, crs, ...) {
   .Deprecated("spTransform")
