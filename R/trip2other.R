@@ -38,11 +38,12 @@ setAs("trip", "ltraj", function(from) {
 })
 
 
-##' nice idea, but won't work because as.ltraj is masked once adehabitatLT is actually loaded, 
-##'  so can only work if it's always loaded first
-##' importFrom adehabitatLT as.ltraj
-##as.ltraj.default <- adehabitatLT::as.ltraj
-##as.ltraj <- function(x, ...) UseMethod("as.ltraj")
+
+
+## nice idea, but won't work because as.ltraj is masked once adehabitatLT is actually loaded, 
+##  so can only work if it's always loaded first
+## importFrom adehabitatLT as.ltraj
+## 
 # name as.ltraj
 # importFrom adehabitatLT as.ltraj
 # S3method as.ltraj trip
@@ -50,14 +51,17 @@ setAs("trip", "ltraj", function(from) {
 # param typeII see \code{\link[adehabitatLT]{as.ltraj}}
 # param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning
 # angles.
-##as.ltraj.trip <- function(xy, typeII=TRUE, slsp="remove") {
-##    require(adehabitatLT) ||
-##        stop("adehabitatLT package is required, but unavailable")
-##    tor <- getTORnames(xy)
-##    crds <- coordinates(xy)
-##    adehabitatLT::as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
-##                           id=xy[[tor[2]]], typeII=typeII, slsp=slsp)
-##}
+# ##' export
+# as.ltraj <- function(x, ...) UseMethod("as.ltraj")
+# as.ltraj.default <- function(x, ...) adehabitatLT::as.ltraj(x, ...)
+# as.ltraj.trip <- function(xy, ...) {
+#     require(adehabitatLT) ||
+#         stop("adehabitatLT package is required, but unavailable")
+#     tor <- getTORnames(xy)
+#     crds <- coordinates(xy)
+#     as.ltraj(as.data.frame(crds), date=xy[[tor[1]]],
+#                            id=xy[[tor[2]]], ...)
+# }
 
 
 ## @importClassesFrom maptools owin ppp psp
