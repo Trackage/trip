@@ -42,3 +42,17 @@ atomized to the level of each time step. There are methods for combining summari
 multiple tracks and for casting arbitrary durations (by sum) to standard image structures. This would be a good
 feature to replace the existing tripGrid function by storing the 
 individual grid summaries for each implicit line segment.
+
+- **Coercion to/from other classes** The crawl and move packages contain objects that 
+could be coerced in a straightforward way, see the Spatio Temporal Task View for 
+more (in the Moving Objects / Trajectories section). 
+
+- **Cut cleanup** cut.trip should just work with inputs like cut.POSIXt. Simple. 
+ 
+- **Determination of "home"** Need tools to allow users to more easily detect and classify durations when the animal
+migrating or just kicking it at home. 
+
+- **Grid topology** Consider replacement of makeGridTopology, possibly using raster. (tripGrid could be replaced by a rasterize method). 
+
+- **Validation** Must include a detailed report object of where the problems are, and how to filter/fix/flush them. 
+ 
