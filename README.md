@@ -45,7 +45,7 @@ individual grid summaries for each implicit line segment.
 
 - **Coercion to/from other classes** The crawl and move packages contain objects that 
 could be coerced in a straightforward way, see the Spatio Temporal Task View for 
-more (in the Moving Objects / Trajectories section). 
+more (in the Moving Objects / Trajectories section). The hyperframe in spatstat is another example, and to follow up Edzer's work in spacetime. 
 
 - **Cut cleanup** cut.trip should just work with inputs like cut.POSIXt. Simple. 
  
