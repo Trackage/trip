@@ -1,11 +1,11 @@
 #' Function to handle animal track data, organized as \code{"trip"}s
-#' 
-#' 
+#'
+#'
 #' Create an object of class \code{"trip"}, extending the basic functionality
 #' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
-#' 
-#' 
+#'
+#'
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
@@ -18,99 +18,100 @@
 #' @param TORnames Either a \code{TimeOrderedRecords} object, or a 2-element
 #' character vector specifying the DateTime and ID column of \code{obj}
 #' @return
-#' 
+#'
 #' A trip object, with the usual slots of a
 #' \code{\link[sp]{SpatialPointsDataFrame}} and the added
 #' \code{TimeOrderedRecords}. For the most part this can be treated as a
 #' \code{data.frame} with \code{Spatial} coordinates.
 #' @section Methods:
-#' 
+#'
 #' Most of the methods available are by virtue of the sp package.  Some, such
 #' as \code{split.data.frame} have been added to SPDF so that trip has the same
 #' functionality.
-#' 
+#'
 #' \describe{
-#' 
+#'
 #' \item{trip}{\code{signature(obj="SpatialPointsDataFrame",
 #' TORnames="ANY")}}The main construction.
-#' 
+#'
 #' \item{trip}{\code{signature(obj="ANY", TORnames="TimeOrderedRecords")}:
 #' create a \code{trip} object from a data frame.}
-#' 
+#'
 #' \item{trip}{\code{signature(obj="trip", TORnames="ANY")}: (Re)-create a
 #' \code{trip} object using a character vector for \code{TORnames}.}
-#' 
+#'
 #' \item{trip}{\code{signature(obj="trip", TORnames="TimeOrderedRecords")}:
 #' (re)-create a trip object using a \code{TimeOrderedRecords} object.}
-#' 
+#'
 #' }
 #' @seealso
-#' 
+#'
 #' \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simple(istic)
 #' speed filtering and spatial time spent gridding.
 #' @export
 #' @examples
-#' 
-#' 
+#'
+#'
 #' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
 #' proj4string(d) <- CRS("+proj=laea")
 #' (tr <- trip(d, c("tms", "id")))
-#' 
+#'
 #' ## don't want adehabitatMA to be loaded as a requirement here
 #' \dontrun{
 #' ## a simple example with the common fixes required for basic track data
-#' 
+#'
 #' dat <- read.csv("trackfile.csv")
 #' names(dat)  ## e.g. [1] "long" "lat" "seal" "date" "local" "lq"
 #' library(sp)
 #' coordinates(dat) <- c("long", "lat")
-#' 
+#'
 #' ## date/times may be in a particular time zone, please check
 #' dat$gmt <- as.POSIXct(strptime(paste(dat$date, dat$local),
 #'                       "%d-%b-%y %H:%M:%S"), tz="GMT")
-#' 
+#'
 #' ## if there are problems in the data, this will error
 #' tr <- trip(dat, c("gmt", "seal"))
-#' 
+#'
 #' ## the following code tries to fix common problems
-#' 
+#'
 #' ## remove completely-duplicated rows
 #' dat <- dat[!duplicated(dat), ]
 #' ## order the rows by seal, then by time
 #' dat <- dat[order(dat$seal, dat$gmt), ]
 #' ## fudge duplicated times
 #' dat$gmt <- adjust.duplicateTimes(dat$gmt, dat$seal)
-#' 
+#'
 #' ## finally, convert to Spatial and create trip object
 #' coordinates(dat) <- c("long", "lat")
 #' tr <- trip(dat, c("gmt", "seal"))
 #' }
-#' 
-#' 
+#'
+#'
 #' \dontrun{
 #'    if (require(adehabitatLT)) {
 #'      data(porpoise)
 #'      porpoise <- as.trip(porpoise)
 #'      proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
 #'      summary(porpoise)
-#' 
+#'
 #'    }
-#' 
-#' 
+#'
+#'
 #'    ## extended example to check that our projection metadata is correct
 #'    library(maptools)
 #'    data(wrld_simpl)
 #'    library(rgeos)
 #'    library(raster)
-#' 
+#'
 #'    ## 3 degrees either side (for half a zone . . .)
 #'    ext <- as(extent(spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
 #'    proj4string(ext) <- CRS(proj4string(wrld_simpl))
 #'    ## crop to the buffered tracks, and project to its native CRS
-#'    w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext), CRS(proj4string(porpoise)))
-#' 
+#'    w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
+#'     CRS(proj4string(porpoise)))
+#'
 #'    plot(w)
 #'    lines(porpoise)
 #' }
@@ -137,9 +138,9 @@ if (!isGeneric("subset"))
 
 
 ##' TimeOrderedRecords
-##' 
-##' Object to identify DateTimes and IDs in a Spatial object. 
-##' 
+##'
+##' Object to identify DateTimes and IDs in a Spatial object.
+##'
 ##' @param x Character vector of 2 elements specifying the data columns of DateTimes and IDs
 ##' @return  \code{TimeOrderedRecords} holds a 2-element character vector, naming the data columns
 ##' of DateTimes and IDs.
@@ -152,35 +153,35 @@ TimeOrderedRecords <- function(x) {
 
 
 
-#' 
+#'
 #' Functions to retrieve DateTime and ID data from within (Spatial) data
 #' frames.
-#' 
-#' 
+#'
+#'
 #' Functions for retrieving the names of the columns used for DateTime and ID,
 #' as well as the data.
-#' 
+#'
 #' @name trip-accessors
 #' @aliases trip-accessors getTORnames getTimeID
 #' @param obj \code{trip} object.
 #' @return
-#' 
+#'
 #' \code{getTORnames} retrieves the column names from an object extending the
 #' class \code{TimeOrderedRecords}, and \code{getTimeID} returns the data as a
 #' data frame from an object extending the class \code{TimeOrderedRecords}.
 #' @seealso
-#' 
+#'
 #' \code{\link{trip-class}}, for the use of this class with
 #' \code{\link[sp]{SpatialPointsDataFrame}}.
-#' 
+#'
 #' \code{\link{trip}}
 #' @keywords manip
 #' @examples
-#' 
-#' 
+#'
+#'
 #' tor <- TimeOrderedRecords(c("time", "id"))
 #' getTORnames(tor)
-#' 
+#'
 NULL
 
 #' @rdname trip-accessors
@@ -191,7 +192,7 @@ getTORnames <- function(obj) obj@TOR.columns
 ##' @export
 getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 
- 
+
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
           function(obj, TORnames) {
               if (is.factor(obj[[TORnames[2]]]))
@@ -263,9 +264,9 @@ setMethod("lines", signature(x="trip"),
                      0.8, 0.95),
                    ...) {
               plot(as(x, "SpatialLinesDataFrame"),  col=col, add=TRUE, ...)
-           
+
           })
-#' @exportMethod  plot 
+#' @exportMethod  plot
 setMethod("plot", signature(x="trip", y="missing"),
           function(x, y, ...) {
               plot(as(x, "SpatialPoints"), ...)
@@ -274,7 +275,7 @@ setMethod("plot", signature(x="trip", y="missing"),
 
 ###_ + Subsetting trip
 
-#' @exportMethod subset 
+#' @exportMethod subset
 setMethod("subset", signature(x="trip"),
           function(x,  ...) {
               spdf <- subset(as(x, "SpatialPointsDataFrame"), ...)
