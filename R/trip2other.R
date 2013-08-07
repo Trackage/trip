@@ -1,13 +1,13 @@
 #' As ("trip", other-classes)
-#' 
+#'
 #' Coercing \code{trip} objects to other classes.
-#' 
+#'
 #' @name as.Other
 # aliases as.SpatialLinesDataFrame.trip
 # section Methods:
-# 
+#
 # ##\describe{
-# 
+#
 # ##\item{coerce}{\code{signature(from="trip", to="SpatialLinesDataFrame")}}
 # ##}
 setAs("trip", "SpatialLinesDataFrame", function(from) {
@@ -40,10 +40,10 @@ setAs("trip", "ltraj", function(from) {
 
 
 
-## nice idea, but won't work because as.ltraj is masked once adehabitatLT is actually loaded, 
+## nice idea, but won't work because as.ltraj is masked once adehabitatLT is actually loaded,
 ##  so can only work if it's always loaded first
 ## importFrom adehabitatLT as.ltraj
-## 
+##
 # name as.ltraj
 # importFrom adehabitatLT as.ltraj
 # S3method as.ltraj trip
@@ -51,7 +51,7 @@ setAs("trip", "ltraj", function(from) {
 # param typeII see \code{\link[adehabitatLT]{as.ltraj}}
 # param slsp details for the \code{\link[adehabitatLT]{ltraj}} turning
 # angles.
-# ##' export
+#
 # as.ltraj <- function(x, ...) UseMethod("as.ltraj")
 # as.ltraj.default <- function(x, ...) adehabitatLT::as.ltraj(x, ...)
 # as.ltraj.trip <- function(xy, ...) {
@@ -120,11 +120,11 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 
 
 #' Break a trip into its component line segments
-#' 
+#'
 #' Function to create a SpatialLinesDataFrame from a trip object, resulting in
 #' a line segment for each implicit segment along the tracks. The object stores
 #' the start and end times, duration and the ID of the segment.
-#' 
+#'
 #' @param ... reserved for future methods
 #' @return SpatialLinesDataFrame
 #' @examples
@@ -157,7 +157,7 @@ explode <- function(x, ...) {
       cnt <- cnt + 1
       Linelist[[cnt]] <- Lines(list(Line(this.coords[j:(j+1), ])), rownames(df)[cnt])
     }
-    
+
   }
   splines <- SpatialLines(Linelist, proj4string = CRS(proj4string(x)))
   SpatialLinesDataFrame(splines, df)

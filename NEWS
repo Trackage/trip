@@ -2,7 +2,9 @@
 
  o trackDistance is now generic, with a new argument "prev"
 
-
+ o fixed install problem with imports from maptools/sp, and 
+   other problems with the namespace, all doc is now done with     roxygen2
+ 
 
 	CHANGES IN trip VERSION 1.1-15
 
