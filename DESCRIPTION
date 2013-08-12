@@ -23,4 +23,16 @@ Description: Functions for accessing and manipulating spatial data for
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
-
+Collate:
+    'AllClass.R'
+    'AllMethod.R'
+    'filter.penSS.R'
+    'oc.theme.R'
+    'other2trip.R'
+    'speedfilter.R'
+    'trackDistance.R'
+    'trip-deprecated.R'
+    'trip.R'
+    'trip.split.R'
+    'trip2other.R'
+    'tripGrid.R'
