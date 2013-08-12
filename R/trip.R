@@ -528,10 +528,13 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        p4="+proj=longlat +ellps=WGS84", verbose=FALSE) {
     ## add "correct.all" argument - just return data frame if it fails, with
     ## suggestions of how to sort/fix it
-    dout <- NULL
-    for (con in x) {
+  
+  
+  ## this should be heaps faster
+    dout <- vector("list", length(x))
+    for (icon in seq_along(x)) {
         old.opt <- options(warn=-1)
-        dlines <- strsplit(readLines(con), "\\s+", perl=TRUE)
+        dlines <- strsplit(readLines(x[icon]), "\\s+", perl=TRUE)
         options(old.opt)
         loclines <- sapply(dlines, length) == 12
         if (any(loclines)) {
@@ -540,7 +543,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
             if (dfm[1,7] == "LC") {
                 msg <- paste(" appears to be a diag file, skipping.",
                              "Use readDiag to obtain a dataframe. \n\n")
-            	cat("file ", con, msg)
+            	cat("file ", icon, msg)
             	next
             }
             df <- vector("list", 12)
@@ -553,13 +556,16 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
             df <- as.data.frame(df)
             df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
                                           dtFormat), tz)
-            dout <- rbind(dout, df)
+            dout[[icon]] <- df
         } else {
-            cat("Problem with file: ", con, " skipping\n")
+            cat("Problem with file: ", x[icon], " skipping\n")
+            
         }
     }
-    if (is.null(dout))
+    if (all(sapply(dout, is.null)))
         stop("No data to return: check the files")
+     
+    dout <- do.call(rbind, dout)
     if (correct.all) {
         ## should add a reporting mechanism for these as well
         ##  and return a data.frame if any of the tests fail
