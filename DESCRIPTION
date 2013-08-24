@@ -5,7 +5,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "mdsumner@gmail.com"),
     person("Sebastian", "Luque", role = "ctb",
     email = "spluque@gmail.com"))
-Version: 1.1-17
+Version: 1.1-18
 Depends:
     methods,
     sp
@@ -26,13 +26,10 @@ License: GPL-3
 Collate:
     'AllClass.R'
     'AllMethod.R'
-    'filter.penSS.R'
-    'oc.theme.R'
-    'other2trip.R'
-    'speedfilter.R'
-    'trackDistance.R'
-    'trip-deprecated.R'
     'trip.R'
-    'trip.split.R'
-    'trip2other.R'
-    'tripGrid.R'
+    'coerce.R'
+    'colours.R'
+    'filter.R'
+    'grid.R'
+    'trip-deprecated.R'
+
