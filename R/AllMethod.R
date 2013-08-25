@@ -510,3 +510,41 @@ setMethod("recenter", signature(obj="trip"),
                    obj@TOR.columns)
           })
 
+
+
+
+setMethod("spTransform", signature("trip", "CRS"),
+          function(x, CRSobj, ...) {
+            if (!("rgdal" %in% loadedNamespaces())) {
+              ns <- try(loadNamespace("rgdal"))
+              if (isNamespace(ns)) {
+                message("[loaded the rgdal namespace]")
+              } else {
+                msg <- paste("This method requires the rgdal package",
+                             "but is unable to load rgdal namespace",
+                             sep=",")
+                stop(msg)
+              }
+            }
+            pts <- spTransform(as(x, "SpatialPointsDataFrame"),
+                               CRSobj, ...)
+            trip(pts, getTORnames(x))
+          })
+
+## method to allow transformation with character only
+setMethod("spTransform", signature("Spatial", "character"), 
+          function(x, CRSobj, ...) {
+            
+            .local <- function (object, pstring, ...) 
+            {
+              crs <- try(CRS(pstring))
+              if (inherits(crs, "try-error")) { stop(sprintf("cannot determine valid CRS from %s", pstring))
+              } else {
+                spTransform(x, crs)
+              }
+            }
+            
+            .local(x, pstring = CRSobj, ...)
+            
+          })
+
