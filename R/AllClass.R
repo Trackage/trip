@@ -2,8 +2,8 @@
 ##'
 ##' The main use of this class and creator function is for
 ##' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
-##' TimeOrderedRecords for the class \code{trip}. 
-##'                                        
+##' TimeOrderedRecords for the class \code{trip}.
+##'
 ##' @name TimeOrderedRecords-class
 ##' @rdname TimeOrderedRecords-class
 ##' @section Slots:
@@ -11,6 +11,7 @@
 ##'    \item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
 ##'  }
 ##' @import sp
+##' @import methods
 ##' @exportClass TimeOrderedRecords
 ##' @docType class
 ##' @note  Future versions may change significantly, this class is
@@ -34,38 +35,38 @@ setValidity("TimeOrderedRecords", function(object) {
 })
 
 
-#' A class for sets of animal trips (track data). 
-#' 
-#' 
+#' A class for sets of animal trips (track data).
+#'
+#'
 #' An extension of \code{\link[sp]{SpatialPointsDataFrame}} by including
 #' \code{"TimeOrderedRecords"}.  The records within the data frame are
 #' explicitly ordered by DateTime data within IDs.
-#' 
-#' 
+#'
+#'
 #' @name trip-class
 #' @rdname trip-class
 #' @aliases trip-class lines,trip-method plot,trip,missing-method show,trip-method show,summary.TORdata-method summary,trip-method subset,trip-method
 #' @exportClass trip
 #' @docType class
 #' @section Objects from the Class:
-#' 
+#'
 #' Objects can be created by calls of the form
 #' \code{trip(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords")}.
 #' The object contains all the slots present within a
 #' \code{\link[sp]{SpatialPointsDataFrame}}, particularly \code{data} which
 #' contains columns of at least those specified by \code{TOR.columns}.
 #' @seealso
-#' 
+#'
 #' \code{\link{trip}} for examples of directly using the class.
-#' 
+#'
 #' \code{\link{trip-accessors}} describes methods for accessing information on
 #' \code{trip} objects.
 #' @keywords classes
 #' @examples
-#' 
-#' 
+#'
+#'
 #' showClass("trip")
-#' 
+#'
 #' ## Examples of general methods
 #' ## Continuing the example from '?trip-methods:
 #' utils::example("trip-methods", package="trip",
@@ -73,33 +74,33 @@ setValidity("TimeOrderedRecords", function(object) {
 #' summary(tr)
 #' plot(tr)
 #' lines(tr)
-#' 
+#'
 #' dim(tr)
 #' names(tr)
 #' subset(tr, id == "2")
 #' as.data.frame(tr)
-#' 
+#'
 #' tr[1:3, ]
 #' tr[, 1]
 #' tr[[1]]
-#' 
+#'
 #' if (exists("porpoise")) {
 #'     dim(porpoise)
 #'     names(porpoise)
 #'     porpoise[porpoise[["id"]] == "GUS", ]
 #' }
-#' 
-#' 
+#'
+#'
 setClass("trip",
          contains=c("TimeOrderedRecords", "SpatialPointsDataFrame"))
 
 
-##' 
+##'
 #' Internal trip Functions
-#' 
+#'
 #' Internal trip functions
-#' 
-#' 
+#'
+#'
 #' These are not to be called by the user (or in some cases are just waiting
 #' for proper documentation to be written).
 #' @name trip-internal
@@ -148,7 +149,7 @@ setClass("trip",
     return(TRUE)
 }
 
-setValidity("trip", trip:::.validTORdata)
+setValidity("trip", .validTORdata)
 
 ## We don't need an S4 class for this, but we do want S4 methods
 setOldClass("summary.TORdata")
