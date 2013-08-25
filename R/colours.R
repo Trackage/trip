@@ -3,20 +3,20 @@
 
 
 #' SeaWiFS ocean colour colours
-#' 
-#' 
+#'
+#'
 #' Generate ocean colour colours, using the SeaWiFS scheme
-#' 
-#' 
+#'
+#'
 #' This is a high-contrast palette, log-scaled originally for ocean
 #' chlorophyll.
-#' 
+#'
 #' @aliases oc.theme oc.colors
 #' @param x Number of colours to generate as part of a theme
 #' @param n Number of colours to generate
 #' @return A set of colours or a theme object.
 #' @seealso
-#' 
+#'
 #' Similar functions in sp \code{\link[sp]{sp.theme}},
 #' \code{\link[sp]{bpy.colors}}
 #' @keywords color
@@ -89,7 +89,7 @@ oc.theme <- function(x=50) list(regions=list(col=oc.colors(x)))
 
 ##' @rdname oc.theme
 ##' @export
-oc.colors <- grDevices::colorRampPalette(trip:::.oc.col)
+oc.colors <- grDevices::colorRampPalette(.oc.col)
 
 
 

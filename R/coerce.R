@@ -131,7 +131,7 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' ## Continuing the example from '?trip-methods:
 #' utils::example("trip-methods", package="trip",
 #'            ask=FALSE, echo=FALSE)
-#' spldf <- trip:::explode(tr)
+#' spldf <- explode(tr)
 #' summary(tr)
 #' @return SpatialLinesDataFrame object with each individual line segment identified by start/end time and trip ID
 #' @rdname as.Other
@@ -179,9 +179,9 @@ explode <- function(x, ...) {
 #           })
 
 #' Coercion from other classes to \code{trip} objects
-#' 
+#'
 #' Coercing objects to \code{trip} class
-#' 
+#'
 #' @name as.trip-methods
 #' @aliases as.trip-methods as.trip as.trip,ltraj-method ltraj2trip
 #' coerce,trip,ltraj-method
@@ -190,19 +190,19 @@ explode <- function(x, ...) {
 #' @param list() Arguments passed to other methods. Ignored for \code{ltraj}
 #' method.
 #' @section Methods:
-#' 
+#'
 #' \describe{
-#' 
+#'
 #' \item{coerce}{\code{signature(from="ltraj", to="trip")}}
-#' 
+#'
 #' \item{as.trip}{\code{signature(x="ltraj")}}
-#' 
+#'
 #' }
 #' @examples
 #' ## Continuing the example from '?trip-methods:
 #' utils::example("trip-methods", package="trip",
 #'                ask=FALSE, echo=FALSE)
-#' 
+#'
 #' if (require(adehabitatLT)) {
 #'     ##l <- as.ltraj.trip(tr)
 #'     ##ltraj2trip(l)

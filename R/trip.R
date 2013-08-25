@@ -8,20 +8,20 @@
 
 
 #' Function to ensure dates and times are in order with trip ID
-#' 
-#' 
+#'
+#'
 #' A convenience function, that removes duplicate rows, sorts by the date-times
 #' within ID, and removes duplicates from a data frame or
 #' SpatialPointsDataFrame.
-#' 
-#' 
+#'
+#'
 #' @param x \code{\link{data.frame}} or
 #' \code{\link[sp]{SpatialPointsDataFrame}}
 #' @param tor character vector of names of date-times and trip ID columns
 #' @return \code{\link{data.frame}} or
 #' \code{\link[sp]{SpatialPointsDataFrame}}.
 #' @note
-#' 
+#'
 #' It's really important that data used are of a given quality, but this
 #' function makes the most common trip problems easy to apply.
 #' @seealso \code{\link{trip}}
@@ -84,9 +84,9 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
     intime <- as.numeric(tms) - min(as.numeric(tms))
     at <- cbind(intime, c(intime[-1], intime[length(intime)]),
                 c(dtn, 0))
-    nx <- unlist(apply(ax, 1, trip:::.intpFun))
-    ny <- unlist(apply(ay, 1, trip:::.intpFun))
-    nt <- unlist(apply(at, 1, trip:::.intpFun)) + min(tms)
+    nx <- unlist(apply(ax, 1, .intpFun))
+    ny <- unlist(apply(ay, 1, .intpFun))
+    nt <- unlist(apply(at, 1, .intpFun)) + min(tms)
     ni <- factor(rep(sub, length=length(nt)))
     newPts <- rbind(newPts,
                     data.frame(x=nx, y=ny, time=nt, id=ni))
@@ -114,41 +114,41 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
 
 
 #' Adjust duplicate DateTime values
-#' 
-#' 
+#'
+#'
 #' Duplicated DateTime values within ID are adjusted forward (recursively) by
 #' one second until no duplicates are present. This is considered reasonable
 #' way of avoiding the nonsensical problem of duplicate times.
-#' 
-#' 
+#'
+#'
 #' This function is used to remove duplicate time records in animal track data,
 #' rather than removing the record completely.
-#' 
+#'
 #' @param time vector of DateTime values
 #' @param id vector of ID values, matching DateTimes that are assumed sorted
 #' within ID
 #' @return
-#' 
+#'
 #' The adjusted DateTime vector is returned.
 #' @section Warning:
-#' 
+#'
 #' I have no idea what goes on at CLS when they output data that are either not
 #' ordered by time or have duplicates. If this problem exists in your data it's
 #' probably worth finding out why.
 #' @seealso \code{\link{readArgos}}
 #' @examples
-#' 
-#' 
+#'
+#'
 #' ## DateTimes with a duplicate within ID
-#' tms <- Sys.time() + c(1:6, 6, 7:10) *10 
+#' tms <- Sys.time() + c(1:6, 6, 7:10) *10
 #' id <- rep("a", length(tms))
 #' range(diff(tms))
-#'     
+#'
 #' ## duplicate record is now moved one second forward
 #' tms.adj <- adjust.duplicateTimes(tms, id)
 #' range(diff(tms.adj))
-#' 
-#' 
+#'
+#'
 #' @export adjust.duplicateTimes
 adjust.duplicateTimes <- function (time, id) {
     dups <- unlist(tapply(time, id, duplicated), use.names=FALSE)
@@ -162,37 +162,37 @@ adjust.duplicateTimes <- function (time, id) {
 
 
 #' Assign numeric values for Argos "class"
-#' 
-#' 
+#'
+#'
 #' Assign numeric values for Argos "class" by matching the levels available to
 #' given numbers. An adjustment is made to allow sigma to be specified in
 #' kilometeres, and the values returned are the approximate values for longlat
 #' degrees.  It is assumed that the levels are part of an "ordered" factor from
 #' least precise to most precise.
-#' 
-#' 
+#'
+#'
 #' The available levels in Argos are \code{levels=c("Z", "B", "A", "0", "1",
 #' "2", "3")}.
-#' 
+#'
 #' The actual sigma values given by default are (as far as can be determined) a
 #' reasonable stab at what Argos believes.
-#' 
+#'
 #' @param x factor of Argos location quality "classes"
 #' @param sigma numeric values (by default in kilometres)
 #' @param adjust a numeric adjustment to convert from kms to degrees
 #' @return
-#' 
+#'
 #' Numeric values for given levels.
 #' @keywords manip
 #' @examples
-#' 
-#' 
+#'
+#'
 #' cls <- ordered(sample(c("Z", "B", "A", "0", "1", "2", "3"), 30,
 #'                       replace=TRUE),
 #'                levels=c("Z", "B", "A", "0", "1", "2", "3"))
 #' argos.sigma(cls)
-#' 
-#' 
+#'
+#'
 #' @export argos.sigma
 argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
                         adjust=111.12) {
@@ -204,33 +204,33 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 
 
 #' Read Argos "DAT" or "DIAG" files
-#' 
-#' 
+#'
+#'
 #' Return a (Spatial) data frame of location records from raw Argos files.
 #' Multiple files may be read, and each set of records is appended to the data
 #' frame in turn.  Basic validation of the data is enforced by default.
-#' 
-#' 
+#'
+#'
 #' \code{readArgos} performs basic validation checks for class \code{trip} are
 #' made, and enforced based on \code{correct.all}:
-#' 
+#'
 #' No duplicate records in the data, these are simply removed.  Records are
 #' ordered by DateTime ("date", "time", "gmt") within ID ("ptt").  No duplicate
 #' DateTime values within ID are allowed: to enforce this the time values are
 #' moved forward by one second - this is done recursively and is not robust.
-#' 
+#'
 #' If validation fails the function will return a
 #' \code{\link[sp]{SpatialPointsDataFrame}}.  Files that are not obviously of
 #' the required format are skipped.
-#' 
+#'
 #' Argos location quality data "class" are ordered, assuming that the available
 #' levels is \code{levels=c("Z", "B", "A", "0", "1", "2", "3")}.
-#' 
+#'
 #' A projection string is added to the data, assuming the PROJ.4 longlat - if
 #' any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
-#' 
+#'
 #' \code{readDiag} simply builds a \code{data.frame}.
-#' 
+#'
 #' @aliases readArgos readDiag
 #' @param x vector of file names of Argos "DAT" or "DIAG" files.
 #' @param correct.all logical - enforce validity of data as much as possible?
@@ -242,10 +242,10 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 #' @param p4 PROJ.4 projection string, "+proj=longlat +ellps=WGS84" is assumed
 #' @param verbose if TRUE, details on date-time adjustment is reported
 #' @return
-#' 
+#'
 #' \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
 #' \code{\link[sp]{SpatialPointsDataFrame}}.
-#' 
+#'
 #' \code{readDiag} returns a \code{data.frame} with 8 columns:
 #' \itemize{
 #' \item {\code{lon1},\code{lat1} first pair of coordinates}
@@ -256,23 +256,23 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 #' \item {iq some other thing}
 #' }
 #' @section Warning :
-#' 
+#'
 #' This works on some Argos files I have seen, it is not a guaranteed method
 #' and is in no way linked officially to Argos.
 #' @seealso
-#' 
+#'
 #' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
 #' \code{\link{adjust.duplicateTimes}}, for manipulating these data, and
 #' \code{\link{argos.sigma}} for relating a numeric value to Argos quality
 #' "classes".
-#' 
+#'
 #' \code{\link{sepIdGaps}} for splitting the IDs in these data on some minimum
 #' gap.
-#' 
+#'
 #' \code{\link{order}}, \code{\link{duplicated}}, , \code{\link{ordered}} for
 #' general manipulation of this type.
 #' @references
-#' 
+#'
 #' The Argos data documentation is at
 #' \url{http://www.argos-system.org/manual/}.  Specific details on the PRV
 #' ("provide data") format were found here
@@ -284,8 +284,8 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        p4="+proj=longlat +ellps=WGS84", verbose=FALSE) {
     ## add "correct.all" argument - just return data frame if it fails, with
     ## suggestions of how to sort/fix it
-  
-  
+
+
   ## this should be heaps faster
     dout <- vector("list", length(x))
     for (icon in seq_along(x)) {
@@ -315,12 +315,12 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
             dout[[icon]] <- df
         } else {
             cat("Problem with file: ", x[icon], " skipping\n")
-            
+
         }
     }
     if (all(sapply(dout, is.null)))
         stop("No data to return: check the files")
-     
+
     dout <- do.call(rbind, dout)
     if (correct.all) {
         ## should add a reporting mechanism for these as well
@@ -433,39 +433,39 @@ readDiag <- function (x) {
 
 
 #' Separate a set of IDs based on gaps
-#' 
-#' 
+#'
+#'
 #' A new set of ID levels can be created by separating those given based on a
 #' minimum gap in another set of data. This is useful for separating
 #' instruments identified only by their ID into separate events in time.
-#' 
-#' 
+#'
+#'
 #' The assumption is that a week is a long time for a tag not to record
 #' anything.
-#' 
+#'
 #' @param id existing ID levels
 #' @param gapdata data matching \code{id} with gaps to use as separators
 #' @param minGap the minimum "gap" to use in gapdata to create a new ID level
 #' @return
-#' 
+#'
 #' A new set of ID levels, named following the pattern that "ID" split into 3
 #' would provided "ID", "ID\_2" and "ID\_3".
 #' @section Warning:
-#' 
+#'
 #' It is assumed that each vector provides is sorted by \code{gapdata} within
 #' \code{id}. No checking is done, and so it is suggested that this only be
 #' used on ID columns within existing, validated \code{trip} objects.
 #' @seealso \code{\link{trip}}
 #' @keywords manip
 #' @examples
-#' 
-#' 
+#'
+#'
 #' id <- gl(2, 8)
 #' gd <- Sys.time() + 1:16
 #' gd[c(4:6, 12:16)] <- gd[c(4:6, 12:16)] + 10000
 #' sepIdGaps(id, gd, 1000)
-#'   
-#' 
+#'
+#'
 #' @export sepIdGaps
 sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
     toSep <- tapply(gapdata, id,
@@ -603,7 +603,7 @@ trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
     if (nx != length(y1) | nx != length(x2) | nx != length(y2))
         stop("arguments must have equal lengths")
     if (longlat) {
-        trip:::.gcdist.c(x1, y1, x2, y2)
+        .gcdist.c(x1, y1, x2, y2)
     } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
 
@@ -624,7 +624,7 @@ trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
 #' If \code{x} is a trip object, the return result has an extra element for the
 #' start and end point of each individual trip, with value NA.
 #'
-#' This is an optimized hybrid of "raster::bearing" and 
+#' This is an optimized hybrid of "raster::bearing" and
 #' \code{\link[maptools]{gzAzimuth}}.
 #'
 #' @rdname trackAngle
@@ -828,29 +828,29 @@ trackAngle.default <- function(x) {
 
 
 
-#' 
+#'
 #' Split trip events into exact time-based boundaries.
-#' 
-#' 
+#'
+#'
 #' Split trip events within a single object into exact time boundaries, adding
 #' interpolated coordinats as required.
-#' 
-#' 
+#'
+#'
 #' Motion between boundaries is assumed linear and extra coordinates are added
 #' at the cut points.
-#' 
+#'
 #' @param x A trip object.
 #' @param dates A vector of date-time boundaries. These must encompass all the
 #' time range of the entire trip object.
 #' @param \dots Unused arguments.
 #' @return
-#' 
+#'
 #' A list of trip objects, named by the time boundary in which they lie.
 #' @author Michael D. Sumner and Sebastian Luque
 #' @seealso See also \code{\link{tripGrid}}.
 #' @keywords manip chron
 #' @examples
-#' 
+#'
 #' \dontrun{
 #' set.seed(66)
 #' d <- data.frame(x=1:100, y=rnorm(100, 1, 10),
@@ -858,18 +858,18 @@ trackAngle.default <- function(x) {
 #'                 seq(100, 1500, length=50)), id=gl(2, 50))
 #' coordinates(d) <- ~x+y
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #' bound.dates <- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)
 #' trip.list <- cut(tr, bound.dates)
 #' bb <- bbox(tr)
 #' cn <- c(20, 8)
 #' g <- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
-#' 
+#'
 #' tg <- tripGrid(tr, grid=g)
 #' tg <- as.image.SpatialGridDataFrame(tg)
 #' tg$x <- tg$x - diff(tg$x[1:2]) / 2
 #' tg$y <- tg$y - diff(tg$y[1:2]) / 2
-#' 
+#'
 #' op <- par(mfcol=c(4, 1))
 #' for (i in 1:length(trip.list)) {
 #'   plot(coordinates(tr), pch=16, cex=0.7)
@@ -882,18 +882,18 @@ trackAngle.default <- function(x) {
 #'   lines(trip.list[[i]])
 #'   points(trip.list[[i]], pch=16, cex=0.7)
 #' }
-#' 
+#'
 #' par(op)
 #' print("you may need to resize the window to see the grid data")
-#' 
+#'
 #' cn <- c(200, 80)
 #' g <- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
-#' 
+#'
 #' tg <- tripGrid(tr, grid=g)
 #' tg <- as.image.SpatialGridDataFrame(tg)
 #' tg$x <- tg$x - diff(tg$x[1:2]) / 2
 #' tg$y <- tg$y - diff(tg$y[1:2]) / 2
-#' 
+#'
 #' op <- par(mfcol=c(4, 1))
 #' for (i in 1:length(trip.list)) {
 #'   plot(coordinates(tr), pch=16, cex=0.7)
@@ -905,12 +905,12 @@ trackAngle.default <- function(x) {
 #'   lines(trip.list[[i]])
 #'   points(trip.list[[i]], pch=16, cex=0.7)
 #' }
-#' 
+#'
 #' par(op)
 #' print("you may need to resize the window to see the grid data")
-#' 
+#'
 #' }
-#' 
+#'
 #' @method cut trip
 #' @S3method cut trip
 #' @export cut.trip
@@ -921,7 +921,7 @@ cut.trip <- function(x, dates, ...) {
     names(all.list) <- ids
     for (id in ids) {
         x1 <- x[x[[tor[2]]] == id, ]
-        all.list[[id]] <- trip:::.single.trip.split(x1, dates)
+        all.list[[id]] <- .single.trip.split(x1, dates)
     }
     all.names <- unique(unlist(lapply(all.list, names)))
     ord <- order(as.POSIXct(all.names))
@@ -945,7 +945,7 @@ cut.trip <- function(x, dates, ...) {
         nlist[[i]] <- res.list[[i]][[1]]
         if (length(res.list[[i]]) > 1) {
             for (j in 2:length(res.list[[i]])) {
-                nlist[[i]] <- trip:::.tripRbind(nlist[[i]],
+                nlist[[i]] <- .tripRbind(nlist[[i]],
                                                 res.list[[i]][[j]])
             }
         }
