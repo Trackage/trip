@@ -68,12 +68,12 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
   x <- coords[,1]
   y <- coords[,2]
   levs <- levels(id)
-  newPts <- NULL
+  newPts <- vector("list", length(levs))
   ##if (is.null(dur))
   ##   dur <- as.numeric(min(unlist(tapply(as.integer(time),
   ##            id, diff))))
-  for (sub in levs) {
-    ind <- id == sub
+  for (isub in seq_along(levs)) {
+    ind <- id == levs[isub]
     xx <- x[ind]
     yy <- y[ind]
     tms <- time[ind]
@@ -87,10 +87,12 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
     nx <- unlist(apply(ax, 1, .intpFun))
     ny <- unlist(apply(ay, 1, .intpFun))
     nt <- unlist(apply(at, 1, .intpFun)) + min(tms)
-    ni <- factor(rep(sub, length=length(nt)))
-    newPts <- rbind(newPts,
-                    data.frame(x=nx, y=ny, time=nt, id=ni))
+    ni <- factor(rep(levs[isub], length=length(nt)))
+##    newPts <- rbind(newPts,
+    newPts[[isub]] <- data.frame(x=nx, y=ny, time=nt, id=ni)
   }
+  newPts <- do.call("rbind", newPts)
+
   origTotal <- sum(tapply(time, id, function(x) {
     diff(range(as.numeric(x)))
   }))
