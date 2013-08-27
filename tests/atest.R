@@ -23,9 +23,16 @@ lon <- 120 + 20 * sin(2 * pi * x) +
   brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)
 lat <- -40 + 10 *(sin(3 * 2 * pi * x) + cos(2 * pi * x) - 1) +
   brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)
+
+d <- data.frame(x = lon,  y = lat, gmt=tms, id="lbb", stringsAsFactors = FALSE)
+d1 <- d
+d1[,c("x", "y")] <- d1[,c("x", "y")]  + 5
+d1$id <- "laa"
+d <- rbind(d1, d)
+
+
 tr <- new("trip",
-          SpatialPointsDataFrame(cbind(lon, lat),
-                                 data.frame(gmt=tms, id="lbb")),
+          SpatialPointsDataFrame(as.matrix(d[,1:2]), d,
           TimeOrderedRecords(c("gmt", "id")))
 
 

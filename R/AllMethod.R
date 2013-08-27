@@ -309,6 +309,14 @@ setMethod("[", signature(x="trip"),
               if (missing.i && missing.j) {
                   i <- j <- TRUE
               } else if (missing.j && !missing.i) {
+                  ## modified to return individual trips, need to test for sense  and add tr["id-label"] behaviour MDS 2013-08-27
+                  if (length(i) == 1) {
+                      tor <- getTORnames(x)
+                  j <- TRUE
+                  ids <- x[[tor[2]]]
+                  spdf <- as(x, "SpatialPointsDataFrame")[ids == unique(ids)[i], j, ..., drop=drop]
+                  return(trip(spdf, tor))
+                  }
                   if (nargs == 2) {
                       j <- i; i <- TRUE
                   } else j <- TRUE
@@ -342,6 +350,11 @@ setMethod("[", signature(x="trip"),
                   }
               }
           })
+
+
+## consider writing "[,trip" method to return each individual track
+## with replacement method able to slot in a modification, more or fewer points etc.
+## length to return the number of tracks
 
 
 ###_ + Summary, print, and show
@@ -532,10 +545,10 @@ setMethod("spTransform", signature("trip", "CRS"),
           })
 
 ## method to allow transformation with character only
-setMethod("spTransform", signature("Spatial", "character"), 
+setMethod("spTransform", signature("Spatial", "character"),
           function(x, CRSobj, ...) {
-            
-            .local <- function (object, pstring, ...) 
+
+            .local <- function (object, pstring, ...)
             {
               crs <- try(CRS(pstring))
               if (inherits(crs, "try-error")) { stop(sprintf("cannot determine valid CRS from %s", pstring))
@@ -543,8 +556,8 @@ setMethod("spTransform", signature("Spatial", "character"),
                 spTransform(x, crs)
               }
             }
-            
+
             .local(x, pstring = CRSobj, ...)
-            
+
           })
 
