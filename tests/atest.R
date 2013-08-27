@@ -32,7 +32,7 @@ d <- rbind(d1, d)
 
 
 tr <- new("trip",
-          SpatialPointsDataFrame(as.matrix(d[,1:2]), d,
+          SpatialPointsDataFrame(as.matrix(d[,1:2]), d),
           TimeOrderedRecords(c("gmt", "id")))
 
 
