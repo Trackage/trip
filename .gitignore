@@ -8,6 +8,7 @@
 *NAMESPACE
 man/*.Rd
 *~
+*#
 auto/
 *.tex
 *.aux
