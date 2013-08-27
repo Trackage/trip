@@ -1,4 +1,12 @@
 
+###_ + Functions
+
+## Need to clean up the "internal" functions, and ensure the arguments
+## are passed in correctly - and figure out which arguments are really
+## useful anyway
+
+
+
 #' Function to ensure dates and times are in order with trip ID
 #'
 #'
@@ -376,7 +384,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
 ##' @rdname readArgos
 ##' @export
 readDiag <- function (x) {
-  data <- NULL
+  data <- vector("list", length
   for (fl in x) {
     d <- readLines(fl)
     locs <- d[grep("LON1", d, ignore.case=TRUE)]
