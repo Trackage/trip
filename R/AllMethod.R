@@ -301,6 +301,8 @@ setMethod("subset", signature(x="trip"),
 
 
 ##' @rdname trip-methods
+##'
+##'
 setMethod("[", signature(x="trip"),
           function(x, i, j, ... , drop=TRUE) {
               missing.i <- missing(i)
@@ -309,13 +311,23 @@ setMethod("[", signature(x="trip"),
               if (missing.i && missing.j) {
                   i <- j <- TRUE
               } else if (missing.j && !missing.i) {
-                  ## modified to return individual trips, need to test for sense  and add tr["id-label"] behaviour MDS 2013-08-27
-                  if (length(i) == 1) {
                       tor <- getTORnames(x)
-                  j <- TRUE
-                  ids <- x[[tor[2]]]
-                  spdf <- as(x, "SpatialPointsDataFrame")[ids == unique(ids)[i], j, ..., drop=drop]
-                  return(trip(spdf, tor))
+                      uid <- unique(x[[tor[2]]])
+                  ## modified to return individual trips, need to test for sense  and add tr["id-label"] behaviour MDS 2013-08-27
+                  if (length(i) <= length(uid)) {
+
+                      ## works ok, need a fairly comprehensive set of tests and strict defs on this
+                      ## what about factors rather than numerice?  need to test on the mode of what the IDs actually are
+                      ##tr[c("laa", "lbb", "c")]
+                      ## Error in `[.data.frame`(x@data, i, j, ..., drop = FALSE) :
+                      ##     undefined columns selected
+
+
+                      j <- TRUE
+                      ids <- x[[tor[2]]]
+                      if (is.numeric(i)) spdf <- as(x, "SpatialPointsDataFrame")[ids == unique(ids)[i], j, ..., drop=drop]
+                      if (is.character(i)) spdf <- as(x, "SpatialPointsDataFrame")[ids %in% i, j, ..., drop=drop]
+                      return(trip(spdf, tor))
                   }
                   if (nargs == 2) {
                       j <- i; i <- TRUE
@@ -350,7 +362,6 @@ setMethod("[", signature(x="trip"),
                   }
               }
           })
-
 
 ## consider writing "[,trip" method to return each individual track
 ## with replacement method able to slot in a modification, more or fewer points etc.

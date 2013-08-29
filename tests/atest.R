@@ -37,4 +37,12 @@ tr <- new("trip",
 
 
 
+
+
+
 ## tests
+test_that("indexing a trip does expected job", {
+    expect_that(tr[1], is_a("trip"))
+})
+
+
