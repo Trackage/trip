@@ -1,5 +1,5 @@
 library(trip)
-
+library(testthat)
 ## Brownian motion tethered at each end
 brownian.bridge <- function(n, r) {
   x <- cumsum(rnorm(n, 0, 1))

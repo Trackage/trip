@@ -31,3 +31,4 @@ Collate:
     'filter.R'
     'grid.R'
     'trip-deprecated.R'
+    'interpequal.R'
