@@ -89,7 +89,7 @@ test_that("bad indexes fail nicely", {
 
 })
 
-coerceto <- c("SpatialLinesDataFrame", "ltraj")
+coerceto <- c("SpatialLinesDataFrame", "ltraj", "ppp")
 test_that("coercions to other classes work", {
     for (i in seq_along(coerceto)) {
         expect_that(as(tr, coerceto[i]), is_a(coerceto[i]))
