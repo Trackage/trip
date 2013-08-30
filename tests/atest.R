@@ -103,3 +103,13 @@ test_that("coercions to other classes work", {
 })
 
 
+coercefrom <- c("ltraj")
+test_that("coercions from other classes work", {
+   for (i in seq_along(coercefrom)) {
+        expect_that(as(as(tr, coercefrom[i]), coercefrom[i]), is_a(coercefrom[i]))
+
+
+    }
+
+
+})
