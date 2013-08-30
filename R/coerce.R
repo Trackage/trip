@@ -11,15 +11,17 @@
 # ##\item{coerce}{\code{signature(from="trip", to="SpatialLinesDataFrame")}}
 # ##}
 setAs("trip", "SpatialLinesDataFrame", function(from) {
-  split.from <- split(from, from[[getTORnames(from)[2]]])
   sdf <- suppressWarnings(summary(from))
+
+
   df <- data.frame(tripID=sdf$tripID, tripStart=sdf$tmins,
                    tripEnd=sdf$tmaxs,
                    tripDur=as.vector(sdf$tripDurationSeconds),
                    row.names=sdf$tripID)
   lns <- vector("list", nrow(df))
+
   for (i in 1:length(lns)) {
-    lns[[i]] <- Lines(list(Line(coordinates(split.from[[i]]))),
+          lns[[i]] <- Lines(list(Line(coordinates(tr[i]))),
                       ID=sdf$tripID[i])
   }
   SpatialLinesDataFrame(SpatialLines(lns,
