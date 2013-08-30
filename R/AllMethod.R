@@ -357,7 +357,8 @@ setMethod("[", signature("trip", "logical", "missing", "missing"),
 
 
 
-
+## this is kind of out of, each method option should be explicit as above
+## but, this works - it kicks in if j is not missing
 ##' @rdname trip-methods
 setMethod("[", signature(x="trip", i = "ANY", j = "ANY"),
           function(x, i, j, ... , drop=TRUE) {
@@ -522,7 +523,7 @@ print.summary.TORdata <- function(x, ...) {
 #' @exportMethod show
 setMethod("show", signature(object="summary.TORdata"),
           function(object) print.summary.TORdata(object))
-
+#' @S3method print trip
 print.trip <- function(x, ...) {
     xs <- summary(x)
     dsumm <- data.frame(tripID=xs$tripID,
@@ -539,9 +540,9 @@ print.trip <- function(x, ...) {
                              torns[1], "\")", sep="")
     rownames(dsumm) <- 1:nrow(dsumm)
     ## dsumm <- as.data.frame(lapply(dsumm, as.character))
-    cat(paste("\nObject of class ", xs[["class"]], "\n", sep=""))
+    message(paste("\nObject of class ", xs[["class"]], "\n", sep=""))
     print(format(dsumm, ...))
-    cat("\n")
+    message("\n")
     nms <- names(x)
     clss <- unlist(lapply(as.data.frame(x@data), function(x) class(x)[1]))
     sdf <- data.frame(data.columns=nms, data.class=clss)
@@ -550,7 +551,7 @@ print.trip <- function(x, ...) {
     sdf[[" "]][nms == torns[2]] <- "**trip ID**      "
     row.names(sdf) <- seq(nrow(sdf))
     print(sdf)
-    cat("\n")
+    message("\n")
 }
 
 setMethod("show", signature(object="trip"),
