@@ -10,6 +10,8 @@
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
+#' [,trip,numeric,missing,missing-method [,trip,logical,missing,missing-method [,trip,character,missing,missing-method
+#' [,trip,logical,logical,missing-method [,trip,missing,missing,missing-method
 #' @docType methods
 #' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
 #' be coerced to one, containing at least two columns with the DateTime and ID
