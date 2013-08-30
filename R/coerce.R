@@ -21,9 +21,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
           lns[[i]] <- Lines(list(Line(coordinates(tr[tripID[i]]))),
                       ID=sdf$tripID[i])
   }
-  SpatialLinesDataFrame(SpatialLines(lns,
-                                     proj4string=CRS(proj4string(from))),
-                        df)
+  SpatialLinesDataFrame(SpatialLines(lns, proj4string=CRS(proj4string(from))), df)
 })
 
 
@@ -32,8 +30,11 @@ setAs("trip", "ltraj", function(from) {
   if(!require(adehabitatLT)) stop("adhabitatLT not available")
   tor <- getTORnames(from)
   crds <- coordinates(from)
-  adehabitatLT::as.ltraj(as.data.frame(crds), date=from[[tor[1]]],
-                         id=from[[tor[2]]], typeII=TRUE, slsp="remove")
+  adehabitatLT::as.ltraj(as.data.frame(crds),
+                         date = from[[tor[1]]],
+                         id = from[[tor[2]]],
+                         typeII = TRUE,
+                         slsp = "remove")
 })
 
 
