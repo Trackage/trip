@@ -18,7 +18,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                    row.names=sdf$tripID)
   lns <- vector("list", nrow(df))
   for (i in 1:length(lns)) {
-          lns[[i]] <- Lines(list(Line(coordinates(tr[sdf$tripID[i]]))),
+          lns[[i]] <- Lines(list(Line(coordinates(from[sdf$tripID[i]]))),
                       ID=sdf$tripID[i])
   }
   SpatialLinesDataFrame(SpatialLines(lns, proj4string=CRS(proj4string(from))), df)
