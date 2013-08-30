@@ -89,12 +89,16 @@ test_that("bad indexes fail nicely", {
 
 })
 
-coerceto <- c("SpatialLinesDataFrame", "ltraj", "ppp")
+coerceto <- c("SpatialLinesDataFrame", "ltraj", "ppp", "psp")
 test_that("coercions to other classes work", {
     for (i in seq_along(coerceto)) {
         expect_that(as(tr, coerceto[i]), is_a(coerceto[i]))
 
     }
+
+    expect_that(explode(tr), is_a("SpatialLinesDataFrame"))
+
+    expect_that(nrow(tr) - length(trip:::.getUID(tr)), equals(length(explode(tr)$id)))
 
 })
 

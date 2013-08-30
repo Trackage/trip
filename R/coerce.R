@@ -138,7 +138,7 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' @export explode
 explode <- function(x, ...) {
   tor <- getTORnames(x)
-  id <- x[[tor[2]]]
+  id <- .getID(x)
   xs <- split(x, id)
   df <- do.call("rbind",
                 lapply(xs, function(x) {
