@@ -80,7 +80,10 @@ setValidity("TimeOrderedRecords", function(object) {
 #' subset(tr, id == "2")
 #' as.data.frame(tr)
 #'
-#' tr[1:3, ]
+#' ## Note that behaviour has changed, this now returns trips by index, not
+#' ## data or Spatial* objects
+#' tr[1:2]
+#'
 #' tr[, 1]
 #' tr[[1]]
 #'

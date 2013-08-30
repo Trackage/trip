@@ -1,7 +1,16 @@
 	CHANGES IN trip VERSION 1.1-18
 
 OVERVIEW
+ 
+ o indexing has been significantly changed
 
+SIGNIFICANT USER-VISIBLE CHANGES
+
+ o The behaviour of trip[i] for numeric, logical and character "i" has
+ been changed significantly, this now returns trips by matching i
+ against the individual track IDs. So, x[1] returns the first track,
+ and x[c("ID1", "ID2")] would return the tracks identified by those
+ strings. The behaviour of subset remains the same. 
 
   CHANGES IN trip VERSION 1.1-17
 

@@ -1,4 +1,5 @@
 library(trip)
+library(sp)
 library(testthat)
 ## Brownian motion tethered at each end
 brownian.bridge <- function(n, r) {
@@ -35,14 +36,59 @@ tr <- new("trip",
           SpatialPointsDataFrame(as.matrix(d[,1:2]), d),
           TimeOrderedRecords(c("gmt", "id")))
 
+## test cases
 
+## [,trip-method
+## i,j,...,drop=TRUE
+##  "n" is the length(unique(ID))
 
+##  all missing
+## tr[]  identical object
 
+##  single numeric i
+## tr[1]
+##   i must be within 1:n
+##  multiple numeric i
+## tr[1:2]
+##   i must be within 1:n
+##  logical i
+## tr[c(TRUE, FALSE)]
 
+## single or multiple character i
+## tr["laa"]
+##  i must all be in IDs
+
+## i,j indexing works as before
 
 ## tests
 test_that("indexing a trip does expected job", {
+    expect_that(identical(tr, tr[]), is_true())
     expect_that(tr[1], is_a("trip"))
+    expect_that(tr[1:2], is_a("trip"))
+
+     expect_that(tr["lbb"], is_a("trip"))
+    expect_that(tr[c("lbb", "laa")], is_a("trip"))
+
+    expect_that(tr[1:10, 1], shows_message())
+    expect_that(tr[1:10, 1], is_a("SpatialPointsDataFrame"))
+})
+
+test_that("bad indexes fail nicely", {
+    expect_that(tr[c(1, 3)], throws_error())
+    expect_that(tr[c(FALSE, FALSE)], gives_warning())
+    expect_that(tr[NA], throws_error())
+    expect_that(tr[c(NA, 1)], throws_error())
+
+    expect_that(tr[""], throws_error())
+    expect_that(tr["la"], throws_error())
+
+
+    expect_that(tr[c("laa", "lbb", "1")], throws_error())
+
+    expect_that(tr[1:2, 1], shows_message())
+
+
+
 })
 
 

@@ -192,6 +192,9 @@ getTORnames <- function(obj) obj@TOR.columns
 ##' @export
 getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 
+.getID <- function(obj) obj[[getTORnames(obj)[2]]]
+.getUID <- function(obj) unique(.getID(obj))
+.getTime <- function(obj) obj[[getTORnames(obj)[1]]]
 
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
           function(obj, TORnames) {
@@ -299,11 +302,62 @@ setMethod("subset", signature(x="trip"),
               }
           })
 
+## this does all the work for subsetting, by using actual logical arguments x[i,j] as a SPDF
+setMethod("[", signature("trip", "logical", "logical", "missing"),
+          function(x, i, j, ..., drop = TRUE) {
+              trip(as(x, "SpatialPointsDataFrame")[i, j, ..., drop = drop], getTORnames(x))
+      })
+## x[]
+## this will be faster than coercing to SPDF as well
+setMethod("[", signature("trip", "missing", "missing", "missing"),
+          function(x, i, j, ..., drop = TRUE) {
+              x
+          })
+##x[1:2]
+setMethod("[", signature("trip", "numeric", "missing", "missing"),
+          function(x, i, j, ..., drop = TRUE) {
+              ids <- .getID(x)
+              uids <- .getUID(x)
+              if (any(is.na(i))) stop("missing values not allowed")
+              if (any(i < 1)) stop("values < 0 not allowed")
+              if (any(i > length(uids))) stop("values greater than the number of trips not allowed")
+              j <- TRUE
+              x[ids %in% uids[i], j]
+          })
+
+##x[c("id1", "id2")]
+setMethod("[", signature("trip", "character", "missing", "missing"),
+          function(x, i, j, ..., drop = TRUE) {
+              ids <- .getID(x)
+              uids <- .getUID(x)
+              if (any(is.na(i))) stop("missing values not allowed")
+              if (any(nchar(i) < 1)) stop("ids must not be of length 0")
+              if (!all(i %in% uids)) stop("ids must be valid and exist in object")
+              j <- TRUE
+              x[ids %in% i, j]
+          })
+
+
+##x[c(TRUE, FALSE)]
+setMethod("[", signature("trip", "logical", "missing", "missing"),
+          function(x, i, j, ..., drop = TRUE) {
+              ids <- .getID(x)
+              uids <- .getUID(x)
+              if (any(is.na(i))) stop("missing values not allowed")
+              if (!any(i)) {
+                  warning("subset implies no selection, returning NULL")
+                  return(NULL)
+              }
+              if (!length(i) == length(uids)) stop("length of i must match the number of trips")
+              j <- TRUE
+              x[ids %in% uids[i], j]
+              })
+
+
+
 
 ##' @rdname trip-methods
-##'
-##'
-setMethod("[", signature(x="trip"),
+setMethod("[", signature(x="trip", i = "ANY", j = "ANY"),
           function(x, i, j, ... , drop=TRUE) {
               missing.i <- missing(i)
               missing.j <- missing(j)
@@ -347,15 +401,16 @@ setMethod("[", signature(x="trip"),
               if (any(is.na(match(tor, names(spdf))))) {
                   msg <- paste("trip-defining Date or ID columns dropped,",
                                "reverting to SpatialPointsDataFrame\n\n")
-                  cat(msg)
+                  message(msg)
                   return(spdf)
               } else {
                   tst <- any(tapply(spdf[[tor[1]]],
                                     spdf[[tor[2]]], length) < 3)
                   if (tst) {
+                      ## this should never happen given the [trip,numeric,missing method above?
                       msg <- paste("subset loses too many locations,",
                                    "reverting to SpatialPointsDataFrame\n\n")
-                      cat(msg)
+                      message(msg)
                       return(spdf)
                   } else {
                       return(trip(spdf, tor))
