@@ -42,5 +42,5 @@ interGC <- function(x, dur = NULL, intfun = NULL) {
     proj4string(newtrip) <- CRS(proj4string(x))
     trip(newtrip, tor)
 }
-x <- interpequal(tr, dur = 3600)
+
 
