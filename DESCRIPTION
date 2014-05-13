@@ -22,12 +22,3 @@ Description: Functions for accessing and manipulating spatial data for
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
-Collate:
-    'AllClass.R'
-    'AllMethod.R'
-    'trip.R'
-    'coerce.R'
-    'colours.R'
-    'filter.R'
-    'grid.R'
-    'trip-deprecated.R'

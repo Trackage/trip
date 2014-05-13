@@ -850,12 +850,12 @@ trackAngle.default <- function(x) {
 #' \dontrun{
 #' set.seed(66)
 #' d <- data.frame(x=1:100, y=rnorm(100, 1, 10),
-#'                 tms= as.POSIXct(Sys.time(), tz = "GMT") + c(seq(10, 1000, length=50),
+#'                 tms= as.POSIXct(as.character(Sys.time()), tz = "GMT") + c(seq(10, 1000, length=50),
 #'                 seq(100, 1500, length=50)), id=gl(2, 50))
 #' coordinates(d) <- ~x+y
 #' tr <- trip(d, c("tms", "id"))
 #'
-#' cut(tr, "1 sec")
+#' cut(tr, "200 sec")
 #'
 #' bound.dates <- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)
 #' trip.list <- cut(tr, bound.dates)
