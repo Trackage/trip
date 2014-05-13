@@ -2,6 +2,11 @@
 
 OVERVIEW
 
+SIGNIFICANT USER-VISIBLE CHANGES 
+
+ o cut can now accept a character
+  string like "2 hours" as per cut.POSIXt, rather than all explicit
+  interval boundaries
 
   CHANGES IN trip VERSION 1.1-17
 
