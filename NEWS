@@ -2,6 +2,8 @@
 
 OVERVIEW
 
+ o fixed missing Suggest for rgdal for CRAN (thanks to Prof. Ripley)
+
 SIGNIFICANT USER-VISIBLE CHANGES 
 
  o cut can now accept a character
