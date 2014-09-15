@@ -72,7 +72,7 @@ setAs("trip", "ltraj", function(from) {
 #' @return ppp object
 #' @rdname as.Other
 #' @method as.ppp trip
-#' @S3method as.ppp trip
+## @S3method as.ppp trip
 #' @examples
 #' \dontrun{
 #'   ## Continuing the example from '?trip-methods:
@@ -93,7 +93,7 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @return psp object
 #' @rdname as.Other
 #' @method as.psp trip
-#' @S3method as.psp trip
+## @S3method as.psp trip
 #' @examples
 #' \dontrun{
 #'  ## Continuing the example from '?trip-methods:
