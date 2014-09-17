@@ -2,7 +2,7 @@
 ##' 
 ##' Create a filter index of a track for "bad" points with a
 ##' combination of speed, distance and angle tests.
-##' @title sda
+##' @name sda
 ##' @param x trip object
 ##' @param smax maximum speed, in km/h
 ##' @param ang minimum turning angle/s in degrees

@@ -299,7 +299,7 @@ setMethod("subset", signature(x="trip"),
               }
           })
 
-
+##' @param i,j,\dots indices specifying elements to extract 
 ##' @rdname trip-methods
 setMethod("[", signature(x="trip"),
           function(x, i, j, ... , drop=TRUE) {
