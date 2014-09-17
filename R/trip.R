@@ -632,6 +632,7 @@ trackAngle <- function(x) {
 
 #' @rdname trackAngle
 #' @method trackAngle trip
+
 #' @export
 trackAngle.trip <- function(x) {
   isproj <- is.projected(x)
@@ -652,6 +653,10 @@ trackAngle.trip <- function(x) {
 
 #' @rdname trackAngle
 #' @method trackAngle default
+<<<<<<< HEAD
+=======
+## @S3method trackAngle default
+>>>>>>> 0aca79f6031fcf118200fa3416781891e920e442
 #' @export
 trackAngle.default <- function(x) {
   n <- nrow(x)
@@ -908,6 +913,10 @@ trackAngle.default <- function(x) {
 #' }
 #'
 #' @method cut trip
+<<<<<<< HEAD
+=======
+## @S3method cut trip
+>>>>>>> 0aca79f6031fcf118200fa3416781891e920e442
 #' @export cut.trip
 
 cut.trip <-

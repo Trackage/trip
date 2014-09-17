@@ -68,6 +68,10 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @return psp object
 #' @rdname as.Other
 #' @method as.psp trip
+<<<<<<< HEAD
+=======
+## @S3method as.psp trip
+>>>>>>> 0aca79f6031fcf118200fa3416781891e920e442
 #' @examples
 #' \dontrun{
 #'  ## Continuing the example from '?trip-methods:
