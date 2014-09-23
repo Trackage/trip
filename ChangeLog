@@ -1,3 +1,27 @@
+commit aee0b24e8f7c1a8eb75f179b646fefc27eee42af
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 12:45:47 2014 +1000
+
+    tidy
+
+commit 6356f92a3b40ae993d2bb0735159a3d281f63f1a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 12:45:36 2014 +1000
+
+    Authors template
+
+commit 5508e1b7d9a7a26c0ffc68767fab2fc5fdafc176
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 12:10:09 2014 +1000
+
+    doc problems from check
+
+commit 82c42a7bdc5b2051f511db3c429a3e0dddd26f14
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 11:57:01 2014 +1000
+
+    news, changelog
+
 commit 0a985b37e6a37417dbb00108ce9e543d06a9ae5a
 Author: Michael Sumner <mdsumner@gmail.com>
 Date:   Wed Sep 17 21:20:56 2014 +1000
