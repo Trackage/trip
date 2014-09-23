@@ -5,7 +5,6 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "mdsumner@gmail.com"),
     person("Sebastian", "Luque", role = "ctb",
     email = "spluque@gmail.com"))
-Maintainer: Michael D. Sumner <mdsumner@gmail.com>
 Version: 1.1-18
 Depends:
     methods,
