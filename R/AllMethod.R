@@ -10,7 +10,6 @@
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
-#' @docType methods
 #' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
 #' be coerced to one, containing at least two columns with the DateTime and ID
 #' data as per \code{TORnames}.  It can also be a \code{trip} object for
@@ -299,7 +298,9 @@ setMethod("subset", signature(x="trip"),
               }
           })
 
+##' @param x trip object
 ##' @param i,j,\dots indices specifying elements to extract 
+##' @param drop unused but necessary for method consistency
 ##' @rdname trip-methods
 setMethod("[", signature(x="trip"),
           function(x, i, j, ... , drop=TRUE) {
