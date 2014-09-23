@@ -909,8 +909,7 @@ trackAngle.default <- function(x) {
 #' }
 #'
 #' @method cut trip
-#' #' @export cut.trip
-
+#' @export
 cut.trip <-
 function (x, dates, ...)
 {
