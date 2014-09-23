@@ -1,0 +1,745 @@
+commit 0a985b37e6a37417dbb00108ce9e543d06a9ae5a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Sep 17 21:20:56 2014 +1000
+
+    merge fix
+
+commit 965a25024405579d71d8eec854e09e59642e94b1
+Merge: ef9b23a 0aca79f
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Sep 17 21:18:56 2014 +1000
+
+    tidy
+    
+    Merge branch 'master' of https://github.com/mdsumner/trip
+    
+    Conflicts:
+    	R/AllMethod.R
+    	R/coerce.R
+    	R/trip.R
+
+commit ef9b23a2786e48bf84bb8a4fa8afc345701d01d3
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Sep 17 21:16:18 2014 +1000
+
+    fixes for doc problems
+
+commit f98feff0e132337d8426a6f9c2c0f58c5315b80b
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Sep 17 19:05:57 2014 +1000
+
+    suggests rgdal
+
+commit 95e2dacfb14b635ac32b37eebcefe5c1cc1464a1
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Sep 17 19:05:42 2014 +1000
+
+    remove old
+
+commit 0aca79f6031fcf118200fa3416781891e920e442
+Merge: 3961a21 a1304e6
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Sep 15 18:14:09 2014 +1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+    
+    cleanup
+
+commit 3961a215c78fd04a5f0fb15aa02102ad6f06d499
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Sep 15 18:13:51 2014 +1000
+
+    method tidy
+
+commit a1304e6b0ce81dd69b01b5db2b4251aac3a0bc2b
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Aug 26 09:29:20 2014 +1000
+
+    working sda filter
+
+commit 8e9655d622ba73564796294fbdbe1c2138e2f44a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Aug 25 12:17:46 2014 +1000
+
+    tidy, weird fix on new branch"
+
+commit a0877b61af6e13bd08bd3ec1b6e8858300cbc4de
+Merge: ce0f952 bf6982a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Aug 25 11:19:25 2014 +1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit ce0f95212f67cfa93eb25862ae58099c33c82e74
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Aug 25 11:18:31 2014 +1000
+
+    speed distance angle filter
+
+commit bf6982a33c1808936f8609eb387eb74d51210537
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Aug 20 10:56:33 2014 +1000
+
+    roll version
+
+commit aaa51ba280b2c93ef42e5fe6a178d47fa8e1ab2b
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Aug 19 06:29:12 2014 +1000
+
+    missing suggests for rgdal
+
+commit 2c22eb29ed2e6db48cadec9b77cefea468af47c6
+Author: Michael Sumner <Michael.Sumner@aad.gov.au>
+Date:   Tue May 13 10:22:29 2014 +1000
+
+    cut.trip example
+
+commit 07fec49346593b3c86879820c5f66e947e854612
+Author: Michael Sumner <Michael.Sumner@aad.gov.au>
+Date:   Tue May 13 10:16:08 2014 +1000
+
+    cut.trip improvment
+
+commit 1191b2fec08214444857616884623976ceed52aa
+Author: Michael Damien Sumner <mdsumner@acecompute.antcrc.utas.edu.au>
+Date:   Wed Sep 11 11:48:58 2013 +1000
+
+    removed unfinished function
+
+commit fbf53361a2b63db642b04fafc92fffae8eb050a9
+Author: Michael Damien Sumner <mdsumner@acecompute.antcrc.utas.edu.au>
+Date:   Wed Sep 11 11:43:11 2013 +1000
+
+    stray testing code removed from interpequal.R
+
+commit ce85981570d94e70e8c8dc5bb630f55888be8f86
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Fri Aug 30 08:19:01 2013 +1000
+
+    something
+
+commit 036666f82b88091da183fc3f8ec8bd51c9283e2e
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Fri Aug 30 08:18:45 2013 +1000
+
+    tidy
+
+commit 578c32249587329ee60033be8af8dd5b06402025
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Tue Aug 27 16:29:33 2013 +1000
+
+    tidy
+
+commit bc1b83113aadc6c3cd86306ab08f83ca1e2f53d4
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Mon Aug 26 21:18:17 2013 +1000
+
+    unfinished update of interpequal, to rely on geosphere methods
+
+commit 8f57e58f8911c079c917de716f46f400d3b203cb
+Merge: 6d24cc8 7f61fb5
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 26 11:59:05 2013 +1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit 6d24cc84ad050313614cbc3f16f14c578eeb41d4
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 26 11:51:11 2013 +1000
+
+    applied list collection for newPts in interpequal, with a do.call
+    rather than cumulative rbind, should be faster
+    
+    this could be done in readArgos, but needs checks for empty elements
+
+commit 7f61fb5b2fb1d495ea6f99807ab5709c515104d1
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 26 11:51:11 2013 +1000
+
+    applied list collection for newPts, with a do.call rather than cumulative rbind, should be faster
+
+commit dbfba0c9ca62e82ac6b465116db968172aa1f3ea
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 26 11:21:31 2013 +1000
+
+    test commit
+
+commit c0566465b76c46bfe6f7302be77290b0a396f504
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 25 17:53:35 2013 +1000
+
+    update
+
+commit f0db100f118483b9c1ad4e95ccdd530a2b9c3ecb
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 25 17:45:13 2013 +1000
+
+    fixed NAMESPACE issues brought up by R-dev
+
+commit 12a8ba87874ee49cccc662c8e92e6a2204f3fd22
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 25 17:44:09 2013 +1000
+
+    properly import methods, not depends
+    
+    removed bogus ::: usages
+
+commit 083b7dc0bf5d74aa597fcbdc6455bc507af0267a
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 25 10:33:26 2013 +1000
+
+    trackAngle now generic, with fixes to the method documentation
+
+commit 0fc6055f626c02efed4690dc2e777c4f254a98a8
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 25 09:44:55 2013 +1000
+
+    cleanup source code files
+
+commit c70b18851d75b654045cc7e8f2bb4f7c6fe8081d
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Aug 23 23:20:01 2013 +1000
+
+    Revert "first insertion of GIT ChangeLog, with git log --pretty=%ci%h'     '%cn%n%n'      '*%B > ChangeLog"
+    
+    This reverts commit 6bc0a56d62f1c846db2760ea7a7f75f1a0750390.
+
+commit 6bc0a56d62f1c846db2760ea7a7f75f1a0750390
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Aug 23 22:54:35 2013 +1000
+
+    first insertion of GIT ChangeLog, with git log --pretty=%ci%h'     '%cn%n%n'      '*%B > ChangeLog
+
+commit 0c99b095fc7deab32c53dd1d2cc34c5d80526104
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 12 15:42:36 2013 +1000
+
+    roxygen
+
+commit a26dd955dfae8776efa0f3f5c85a6b0f9d94b306
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Aug 12 15:41:01 2013 +1000
+
+    readArgos is now significantly faster
+    
+    readArgos was rbinding as it went, but now it makes a list and rbinds in
+    one go with do.call - this has the added benefit of not accumulating
+    memory to hold the many lines of non-location data
+
+commit 106dc61e93d60e43d56f13d10d6b66148955f38b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Aug 7 23:34:22 2013 +1000
+
+    roll version, add line width check from CRAN
+
+commit 2f17c7dbf3eed6ce9466375fd6173d52ac07a0c1
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Aug 7 22:56:28 2013 +1000
+
+    updates to fix CRAN problems
+    
+    (spatstat classes were imported from maptools after being imported from
+    sp, which was causing INSTALL problems, reported by Prof. Ripley)
+
+commit 181469c58b21e3dace21d08811f69b2e67d941b6
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Aug 6 06:06:36 2013 +1000
+
+    example data from other packages
+
+commit 49fb8be82d56d9385cd2f03836c62c905c274d2d
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 4 10:40:05 2013 +1000
+
+    undo test
+
+commit 1cf738f21c0c6952f742432a0dfec6f33541d415
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sun Aug 4 10:39:18 2013 +1000
+
+    test data
+
+commit 732f6ffe85932b79342b715da53544be81141ecf
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 10 23:40:06 2013 +1000
+
+    Update README.md
+
+commit 23a3b53a16c264bcfb201271ce7c77e48016fc72
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 10 22:33:23 2013 +1000
+
+    Update todos
+
+commit eb9366966333784851194b42e3858de2224c4119
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 10 00:15:45 2013 +1000
+
+    dontrun, need to reconsider the laea proj.4 example
+
+commit 8d3078d62f428418389e902c2279f3757157d002
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 10 00:11:42 2013 +1000
+
+    small fixes
+
+commit fa11a5c15f3475529ab9d793958e0155c69d4264
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 23:49:56 2013 +1000
+
+    test revert
+
+commit 216caaf73832aa86d2358616efae42f85c2ecfae
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 23:49:06 2013 +1000
+
+    test change
+
+commit 93f93afcd7c6ff8eb3fb11fa25edd99eef9bfd0f
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 23:33:55 2013 +1000
+
+    export as.trip
+
+commit 8cd96098b7770c7f323a66af6de01721f7b1e176
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 23:33:43 2013 +1000
+
+    exports and doc examples
+
+commit 98dffbe3dfc533b7d4557865a205003735a72d9f
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Tue Jul 9 14:33:25 2013 +1000
+
+    tried again to make as.ltraj a generic, but it won't work
+
+commit 8e775fd61d92e4f940ecb8ec3a28bfed44788765
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 00:20:13 2013 +1000
+
+    tidy, removed non-generics to deprecated
+
+commit b6443a64e9dc30d560572cfab6e6a7c6f3e067ef
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 00:19:37 2013 +1000
+
+    ignore NAMESPACE
+
+commit 2608ceaa0b9b62d0b63a33898b27e681ff3fff4d
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jul 9 00:16:00 2013 +1000
+
+    deprecations properly done
+
+commit 9fd6f3f573cdfcbdb029de1db67b4d74dc1a833b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Mon Jul 8 23:18:18 2013 +1000
+
+    ugh, as.ltraj is not an S3 generic, so as.ltraj.trip is a non-starter
+
+commit d94e7d43e04ddd98397120dd8e711aed191d9142
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Mon Jul 8 23:13:39 2013 +1000
+
+    fixed bug in setAs("trip", "ltraj",
+
+commit e06434cfdef578fe71f5482a976c2eedabd19dea
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 15:19:44 2013 +1000
+
+    ignore updates, and vignette
+
+commit f806c3d215e9ee7641e3bc5979a92a16b7523359
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 15:10:20 2013 +1000
+
+    simple first vignette
+
+commit 7c9874420721223a2fb60335b5b1df3de729107f
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 15:10:10 2013 +1000
+
+    namespace updates
+
+commit 79d9b9c834b27ab65f571da71842b55832985477
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 15:09:48 2013 +1000
+
+    tripGrid also needed extract methods from spatstat
+    
+    (need tests!)
+
+commit 0bf46b5ce3bdb8b9eca3648a156647cb0ac81a85
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 11:37:50 2013 +1000
+
+    extract method was not documented
+
+commit 0aff68a2e6e7a81fd0cd9f4dfdeec4a06c64b3a2
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 11:29:04 2013 +1000
+
+    import from spatstat rather than depend
+
+commit 247310af7d35273f51499ae6d05362c0ed4f93b9
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 11:11:22 2013 +1000
+
+    seealso refererence to MASS::bandwidth.nrd
+
+commit c83183f056a36c783fcf60ee79f776389905b4cd
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 11:04:27 2013 +1000
+
+    removed suggests for lattice
+    
+    the only use for lattice was in example with oc.theme, made that a
+    dontrun
+    - also example was broken as it did not actually run oc.theme
+
+commit 492a2eb735c4939dfaaaad972a449ba15ba3a588
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 10:10:47 2013 +1000
+
+    correct S3 method doc
+
+commit 0eeec4123711d00cbea74e6a59a5327640ed42dc
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 09:53:33 2013 +1000
+
+    cap
+
+commit 6d077bc26c85c0046e0995bc862e2ad5fbf8c168
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Mon Jul 8 09:41:07 2013 +1000
+
+    exports
+
+commit 6260da38ba7bd54db8db8014b5efa49efbd8379c
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sat Jul 6 18:01:58 2013 +1000
+
+    typo
+
+commit 6bc09c857c8e915bfd76a2a08b9cbe69fc419697
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Fri Jul 5 17:48:58 2013 +1000
+
+    another mega reworking, but passing check now, with all roxygen2 doc completed for doc, methods, namespace and collate
+    
+    one casualty was as.ltraj.trip  which is now an S4 as coercion directly
+    
+    need to write tests for all the features
+    
+    more to do to get the methods documented correctly
+
+commit a6d50414772c55c1c0be17d87cc8dc8593e5cbf8
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Fri Jul 5 12:06:11 2013 +1000
+
+    still cleaning up namespace directives, most things are visible as before
+
+commit d8471b3cf33feb40ecba31dc23419736ad040923
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Fri Jul 5 11:35:06 2013 +1000
+
+    mammoth reorg of roxygen doc
+
+commit a6bb5a26dd283d0b013e06c199afdeff981b04f4
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jul 5 07:19:50 2013 +1000
+
+    not sure why trip() not found when roxygenizing after setGeneric . . .
+
+commit e09347a0e89a246356ee9fcd5ee069ecd5356c1b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 22:19:18 2013 +1000
+
+    all Rd converted to roxygen, builds and loads, does not pass check
+    
+    -
+
+commit cfc102437951a87661302ec8d2cf75aeb555dd3f
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 21:41:12 2013 +1000
+
+    moved source to trip.R
+
+commit efb0492221a9f4f0d2826eb8ee5e0929f53951b9
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 18:54:43 2013 +1000
+
+    Rd2roxygen applied
+    
+    need to:
+    flesh out the class/method documentation
+    tidy up missing parts, where aliases/rdname do not work (any?)
+    move out trip-package.R stuff that isn't "trip-package"
+
+commit 647d13fa0d66feeb1b2f03b564548aad820a99b9
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 18:41:57 2013 +1000
+
+    delete and ignore .Rd now with roxygenize
+    
+    all old doc is in (ignored) tmp/ for transferring to roxygen format
+
+commit 7e71553e5744d847473a0a44f623802962c80ba6
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 18:39:37 2013 +1000
+
+    roxygenation ofTimeOrderedRecords-class
+    
+    first pass at roxygen2 version of trip doc, it's working
+
+commit 7cae53de886a7665a89260722d8f61cc453bb4dc
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 17:49:02 2013 +1000
+
+    dontrun to avoid loading adehabitat* dependencies
+
+commit 4ce171140b40001685109c27d913560ab2571c3b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 17:48:38 2013 +1000
+
+    bandwidth.nrd has been missing for some time, now importFrom MASS
+
+commit 8c1505723050239f5ebb5db4d1afb0bc47676006
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 07:22:11 2013 +1000
+
+    extended example for UTM
+
+commit a8f6788e291cce9c435683c4a856c63bbb09126e
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 07:22:02 2013 +1000
+
+    updates
+
+commit 6ad4d63da839f6f59088a4f3ff82b1a589886c2b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 07:21:57 2013 +1000
+
+    renamed
+
+commit 45a59307d294fb79451c4b72f91332541372871f
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jul 4 07:21:43 2013 +1000
+
+    need to import MASS, though not sure how it's done currently for bandwidth.nrd
+
+commit f5940e4cb0a087f8d47948e36e21ce97a5919bbd
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 17:34:43 2013 +1000
+
+    stray apos
+
+commit 074a11bc95b7e8832b245c698d3b6ae770e9f351
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 17:30:38 2013 +1000
+
+    fix
+
+commit 6b1ede3244e2e4243007037821bb9055a349e163
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 17:28:51 2013 +1000
+
+    new explode function
+
+commit a97c37a9d93cb5d18b72b8cd7376592f4bc6e0f0
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 16:31:11 2013 +1000
+
+    no summary use
+
+commit d81e77a6fb79230317ed57a6b915f86b1552d878
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 15:59:15 2013 +1000
+
+    Rstudio begins
+
+commit d528cb6b4d00cf5fea052034330f5dfe73cfda36
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 15:58:15 2013 +1000
+
+    tidy
+
+commit a69f46204ca760e1c9d000f61e8b36934024c7ea
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 15:55:32 2013 +1000
+
+    ignore
+
+commit 6c35a4c0303c625a04128116607fdba9de95dd74
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 15:54:36 2013 +1000
+
+    really ignore
+
+commit 3fba98e8e44f3ff73202edde193388d592095970
+Author: Michael Sumner <michael.sumner@aad.gov.au>
+Date:   Wed Jul 3 15:52:52 2013 +1000
+
+    readme
+
+commit 77baa064f7e6a14d217f4df07887ea6ed67e82fc
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 3 15:02:47 2013 +1000
+
+    prev
+
+commit a23b4b2e3eede5f7032f3e6712a1ea5da6354c70
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 3 15:01:51 2013 +1000
+
+    fixes from broken branch, addition of prev argument
+
+commit db69e49e221ab3bf316305b470b13ceec2dd3313
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 3 15:00:09 2013 +1000
+
+    fixes from broken branch
+
+commit ae5ab2b77d5a5e6e8ef5a87463795496f5bb4205
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed Jul 3 14:59:16 2013 +1000
+
+    fixes from broken branch
+
+commit 4934fe346f09a393198d9f8aba9c044e84655db1
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 16:34:56 2013 +1000
+
+    tidy up
+
+commit 4589bfe7a1364c3b937817babbe6a77b84d76139
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 15:52:48 2013 +1000
+
+    ignore
+
+commit 5bf7ddd23afdac0ab7d063fbcf716c494e7c96ef
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 15:46:35 2013 +1000
+
+    Create README.md
+
+commit f70d2f414d6e8c28a9010899a23f7645a2213d2d
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 15:40:58 2013 +1000
+
+    fixes from running R CMD check, 1.1-15 now committed to CRAN
+
+commit af95f4bc15e899fc6858e27e180fa481b2cfad9f
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 15:16:54 2013 +1000
+
+    added RMS speed summary to summary, as.data.frame.summary.TORdata to avoid awkward names
+
+commit c330ca38845bfe57fb1499bd7782bdbac8dfacc1
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Jun 18 14:36:14 2013 +1000
+
+    small changes to angle calcs
+
+commit 8ea087eece66fcb987934345d361bdf39a18ed0b
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 19:57:57 2013 +1000
+
+    NEWs updates
+
+commit f1d2e92524941faee2b94208372343149054f3f5
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 14:45:35 2013 +1000
+
+    optimized trackAngle, now a hybrid of bearing() and gzAzimuth(abdali) with unneeded code removed
+
+commit 8f18bce1343788163b9e3bc3b33c74e883eb847a
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 14:44:58 2013 +1000
+
+    removed import of gzAzimuth
+
+commit bbfa48c41e8170e50d2c02f70d97c3c4b5fb4ac9
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 11:01:41 2013 +1000
+
+    new ignores
+
+commit b9eaf40c161cdf374e85b6c76ea251647e3b146f
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 11:01:03 2013 +1000
+
+    trackAngle function, imports gzAzimuth from maptools
+
+commit 21378eedae13963f69871c5a7fe3df68373dd310
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Fri Jun 14 11:00:26 2013 +1000
+
+    doc for spTransform character method
+
+commit 7fdb2746318b39cb1d9198ff9ece67c369699368
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 22:42:19 2013 +1000
+
+    spTransform method for "Spatial", "character"
+
+commit b1b51f4c40d36b9f63da52fd8de576cf2baba7d6
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 17:38:29 2013 +1000
+
+    trip distance for summary
+
+commit 9f31456e841ecc7c9e26144a2f47f4008f147280
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 17:38:18 2013 +1000
+
+    NEWS for new version
+
+commit 2cc05f691072960af8285a5aeaed026a937d5b62
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 16:22:08 2013 +1000
+
+    summary method includes mean/max speed
+
+commit 47a418530ead93bdc8e012a34353a2ab4ff9e734
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 16:21:54 2013 +1000
+
+    new hidden function .distances for split trip
+
+commit 53a23c3e643b69199cbabbb2e0344dc2de8f9ae3
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 15:55:41 2013 +1000
+
+    ignore files
+
+commit 8ef5caaa53710d1d8881e9dc1d192f8b84b7066a
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 15:54:12 2013 +1000
+
+    new ignore
+
+commit 3fb30033965bf00be0b94c7fcc5038d7357ac144
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 15:53:22 2013 +1000
+
+    new version
+
+commit 958689d8c265015539360c47cf9617c8466c2ef6
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Jun 13 15:53:15 2013 +1000
+
+    replaced file, broken in transfer (used r-forge)
+
+commit 008d22952e98f3a8cf4e8a11a98510006b5e2f0c
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Wed May 15 11:26:03 2013 +1000
+
+    Seb's updates after moving to Git
+
+commit 6b7f1c7fe6ab7364be07c356a51a6b7f757b9737
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue May 14 23:29:47 2013 +1000
+
+    initial commit (with original Rd) of trip 1.1-14
