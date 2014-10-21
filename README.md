@@ -4,6 +4,7 @@ The trip package provides functions for accessing and manipulating
 spatial data for animal tracking.  Filter for speed and create time
 spent plots from animal track data.
 
+
 ## Installing
 
 A) The package is easily installed from CRAN using 'install.packages("trip")' from R. 
