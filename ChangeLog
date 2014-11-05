@@ -1,3 +1,23 @@
+commit dde2859a17ee28ce260b329485aa0a57d036f4be
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Oct 21 01:30:35 2014 -1000
+
+    dummy test
+
+commit 00b86188f716e7598c3f312dc34cb53140ef1573
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 14:20:25 2014 +1000
+
+    Update DESCRIPTION
+    
+    Title Case
+
+commit 04bda945216006775d085bb0ab399467be9f7206
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue Sep 23 12:47:11 2014 +1000
+
+    change log
+
 commit aee0b24e8f7c1a8eb75f179b646fefc27eee42af
 Author: Michael Sumner <mdsumner@gmail.com>
 Date:   Tue Sep 23 12:45:47 2014 +1000

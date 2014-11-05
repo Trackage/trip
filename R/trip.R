@@ -517,10 +517,9 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
     H1 <- ( 3 * R - 1 ) / ( 2 * C )
     H2 <- ( 3 * R + 2 ) / ( 2 * S )
     dist <- D * ( 1 + f * H1 * sinF2 * cosG2 - f * H2 * cosF2 * sinG2 )
-    dist <- ifelse(abs(lat1 - lat2) < .Machine$double.eps, 0.0, dist)
-    dist <- ifelse(abs(lon1 - lon2) < .Machine$double.eps, 0.0, dist)
-    dist <- ifelse(abs((abs(lon1) + abs(lon2)) - 360.0) <
-                   .Machine$double.eps, 0.0, dist)
+    ##dist <- ifelse((abs(lat1 - lat2) < .Machine$double.eps) & (abs(lon1 - lon2) < .Machine$double.eps), 0.0, dist)
+    #dist <- ifelse(abs((abs(lon1) + abs(lon2)) - 360.0) < .Machine$double.eps, 0.0, dist)
+    dist[is.na(dist)] <- 0
     dist
 }
 
