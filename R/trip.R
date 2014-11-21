@@ -917,9 +917,10 @@ function (x, dates, ...)
         if (length(dates) > 1) stop("if dates is character, length(dates) should be 1L")
         levs <- levels(cut(x[[tor[1]]], dates))
         datebounds <- seq(as.POSIXct(levs[1L], tz = "GMT"), by = dates, length = length(levs) + 1)
+        dates <- datebounds
     }
 
-    dates <- datebounds
+   
     ids <- unique(x[[tor[2]]])
     all.list <- vector("list", length(ids))
     names(all.list) <- ids
