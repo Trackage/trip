@@ -30,7 +30,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
 
 
 setAs("trip", "ltraj", function(from) {
-  if(!requireNamespace(adehabitatLT)) stop("adhabitatLT not available")
+  if(!requireNamespace("adehabitatLT")) stop("adhabitatLT not available")
   tor <- getTORnames(from)
   crds <- coordinates(from)
   adehabitatLT::as.ltraj(as.data.frame(crds), date=from[[tor[1]]],
