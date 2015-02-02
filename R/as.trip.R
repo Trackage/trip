@@ -37,7 +37,7 @@ setGeneric("as.trip",
 ##' @export
 ltraj2trip <- function (ltr)
 {
-  require(adehabitatLT) ||
+  requireNamespace("adehabitatLT") ||
     stop("adehabitatLT package is required, but unavailable")
   if (!inherits(ltr, "ltraj"))
     stop("ltr should be of class \"ltraj\"")
