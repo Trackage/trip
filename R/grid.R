@@ -7,6 +7,9 @@
 
 ## replaces tripGrid, old version is now called tripGrid.interp
 
+trip_raster <- function(x, grid = NULL, method = "pixellate", ...) {
+  raster(tripGrid(x, grid = grid, method = method, ...))
+}
 
 
 #' Generate a grid of time spent by line-to-cell gridding
