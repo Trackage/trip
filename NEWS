@@ -2,7 +2,9 @@
 
 o new function homedist
 
-o 
+o bug fix via complete rewrite of cut.trip, including modification of argument name "dates" to "breaks"
+
+o modified example with missing +ellps to satisfy new PROJ.4 (thanks to Roger Bivand)
 
   CHANGES IN trip VERSION 1.1-19
 
