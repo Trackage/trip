@@ -5,8 +5,8 @@
 *.Rproj
 .Rbuildignore
 .Rhistory
-*NAMESPACE
-man/*.Rd
+#*NAMESPACE
+#man/*.Rd
 *~
 auto/
 *.tex
