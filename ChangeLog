@@ -1,3 +1,119 @@
+commit 33a6e6389f538544c565d1a4e5edd0b3a0c45602
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:38:25 2015 -1000
+
+    warm happy places
+
+commit 79006544c409f174e98d68acbaddc4ad2287696d
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:30:29 2015 -1000
+
+    update NEWS
+
+commit 78a07c94e6f41e279fbd06913ea7b9229092c8d4
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:30:10 2015 -1000
+
+    explicit ellps argument
+
+commit f6ab4ee26ed1f0e29d8fae6b7e02bea948abb67c
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:29:52 2015 -1000
+
+    new trip_raster hidden function
+
+commit 84b7d909bf1ac076bb46f221a4123b2b8a963f4c
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:29:37 2015 -1000
+
+    breaks for new cut.trip
+
+commit 6e1bd5acfb283ee8032cf12a8a362e8d9dd3ecac
+Merge: c071cc5 7538d0a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:56:08 2015 -1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit c071cc525c737ecd072ab955b7084f53c88ac6a6
+Merge: 3664b0d 6e31d3a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:55:07 2015 -1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit 7538d0a96901a24cbcb61a6558117f0cd29953fc
+Merge: 3664b0d 6e31d3a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:55:07 2015 -1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit 3664b0de0de72502114543e4ee44499e5910c58a
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:50:31 2015 -1000
+
+    require fix
+
+commit 6e31d3a4c5228fcbd246236b41a96174cf9b9a08
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:50:31 2015 -1000
+
+    require fix
+
+commit 46f1a76a6725c57256c440b4ec624c5bd990197c
+Merge: 75c4ccd 11c9c69
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:28:00 2015 -1000
+
+    Merge branch 'master' of https://github.com/mdsumner/trip
+
+commit 75c4ccd4177c60bd097274f5b2f41c7a37e2fc6b
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:24:22 2015 -1000
+
+    remove require call
+
+commit 11c9c69c91276c1ce5d47a0169a2ff4a5a4c14df
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:24:22 2015 -1000
+
+    remove require call
+
+commit 7ded857d7152f30f775e9dad5e506afde9011e87
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Sun Feb 1 14:20:16 2015 -1000
+
+    Description
+
+commit af180f03dba6150f58014fa6623bd9a17716bb22
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Jan 28 15:09:16 2015 -1000
+
+    new function homedist
+
+commit e97bc4945b3ef7aa1440e60327c0026749c0f162
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Thu Dec 4 07:46:55 2014 +1100
+
+    Update DESCRIPTION
+    
+    policy
+
+commit c63acd758d160f14c3c311ee7c51ee239afdea84
+Author: mdsumner <mdsumner@gmail.com>
+Date:   Sat Nov 22 10:14:11 2014 +1100
+
+    Update trip.R
+    
+    Bug reported here: http://stackoverflow.com/questions/27063884/coordinates-interpolation-at-exact-time-boundaries-using-cut-trip-from-trip
+
+commit 270c217f9a890c8c08c1b0c7fc016b6c1e785c07
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Wed Nov 5 01:31:57 2014 -1000
+
+    fix issue with distance calcs
+
 commit dde2859a17ee28ce260b329485aa0a57d036f4be
 Author: Michael Sumner <mdsumner@gmail.com>
 Date:   Tue Oct 21 01:30:35 2014 -1000
