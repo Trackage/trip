@@ -2,6 +2,8 @@
 % Please edit documentation in R/grid.R
 \name{rasterize}
 \alias{rasterize}
+\alias{trip,RasterLayer}
+\alias{trip,missing}
 \title{Rasterize trip objects based on line-segment attributes.}
 \arguments{
 \item{x}{\code{trip} object}
@@ -20,6 +22,16 @@ Trip rasterize.
 example(trip)
 tr$temp <- sort(runif(nrow(tr)))
 r <- rasterize(tr)
+
+rasterize(tr, grid = r)
+rasterize(tr, method = "density")
+rasterize(tr, method = "density", grid = r)
+rasterize(tr, r, field = "temp")
+rasterize(tr, r, field = "tms")
+rasterize(tr, r)
+
+\dontrun{
+library(raster)
 r2 <- aggregate(r, fact = 4)
 rasterize(tr, grid = r2)
 rasterize(tr, method = "density")
@@ -27,5 +39,6 @@ rasterize(tr, method = "density", grid = r2)
 rasterize(tr, r2, field = "temp")
 rasterize(tr, r2, field = "tms")
 rasterize(tr, r2)
+}
 }
 

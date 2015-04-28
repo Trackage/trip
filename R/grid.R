@@ -18,6 +18,7 @@ trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
 #' 
 #' Trip rasterize. 
 #' @name rasterize
+#' @aliases trip,RasterLayer trip,missing
 #' @export
 #' @importFrom raster raster rasterize
 #' @exportMethod rasterize trip
