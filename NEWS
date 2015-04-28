@@ -1,5 +1,10 @@
   CHANGES IN trip VERSION 1.1-20
 
+o rasterize for trip can now accept a 'field' argument to replace the default
+ time-spent calculation
+ 
+o trip now Imports raster, for use of rasterize to replace tripGrid
+
 o new function homedist
 
 o bug fix via complete rewrite of cut.trip, including modification of argument name "dates" to "breaks"
