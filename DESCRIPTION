@@ -12,6 +12,7 @@ Depends:
 Imports:
     maptools,
     MASS,
+    raster,
     spatstat
 Suggests:
     adehabitatLT,

@@ -7,10 +7,53 @@
 
 ## replaces tripGrid, old version is now called tripGrid.interp
 
-trip_raster <- function(x, grid = NULL, method = "pixellate", ...) {
+
+
+trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
+  if (!is.null(grid) & !is(grid, "GridTopology")) grid <- as(grid, "GridTopology")
   raster(tripGrid(x, grid = grid, method = method, ...))
 }
 
+#' Rasterize trip objects based on line-segment attributes. 
+#' 
+#' Trip rasterize. 
+#' @name rasterize
+#' @export
+#' @importFrom raster raster rasterize
+#' @exportMethod rasterize trip
+#' @param x \code{trip} object
+#' @param y Raster* object
+#' @param field attribute from which differences will be calculated, defaults to the time-stamp between trip locations
+#' @examples
+#' example(trip)
+#' tr$temp <- sort(runif(nrow(tr)))
+#' r <- rasterize(tr)
+#' r2 <- aggregate(r, fact = 4)
+#' rasterize(tr, grid = r2)
+#' rasterize(tr, method = "density")
+#' rasterize(tr, method = "density", grid = r2)
+#' rasterize(tr, r2, field = "temp")
+#' rasterize(tr, r2, field = "tms")
+#' rasterize(tr, r2)
+#'
+#' @return RasterLayer
+NULL
+
+setMethod("rasterize", signature(x = "trip", y = "missing"), trip_raster)
+setMethod("rasterize", signature(x = "trip", y = "RasterLayer"), 
+          function(x, y, field, fun = 'pixellate', ...)
+          {
+            if (missing(field)) {
+              if (!is.null(y)) y <- as(y, "GridTopology")
+               raster(tripGrid(x, grid = y,  method = fun, ...))
+            } else {
+              ll <- explode(x)
+              diffvals <- unlist(lapply(split(x[[field]], x[[getTORnames(x)[2]]]), diff))
+              ##ll[[field]] <- diffvals
+              rasterize(ll, y, field = diffvals, fun = 'sum', ..., na.rm = TRUE)
+            }
+          }
+            )
 
 #' Generate a grid of time spent by line-to-cell gridding
 #' 

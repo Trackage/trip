@@ -93,6 +93,7 @@ as.psp.trip <- function(x, ..., from, to) {
 setAs("trip", "psp", function(from) as.psp.trip(from))
 
 
+
 #' Break a trip into its component line segments
 #'
 #' Function to create a SpatialLinesDataFrame from a trip object, resulting in
