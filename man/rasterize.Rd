@@ -2,8 +2,8 @@
 % Please edit documentation in R/grid.R
 \name{rasterize}
 \alias{rasterize}
-\alias{trip,RasterLayer}
-\alias{trip,missing}
+\alias{rasterize,trip,RasterLayer-method}
+\alias{rasterize,trip,missing-method}
 \title{Rasterize trip objects based on line-segment attributes.}
 \arguments{
 \item{x}{\code{trip} object}
