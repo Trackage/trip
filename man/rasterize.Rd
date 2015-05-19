@@ -24,13 +24,15 @@ tr$temp <- sort(runif(nrow(tr)))
 r <- rasterize(tr)
 
 rasterize(tr, grid = r)
+rasterize(tr, r, field = "temp")
+\dontrun{
 rasterize(tr, method = "density")
 rasterize(tr, method = "density", grid = r)
-rasterize(tr, r, field = "temp")
+
 rasterize(tr, r, field = "tms")
 rasterize(tr, r)
 
-\dontrun{
+
 library(raster)
 r2 <- aggregate(r, fact = 4)
 rasterize(tr, grid = r2)

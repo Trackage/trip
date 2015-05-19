@@ -77,8 +77,8 @@ and is in no way linked officially to Argos.
 \references{
 The Argos data documentation is at
 \url{http://www.argos-system.org/manual/}.  Specific details on the PRV
-("provide data") format were found here
-\url{http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm}.
+("provide data") format were found in Chapter 4_4_8, originally at
+'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 }
 \seealso{
 \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
