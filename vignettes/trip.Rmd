@@ -1,83 +1,49 @@
-\documentclass[a4paper]{article}
-\usepackage{a4wide}
-\usepackage[authoryear]{natbib}
-\usepackage{amsmath}
-
-\SweaveOpts{engine=R, eps=FALSE, keep.source = FALSE}
-%\VignetteIndexEntry{Illustration of the trip package for animal tracking data}
-%\VignetteDepends{}
-%\VignettePackage{trip}
-%\VignetteKeyword{trip}
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
-\title{The trip package}
-\date{2013}
-\author{\textbf{Michael D. Sumner} \\
-%EndAName
-}
-\maketitle
-
-\begin{abstract}
-  The \textbf{trip} package provides tools for working with animal track data.
-\end{abstract}
+---
+title: "The trip package"
+author: "Michael Sumner"
+date: "2015-05-20"
+output: html_document
+---
 
 
-<<echo=FALSE>>=
-##set.seed(32)
-##options(preferRaster=T)
-@
-
-
-\section{Introduction}
-\label{sec:introduction}
+# Introduction
 
 Basic use of the trip package.
 
-\section{Data input and validation}
-\label{sec:datainput}
-
-<<echo=TRUE>>=
+## Data input and validation
+```{r}
 library(trip)
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
+## a projection should always be set, is it WGS84 or NAD83 . . .
 proj4string(d) <- CRS("+proj=laea +ellps=sphere")
 tr <- trip(d, c("tms", "id"))
 summary(tr)
-@
-\section{Simple plotting}
-\label{sec:simplot}
+```
 
-<<label=plot1,echo=FALSE>>=
+# Simple plotting
+
+
+```{r}
 plot(tr)
 lines(tr)
-@
+```
 
-\begin{figure}[ht]
-  \centering
-<<echo=TRUE,fig=TRUE>>=
-<<plot1>>
-@
-\caption{Plot of a very simple trip object.}
-  \label{fig:plot1}
-\end{figure}
+Plot of a very simple trip object.
+
+# Gridding for time spent
+
+```{r}
+tg <- rasterize(tr)
+plot(tg, col = c("transparent", heat.colors(25)))
+```
+
+Plot of a rasterized version of the trip, by default this is a map of **time-spent**. 
 
 
-<<label=timespent1,echo=FALSE>>=
-tg <- tripGrid(tr)
-image(tg, col = c("transparent", heat.colors(25)))
-@
+# Example data from diveMove
 
-\section{Gridding for time spent}
-\label{sec:timespent}
-<<echo=TRUE,fig=TRUE>>=
-<<timespent1>>
-@
-
-\section{Example data from diveMove}
-\label{sec:diveMove}
-<<<echo=TRUE>>=
+```{r,eval=FALSE}
 ##library(diveMove)
 ##fname <- system.file(file.path("data", "sealLocs.csv"),
 ##                       package="diveMove")
@@ -115,11 +81,5 @@ image(tg, col = c("transparent", heat.colors(25)))
 
 ##tr <- trip(dat, c("time", "id"))
 
+```
 
-
-
-@
-
-
-
-\end{document}

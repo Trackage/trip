@@ -1,6 +1,8 @@
   CHANGES IN trip VERSION 1.1-21
   
 o modified PROJ.4 string in vignette for CRAN
+
+o moved vignette stub to knitr markdown
   
   CHANGES IN trip VERSION 1.1-20
 

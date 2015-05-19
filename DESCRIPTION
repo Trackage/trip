@@ -23,3 +23,4 @@ Description: Functions for accessing and manipulating spatial data for animal
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
+VignetteBuilder: knitr
