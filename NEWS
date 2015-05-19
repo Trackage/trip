@@ -1,3 +1,7 @@
+  CHANGES IN trip VERSION 1.1-21
+  
+o modified PROJ.4 string in vignette for CRAN
+  
   CHANGES IN trip VERSION 1.1-20
 
 o rasterize for trip can now accept a 'field' argument to replace the default

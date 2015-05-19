@@ -1,3 +1,69 @@
+commit 2b9d41972b24983b9549af1a63646aa4748f6025
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Tue May 19 01:10:11 2015 -1000
+
+    update for PROJ.4 new version
+
+commit 179d8cdbf371315f6c178b1ebabf9c48bca37efd
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 23:38:22 2015 +1000
+
+    no longer valid url, dontrun rasterize
+
+commit ac513b6a3272bf8968a763f7f7a77aa4d9148635
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 21:49:46 2015 +1000
+
+    methods doc
+
+commit 0e84791118f9bea5991439cd76c43bba22dc60f1
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 18:34:03 2015 +1000
+
+    No period.
+
+commit 3f73bc9f9a9747a9f8ee2f3240316e804c96976c
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 18:33:54 2015 +1000
+
+    missing aliases
+
+commit bc48eb81e83e5eaa385fd32301e0cf9f7b7936ad
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 16:20:10 2015 +1000
+
+    roxygenify
+
+commit 239fa5f83d218154d773789e3db8945447dcc2b4
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 16:19:50 2015 +1000
+
+    dontrun for raster::aggregate example
+
+commit 8b3e133d0fcd8fa402dba81ded23fb80e6bb59db
+Author: Michael Sumner <mdsumner@gmail.com.com>
+Date:   Tue Apr 28 16:19:37 2015 +1000
+
+    news
+
+commit c1ef573cd2bcedd0167bce8e773671f1860903b7
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 19:51:49 2015 -1000
+
+    roxygentrify
+
+commit 2f97dd48817d0f1270716b417264f12d5358bc93
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 19:51:19 2015 -1000
+
+    rasterize method to eventually replace tripGrid
+
+commit 5ab473d89fd13592f1dec345503d0168624e3fd3
+Author: Michael Sumner <mdsumner@gmail.com>
+Date:   Mon Apr 27 05:38:51 2015 -1000
+
+    log
+
 commit 33a6e6389f538544c565d1a4e5edd0b3a0c45602
 Author: Michael Sumner <mdsumner@gmail.com>
 Date:   Mon Apr 27 05:38:25 2015 -1000
