@@ -16,6 +16,7 @@ Imports:
     spatstat
 Suggests:
     adehabitatLT,
+    knitr,
     rgdal
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter
