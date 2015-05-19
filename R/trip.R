@@ -267,8 +267,8 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 #' general manipulation of this type.
 #' @references
 #'
-#' The Argos data documentation is at
-#' \url{http://www.argos-system.org/manual/}.  Specific details on the PRV
+#' The Argos data documentation was (ca. 2003) at
+#' http://www.argos-system.org/manual.  Specific details on the PRV
 #' ("provide data") format were found in Chapter 4_4_8, originally at 
 #' 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 #' @keywords IO manip
