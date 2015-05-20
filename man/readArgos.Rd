@@ -75,8 +75,8 @@ This works on some Argos files I have seen, it is not a guaranteed method
 and is in no way linked officially to Argos.
 }
 \references{
-The Argos data documentation is at
-\url{http://www.argos-system.org/manual/}.  Specific details on the PRV
+The Argos data documentation was (ca. 2003) at
+http://www.argos-system.org/manual.  Specific details on the PRV
 ("provide data") format were found in Chapter 4_4_8, originally at
 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 }
