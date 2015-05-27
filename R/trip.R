@@ -190,9 +190,9 @@ adjust.duplicateTimes <- function (time, id) {
 #' @export argos.sigma
 argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
                         adjust=111.12) {
-    sigma <- sigma / adjust
+    sigma <- sigma 
     names(sigma) <- levels(x)
-    sigma[x]
+    sigma[x]/adjust  ## vectorize on x
 }
 
 
