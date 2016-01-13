@@ -1,5 +1,8 @@
+[![Travis-CI Build Status](https://travis-ci.org/mdsumner/trip.svg?branch=master)](https://travis-ci.org/mdsumner/trip)
 [![](http://www.r-pkg.org/badges/version/pkgconfig)](http://www.r-pkg.org/pkg/trip)
 [![](http://cranlogs.r-pkg.org/badges/pkgconfig)](http://www.r-pkg.org/pkg/trip)
+
+
 
 # Tools for animal track data
 
