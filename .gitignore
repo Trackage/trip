@@ -22,3 +22,4 @@ auto/
 *.pdf
 .Rproj.user
 .Rdata
+data-raw/MI_albatross_final.csv
