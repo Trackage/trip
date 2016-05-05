@@ -216,6 +216,22 @@ setMethod("trip", signature(obj="trip", TORnames="ANY"),
               trip(as(obj, "SpatialPointsDataFrame"), TORnames)
           })
 
+triprepmethod <-   function(obj, value) {
+  coordinates(obj) <- value[1:2]
+  trip(obj, value[3:4])
+}
+setGeneric("trip<-",
+           function(obj, value) standardGeneric("trip<-"))
+
+setReplaceMethod("trip", 
+                 signature(obj = "tbl_df", value = "character"), 
+                 triprepmethod
+)
+setReplaceMethod("trip", 
+                 signature(obj = "data.frame", value = "character"), 
+                 triprepmethod
+               )
+
 setReplaceMethod("[[",
                  signature(x="trip", i="ANY", j="missing", value="ANY"),
                  function(x, i, j, value) {
