@@ -23,3 +23,4 @@ auto/
 .Rproj.user
 .Rdata
 data-raw/MI_albatross_final.csv
+data-raw/nform.r

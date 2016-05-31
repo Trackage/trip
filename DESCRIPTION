@@ -17,7 +17,7 @@ Imports:
 Suggests:
     adehabitatLT,
     knitr,
-    rgdal, 
+    rgdal,
     testthat
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter
@@ -26,3 +26,4 @@ NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1

@@ -183,6 +183,8 @@ TimeOrderedRecords <- function(x) {
 #'
 NULL
 
+setOldClass("data.frame")
+
 #' @rdname trip-accessors
 #' @export
 getTORnames <- function(obj) obj@TOR.columns
@@ -223,10 +225,7 @@ triprepmethod <-   function(obj, value) {
 setGeneric("trip<-",
            function(obj, value) standardGeneric("trip<-"))
 
-setReplaceMethod("trip", 
-                 signature(obj = "tbl_df", value = "character"), 
-                 triprepmethod
-)
+
 setReplaceMethod("trip", 
                  signature(obj = "data.frame", value = "character"), 
                  triprepmethod
