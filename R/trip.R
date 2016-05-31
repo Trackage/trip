@@ -954,10 +954,10 @@ function (x, breaks, ...)
       out <- split(as.data.frame(ntrack), cumsum(duplicated(newbreaks)))
       short <- sapply(out, nrow) < 3
       out <- lapply(out, function(x) if (nrow(x) < 3) NULL else x)
-      
+      last <- NULL ## woh fix for bitten by dplyr adding a last() function
       for (i in seq_along(out)[-1]) {
         if (short[i] & !short[i-1]) last <- tail(out[[i-1]], 1)
-        if (!short[i] & short[i-1] & exists("last")) out[[i]][1,] <- last
+        if (!short[i] & short[i-1] & !is.null(last)) out[[i]][1,] <- last
       }
       out
     }

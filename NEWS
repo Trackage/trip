@@ -6,6 +6,8 @@ o removed character method for spTransform, now standard in rgdal/sp
 
    BUG FIXES 
    
+o fix for last namespace clash with dplyr in cut.trip
+
 o argos.sigma was not vectorized on adjust for argment x, fixed
 
   CHANGES IN trip VERSION 1.1-21
