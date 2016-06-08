@@ -222,6 +222,8 @@ triprepmethod <-   function(obj, value) {
   coordinates(obj) <- value[1:2]
   trip(obj, value[3:4])
 }
+
+#' @export
 setGeneric("trip<-",
            function(obj, value) standardGeneric("trip<-"))
 
