@@ -223,6 +223,7 @@ triprepmethod <-   function(obj, value) {
   trip(obj, value[3:4])
 }
 
+#' @rdname trip<-
 #' @export
 setGeneric("trip<-",
            function(obj, value) standardGeneric("trip<-"))
