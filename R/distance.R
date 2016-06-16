@@ -7,6 +7,7 @@
 ##' @param home see details
 ##' @seealso \code{\link[sp]{spDistsN1}}
 ##' @return numeric vector of distances in km (for longlat), or in the units of the trip's projection 
+##' @export
 homedist <- function(x, home = NULL) {
   if (!is.null(home)) {
     if (is.numeric(home) & length(home) == 2) {
@@ -20,7 +21,7 @@ homedist <- function(x, home = NULL) {
   ids <- unique(x[[tor[2L]]])
   dists <- numeric(length(ids))
   names(dists) <- as.character(ids)
-  longlat <- is.projected(x)
+  longlat <- !is.projected(x)
   if (is.na(longlat)) {
     longlat <- TRUE
     warning("coordinate system is NA, assuming longlat . . .")
@@ -28,7 +29,7 @@ homedist <- function(x, home = NULL) {
   for (i in seq_along(ids)) {
     x0 <- coordinates(x[x[[tor[2L]]] == ids[i], ])
     if (is.null(home)) home <- x0[1, , drop = FALSE]
-    dists[i] <- max(spDistsN1(x0, home))
+    dists[i] <- max(spDistsN1(x0, home, longlat = longlat))
   }
   dists
 }
