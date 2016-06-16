@@ -17,7 +17,7 @@ homedist <- function(x, home = NULL) {
     }
   }  
   ## iterate over individual trips
-  tor <- getTORnames(x)
+  tor <- trip::getTORnames(x)
   ids <- unique(x[[tor[2L]]])
   dists <- numeric(length(ids))
   names(dists) <- as.character(ids)
