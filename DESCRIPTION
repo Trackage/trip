@@ -25,3 +25,4 @@ NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
