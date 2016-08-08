@@ -5,7 +5,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "mdsumner@gmail.com"),
     person("Sebastian", "Luque", role = "ctb",
     email = "spluque@gmail.com"))
-Version: 1.1-21.9001
+Version: 1.5.0
 Depends:
     methods,
     sp
@@ -21,7 +21,11 @@ Suggests:
     testthat
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter
-    for speed and create time spent maps from animal track data.
+    for speed and create time spent maps from animal track data. There are
+    coercion methods to convert between 'trip' and 'ltraj' from 'adehabitatLT', 
+    and between 'trip' and 'psp' and 'ppp' from 'spatstat'. 
+URL: https://github.com/mdsumner/trip
+BugReports: https://github.com/mdsumner/trip/issues
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3

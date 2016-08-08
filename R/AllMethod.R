@@ -9,13 +9,16 @@
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
-#' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method [[<-,trip,ANY,missing-method
+#' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
+#' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
 #' be coerced to one, containing at least two columns with the DateTime and ID
 #' data as per \code{TORnames}.  It can also be a \code{trip} object for
 #' redefining \code{TORnames}.
 #' @param TORnames Either a \code{TimeOrderedRecords} object, or a 2-element
 #' character vector specifying the DateTime and ID column of \code{obj}
+#' @param value A 4-element character vector specifying the X, Y, DateTime coordinates 
+#' and ID of \code{obj}. 
 #' @return
 #'
 #' A trip object, with the usual slots of a
@@ -223,7 +226,7 @@ triprepmethod <-   function(obj, value) {
   trip(obj, value[3:4])
 }
 
-#' @rdname trip<-
+#' @rdname trip-methods
 #' @export
 setGeneric("trip<-",
            function(obj, value) standardGeneric("trip<-"))

@@ -1,4 +1,8 @@
-DEV
+   CHANGES IN trip VERSION 1.5.0
+
+o new function homedist
+
+o added imports for recommended package functions
 
 o new replace method for one-step trip creation
 

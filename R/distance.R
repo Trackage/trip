@@ -6,6 +6,7 @@
 ##' @param x trip object
 ##' @param home see details
 ##' @seealso \code{\link[sp]{spDistsN1}}
+##' @export
 ##' @return numeric vector of distances in km (for longlat), or in the units of the trip's projection 
 homedist <- function(x, home = NULL) {
   if (!is.null(home)) {

@@ -11,9 +11,13 @@
 \alias{trip,trip,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
 \alias{trip-methods}
+\alias{trip<-}
+\alias{trip<-,data.frame,character-method}
 \title{Function to handle animal track data, organized as \code{"trip"}s}
 \usage{
 trip(obj, TORnames)
+
+trip(obj) <- value
 
 \S4method{[}{trip,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 }
@@ -25,6 +29,9 @@ redefining \code{TORnames}.}
 
 \item{TORnames}{Either a \code{TimeOrderedRecords} object, or a 2-element
 character vector specifying the DateTime and ID column of \code{obj}}
+
+\item{value}{A 4-element character vector specifying the X, Y, DateTime coordinates 
+and ID of \code{obj}.}
 
 \item{x}{trip object}
 
