@@ -24,3 +24,4 @@ auto/
 .Rdata
 data-raw/MI_albatross_final.csv
 data-raw/nform.r
+data-raw/mia.r

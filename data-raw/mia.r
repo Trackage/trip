@@ -1,6 +1,23 @@
 library(readr)
 library(dplyr)
 cl <- readr::cols(band = "c", breeding_status = "c", gmt = "T",  
+                  lon = "d", lat = "d", 
+                  species  = "c", sex = "c", deployment_status = "c", device = "c", 
+                  tag_ID =  "i")
+
+mia <- readr::read_csv("data-raw/MI_albatross_final.csv", 
+                       col_types = cl)   %>% 
+  mutate(sp_id = sprintf("%s%s_%s_%s", species, substr(breeding_status, 1, 1), band, tag_ID)) %>%  
+  distinct(gmt, sp_id, .keep_all = TRUE)
+         
+mia <- mia %>% filter(!sp_id == "WAi_14030938_2123")
+
+trip(mia) <- c("lon", "lat", "gmt", "sp_id")
+
+aa <- cut(mia, "1 day")
+library(readr)
+library(dplyr)
+cl <- readr::cols(band = "c", breeding_status = "c", gmt = "T",  
            lon = "d", lat = "d", 
            species  = "c", sex = "c", deployment_status = "c", device = "c", 
            tag_ID =  "i")
@@ -41,6 +58,9 @@ mia <- tbl(src_sqlite(file.path("inst/extdata", "mia_db.sqlite3")), "mia") %>%
  library(spdplyr)
 library(trip)
 library(rgdal)
+mia <- mia %>% mutate(sp_id = sprintf("%s%s_%s_%s", species, substr(breeding_status, 1, 1), band, tag_ID), 
+       gmt = gmt + ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "GMT")) %>% distinct(gmt, sp_id)
+
 trip(mia) <- c("lon", "lat", "gmt", "sp_id")
 proj4string(mia) <- CRS("+proj=longlat +ellps=WGS84")
 mia <- spTransform(mia, "+proj=laea +lon_0=52 +lat_0=-55 +ellps=WGS84")
