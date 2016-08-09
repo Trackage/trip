@@ -14,9 +14,8 @@ knitr::opts_chunk$set(
 
 
 [![Travis-CI Build Status](https://travis-ci.org/mdsumner/trip.svg?branch=master)](https://travis-ci.org/mdsumner/trip)
-[![](http://www.r-pkg.org/badges/version/pkgconfig)](http://www.r-pkg.org/pkg/trip)
-[![](http://cranlogs.r-pkg.org/badges/pkgconfig)](http://www.r-pkg.org/pkg/trip)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip)
+[![](http://www.r-pkg.org/badges/version/pkgconfig)](http://www.r-pkg.org/pkg/trip)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/trip/master.svg)](https://codecov.io/github/mdsumner/trip?branch=master)
 
 # Tools for animal track data
