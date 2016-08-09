@@ -2,7 +2,10 @@
 title: "The trip package"
 author: Michael Sumner
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    fig_width: 5
+    fig_height: 5
 vignette: >
   %\VignetteIndexEntry{trip}
   %\VignetteEngine{knitr::rmarkdown}
@@ -42,6 +45,27 @@ plot(tg, col = c("transparent", heat.colors(25)))
 ```
 
 Plot of a rasterized version of the trip, by default this is a map of **time-spent**. 
+
+# Walrus example
+
+Plot the walrus tracks on a map. 
+```{r}
+data("walrus818")
+
+plot(walrus818, pch = ".")
+lines(walrus818)
+
+library(maptools)
+library(rgdal)
+data(wrld_simpl)
+world <- spTransform(wrld_simpl, proj4string(walrus818))
+p <- par(xpd = NA, mar = rep(0, 4))
+plot(walrus818, pch = ".")
+plot(world, add = TRUE, col = "grey")
+lines(walrus818)
+llgridlines(walrus818); par(p)
+```
+
 
 
 # Example data from diveMove
