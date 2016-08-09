@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href='NBII_classic.xsl' type='text/xsl'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Jay, C. V.</origin>
+        <origin>Fischbach, A.S.</origin>
+        <pubdate>Unpublished material</pubdate>
+        <title>Behavior of Pacific Walruses Tracked from the Alaska Coast of the Chukchi Sea</title>
+        <geoform>document</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>We tracked movments and haulout foraging behavior of walruses instrumented with satellite-linked data loggers from the Alaskan shores of the Chukchi Sea during the autumn of 2009 (n=13) and 2010 (n=2).</abstract>
+      <purpose>The Pacific walrus (Odobenus rosmarus divergens) is a large Arctic pinniped of the Chukchi and Bering Seas.  Large losses of sea ice are projected to occur in the Arctic by mid-century, which raises concerns for the conservation of the Pacific walrus.  In recent years disappearance of summer sea ice over the Chukchi Sea continental shelf has prompted walruses foraging in the Chukchi Sea to seek rest on the coast.  Resting on the coast presents many novel stresses to adult female and juvenile walruses, including increased mortality due to trammeling events, possible increased disease transmission and restrictions on foraging range. To understand the significance of resting on the coasts to walruses, it would be useful to understand the walrus resting and foraging time budgets and to understand the extent of movements from the coasts.  For this purpose we tracked the behavior of walruses that rested on the US shores of the Chukchi Sea during when sea ice was absent.  We collected daily tracking data along with hourly resting and foraging status from walruses that we instrumented as they rested on the Alaskan Chukchi Sea coast.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20060326</begdate>
+          <enddate>20060510</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <descgeog>Eastern Chukchi Sea</descgeog>
+      <bounding>
+        <westbc>-176</westbc>
+        <eastbc>-158</eastbc>
+        <northbc>72</northbc>
+        <southbc>65</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Walrus</themekey>
+        <themekey>Pacific Walrus</themekey>
+        <themekey>behavior</themekey>
+        <themekey>satellite tracking</themekey>
+        <themekey>telemetry</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Chukchi Sea</placekey>
+        <placekey>Point Lay</placekey>
+      </place>
+      <stratum>
+        <stratkt>None</stratkt>
+        <stratkey>marine</stratkey>
+      </stratum>
+      <temporal>
+        <tempkt>None</tempkt>
+        <tempkey>autumn</tempkey>
+      </temporal>
+    </keywords>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>None</taxonkt>
+        <taxonkey>Odobenus rosmarus divergens</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <taxonpro>[TU]|158852||Chordata||||||||valid||TWG standards met|partial|2001|0|1996-06-13 14:51:08|202423||0||0|5|30||
+[TU]|179913||Mammalia||||||||valid||TWG standards met|complete|2004|0|1996-06-13 14:51:08|331030||21823||0|5|60|No|
+[TU]|179916||Theria||||||||valid||TWG standards met|complete|2004|0|1996-06-13 14:51:08|179913||71029||0|5|70|No|
+[TU]|179925||Eutheria||||||||valid||TWG standards met|complete|2004|0|1996-06-13 14:51:08|179916||17126||0|5|80|No|
+[TU]|180539||Carnivora||||||||valid||TWG standards met|complete|2006|0|1996-06-13 14:51:08|179925||71031||0|5|100|No|
+[TU]|180614||Pinnipedia||||||||invalid|other, see comments|TWG standards met|unknown|2001|0|1996-06-13 14:51:08|0||0||0|5|110|No|
+[TU]|180637||Odobenidae||||||||valid||TWG standards met|complete|2006|0|1996-06-13 14:51:08|552303||70935||0|5|140|No|
+[TU]|180638||Odobenus||||||||valid||TWG standards met|complete|2006|0|1996-06-13 14:51:08|180637||12594||0|5|180|No|
+[TU]|180639||Odobenus||rosmarus||||||valid||TWG standards met|||0|1996-06-13 14:51:08|180638||5656||0|5|220|No|
+[TU]|202423||Animalia||||||||valid||TWG standards met|unknown|unknown|0|1996-06-13 14:51:08|0||0||0|5|10||
+[TU]|331030||Vertebrata||||||||valid||TWG standards met|partial|2001|0|1996-06-13 14:51:08|158852||0||0|5|40|No|
+[TU]|550210||Caudiverbera||||||||invalid|other, see comments|TWG standards met|unknown|2009|0|1997-05-06 15:49:08|0||21392||0|5|180|No|
+[TU]|552303||Caniformia||||||||valid||TWG standards met|complete|2006|0|1998-01-27 13:44:10|180539||119342||0|5|110|No|
+[TU]|622045||Odobenus||rosmarus||divergens||||valid||TWG standards met|||0|2003-10-28 14:33:24|180639||70920||0|5|230|No|
+[SY]||180614|552303|
+[SY]||550210|331030|
+[TA]|119342|Kretzoi, 1938|5|
+[TA]|12594|Brisson, 1762|5|
+[TA]|17126|Gill, 1872|5|
+[TA]|21392|Laurenti, 1768|5|
+[TA]|21823|Linnaeus, 1758|5|
+[TA]|5656|(Linnaeus, 1758)|5|
+[TA]|70920|(Illiger, 1815)|5|
+[TA]|70935|Allen, 1880|5|
+[TA]|71029|Parker and Haswell, 1897|5|
+[TA]|71031|Bowdich, 1821|5|
+[NO]3399|202423||
+[NO]8388|158852||
+[NO]9203|179916||
+[NO]9206|179925||
+[NO]9220|180539||
+[NO]9221020101|180639||
+[NO]92210201|180638||
+[NO]922102|180637||
+[NO]9221|180614||
+[NO]92|179913||
+[VR]||111955|Walrus|180639|English|N|
+[VR]||112080|dog-like carnivores|552303|English|N|
+[VR]||20582|mammals|179913|English|N|
+[VR]||20688|carnivores|180539|English|N|
+[VR]||20689|walruses|180637|English|N|
+[VR]||20690|walruses|180638|English|N|
+[VR]||61450|vertebrates|331030|English|N|
+[VR]||61451|chordates|158852|English|N|
+[VR]||78738|animals|202423|English|N|
+[VR]||84639|morse|180639|French|N|
+[VR]||85484|cordado|158852|Portuguese|N|
+[VR]||85512|mamífero|179913|Portuguese|N|
+[VR]||85528|cachorro do mato|180539|Portuguese|N|
+[VR]||85529|carnívoro|180539|Portuguese|N|
+[VR]||85530|gato do mato|180539|Portuguese|N|
+[VR]||85531|lontra|180539|Portuguese|N|
+[VR]||85537|Animal|202423|Portuguese|N|
+[VR]||85539|vertebrado|331030|Portuguese|N|
+[VR]||85840|cordés|158852|French|N|
+[VR]||86025|mammifères|179913|French|N|
+[VR]||86039|carnivores|180539|French|N|
+[VR]||86042|animaux|202423|French|N|
+[VR]||86045|vertébrés|331030|French|N|
+[JR]|Alaska|Native|180639|
+[JR]|Canada|Native|180639|
+[CL]||180539|17727|
+[CL]||180614|18220|
+[CL]||180637|18035|
+[CL]||180638|18036|
+[CL]||180639|18551|
+[CL]||180639|18552|
+[CL]||550210|20013|
+[CM]|17727|Wilson &amp; Reeder, eds. (2005)|Comments: Higher taxonomic arrangement follows that of McKenna and Bell (1997), except that Ailuridae, Eupleridae, Mephitidae, and Odobenidae are raised to Family rank|2007-08-15 10:57:25|
+[CM]|18035|Wilson &amp; Reeder, eds. (2005)|Comments: Trichecidae Gray (1821) and Rosmaridae Gill (1866) are invalid (International Commission on Zoological Nomenclature, 1959). The enigmatic walruses have been placed as: (1) the sister group to the otariids (Árnason, 1977; Árnason et al., 1995; Couturier and Dutrillaux, 1986; Dragoo and Honeycutt, 1997; Repenning and Tedford, 1977; Sarich, 1969a, b; Vrana et al., 1994); (2) in the family Otariidae (Barnes, 1989; Mitchell, 1975b); (3) the sister group to the phocids (Berta, 1994; Berta and Wys...|2007-08-15 10:57:25|
+[CM]|18036|Wilson &amp; Reeder, eds. (2005)|Comments: Although the names in Brisson (1762) are invalid, Odobenus has been retained (International Commission on Zoological Nomenclature, 1955a, 1957e, 1998). Placed in Subfamily Odobeninae, Family Phocidae by McKenna and Bell (1997). Placed in separate family by Rice (1998)|2007-08-15 10:57:25|
+[CM]|18220|David Nicolson - ITIS Data Development Coordinator|Wilson &amp; Reeder (eds., 1993) note that "the pinnipeds (otariids, odobenids, and phocids) are included within the suborder Caniformia; placing them in a separate Order would make the Carnivora paraphyletic." This arrangement continues to be followed in Wilson &amp; Reeder (eds., 2005)|2007-08-15 10:57:25|
+[CM]|18551|Wilson &amp; Reeder, eds. (2005)|Status: CITES - Appendix III (Canada); IUCN - Data Deficient as O. r. laptevi, otherwise Lower Risk (lc)|2007-08-20 15:06:38|
+[CM]|18552|Wilson &amp; Reeder, eds. (2005)|Comments: Reviewed by Fay (1985). Synonyms allocated according to Ellerman and Morrison-Scott (1951) and Fay (1985). Distributional information from Rice (1998)|2007-08-20 15:06:38|
+[CM]|20013|David Nicolson - ITIS Data Development Coordinator|Myers &amp; Stothers (2006) assert that the type species of Caudiverbera Laurenti 1768 is mythical, "belonging neither to the Amphibia nor Reptilia." There appears to be nowhere particularly useful to attach this name in ITIS, other than Vertebrata. About all that can be said of it is that it is a quadriped|2009-09-01 16:34:27|
+[RF]|||158852|SRC|7|N|N|0||
+[RF]|||179913|EXP|103|N|N|0||
+[RF]|||179913|EXP|55|N|N|0||
+[RF]|||179913|PUB|1191|N|N|0||
+[RF]|||179913|PUB|1419|N|N|0||
+[RF]|||179913|PUB|1422|N|N|0||
+[RF]|||179913|PUB|1541|N|N|0||
+[RF]|||179913|PUB|172|N|N|0||
+[RF]|||179913|SRC|110|N|N|0||
+[RF]|||179913|SRC|7|N|N|0||
+[RF]|||179916|EXP|103|N|N|0||
+[RF]|||179916|PUB|949|N|N|0||
+[RF]|||179916|SRC|7|N|N|0||
+[RF]|||179925|EXP|103|N|N|0||
+[RF]|||179925|PUB|949|N|N|0||
+[RF]|||179925|SRC|7|N|N|0||
+[RF]|||180539|EXP|102|N|N|0||
+[RF]|||180539|EXP|103|N|N|0||
+[RF]|||180539|PUB|1422|N|N|0||
+[RF]|||180539|PUB|1541|N|N|0||
+[RF]|||180539|PUB|5099|N|N|0||
+[RF]|||180539|SRC|110|N|N|0||
+[RF]|||180539|SRC|7|N|N|0||
+[RF]|||180614|EXP|103|N|N|0||
+[RF]|||180614|PUB|1422|N|N|0||
+[RF]|||180614|PUB|5099|N|N|0||
+[RF]|||180614|SRC|7|N|N|0||
+[RF]|||180637|EXP|102|N|N|0||
+[RF]|||180637|EXP|103|N|N|0||
+[RF]|||180637|PUB|1422|N|N|0||
+[RF]|||180637|PUB|1426|N|N|0||
+[RF]|||180637|PUB|1541|N|N|0||
+[RF]|||180637|PUB|5099|N|N|0||
+[RF]|||180637|PUB|706|N|N|0||
+[RF]|||180637|SRC|110|N|N|0||
+[RF]|||180637|SRC|7|N|N|0||
+[RF]|||180638|EXP|102|N|N|0||
+[RF]|||180638|EXP|103|N|N|0||
+[RF]|||180638|PUB|1422|N|N|0||
+[RF]|||180638|PUB|1426|N|N|0||
+[RF]|||180638|PUB|1541|N|N|0||
+[RF]|||180638|PUB|5099|N|N|0||
+[RF]|||180638|PUB|706|N|N|0||
+[RF]|||180638|SRC|110|N|N|0||
+[RF]|||180638|SRC|7|N|N|0||
+[RF]|||180639|EXP|102|N|N|0||
+[RF]|||180639|EXP|103|N|N|0||
+[RF]|||180639|PUB|1419|N|N|0||
+[RF]|||180639|PUB|1422|N|N|0||
+[RF]|||180639|PUB|1426|N|N|0||
+[RF]|||180639|PUB|1541|N|N|0||
+[RF]|||180639|PUB|5099|N|N|0||
+[RF]|||180639|PUB|706|N|N|0||
+[RF]|||180639|SRC|110|N|N|0||
+[RF]|||180639|SRC|7|N|N|0||
+[RF]|||202423|SRC|7|N|N|0||
+[RF]|||331030|SRC|7|N|N|0||
+[RF]|||550210|PUB|6766|N|N|0||
+[RF]|||550210|PUB|6|N|N|0||
+[RF]|||550210|SRC|286|N|N|0||
+[RF]|||552303|EXP|103|N|N|0||
+[RF]|||552303|PUB|1422|N|N|0||
+[RF]|||552303|PUB|1670|N|N|0||
+[RF]|||552303|PUB|5099|N|N|0||
+[RF]|||622045|PUB|1426|N|N|0||
+[RF]|||622045|PUB|5099|N|N|0||
+[VL]||111955|||180639|PUB|5099|
+[VL]||111955|||180639|SRC|184|
+[VL]||84639|||180639|SRC|184|
+[VL]||85484|||158852|SRC|185|
+[VL]||85512|||179913|SRC|185|
+[VL]||85528|||180539|SRC|185|
+[VL]||85529|||180539|SRC|185|
+[VL]||85530|||180539|SRC|185|
+[VL]||85531|||180539|SRC|185|
+[VL]||85537|||202423|SRC|185|
+[VL]||85539|||331030|SRC|185|
+[VL]||85840|||158852|SRC|186|
+[VL]||86025|||179913|SRC|186|
+[VL]||86039|||180539|SRC|186|
+[VL]||86042|||202423|SRC|186|
+[VL]||86045|||331030|SRC|186|
+[PB]PUB||1191|Hall, E. Raymond||The Mammals of North America, vols. I and II, 2nd ed.|04/03/1981|04/03/1981|John Wiley and Sons, Inc.|New York, New York, USA|||1181||
+[PB]PUB||1419|Wilson, Don E., and F. Russell Cole||Common Names of Mammals of the World|01/01/2000|01/01/2000|Smithsonian Institution Press|Washington, DC, USA|1-56098-383-3||xiv + 204|With contributions by Bernadette N. Graham, Adam P. Potter, and Mariana M. Upmeyer|
+[PB]PUB||1422|Wilson, Don E., and DeeAnn M. Reeder, eds.||Mammal Species of the World: A Taxonomic and Geographic Reference, 2nd ed., 3rd printing|01/01/1992|01/01/1993|Smithsonian Institution Press|Washington, DC, USA|1-56098-217-9||xviii + 1207|Corrections were made to text at 3rd printing|
+[PB]PUB||1426|Rice, Dale W.|Marine Mammals of the World: Systematics and Distribution|Special Publications of the Society for Marine Mammals, no. 4|01/01/1998|01/01/1998|The Society for Marine Mammalogy|Lawrence, Kansas, USA|1-891276-03-4||ix + 231||
+[PB]PUB||1541|Banks, R. C., R. W. McDiarmid, A. L. Gardner, and W. C. Starnes||Checklist of Vertebrates of the United States, the U.S. Territories, and Canada|12/31/2003|12/31/2003||||||As-yet (2003) unpublished manuscript from 1998|
+[PB]PUB||1670|McKenna, Malcolm C., and Susan K. Bell||Classification of mammals above the species level|01/01/1997|01/01/1997|Columbia University Press|New York, New York, USA|0-231-11012-X||631||
+[PB]PUB||172|Nowak, Ronald M.||Walker's Mammals of the World, vol. 1, 5th ed.|01/01/1991|01/01/1991|The Johns Hopkins UniversityPress|Baltimore and London|0-8018-3970-X||1629||
+[PB]PUB||5099|Wilson, Don E., and DeeAnn M. Reeder, eds.||Mammal Species of the World: A Taxonomic and Geographic Reference, 3rd ed., vols. 1 &amp; 2|10/01/2005|10/01/2005|Johns Hopkins University Press|Baltimore, Maryland, USA|0-8018-8221-4||2142||
+[PB]PUB||6766|Myers, Charles W., and Richard B. Stothers|The myth of Hylas revisited: the frog name Hyla and other commentary on Specimen medicum (1768) of J. N. Laurenti, the "father of herpetology"|Archives of Natural History, vol. 33, no. 2|01/01/2006|01/01/2006||||0260-0541|241-266|DOI 10.3366/anh.2006.33.2.241|
+[PB]PUB||6|Frost, Darrel R.||Amphibian Species of the World, A Taxonomic and Geographic Reference. Second edition|02/01/1997|02/01/1997|Electronic manuscript supplied by compiler|New York, New York, U.S.A.|||||
+[PB]PUB||706|Banks, R. C., R. W. McDiarmid, and A. L. Gardner|Checklist of Vertebrates of the United States, the U.S. Territories, and Canada|Resource Publication, no. 166|01/01/1987|01/01/1987|United States Department of the Interior Fish and Wildlife Service|Washington, D.C., USA|||79||
+[PB]PUB||949|Simpson, George Gaylord|The principles of classification and a classification of mammals|Bulletin of the American Museum of Natural History, vol. 85|05/10/1945|05/10/1945|American Museum of Natural History|New York, NY, USA|||xvi + 350||
+[EX]EXP||102|W. Christopher Wozencraft|Division of Natural Sciences, Bethel College, 1001 W. McKinley Ave., Mishawaka, IN 46545|
+[EX]EXP||103|Alfred L. Gardner|Curator of North American mammals and Chief of Mammal Section, National Biological Service, Smithsonian Institution, National Museum of Natural History, Washington, DC, USA|
+[EX]EXP||55|Don E. Wilson|Smithsonian Institution, MRC 108 Washington DC 20560-0108|
+[OS]SRC||110|website|Mammal Species of the World|undefined|09/23/1998|http://nmnhgoph.si.edu/msw/|
+[OS]SRC||184|database|&lt;a href="http://www.menv.gouv.qc.ca/biodiversite/centre.htm"&gt;CDP|1999|05/06/2003||
+[OS]SRC||185|website|&lt;a href="http://www.cria.org.br/"&gt;CRIA-Brazil&lt;/a&gt;|2002|05/06/2003||
+[OS]SRC||186|website|&lt;a href="http://www.cbif.gc.ca/itisca/"&gt;ITIS*&lt;sup&gt;ca&lt;/sup&gt;&lt;/a&gt;|2002|05/06/2003||
+[OS]SRC||286|database|Amphibian Species of the World: an Online Reference|3|09/28/2004|Frost, Darrel R. 2004. Amphibian Species of the World: an Online Reference. Version 3.0 (22 August, 2004). Electronic Database accessible at http://research.amnh.org/herpetology/amphibia/index.html. American Museum of Natural History, New York, USA|
+[OS]SRC||7|database|NODC Taxonomic Code|8.0|07/29/1996||
+[GD]|Europe &amp; Northern Asia (excluding China)|180639|
+[GD]|North America|180639|
+[GD]|Southern Asia|180639|</taxonpro>
+      </taxonsys>
+      <taxoncl>
+        <taxonrn />
+        <taxonrv />
+      </taxoncl>
+    </taxonomy>
+    <accconst>With permission of USGS Alaska Science Center</accconst>
+    <useconst>None</useconst>
+  </idinfo>
+  <spdoinfo>
+    <direct>Point</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Point</sdtstype>
+        <ptvctcnt>10560</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Azimuthal Equidistant</mapprojn>
+          <azimequi>
+            <longcm>-170</longcm>
+            <latprjo>70</latprjo>
+            <feast>0</feast>
+            <fnorth>0</fnorth>
+          </azimequi>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>1</absres>
+            <ordres>1</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+    </horizsys>
+    <vertdef>
+      <depthsys>
+        <depthdn>Local surface</depthdn>
+        <depthdu>
+        </depthdu>
+        <depthem>
+        </depthem>
+      </depthsys>
+    </vertdef>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Behavior track</enttypl>
+        <enttypd>Hourly walrus in water and foraging status.</enttypd>
+        <enttypds>USGS</enttypds>
+      </enttyp>
+    </detailed>
+  </eainfo>
+  <metainfo>
+    <metd>20100225</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper missing="True">
+          </cntper>
+        </cntperp>
+        <cntaddr>
+          <addrtype missing="True" />
+          <city missing="True" />
+          <state missing="True" />
+          <postal missing="True" />
+        </cntaddr>
+        <cntvoice missing="True" />
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
+</metadata>
