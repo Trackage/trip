@@ -28,7 +28,8 @@ trip events.
 }
 \details{
 Zero-length lines cannot be summed directly, their time value is summed by
-assuming the line is a point. A warning is given. The density method returns
+assuming the line is a point. A warning used to be given, but as it achieved
+nothing but create confusion it has been removed. The density method returns
 proportionate values, not summed time durations.
 
 See \code{pixellate.psp} and \code{pixellate.ppp} for the details on the

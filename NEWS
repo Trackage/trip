@@ -1,5 +1,7 @@
    CHANGES IN trip VERSION 1.5.0
 
+o removed an problematic warning
+
 o new data set walrus818
 
 o new function homedist

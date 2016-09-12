@@ -78,7 +78,8 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
 #' 
 #' 
 #' Zero-length lines cannot be summed directly, their time value is summed by
-#' assuming the line is a point. A warning is given. The density method returns
+#' assuming the line is a point. A warning used to be given, but as it achieved
+#' nothing but create confusion it has been removed. The density method returns
 #' proportionate values, not summed time durations.
 #' 
 #' See \code{pixellate.psp} and \code{pixellate.ppp} for the details on the
@@ -171,19 +172,19 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         }
         res$z <- res$z + t(v)
     }
-    if (zero.lengths) {
-        msg <- paste("zero length lines present, time durations binned",
-                     "into zero length lines present, time durations",
-                     "binned into cells assuming point-presence of",
-                     "degenerate line segment")
-        warning(msg)
-        cat("\n")
-        if (method == "pixellate") {
-            cat(paste("Total time of trips:", sm, "\n"))
-            cat(paste("Total time without zero length lines:",
-                      sm - sz, "\n"))
-        }
-    }
+#    if (zero.lengths) {
+#        msg <- paste("zero length lines present, time durations binned",
+#                     "into zero length lines present, time durations",
+#                     "binned into cells assuming point-presence of",
+#                     "degenerate line segment")
+#        warning(msg)
+#        cat("\n")
+#        if (method == "pixellate") {
+#            cat(paste("Total time of trips:", sm, "\n"))
+#            cat(paste("Total time without zero length lines:",
+#                      sm - sz, "\n"))
+#        }
+#    }
     image2Grid(res, p4=proj4string(x))
 }
 
