@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>argos.sigma. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Assign numeric values for Argos &quot;class&quot;</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='argos.sigma.html'>argos.sigma</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">sigma</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="number">100</span><span class="keyword">,</span> <span class="number">80</span><span class="keyword">,</span> <span class="number">50</span><span class="keyword">,</span> <span class="number">20</span><span class="keyword">,</span> <span class="number">10</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">adjust</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">111.12</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>factor of Argos location quality &quot;classes&quot;</dd>
+      <dt>sigma</dt>
+      <dd>numeric values (by default in kilometres)</dd>
+      <dt>adjust</dt>
+      <dd>a numeric adjustment to convert from kms to degrees</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+Numeric values for given levels.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Assign numeric values for Argos &quot;class&quot; by matching the levels available to
+given numbers. An adjustment is made to allow sigma to be specified in
+kilometeres, and the values returned are the approximate values for longlat
+degrees.  It is assumed that the levels are part of an &quot;ordered&quot; factor from
+least precise to most precise.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The available levels in Argos are <code>levels=c(&quot;Z&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;1&quot;,
+&quot;2&quot;, &quot;3&quot;)</code>.</p>
+
+      <p>The actual sigma values given by default are (as far as can be determined) a
+reasonable stab at what Argos believes.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+
+<span class="symbol">cls</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/factor'>ordered</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/dplyr/topics/sample'>sample</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"Z"</span><span class="keyword">,</span> <span class="string">"B"</span><span class="keyword">,</span> <span class="string">"A"</span><span class="keyword">,</span> <span class="string">"0"</span><span class="keyword">,</span> <span class="string">"1"</span><span class="keyword">,</span> <span class="string">"2"</span><span class="keyword">,</span> <span class="string">"3"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="number">30</span><span class="keyword">,</span>
+                      <span class="argument">replace</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">,</span>
+               <span class="argument">levels</span><span class="argument">=</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"Z"</span><span class="keyword">,</span> <span class="string">"B"</span><span class="keyword">,</span> <span class="string">"A"</span><span class="keyword">,</span> <span class="string">"0"</span><span class="keyword">,</span> <span class="string">"1"</span><span class="keyword">,</span> <span class="string">"2"</span><span class="keyword">,</span> <span class="string">"3"</span><span class="keyword">)</span><span class="keyword">)</span>
+<span class="functioncall"><a href='argos.sigma.html'>argos.sigma</a></span><span class="keyword">(</span><span class="symbol">cls</span><span class="keyword">)</span></div>
+<div class='output'>         Z          2          1          B          Z          0 
+0.89992801 0.03599712 0.08999280 0.71994240 0.89992801 0.17998560 
+         0          A          2          2          3          B 
+0.17998560 0.44996400 0.03599712 0.03599712 0.01799856 0.71994240 
+         Z          A          A          B          A          Z 
+0.89992801 0.44996400 0.44996400 0.71994240 0.44996400 0.89992801 
+         A          3          A          1          2          B 
+0.44996400 0.01799856 0.44996400 0.08999280 0.03599712 0.71994240 
+         3          2          Z          0          1          1 
+0.01799856 0.03599712 0.89992801 0.17998560 0.08999280 0.08999280 
+</div>
+<div class='input'></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>argos.sigma</li>
+    </ul>
+    <ul>
+      <li>manip</li>
+    </ul> -->
+
+
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

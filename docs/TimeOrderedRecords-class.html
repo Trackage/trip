@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>TimeOrderedRecords-class. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>A class for the identifiers of DateTime and ID records in spatial data.</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The main use of this class and creator function is for
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>s which are used with
+TimeOrderedRecords for the class <code>trip</code>.</p>
+
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>Future versions may change significantly, this class is
+very basic and could probably be implemented in a better
+way. Specifying TOR columns by formula would be a useful addition.</p>
+
+    </div>
+
+    <div class="Slots">
+      <h2>Slots</h2>
+
+      <p></p>
+
+      <p><dl>
+   <dt><code>TOR.columns</code>:</dt><dd>2-element vector of class <code>&quot;character&quot;</code></dd></p>
+
+      <p></dl></p>
+
+      <p></p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/RClassUtils'>showClass</a></span><span class="keyword">(</span><span class="string">"TimeOrderedRecords"</span><span class="keyword">)</span></div>
+<div class='output'>Class &quot;TimeOrderedRecords&quot; [package &quot;trip&quot;]
+
+Slots:
+                  
+Name:  TOR.columns
+Class:   character
+
+Known Subclasses: &quot;trip&quot;
+</div>
+<div class='input'><span class="symbol">tor</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/new'>new</a></span><span class="keyword">(</span><span class="string">"TimeOrderedRecords"</span><span class="keyword">,</span> <span class="argument">TOR.columns</span><span class="argument">=</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"datetime"</span><span class="keyword">,</span> <span class="string">"ID"</span><span class="keyword">)</span><span class="keyword">)</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>TimeOrderedRecords-class</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p><code><a href='TimeOrderedRecords.html'>TimeOrderedRecords</a></code>, <code><a href='trip-methods.html'>trip</a></code> for creating trip objects, and <code><a href='trip-class.html'>trip-class</a></code> for that class</p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

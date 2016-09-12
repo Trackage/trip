@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>cut.trip. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michael D. Sumner and Sebastian Luque
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Split trip events into exact time-based boundaries.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="comment"># S3 method for trip</span>
+<span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/cut'>cut</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="symbol">breaks</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>A trip object.</dd>
+      <dt>breaks</dt>
+      <dd>A character string such as the <code>breaks</code> argument
+for <code><a href='http://www.rdocumentation.org/packages/base/topics/cut.POSIXt'>cut.POSIXt</a></code>, or alternatively a vector of
+date-time boundaries. (If the latter hese must encompass all the time range of
+the entire trip object.)</dd>
+      <dt>...</dt>
+      <dd>Unused arguments.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A list of trip objects, named by the time boundary in which they lie.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Split trip events within a single object into exact time boundaries, adding
+interpolated coordinates as required.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Motion between boundaries is assumed linear and extra coordinates are added
+at the cut points.</p>
+
+      <p>This function was completely rewritten in version 1.1-20.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># set.seed(66)</span>
+<span class="comment"># d &lt;- data.frame(x=1:100, y=rnorm(100, 1, 10),</span>
+<span class="comment">#                 tms= as.POSIXct(as.character(Sys.time()), tz = "GMT") + c(seq(10, 1000, length=50),</span>
+<span class="comment">#                 seq(100, 1500, length=50)), id=gl(2, 50))</span>
+<span class="comment"># coordinates(d) &lt;- ~x+y</span>
+<span class="comment"># tr &lt;- trip(d, c("tms", "id"))</span>
+<span class="comment"># </span>
+<span class="comment"># cut(tr, "200 sec")</span>
+<span class="comment"># </span>
+<span class="comment"># bound.dates &lt;- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)</span>
+<span class="comment"># trip.list &lt;- cut(tr, bound.dates)</span>
+<span class="comment"># bb &lt;- bbox(tr)</span>
+<span class="comment"># cn &lt;- c(20, 8)</span>
+<span class="comment"># g &lt;- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)</span>
+<span class="comment"># </span>
+<span class="comment"># tg &lt;- tripGrid(tr, grid=g)</span>
+<span class="comment"># tg &lt;- as.image.SpatialGridDataFrame(tg)</span>
+<span class="comment"># tg$x &lt;- tg$x - diff(tg$x[1:2]) / 2</span>
+<span class="comment"># tg$y &lt;- tg$y - diff(tg$y[1:2]) / 2</span>
+<span class="comment"># </span>
+<span class="comment"># op &lt;- par(mfcol=c(4, 1))</span>
+<span class="comment"># for (i in 1:length(trip.list)) {</span>
+<span class="comment">#   plot(coordinates(tr), pch=16, cex=0.7)</span>
+<span class="comment">#   title(names(trip.list)[i], cex.main=0.9)</span>
+<span class="comment">#   lines(trip.list[[i]])</span>
+<span class="comment">#   abline(h=tg$y, v=tg$x, col="grey")</span>
+<span class="comment">#   image(tripGrid(trip.list[[i]], grid=g), interpolate=FALSE,</span>
+<span class="comment">#   col=c("white", grey(seq(0.2, 0.7,  length=256))),add=TRUE)</span>
+<span class="comment">#   abline(h=tg$y, v=tg$x,  col="grey")</span>
+<span class="comment">#   lines(trip.list[[i]])</span>
+<span class="comment">#   points(trip.list[[i]], pch=16, cex=0.7)</span>
+<span class="comment"># }</span>
+<span class="comment"># </span>
+<span class="comment"># par(op)</span>
+<span class="comment"># print("you may need to resize the window to see the grid data")</span>
+<span class="comment"># </span>
+<span class="comment"># cn &lt;- c(200, 80)</span>
+<span class="comment"># g &lt;- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)</span>
+<span class="comment"># </span>
+<span class="comment"># tg &lt;- tripGrid(tr, grid=g)</span>
+<span class="comment"># tg &lt;- as.image.SpatialGridDataFrame(tg)</span>
+<span class="comment"># tg$x &lt;- tg$x - diff(tg$x[1:2]) / 2</span>
+<span class="comment"># tg$y &lt;- tg$y - diff(tg$y[1:2]) / 2</span>
+<span class="comment"># </span>
+<span class="comment"># op &lt;- par(mfcol=c(4, 1))</span>
+<span class="comment"># for (i in 1:length(trip.list)) {</span>
+<span class="comment">#   plot(coordinates(tr), pch=16, cex=0.7)</span>
+<span class="comment">#   title(names(trip.list)[i], cex.main=0.9)</span>
+<span class="comment">#   image(tripGrid(trip.list[[i]], grid=g, method="density", sigma=1),</span>
+<span class="comment">#         interpolate=FALSE,</span>
+<span class="comment">#         col=c("white", grey(seq(0.2, 0.7, length=256))),</span>
+<span class="comment">#         add=TRUE)</span>
+<span class="comment">#   lines(trip.list[[i]])</span>
+<span class="comment">#   points(trip.list[[i]], pch=16, cex=0.7)</span>
+<span class="comment"># }</span>
+<span class="comment"># </span>
+<span class="comment"># par(op)</span>
+<span class="comment"># print("you may need to resize the window to see the grid data")</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>cut.trip</li>
+    </ul>
+    <ul>
+      <li>chron</li><li>manip</li>
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>See also <code><a href='tripGrid.html'>tripGrid</a></code>.</p>
+
+    
+
+    <h2>Author</h2>
+    
+Michael D. Sumner and Sebastian Luque
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

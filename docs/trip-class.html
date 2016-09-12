@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>trip-class. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>A class for sets of animal trips (track data).</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>An extension of <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code> by including
+<code>&quot;TimeOrderedRecords&quot;</code>.  The records within the data frame are
+explicitly ordered by DateTime data within IDs.</p>
+
+    </div>
+
+    <div class="Objects from the Class">
+      <h2>Objects from the Class</h2>
+
+      <p></p>
+
+      <p>Objects can be created by calls of the form
+<code>trip(obj=&quot;SpatialPointsDataFrame&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>.
+The object contains all the slots present within a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>, particularly <code>data</code> which
+contains columns of at least those specified by <code>TOR.columns</code>.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+
+<span class="functioncall"><a href='http://www.rdocumentation.org/packages/methods/topics/RClassUtils'>showClass</a></span><span class="keyword">(</span><span class="string">"trip"</span><span class="keyword">)</span></div>
+<div class='output'>Class &quot;trip&quot; [package &quot;trip&quot;]
+
+Slots:
+                                                      
+Name:  TOR.columns        data  coords.nrs      coords
+Class:   character  data.frame     numeric      matrix
+                              
+Name:         bbox proj4string
+Class:      matrix         CRS
+
+Extends: 
+Class &quot;TimeOrderedRecords&quot;, directly
+Class &quot;SpatialPointsDataFrame&quot;, directly
+Class &quot;SpatialPoints&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 2
+Class &quot;Spatial&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 3
+Class &quot;SpatialVector&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 3
+</div>
+<div class='input'>
+<span class="comment">## Examples of general methods</span>
+<span class="comment">## Continuing the example from '?trip-methods:</span>
+<span class="package">utils</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/utils/topics/example'>example</a></span><span class="keyword">(</span><span class="string">"trip-methods"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"trip"</span><span class="keyword">,</span>
+               <span class="argument">ask</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">echo</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+no help found for ‘trip-methods’</strong>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<div class='output'>       Length Class Mode
+  [1,]  21    trip  S4  
+  [2,]  68    trip  S4  
+  [3,] 231    trip  S4  
+  [4,] 223    trip  S4  
+  [5,] 178    trip  S4  
+  [6,] 199    trip  S4  
+  [7,] 200    trip  S4  
+  [8,] 237    trip  S4  
+  [9,] 250    trip  S4  
+ [10,] 250    trip  S4  
+ [11,] 260    trip  S4  
+ [12,] 282    trip  S4  
+ [13,] 295    trip  S4  
+ [14,] 281    trip  S4  
+ [15,] 271    trip  S4  
+ [16,] 249    trip  S4  
+ [17,] 248    trip  S4  
+ [18,] 224    trip  S4  
+ [19,] 191    trip  S4  
+ [20,] 216    trip  S4  
+ [21,] 200    trip  S4  
+ [22,] 200    trip  S4  
+ [23,] 194    trip  S4  
+ [24,] 200    trip  S4  
+ [25,] 200    trip  S4  
+ [26,] 181    trip  S4  
+ [27,] 175    trip  S4  
+ [28,] 181    trip  S4  
+ [29,] 175    trip  S4  
+ [30,] 175    trip  S4  
+ [31,] 175    trip  S4  
+ [32,] 175    trip  S4  
+ [33,] 175    trip  S4  
+ [34,] 171    trip  S4  
+ [35,] 150    trip  S4  
+ [36,] 125    trip  S4  
+ [37,] 125    trip  S4  
+ [38,] 103    trip  S4  
+ [39,] 107    trip  S4  
+ [40,] 121    trip  S4  
+ [41,] 111    trip  S4  
+ [42,] 125    trip  S4  
+ [43,] 125    trip  S4  
+ [44,] 125    trip  S4  
+ [45,] 130    trip  S4  
+ [46,] 146    trip  S4  
+ [47,] 125    trip  S4  
+ [48,] 123    trip  S4  
+ [49,] 100    trip  S4  
+ [50,] 100    trip  S4  
+ [51,]  85    trip  S4  
+ [52,]  75    trip  S4  
+ [53,]  56    trip  S4  
+ [54,]  54    trip  S4  
+ [55,]  75    trip  S4  
+ [56,]  74    trip  S4  
+ [57,]  43    trip  S4  
+ [58,]  25    trip  S4  
+ [59,]  25    trip  S4  
+ [60,]  25    trip  S4  
+ [61,]  25    trip  S4  
+ [62,]  19    trip  S4  
+ [63,]   3    trip  S4  
+ [64,]  25    trip  S4  
+ [65,]  25    trip  S4  
+ [66,]  25    trip  S4  
+ [67,]  25    trip  S4  
+ [68,]  23    trip  S4  
+ [69,]  18    trip  S4  
+ [70,]  50    trip  S4  
+ [71,]  50    trip  S4  
+ [72,]  50    trip  S4  
+ [73,]  50    trip  S4  
+ [74,]  50    trip  S4  
+ [75,]  50    trip  S4  
+ [76,]  50    trip  S4  
+ [77,]  50    trip  S4  
+ [78,]  50    trip  S4  
+ [79,]  50    trip  S4  
+ [80,]  50    trip  S4  
+ [81,]  30    trip  S4  
+ [82,]  25    trip  S4  
+ [83,]  25    trip  S4  
+ [84,]  25    trip  S4  
+ [85,]  25    trip  S4  
+ [86,]  31    trip  S4  
+ [87,]  50    trip  S4  
+ [88,]  50    trip  S4  
+ [89,]  50    trip  S4  
+ [90,]  32    trip  S4  
+ [91,]  25    trip  S4  
+ [92,]  25    trip  S4  
+ [93,]  25    trip  S4  
+ [94,]  25    trip  S4  
+ [95,]  25    trip  S4  
+ [96,]  25    trip  S4  
+ [97,]  25    trip  S4  
+ [98,]  25    trip  S4  
+ [99,]  25    trip  S4  
+[100,]  25    trip  S4  
+[101,]  25    trip  S4  
+[102,]  25    trip  S4  
+[103,]  25    trip  S4  
+[104,]  25    trip  S4  
+[105,]  25    trip  S4  
+[106,]  25    trip  S4  
+[107,]  25    trip  S4  
+[108,]  25    trip  S4  
+[109,]  25    trip  S4  
+[110,]  25    trip  S4  
+[111,]  25    trip  S4  
+[112,]  20    trip  S4  
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/plot'>plot</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<strong class='error'>Error in xy.coords(x, y, xlabel, ylabel, log): &#39;x&#39; is a list, but does not have components &#39;x&#39; and &#39;y&#39;</strong>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<strong class='error'>Error in xy.coords(x, y): &#39;x&#39; is a list, but does not have components &#39;x&#39; and &#39;y&#39;</strong>
+<div class='input'>
+<span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/dimensions'>dim</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<div class='output'>NULL
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/names'>names</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<div class='output'>NULL
+</div>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/subset'>subset</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">,</span> <span class="symbol">id</span> == <span class="string">"2"</span><span class="keyword">)</span></div>
+<strong class='error'>Error in id == &quot;2&quot;: comparison (1) is possible only for atomic and list types</strong>
+<div class='input'><span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/as.data.frame'>as.data.frame</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<strong class='error'>Error in (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE,     fix.empty.names = TRUE, stringsAsFactors = default.stringsAsFactors()) {    data.row.names &lt;- if (check.rows &amp;&amp; is.null(row.names))         function(current, new, i) {            if (is.character(current))                 new &lt;- as.character(new)            if (is.character(new))                 current &lt;- as.character(current)            if (anyDuplicated(new))                 return(current)            if (is.null(current))                 return(new)            if (all(current == new) || all(current == &quot;&quot;))                 return(new)            stop(gettextf(&quot;mismatch of row names in arguments of &#39;data.frame&#39;, item %d&quot;,                 i), domain = NA)        }    else function(current, new, i) {        if (is.null(current)) {            if (anyDuplicated(new)) {                warning(gettextf(&quot;some row.names duplicated: %s --&gt; row.names NOT used&quot;,                   paste(which(duplicated(new)), collapse = &quot;,&quot;)),                   domain = NA)                current            }            else new        }        else current    }    object &lt;- as.list(substitute(list(...)))[-1L]    mirn &lt;- missing(row.names)    mrn &lt;- is.null(row.names)    x &lt;- list(...)    n &lt;- length(x)    if (n &lt; 1L) {        if (!mrn) {            if (is.object(row.names) || !is.integer(row.names))                 row.names &lt;- as.character(row.names)            if (anyNA(row.names))                 stop(&quot;row names contain missing values&quot;)            if (anyDuplicated(row.names))                 stop(gettextf(&quot;duplicate row.names: %s&quot;, paste(unique(row.names[duplicated(row.names)]),                   collapse = &quot;, &quot;)), domain = NA)        }        else row.names &lt;- integer()        return(structure(list(), names = character(), row.names = row.names,             class = &quot;data.frame&quot;))    }    vnames &lt;- names(x)    if (length(vnames) != n)         vnames &lt;- character(n)    no.vn &lt;- !nzchar(vnames)    vlist &lt;- vnames &lt;- as.list(vnames)    nrows &lt;- ncols &lt;- integer(n)    for (i in seq_len(n)) {        xi &lt;- if (is.character(x[[i]]) || is.list(x[[i]]))             as.data.frame(x[[i]], optional = TRUE, stringsAsFactors = stringsAsFactors)        else as.data.frame(x[[i]], optional = TRUE)        nrows[i] &lt;- .row_names_info(xi)        ncols[i] &lt;- length(xi)        namesi &lt;- names(xi)        if (ncols[i] &gt; 1L) {            if (length(namesi) == 0L)                 namesi &lt;- seq_len(ncols[i])            vnames[[i]] &lt;- if (no.vn[i])                 namesi            else paste(vnames[[i]], namesi, sep = &quot;.&quot;)        }        else if (length(namesi)) {            vnames[[i]] &lt;- namesi        }        else if (fix.empty.names &amp;&amp; no.vn[[i]]) {            tmpname &lt;- deparse(object[[i]], nlines = 1L)[1L]            if (substr(tmpname, 1L, 2L) == &quot;I(&quot;) {                ntmpn &lt;- nchar(tmpname, &quot;c&quot;)                if (substr(tmpname, ntmpn, ntmpn) == &quot;)&quot;)                   tmpname &lt;- substr(tmpname, 3L, ntmpn - 1L)            }            vnames[[i]] &lt;- tmpname        }        if (mirn &amp;&amp; nrows[i] &gt; 0L) {            rowsi &lt;- attr(xi, &quot;row.names&quot;)            if (any(nzchar(rowsi)))                 row.names &lt;- data.row.names(row.names, rowsi,                   i)        }        nrows[i] &lt;- abs(nrows[i])        vlist[[i]] &lt;- xi    }    nr &lt;- max(nrows)    for (i in seq_len(n)[nrows &lt; nr]) {        xi &lt;- vlist[[i]]        if (nrows[i] &gt; 0L &amp;&amp; (nr%%nrows[i] == 0L)) {            xi &lt;- unclass(xi)            fixed &lt;- TRUE            for (j in seq_along(xi)) {                xi1 &lt;- xi[[j]]                if (is.vector(xi1) || is.factor(xi1))                   xi[[j]] &lt;- rep(xi1, length.out = nr)                else if (is.character(xi1) &amp;&amp; inherits(xi1, &quot;AsIs&quot;))                   xi[[j]] &lt;- structure(rep(xi1, length.out = nr),                     class = class(xi1))                else if (inherits(xi1, &quot;Date&quot;) || inherits(xi1,                   &quot;POSIXct&quot;))                   xi[[j]] &lt;- rep(xi1, length.out = nr)                else {                  fixed &lt;- FALSE                  break                }            }            if (fixed) {                vlist[[i]] &lt;- xi                next            }        }        stop(gettextf(&quot;arguments imply differing number of rows: %s&quot;,             paste(unique(nrows), collapse = &quot;, &quot;)), domain = NA)    }    value &lt;- unlist(vlist, recursive = FALSE, use.names = FALSE)    vnames &lt;- unlist(vnames[ncols &gt; 0L])    if (fix.empty.names &amp;&amp; any(noname &lt;- !nzchar(vnames)))         vnames[noname] &lt;- paste(&quot;Var&quot;, seq_along(vnames), sep = &quot;.&quot;)[noname]    if (check.names) {        if (fix.empty.names)             vnames &lt;- make.names(vnames, unique = TRUE)        else {            nz &lt;- nzchar(vnames)            vnames[nz] &lt;- make.names(vnames[nz], unique = TRUE)        }    }    names(value) &lt;- vnames    if (!mrn) {        if (length(row.names) == 1L &amp;&amp; nr != 1L) {            if (is.character(row.names))                 row.names &lt;- match(row.names, vnames, 0L)            if (length(row.names) != 1L || row.names &lt; 1L ||                 row.names &gt; length(vnames))                 stop(&quot;&#39;row.names&#39; should specify one of the variables&quot;)            i &lt;- row.names            row.names &lt;- value[[i]]            value &lt;- value[-i]        }        else if (!is.null(row.names) &amp;&amp; length(row.names) !=             nr)             stop(&quot;row names supplied are of the wrong length&quot;)    }    else if (!is.null(row.names) &amp;&amp; length(row.names) != nr) {        warning(&quot;row names were found from a short variable and have been discarded&quot;)        row.names &lt;- NULL    }    if (is.null(row.names))         row.names &lt;- .set_row_names(nr)    else {        if (is.object(row.names) || !is.integer(row.names))             row.names &lt;- as.character(row.names)        if (anyNA(row.names))             stop(&quot;row names contain missing values&quot;)        if (anyDuplicated(row.names))             stop(gettextf(&quot;duplicate row.names: %s&quot;, paste(unique(row.names[duplicated(row.names)]),                 collapse = &quot;, &quot;)), domain = NA)    }    attr(value, &quot;row.names&quot;) &lt;- row.names    attr(value, &quot;class&quot;) &lt;- &quot;data.frame&quot;    value})(&lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     &lt;S4 object of class structure(&quot;trip&quot;, package = &quot;trip&quot;)&gt;,     check.names = TRUE, fix.empty.names = TRUE, stringsAsFactors = TRUE): arguments imply differing number of rows: 21, 68, 231, 223, 178, 199, 200, 237, 250, 260, 282, 295, 281, 271, 249, 248, 224, 191, 216, 194, 181, 175, 171, 150, 125, 103, 107, 121, 111, 130, 146, 123, 100, 85, 75, 56, 54, 74, 43, 25, 19, 3, 23, 18, 50, 30, 31, 32, 20</strong>
+<div class='input'>
+<span class="symbol">tr</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">,</span> <span class="keyword">]</span></div>
+<strong class='error'>Error in tr[1:3, ]: incorrect number of dimensions</strong>
+<div class='input'><span class="symbol">tr</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span></div>
+<strong class='error'>Error in tr[, 1]: incorrect number of dimensions</strong>
+<div class='input'><span class="symbol">tr</span><span class="keyword">[[</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">]</span></div>
+<div class='output'>
+Object of class trip
+  tripID (&quot;id&quot;) No.Records  startTime (&quot;time&quot;) endTime (&quot;time&quot;)
+1           353         21 2009-09-15 04:00:00       2009-09-16
+  tripDuration
+1     20 hours
+
+  data.columns data.class                  
+1         time    POSIXct **trip DateTime**
+2           id    integer **trip ID**      
+
+</div>
+<div class='input'>
+<span class="keyword">if</span> <span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/exists'>exists</a></span><span class="keyword">(</span><span class="string">"porpoise"</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">{</span>
+    <span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/dimensions'>dim</a></span><span class="keyword">(</span><span class="symbol">porpoise</span><span class="keyword">)</span>
+    <span class="functioncall"><a href='http://www.rdocumentation.org/packages/raster/topics/names'>names</a></span><span class="keyword">(</span><span class="symbol">porpoise</span><span class="keyword">)</span>
+    <span class="symbol">porpoise</span><span class="keyword">[</span><span class="symbol">porpoise</span><span class="keyword">[[</span><span class="string">"id"</span><span class="keyword">]</span><span class="keyword">]</span> == <span class="string">"GUS"</span><span class="keyword">,</span> <span class="keyword">]</span>
+<span class="keyword">}</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>lines,trip-method</li><li>plot,trip,missing-method</li><li>show,summary.TORdata-method</li><li>show,trip-method</li><li>subset,trip-method</li><li>summary,trip-method</li><li>trip-class</li>
+    </ul>
+    <ul>
+      <li>classes</li>
+    </ul> -->
+
+    <h2>See also</h2>
+      <p><code><a href='trip-methods.html'>trip</a></code> for examples of directly using the class.</p>
+
+      <p><code><a href='trip-accessors.html'>trip-accessors</a></code> describes methods for accessing information on
+<code>trip</code> objects.</p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

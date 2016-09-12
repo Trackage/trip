@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>trackDistance. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Roger Bivand and Michael Sumner
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Determine distances along a track</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='trackDistance.html'>trackDistance</a></span><span class="keyword">(</span><span class="symbol">x1</span><span class="keyword">,</span> <span class="symbol">y1</span><span class="keyword">,</span> <span class="symbol">x2</span><span class="keyword">,</span> <span class="symbol">y2</span><span class="keyword">,</span> <span class="argument">longlat</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">prev</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">FALSE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x1</dt>
+      <dd>trip object, matrix of 2-columns, with x/y coordinates OR a vector
+of x start coordinates</dd>
+      <dt>y1</dt>
+      <dd>vector of y start coordinates, if x1 is not a matrix</dd>
+      <dt>x2</dt>
+      <dd>vector of x end coordinates, if x1 is not a matrix</dd>
+      <dt>y2</dt>
+      <dd>vector of y end coordinates, if x1 is not a matrix</dd>
+      <dt>longlat</dt>
+      <dd>if FALSE, Euclidean distance, if TRUE Great Circle distance</dd>
+      <dt>prev</dt>
+      <dd>if TRUE and x1 is a trip, the return value has a padded end
+value (\&quot;prev\&quot;ious), rather than start (\&quot;next\&quot;)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+Vector of distances between coordinates.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Calculate the distances between subsequent 2-D coordinates using Euclidean
+or Great Circle distance (WGS84 ellipsoid) methods.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>If <code>x1</code> is a trip object, arguments <code>x2</code>, <code>x3</code>, <code>y2</code> are
+ignored and the return result has an extra element for the start point of
+each individual trip, with value 0.0.</p>
+
+      <p>The <code>prev</code> argument is ignore unless x1 is a trip.</p>
+
+      <p>Distance values are in the units of the input coordinate system when longlat
+is FALSE, and in kilometres when longlat is TRUE.</p>
+
+      <p>This originally used <code><a href='http://www.rdocumentation.org/packages/sp/topics/spDistsN1'>spDistsN1</a></code> but now implements the sp
+<code>gcdist</code> source directly in R.</p>
+
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Original source taken from sp package.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>  <span class="comment">## Continuing the example from '?"trip-methods"':</span>
+<span class="package">utils</span><span class="keyword">::</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/utils/topics/example'>example</a></span><span class="keyword">(</span><span class="string">"trip-methods"</span><span class="keyword">,</span> <span class="argument">package</span><span class="argument">=</span><span class="string">"trip"</span><span class="keyword">,</span>
+               <span class="argument">ask</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">,</span> <span class="argument">echo</span><span class="argument">=</span><span class="number">FALSE</span><span class="keyword">)</span></div>
+<strong class='warning'>Warning message:
+no help found for ‘trip-methods’</strong>
+<div class='input'>
+ <span class="comment">## the method knows this is a trip, so there is a distance for every</span>
+ <span class="comment">## point, including 0s as the start and at transitions between</span>
+ <span class="comment">## individual trips</span>
+<span class="functioncall"><a href='trackDistance.html'>trackDistance</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">)</span></div>
+<strong class='error'>Error in trackDistance.default(tr): x1 is not a matrix and multiple arguments not specified</strong>
+<div class='input'>
+<span class="comment">## the default method does not know about the trips, so this is</span>
+<span class="comment">##(n-1) distances between all points</span>
+<span class="comment">## trackDistance(coordinates(tr), longlat = FALSE)</span>
+
+<span class="comment">## we get NA at the start, end and at transitions between trips</span>
+
+ <span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#  require(rgdal)</span>
+<span class="comment">#  trackAngle(tr)</span>
+<span class="comment">#  </span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>trackDistance</li><li>trackDistance.default</li><li>trackDistance.trip</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+
+
+    <h2>Author</h2>
+    
+Roger Bivand and Michael Sumner
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>filter.penSS. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Simon Wotherspoon and Michael Sumner
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Non-destructive smoothing filter</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='filter.penSS.html'>filter.penSS</a></span><span class="keyword">(</span><span class="symbol">tr</span><span class="keyword">,</span> <span class="symbol">lambda</span><span class="keyword">,</span> <span class="argument">first</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">last</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>tr</dt>
+      <dd>A <code>trip</code> object.</dd>
+      <dt>lambda</dt>
+      <dd>Smoothing parameter, see Details.</dd>
+      <dt>first</dt>
+      <dd>Fix the first location and prevent it from being updated by the
+filter.</dd>
+      <dt>last</dt>
+      <dd>Fix the last location and prevent it from being updated by the
+filter.</dd>
+      <dt>...</dt>
+      <dd>Arguments passed on to <code><a href='http://www.rdocumentation.org/packages/stats/topics/nlm'>nlm</a></code></dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A trip object with updated coordinate values based on the filter - all the
+data, including original coordinates which are maintained in the trip data
+frame.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Non-destructive filter for track data using penalty smoothing on velocity.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Destructive filters such as <code><a href='speedfilter.html'>speedfilter</a></code> can be recast using a
+penalty smoothing approach in the style of Green and Silverman (1994).</p>
+
+      <p>This filter works by penalizing the fit of the smoothed track to the
+observed locations by the sum of squared velocities.  That is, we trade off
+goodness of fit against increasing the total sum of squared velocities.</p>
+
+      <p>When lambda=0 the smoothed track reproduces the raw track exactly.
+Increasing lambda favours tracks requiring less extreme velocities, at the
+expense of reproducing the original locations.</p>
+
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Green, P. J. and Silverman, B. W. (1994). Nonparametric regression and
+generalized linear models: a roughness penalty approach. CRC Press.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+
+<span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># ## Example takes a few minutes</span>
+<span class="comment"># </span>
+<span class="comment"># ## Fake some data</span>
+<span class="comment"># </span>
+<span class="comment"># ## Brownian motion tethered at each end</span>
+<span class="comment"># brownian.bridge &lt;- function(n, r) {</span>
+<span class="comment">#   x &lt;- cumsum(rnorm(n, 0, 1))</span>
+<span class="comment">#   x &lt;- x - (x[1] + seq(0, 1, length=n) * (x[n] - x[1]))</span>
+<span class="comment">#   r * x</span>
+<span class="comment"># }</span>
+<span class="comment"># </span>
+<span class="comment"># ## Number of days and number of obs</span>
+<span class="comment"># days &lt;- 50</span>
+<span class="comment"># n &lt;- 200</span>
+<span class="comment"># </span>
+<span class="comment"># ## Make separation between obs gamma distributed</span>
+<span class="comment"># x &lt;- rgamma(n, 3)</span>
+<span class="comment"># x &lt;- cumsum(x)</span>
+<span class="comment"># x &lt;- x/x[n]</span>
+<span class="comment"># </span>
+<span class="comment"># ## Track is lissajous + brownian bridge</span>
+<span class="comment"># b.scale &lt;- 0.6</span>
+<span class="comment"># r.scale &lt;- sample(c(0.1, 2, 10.2), n, replace=TRUE,</span>
+<span class="comment">#                   prob=c(0.8, 0.18, 0.02))</span>
+<span class="comment"># set.seed(44)</span>
+<span class="comment"># </span>
+<span class="comment"># tms &lt;- ISOdate(2001, 1, 1) + trunc(days * 24 * 60 * 60 *x)</span>
+<span class="comment"># lon &lt;- 120 + 20 * sin(2 * pi * x) +</span>
+<span class="comment">#     brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)</span>
+<span class="comment"># lat &lt;- -40 + 10 *(sin(3 * 2 * pi * x) + cos(2 * pi * x) - 1) +</span>
+<span class="comment">#     brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)</span>
+<span class="comment"># </span>
+<span class="comment"># tr &lt;- new("trip",</span>
+<span class="comment">#           SpatialPointsDataFrame(cbind(lon, lat),</span>
+<span class="comment">#                                  data.frame(gmt=tms, id="lbb")),</span>
+<span class="comment">#                                  TimeOrderedRecords(c("gmt", "id")))</span>
+<span class="comment"># plot(tr)</span>
+<span class="comment"># </span>
+<span class="comment"># ## the filtered version</span>
+<span class="comment"># trf &lt;- filter.penSS(tr, lambda=1, iterlim=400, print.level=1)</span>
+<span class="comment"># </span>
+<span class="comment"># lines(trf)</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>filter.penSS</li>
+    </ul>
+    <ul>
+      <li>manip</li><li>misc</li>
+    </ul> -->
+
+    <h2>See also</h2>
+      <p><code><a href='speedfilter.html'>speedfilter</a></code></p>
+
+    
+
+    <h2>Author</h2>
+    
+Simon Wotherspoon and Michael Sumner
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

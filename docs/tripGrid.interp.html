@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>tripGrid.interp. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Generate a grid of time spent using approximate methods</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='tripGrid.interp.html'>tripGrid.interp</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">grid</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span> <span class="argument">method</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"count"</span><span class="keyword">,</span> <span class="argument">dur</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='tripGrid.interp.html'>kdePoints</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">h</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span> <span class="argument">grid</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span> <span class="argument">resetTime</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='tripGrid.interp.html'>countPoints</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">dur</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">1</span><span class="keyword">,</span> <span class="argument">grid</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>object of class trip</dd>
+      <dt>grid</dt>
+      <dd>GridTopology - will be generated automatically if NULL</dd>
+      <dt>method</dt>
+      <dd>name of method for quantifying time spent, see Details</dd>
+      <dt>dur</dt>
+      <dd>The \&quot;dur\&quot;ation of time used to interpolate between available
+locations (see Details)</dd>
+      <dt>h</dt>
+      <dd>kernel bandwidth</dd>
+      <dt>resetTime</dt>
+      <dd>rescale result back to the total duration of the input</dd>
+      <dt>...</dt>
+      <dd>other arguments passed to <code>interpequal</code> or <code>kdePoints</code></dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+<code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
+one column &quot;z&quot; containing the time spent in each cell in seconds. If
+kdePoints is used the units are not related to the time values and must be
+scaled for further use.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Create a grid of time spent from an object of class <code>trip</code> by
+approximating the time between locations for separate trip events.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>This set of functions was the the original tripGrid from prior to version
+1.1-6. <code>tripGrid</code> should be used for more exact and fast calculations
+assuming linear motion between fixes.</p>
+
+      <p>The intention is for <code>tripGrid.interp</code> to be used for exploring
+approximate methods of line-to-cell gridding.</p>
+
+      <p>Trip locations are first interpolated, based on an equal-time spacing
+between records. These interpolated points are then &quot;binned&quot; to a grid of
+cells.  The time spacing is specified by the &quot;dur&quot;ation argument to
+<code>interpequal</code> in seconds (i.e. <code>dur=3600</code> is used for 1 hour).
+Shorter time periods will require longer computation with a closer
+approximation to the total time spent in the gridded result.</p>
+
+      <p>Currently there are methods &quot;count&quot; and &quot;kde&quot; for quantifying time spent,
+corresponding to the functions &quot;countPoints&quot; and &quot;kdePoints&quot;. &quot;kde&quot; uses
+kernel density to smooth the locations, &quot;count&quot; simply counts the points
+falling in a grid cell.</p>
+
+    </div>
+      </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>countPoints</li><li>interpequal</li><li>kdePoints</li><li>tripGrid.interp</li>
+    </ul>
+    <ul>
+      <li>manip</li>
+    </ul> -->
+
+    <h2>See also</h2>
+      <p><code><a href='http://www.rdocumentation.org/packages/MASS/topics/bandwidth.nrd'>bandwidth.nrd</a></code> for the calculation of bandwidth values used internally when not supplied by the user</p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

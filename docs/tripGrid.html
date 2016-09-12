@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>tripGrid. trip 1.5.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">trip 1.5.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Generate a grid of time spent by line-to-cell gridding</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='tripGrid.html'>tripGrid</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">,</span> <span class="argument">grid</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span> <span class="argument">method</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"pixellate"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>object of class <code>trip</code></dd>
+      <dt>grid</dt>
+      <dd>GridTopology - will be generated automatically if NULL</dd>
+      <dt>method</dt>
+      <dd>pixellate or density</dd>
+      <dt>...</dt>
+      <dd>pass arguments to density.psp if that method is chosen (and
+temporary mechanism to direct users of legacy methods to
+<code><a href='tripGrid.interp.html'>tripGrid.interp</a></code>)</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+<code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
+one column &quot;z&quot; containing the time spent in each cell in seconds.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Create a grid of time spent from an object of class <code>trip</code> by exact
+cell crossing methods, weighted by the time between locations for separate
+trip events.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Zero-length lines cannot be summed directly, their time value is summed by
+assuming the line is a point. A warning used to be given, but as it achieved
+nothing but create confusion it has been removed. The density method returns
+proportionate values, not summed time durations.</p>
+
+      <p>See <code>pixellate.psp</code> and <code>pixellate.ppp</code> for the details on the
+method used. See <code>density.psp</code> for method=&quot;density&quot;.</p>
+
+      <p>Trip events are assumed to start and end as per the object passed in. To
+work with inferred &quot;cutoff&quot; positions see <code>split.trip.exact</code>.</p>
+
+    </div>
+      </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>tripGrid</li>
+    </ul>
+    <ul>
+      <li>manip</li>
+    </ul> -->
+
+
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
