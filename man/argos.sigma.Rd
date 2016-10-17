@@ -19,7 +19,7 @@ Numeric values for given levels.
 \description{
 Assign numeric values for Argos "class" by matching the levels available to
 given numbers. An adjustment is made to allow sigma to be specified in
-kilometeres, and the values returned are the approximate values for longlat
+kilometres, and the values returned are the approximate values for longlat
 degrees.  It is assumed that the levels are part of an "ordered" factor from
 least precise to most precise.
 }

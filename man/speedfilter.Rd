@@ -30,7 +30,7 @@ maximum.  By default an (internal) root mean square function is used, this
 can be specified by the user.
 
 If the coordinates of the \code{trip} data are not projected, or NA the
-distance calculation assumeds longlat and kilometres (great circle). For
+distance calculation assumes longlat and kilometres (great circle). For
 projected coordinates the speed must match the units of the coordinate
 system.  (The PROJ.4 argument "units=km" is suggested).
 }

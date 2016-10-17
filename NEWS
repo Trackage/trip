@@ -1,14 +1,14 @@
    CHANGES IN trip VERSION 1.5.0
 
-o removed an problematic warning
+o removed a problematic warning
 
-o new data set walrus818
+o new data set walrus818, courtesy of Anthony Fischbach
 
 o new function homedist
 
 o added imports for recommended package functions
 
-o new replace method for one-step trip creation
+o new trip<- replace method for one-step trip creation
 
 o removed character method for spTransform, now standard in rgdal/sp
 

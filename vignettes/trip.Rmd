@@ -4,8 +4,8 @@ author: Michael Sumner
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 5
-    fig_height: 5
+    fig_width: 7
+    fig_height: 7
 vignette: >
   %\VignetteIndexEntry{trip}
   %\VignetteEngine{knitr::rmarkdown}
@@ -49,17 +49,21 @@ Plot of a rasterized version of the trip, by default this is a map of **time-spe
 # Walrus example
 
 Plot the walrus tracks on a map. 
+
 ```{r}
 data("walrus818")
 
 plot(walrus818, pch = ".")
 lines(walrus818)
+```
 
+
+```{r}
 library(maptools)
 library(rgdal)
 data(wrld_simpl)
-world <- spTransform(wrld_simpl, proj4string(walrus818))
-p <- par(xpd = NA, mar = rep(0, 4))
+world <- spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
+p <- par(xpd = NA, mar = rep(0.5, 4))
 plot(walrus818, pch = ".")
 plot(world, add = TRUE, col = "grey")
 lines(walrus818)
