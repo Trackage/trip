@@ -23,7 +23,8 @@ Suggests:
     rgdal,
     testthat, 
     covr, 
-    rmarkdown
+    rmarkdown, 
+    diveMove, argosfilter
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter
     for speed and create time spent maps from animal track data. There are

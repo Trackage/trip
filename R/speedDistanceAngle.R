@@ -13,7 +13,7 @@
 ##' locations. Marine Mammal Science, 24: 315?V325. doi:
 ##' 10.1111/j.1748-7692.2007.00180.x
 ##' @details This is an independent  implementation from that in the
-##' package argosfilter by Frietas 2008.
+##' package argosfilter by Freitas 2008.
 ##' @return logical vector, with \code{FALSE} values where the tests failed
 ##' @export
 sda <- function(x, smax, ang = c(15, 25), distlim = c(2.5, 5.0), pre = NULL) {

@@ -49,7 +49,7 @@ approximate methods of line-to-cell gridding.
 
 Trip locations are first interpolated, based on an equal-time spacing
 between records. These interpolated points are then "binned" to a grid of
-cells.  The time spacing is specified by the "dur"ation argument to
+cells.  The time spacing is specified by the \code{dur} (duration) argument to
 \code{interpequal} in seconds (i.e. \code{dur=3600} is used for 1 hour).
 Shorter time periods will require longer computation with a closer
 approximation to the total time spent in the gridded result.

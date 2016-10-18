@@ -26,7 +26,7 @@ combination of speed, distance and angle tests.
 }
 \details{
 This is an independent  implementation from that in the
-package argosfilter by Frietas 2008.
+package argosfilter by Freitas 2008.
 }
 \references{
 Freitas, C., Lydersen, C., Fedak, M. A. and Kovacs,
