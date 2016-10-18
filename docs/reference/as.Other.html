@@ -136,7 +136,23 @@ the start and end times, duration and the ID of the segment.</p>
 <span class='co'>## Continuing the example from '?trip-methods:</span>
 <span class='kw'>utils</span><span class='kw'>::</span><span class='fu'>example</span>(<span class='st'>"trip-methods"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"trip"</span>,
            <span class='kw'>ask</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>echo</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output'><strong class='text-warning'>Warning message:
-no help found for ‘trip-methods’</strong></div><div class='input'><span class='no'>spldf</span> <span class='kw'>&lt;-</span> <span class='fu'>explode</span>(<span class='no'>tr</span>)</div><strong class='error'>Error in getTORnames(x): object &#39;tr&#39; not found</strong><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><strong class='error'>Error in summary(tr): object &#39;tr&#39; not found</strong></pre>
+no help found for ‘trip-methods’</strong></div><div class='input'><span class='no'>spldf</span> <span class='kw'>&lt;-</span> <span class='fu'>explode</span>(<span class='no'>tr</span>)</div><strong class='error'>Error in getTORnames(x): trying to get slot &quot;TOR.columns&quot; from an object (class &quot;data.frame&quot;) that is not an S4 object </strong><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;       id                 time                     class        lon         
+#&gt;  Length:1912        Min.   :2002-09-10 00:11:29   Z: 26   Min.   :-99.787  
+#&gt;  Class :character   1st Qu.:2002-09-28 00:40:50   B:708   1st Qu.: 11.644  
+#&gt;  Mode  :character   Median :2002-10-21 07:18:41   A:460   Median : 11.944  
+#&gt;                     Mean   :2003-05-13 18:30:27   0: 95   Mean   : -3.475  
+#&gt;                     3rd Qu.:2002-11-14 06:35:42   1:231   3rd Qu.: 12.072  
+#&gt;                     Max.   :2006-11-23 05:09:59   2:224   Max.   : 17.783  
+#&gt;                                                   3:168                    
+#&gt;       lat       
+#&gt;  Min.   :40.45  
+#&gt;  1st Qu.:77.83  
+#&gt;  Median :78.81  
+#&gt;  Mean   :73.50  
+#&gt;  3rd Qu.:78.82  
+#&gt;  Max.   :81.15  
+#&gt;                 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3">
   </div>

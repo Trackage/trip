@@ -40,7 +40,7 @@
       <h1>The trip package</h1>
                         <h4 class="author">Michael Sumner</h4>
             
-            <h4 class="date">2016-10-17</h4>
+            <h4 class="date">2016-10-18</h4>
           </div>
 
     
@@ -51,20 +51,20 @@
 <div id="data-input-and-validation" class="section level2">
 <h2>Data input and validation</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(trip)
-d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">y=</span><span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">tms=</span><span class="kw">Sys.time</span>() +<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">id=</span><span class="kw">gl</span>(<span class="dv">2</span>, <span class="dv">5</span>))
+d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span>:<span class="dv">10</span>,<span class="dt">y=</span><span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="dt">tms=</span><span class="kw">Sys.time</span>() +<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">id=</span><span class="kw">gl</span>(<span class="dv">2</span>, <span class="dv">5</span>))
 <span class="kw">coordinates</span>(d) &lt;-<span class="st"> </span><span class="er">~</span>x+y
 ## a projection should always be set, is it WGS84 or NAD83 . . .
 <span class="kw">proj4string</span>(d) &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">"+proj=laea +ellps=sphere"</span>)
-tr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trip-methods.html">trip</a></span>(d, <span class="kw">c</span>(<span class="st">"tms"</span>, <span class="st">"id"</span>))
+tr &lt;-<span class="st"> </span><span class="kw">trip</span>(d, <span class="kw">c</span>(<span class="st">"tms"</span>, <span class="st">"id"</span>))
 <span class="kw">summary</span>(tr)</code></pre></div>
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms")
-## 1             1          5 2016-10-17 12:39:49 2016-10-17 12:39:53
-## 2             2          5 2016-10-17 12:39:54 2016-10-17 12:39:58
+## 1             1          5 2016-10-18 05:18:49 2016-10-18 05:18:53
+## 2             2          5 2016-10-18 05:18:54 2016-10-18 05:18:58
 ##   tripDuration tripDistance meanSpeed maxSpeed meanRMSspeed maxRMSspeed
-## 1       4 secs     5.163597  4647.237 4891.512     1108.240    4432.962
-## 2       4 secs     5.774084  5196.676 6524.512     1105.249    4420.998
+## 1       4 secs     8.190590  7371.531  9933.45     1577.602    6310.407
+## 2       4 secs     7.404171  6663.754 11054.78     1867.358    7469.430
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -72,90 +72,78 @@ tr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trip-met
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##       min       max
-## x  1.0000 10.000000
-## y -1.5124  1.623549
+##         min       max
+## x  1.000000 10.000000
+## y -1.488202  1.505859
 ## Is projected: TRUE 
 ## proj4string : [+proj=laea +ellps=sphere]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2016-10-17 23:39:49   1:5  
-##  1st Qu.:2016-10-17 23:39:51   2:5  
-##  Median :2016-10-17 23:39:54        
-##  Mean   :2016-10-17 23:39:54        
-##  3rd Qu.:2016-10-17 23:39:56        
-##  Max.   :2016-10-17 23:39:58</code></pre>
+##  Min.   :2016-10-18 16:18:49   1:5  
+##  1st Qu.:2016-10-18 16:18:51   2:5  
+##  Median :2016-10-18 16:18:53        
+##  Mean   :2016-10-18 16:18:53        
+##  3rd Qu.:2016-10-18 16:18:55        
+##  Max.   :2016-10-18 16:18:58</code></pre>
 </div>
 </div>
 <div id="simple-plotting" class="section level1">
 <h1>Simple plotting</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tr)
 <span class="kw">lines</span>(tr)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 <p>Plot of a very simple trip object.</p>
 </div>
 <div id="gridding-for-time-spent" class="section level1">
 <h1>Gridding for time spent</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rasterize.html">rasterize</a></span>(tr)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tg &lt;-<span class="st"> </span><span class="kw">rasterize</span>(tr)
 <span class="kw">plot</span>(tg, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">"transparent"</span>, <span class="kw">heat.colors</span>(<span class="dv">25</span>)))</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <p>Plot of a rasterized version of the trip, by default this is a map of <strong>time-spent</strong>.</p>
 </div>
-<div id="walrus-example" class="section level1">
-<h1>Walrus example</h1>
+<div id="walrus-tracks" class="section level1">
+<h1>Walrus tracks</h1>
 <p>Plot the walrus tracks on a map.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"walrus818"</span>)
 
 <span class="kw">plot</span>(walrus818, <span class="dt">pch =</span> <span class="st">"."</span>)
 <span class="kw">lines</span>(walrus818)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)</code></pre></div>
-<pre><code>## Checking rgeos availability: TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rgdal)</code></pre></div>
-<pre><code>## rgdal: version: 1.1-10, (SVN revision 622)
-##  Geospatial Data Abstraction Library extensions to R successfully loaded
-##  Loaded GDAL runtime: GDAL 1.11.2, released 2015/02/10
-##  Path to GDAL shared files: /usr/share/gdal/1.11
-##  Loaded PROJ.4 runtime: Rel. 4.8.0, 6 March 2012, [PJ_VERSION: 480]
-##  Path to PROJ.4 shared files: (autodetected)
-##  Linking to sp version: 1.2-3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(wrld_simpl)
+<p><img src="trip_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)
+<span class="kw">library</span>(rgdal)
+<span class="kw">data</span>(wrld_simpl)
 world &lt;-<span class="st"> </span><span class="kw">spTransform</span>(<span class="kw">subset</span>(wrld_simpl, <span class="kw">coordinates</span>(wrld_simpl)[,<span class="dv">2</span>] &gt;<span class="st"> </span><span class="dv">0</span>), <span class="kw">proj4string</span>(walrus818))
 p &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">xpd =</span> <span class="ot">NA</span>, <span class="dt">mar =</span> <span class="kw">rep</span>(<span class="fl">0.5</span>, <span class="dv">4</span>))
 <span class="kw">plot</span>(walrus818, <span class="dt">pch =</span> <span class="st">"."</span>)
 <span class="kw">plot</span>(world, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">"grey"</span>)
 <span class="kw">lines</span>(walrus818)
 <span class="kw">llgridlines</span>(walrus818); <span class="kw">par</span>(p)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 </div>
-<div id="example-data-from-divemove" class="section level1">
-<h1>Example data from diveMove</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##library(diveMove)
+<div id="combine-multipel-sets-of-track-data" class="section level1">
+<h1>Combine multipel sets of track data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(diveMove)
 fname &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">"data"</span>, <span class="st">"sealLocs.csv"</span>),
                        <span class="dt">package=</span><span class="st">"diveMove"</span>)
-if (<span class="kw">file.exists</span>(fname)) {
     dat &lt;-<span class="st"> </span><span class="kw">read.table</span>(fname, <span class="dt">sep=</span><span class="st">";"</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
     dat$class &lt;-<span class="st"> </span><span class="kw">ordered</span>(dat$class, <span class="kw">c</span>(<span class="st">"Z"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>))
     dat$time &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(dat$time, <span class="st">"%Y-%m-%d %H:%M:%S"</span>), <span class="dt">tz =</span> <span class="st">"GMT"</span>)
-}
 
-dat1 &lt;-<span class="st"> </span><span class="kw">subset</span>(dat, !<span class="kw">is.na</span>(dat$lon))
-<span class="kw">coordinates</span>(dat1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>)
-sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trip-methods.html">trip</a></span>(dat1, <span class="kw">c</span>(<span class="st">"time"</span>, <span class="st">"id"</span>))
+locs &lt;-<span class="st"> </span><span class="kw">subset</span>(dat, !<span class="kw">is.na</span>(dat$lon))
+<span class="kw">trip</span>(locs) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>, <span class="st">"id"</span>)
+<span class="kw">proj4string</span>(locs) &lt;-<span class="st"> " +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"</span>
 
 ## merge with data from argosfilter
-<span class="co">#library(argosfilter)</span>
-<span class="co">#data(seal)</span>
-##seal$id &lt;- "ringy2"
-##seal[["time"]] &lt;- seal$dtime
-##seal$dtime &lt;- NULL
+<span class="kw">library</span>(argosfilter)
+<span class="kw">data</span>(seal)
+seal$id &lt;-<span class="st"> "ringy2"</span>
+seal[[<span class="st">"time"</span>]] &lt;-<span class="st"> </span>seal$dtime
+seal$dtime &lt;-<span class="st"> </span><span class="ot">NULL</span>
 ## reconstruct the Argos labels
-##seal[["class"]] &lt;- ordered(levels(dat$class)[factor(seal$lc, sort(unique(seal$lc)))], levels(dat$class))
-##seal$lc &lt;- NULL
+seal[[<span class="st">"class"</span>]] &lt;-<span class="st"> </span><span class="kw">ordered</span>(<span class="kw">levels</span>(dat$class)[<span class="kw">factor</span>(seal$lc, <span class="kw">sort</span>(<span class="kw">unique</span>(seal$lc)))], <span class="kw">levels</span>(dat$class))
+seal$lc &lt;-<span class="st"> </span><span class="ot">NULL</span>
 
-
-## also adehabitatLT, crawl
 
 ## what are we supposed to do with duplicated times?
 ##  which(!diff(seal$time) &gt; 0)
@@ -163,14 +151,24 @@ sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trip-met
 ##plot(seal[which(!diff(seal$time) &gt; 0),c("lon", "lat") ])
 ##points(seal[1 + which(!diff(seal$time) &gt; 0),c("lon", "lat") ], col = "red")
 
-##seal &lt;- seal[!duplicated(seal$time), ]
+seal &lt;-<span class="st"> </span>seal[!<span class="kw">duplicated</span>(seal$time), ]
 
 ## drop missing data and combine
-##dat &lt;- rbind(dat[!is.na(dat$lon), ], seal[,names(dat)])
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(dat[!<span class="kw">is.na</span>(dat$lon), ], seal[,<span class="kw">names</span>(dat)])
 ##coordinates(dat) &lt;- c("lon", "lat")
 ##proj4string(dat) &lt;- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 
-##tr &lt;- trip(dat, c("time", "id"))</code></pre></div>
+tr &lt;-<span class="st"> </span>dat
+<span class="kw">trip</span>(dat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>, <span class="st">"id"</span>)
+<span class="kw">proj4string</span>(dat) &lt;-<span class="st"> </span><span class="kw">CRS</span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"</span>)
+
+<span class="kw">library</span>(raster)
+d2 &lt;-<span class="st"> </span><span class="kw">spTransform</span>(dat, <span class="kw">projection</span>(walrus818))
+<span class="kw">plot</span>(<span class="kw">union</span>(<span class="kw">extent</span>(d2), <span class="kw">extent</span>(walrus818)))
+<span class="kw">lines</span>(d2)
+<span class="kw">lines</span>(walrus818)
+<span class="kw">plot</span>(<span class="kw">spTransform</span>(<span class="kw">subset</span>(wrld_simpl, <span class="kw">coordinates</span>(wrld_simpl)[,<span class="dv">2</span>] &gt;<span class="st"> </span><span class="dv">0</span>), <span class="kw">projection</span>(walrus818)), <span class="dt">add =</span> T, <span class="dt">col =</span> <span class="st">"grey"</span>)</code></pre></div>
+<p><img src="trip_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 </div>
   </div>
 
@@ -181,8 +179,8 @@ sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trip-met
       </ul></li>
       <li><a href="#simple-plotting">Simple plotting</a></li>
       <li><a href="#gridding-for-time-spent">Gridding for time spent</a></li>
-      <li><a href="#walrus-example">Walrus example</a></li>
-      <li><a href="#example-data-from-divemove">Example data from diveMove</a></li>
+      <li><a href="#walrus-tracks">Walrus tracks</a></li>
+      <li><a href="#combine-multipel-sets-of-track-data">Combine multipel sets of track data</a></li>
       </ul></div>
       </div>
 

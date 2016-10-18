@@ -46,7 +46,7 @@ plot(tg, col = c("transparent", heat.colors(25)))
 
 Plot of a rasterized version of the trip, by default this is a map of **time-spent**. 
 
-# Walrus example
+# Walrus tracks
 
 Plot the walrus tracks on a map. 
 
@@ -72,17 +72,15 @@ llgridlines(walrus818); par(p)
 
 
 
-# Example data from diveMove
+# Combine multipel sets of track data
 
 ```{r,eval=TRUE}
 library(diveMove)
 fname <- system.file(file.path("data", "sealLocs.csv"),
                        package="diveMove")
-if (file.exists(fname)) {
     dat <- read.table(fname, sep=";", header = TRUE, stringsAsFactors = FALSE)
     dat$class <- ordered(dat$class, c("Z", "B", "A", "0", "1", "2", "3"))
     dat$time <- as.POSIXct(strptime(dat$time, "%Y-%m-%d %H:%M:%S"), tz = "GMT")
-}
 
 locs <- subset(dat, !is.na(dat$lon))
 trip(locs) <- c("lon", "lat", "time", "id")
