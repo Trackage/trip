@@ -3,8 +3,8 @@
 # Build README (better to use rmarkdown than knitr!)
 rmarkdown::render("README.Rmd", "all")
 # Build vignette (better to use rmarkdown than knitr!)
-#vigs <- list.files("vignettes", pattern = "rmd$", full.names = TRUE, ignore.case = TRUE)
-#for (i in seq_along(vigs)) rmarkdown::render(vigs[i], "all")
+vigs <- list.files("vignettes", pattern = "rmd$", full.names = TRUE, ignore.case = TRUE)
+for (i in seq_along(vigs)) rmarkdown::render(vigs[i], "all")
 
 # Generate a template for a Code of Conduct
 #devtools::use_code_of_conduct()

@@ -52,9 +52,8 @@ multiple tracks and for casting arbitrary durations (by sum) to standard image s
 feature to replace the existing tripGrid function by storing the 
 individual grid summaries for each implicit line segment.
 
-- **Coercion to/from other classes** The crawl and move packages contain objects that 
-could be coerced in a straightforward way, see the Spatio Temporal Task View for 
-more (in the Moving Objects / Trajectories section). The hyperframe in spatstat is another example, and to follow up Edzer's work in spacetime. 
+- **Coercion to/from other classes** See [spbabel](https://github.com/mdsumner/spbabel). 
 
 - **Validation** Must include a detailed report object of where the problems are, and how to filter/fix/flush them. 
  
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

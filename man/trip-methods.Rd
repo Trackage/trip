@@ -141,7 +141,7 @@ tr <- trip(dat, c("gmt", "seal"))
 }
 }
 \seealso{
-\code{\link{speedfilter}}, and \code{\link{tripGrid}} for simple(istic)
+\code{\link{speedfilter}}, and \code{\link{tripGrid}} for simplistic
 speed filtering and spatial time spent gridding.
 }
 
