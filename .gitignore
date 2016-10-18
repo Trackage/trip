@@ -2,7 +2,6 @@
 ## R packages
 
 *.Rproj
-.Rbuildignore
 .Rhistory
 #*NAMESPACE
 #man/*.Rd

@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^CONDUCT.md$
+^docs$
+^README.Rmd$
+^appveyor.yml$
+^codecov.yml$
+^cran-comments.md$
+^data-raw$
+^revdep$
+^prepare-package.r$
+
