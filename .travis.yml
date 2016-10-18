@@ -5,4 +5,3 @@ sudo: required
 cache: packages
 r_binary_packages:
   - rgdal
-  
