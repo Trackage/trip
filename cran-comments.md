@@ -11,5 +11,5 @@
 
 ---
 
-* I have run R CMD check on the 1 downstream dependency spbabel, which I maintain.
+* I have run R CMD check on the 1 downstream dependency spbabel, which I maintain, and it produces no errors, warnings or notes. 
   

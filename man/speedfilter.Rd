@@ -42,9 +42,9 @@ the development of this version.
 \section{Warning}{
 
 
-This algorithm is not considered to be particularly relevant to the problems
-involved with location uncertainty in animal tracking.  It is provided
-merely as an illustrative benchmark for further work.
+This algorithm is destructive, and provides little information about
+location uncertainty.  It is provided because it's commonly used
+and provides an illustrative benchmark for further work. 
 
 It is possible for the filter to become stuck in an infinite loop, depending
 on the function passed to the filter.  Several minutes is probably too long

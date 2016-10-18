@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/mdsumner/trip.svg?branch=master)](https://travis-ci.org/mdsumner/trip) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip) [![](http://www.r-pkg.org/badges/version/pkgconfig)](http://www.r-pkg.org/pkg/trip) [![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/trip/master.svg)](https://codecov.io/github/mdsumner/trip?branch=master)
+[![Travis-CI Build Status](https://travis-ci.org/mdsumner/trip.svg?branch=master)](https://travis-ci.org/mdsumner/trip) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip) [![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/trip/master.svg)](https://codecov.io/github/mdsumner/trip?branch=master)
 
 Tools for animal track data
 ===========================
@@ -30,6 +30,8 @@ TODO
 
 -   **Probability image**. The SGAT (and tripEstimation) packages have functions for dealing with spatial track summaries that are atomized to the level of each time step. There are methods for combining summaries from multiple tracks and for casting arbitrary durations (by sum) to standard image structures. This would be a good feature to replace the existing tripGrid function by storing the individual grid summaries for each implicit line segment.
 
--   **Coercion to/from other classes** The crawl and move packages contain objects that could be coerced in a straightforward way, see the Spatio Temporal Task View for more (in the Moving Objects / Trajectories section). The hyperframe in spatstat is another example, and to follow up Edzer's work in spacetime.
+-   **Coercion to/from other classes** See [spbabel](https://github.com/mdsumner/spbabel).
 
 -   **Validation** Must include a detailed report object of where the problems are, and how to filter/fix/flush them.
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
