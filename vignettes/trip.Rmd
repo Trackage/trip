@@ -72,7 +72,7 @@ llgridlines(walrus818); par(p)
 
 
 
-# Combine multipel sets of track data
+# Combine multiple sets of track data
 
 ```{r,eval=TRUE}
 library(diveMove)

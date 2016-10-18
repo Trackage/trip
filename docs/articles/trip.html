@@ -60,11 +60,11 @@ tr &lt;-<span class="st"> </span><span class="kw">trip</span>(d, <span class="kw
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms")
-## 1             1          5 2016-10-18 05:18:49 2016-10-18 05:18:53
-## 2             2          5 2016-10-18 05:18:54 2016-10-18 05:18:58
+## 1             1          5 2016-10-18 06:07:54 2016-10-18 06:07:58
+## 2             2          5 2016-10-18 06:07:59 2016-10-18 06:08:03
 ##   tripDuration tripDistance meanSpeed maxSpeed meanRMSspeed maxRMSspeed
 ## 1       4 secs     8.190590  7371.531  9933.45     1577.602    6310.407
-## 2       4 secs     7.404171  6663.754 11054.78     1867.358    7469.430
+## 2       4 secs     7.404171  6663.753 11054.78     1867.358    7469.430
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -80,26 +80,26 @@ tr &lt;-<span class="st"> </span><span class="kw">trip</span>(d, <span class="kw
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2016-10-18 16:18:49   1:5  
-##  1st Qu.:2016-10-18 16:18:51   2:5  
-##  Median :2016-10-18 16:18:53        
-##  Mean   :2016-10-18 16:18:53        
-##  3rd Qu.:2016-10-18 16:18:55        
-##  Max.   :2016-10-18 16:18:58</code></pre>
+##  Min.   :2016-10-18 17:07:54   1:5  
+##  1st Qu.:2016-10-18 17:07:56   2:5  
+##  Median :2016-10-18 17:07:58        
+##  Mean   :2016-10-18 17:07:58        
+##  3rd Qu.:2016-10-18 17:08:00        
+##  Max.   :2016-10-18 17:08:03</code></pre>
 </div>
 </div>
 <div id="simple-plotting" class="section level1">
 <h1>Simple plotting</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tr)
 <span class="kw">lines</span>(tr)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 <p>Plot of a very simple trip object.</p>
 </div>
 <div id="gridding-for-time-spent" class="section level1">
 <h1>Gridding for time spent</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tg &lt;-<span class="st"> </span><span class="kw">rasterize</span>(tr)
 <span class="kw">plot</span>(tg, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">"transparent"</span>, <span class="kw">heat.colors</span>(<span class="dv">25</span>)))</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 <p>Plot of a rasterized version of the trip, by default this is a map of <strong>time-spent</strong>.</p>
 </div>
 <div id="walrus-tracks" class="section level1">
@@ -109,7 +109,7 @@ tr &lt;-<span class="st"> </span><span class="kw">trip</span>(d, <span class="kw
 
 <span class="kw">plot</span>(walrus818, <span class="dt">pch =</span> <span class="st">"."</span>)
 <span class="kw">lines</span>(walrus818)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)
 <span class="kw">library</span>(rgdal)
 <span class="kw">data</span>(wrld_simpl)
@@ -119,10 +119,10 @@ p &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">xpd
 <span class="kw">plot</span>(world, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">"grey"</span>)
 <span class="kw">lines</span>(walrus818)
 <span class="kw">llgridlines</span>(walrus818); <span class="kw">par</span>(p)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </div>
-<div id="combine-multipel-sets-of-track-data" class="section level1">
-<h1>Combine multipel sets of track data</h1>
+<div id="combine-multiple-sets-of-track-data" class="section level1">
+<h1>Combine multiple sets of track data</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(diveMove)
 fname &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="kw">file.path</span>(<span class="st">"data"</span>, <span class="st">"sealLocs.csv"</span>),
                        <span class="dt">package=</span><span class="st">"diveMove"</span>)
@@ -168,7 +168,7 @@ d2 &lt;-<span class="st"> </span><span class="kw">spTransform</span>(dat, <span 
 <span class="kw">lines</span>(d2)
 <span class="kw">lines</span>(walrus818)
 <span class="kw">plot</span>(<span class="kw">spTransform</span>(<span class="kw">subset</span>(wrld_simpl, <span class="kw">coordinates</span>(wrld_simpl)[,<span class="dv">2</span>] &gt;<span class="st"> </span><span class="dv">0</span>), <span class="kw">projection</span>(walrus818)), <span class="dt">add =</span> T, <span class="dt">col =</span> <span class="st">"grey"</span>)</code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<p><img src="trip_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </div>
   </div>
 
@@ -180,7 +180,7 @@ d2 &lt;-<span class="st"> </span><span class="kw">spTransform</span>(dat, <span 
       <li><a href="#simple-plotting">Simple plotting</a></li>
       <li><a href="#gridding-for-time-spent">Gridding for time spent</a></li>
       <li><a href="#walrus-tracks">Walrus tracks</a></li>
-      <li><a href="#combine-multipel-sets-of-track-data">Combine multipel sets of track data</a></li>
+      <li><a href="#combine-multiple-sets-of-track-data">Combine multiple sets of track data</a></li>
       </ul></div>
       </div>
 
