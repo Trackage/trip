@@ -5,7 +5,7 @@
 #' is unrealistic.
 #' 
 #' 
-#' Using an algorithm (McConnnell et al, 1992), points are tested for speed
+#' Using an algorithm (McConnnell et al., 1992), points are tested for speed
 #' between previous / next and 2nd previous / next points.  Contiguous sections
 #' with an root mean square speed above a given maximum have their highest rms
 #' point removed, then rms is recalculated, until all points are below the
