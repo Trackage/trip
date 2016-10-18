@@ -114,7 +114,14 @@ dat <- rbind(dat[!is.na(dat$lon), ], seal[,names(dat)])
 
 tr <- dat
 trip(dat) <- c("lon", "lat", "time", "id")
+proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 
+library(raster)
+d2 <- spTransform(dat, projection(walrus818))
+plot(union(extent(d2), extent(walrus818)))
+lines(d2)
+lines(walrus818)
+plot(spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), projection(walrus818)), add = T, col = "grey")
 
 ```
 
