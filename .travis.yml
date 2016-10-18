@@ -5,3 +5,5 @@ sudo: required
 cache: packages
 r_binary_packages:
   - rgdal
+after_success:
+  - Rscript -e 'covr::codecov()'
