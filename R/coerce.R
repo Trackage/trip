@@ -27,7 +27,34 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                         df)
 })
 
+#' @importFrom sf  st_as_sf 
+setAs("trip", "sf", function(from) {
+  split.from <- split(from, from[[getTORnames(from)[2]]])
+  sdf <- suppressWarnings(summary(from))
+  df <- data.frame(tripID=sdf$tripID, tripStart=sdf$tmins,
+                   tripEnd=sdf$tmaxs,
+                   tripDur=as.vector(sdf$tripDurationSeconds),
+                   row.names=sdf$tripID)
+  lns <- vector("list", nrow(df))
+  for (i in 1:length(lns)) {
+    ## keep time as numeric
+    lns[[i]] <- cbind(coordinates(split.from[[i]]), 
+                      as.numeric(split.from[[i]][[getTORnames(from)[1]]]))
+  }
+  bb <- c(t(apply(do.call(rbind, lns)[, 1:2], 2, range)))
 
+  mk_linestring <- function(x) structure(x, class = c("XYM", "LINESTRING", "sfg"))
+  lns <- lapply(lns, mk_linestring)
+  mk_sfc <- function(x, bb, crs) structure(x, n_empty = 0, precision = 0, bbox = bb, crs = crs, class = c("sfc_LINESTRING", "sfc"))
+  df[["geometry"]] <- mk_sfc(lns, bb, crs = structure(list(epsg = NA_integer_, proj4string = sp::proj4string(from)), class = "crs"))
+  sf::st_as_sf(df)
+})
+
+#' Coerce to sf, with XYM. 
+#' @name sf-methods
+#' @param x trip object
+#' @export
+st_as_sf.trip <- function(x) as(x, "sf")
 
 setAs("trip", "ltraj", function(from) {
   if(!requireNamespace("adehabitatLT")) stop("adhabitatLT not available")

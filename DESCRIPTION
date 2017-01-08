@@ -7,7 +7,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "spluque@gmail.com"), 
     person("Anthony", "Fischbach", role = "ctb",
     email = "afischbach@usgs.gov"))
-Version: 1.5.0
+Version: 1.5.0.9001
 Depends:
     R (>= 3.2.5),
     methods,
@@ -16,6 +16,7 @@ Imports:
     maptools,
     MASS,
     raster,
+    sf,
     spatstat
 Suggests:
     adehabitatLT,

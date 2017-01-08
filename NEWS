@@ -1,3 +1,7 @@
+dev
+
+o add support to coerce to sf with `as(x, "sf")` and `st_as_sf(x)`
+
    CHANGES IN trip VERSION 1.5.0
 
 o removed a problematic warning
