@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>walrus818. trip</title>
+<title>Walrus tracking data set. — walrus818 â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,43 +67,58 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Walrus tracking data set.</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Walrus tracking data set.</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Behavior of Pacific Walruses Tracked from the Alaska Coast of the Chukchi Sea.</p>
     
 
         
-    <div class="Details">
-      <h2>Details</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-      <p>Data set is provided as a &#39;trip&#39; object. This is the abstract for the work:</p>
-      <p>&quot;We tracked movments and haulout foraging behavior of walruses instrumented with 
+    <p>Data set is provided as a &#39;trip&#39; object. This is the abstract for the work:</p>
+    <p>&quot;We tracked movments and haulout foraging behavior of walruses instrumented with 
 satellite-linked data loggers from the Alaskan shores of the Chukchi Sea during the 
 autumn of 2009 (n=13) and 2010 (n=2).&quot;
  Jay, C. V. and Fischbach, A.S.</p>
-    </div>
     
-    <h2 id="examples">Examples</h2>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>walrus818</span>)
 <span class='fu'>plot</span>(<span class='no'>walrus818</span>)</div><div class='input'><span class='fu'>lines</span>(<span class='no'>walrus818</span>)</div><img src='walrus818-3.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'>##dontdoanything</span>
 <span class='co'>## library(mapview)</span>
 <span class='co'>##mapview(as(walrus818, "SpatialLinesDataFrame"), burst = TRUE)</span></div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

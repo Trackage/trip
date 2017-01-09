@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>trip-methods. trip</title>
+<title>Function to handle animal track data, organized as  — trip-methods â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,18 +67,19 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Function to handle animal track data, organized as </h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Function to handle animal track data, organized as </h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Create an object of class <code>&quot;trip&quot;</code>, extending the basic functionality
-of <code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code> by specifying the data columns
+of <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code> by specifying the data columns
 that define the &quot;TimeOrdered&quot; quality of the records.</p>
     
 
@@ -92,10 +90,10 @@ trip(obj) <- value
 # S4 method for trip,ANY,ANY,ANY
 [(x, i, j, ..., drop = TRUE)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>obj</dt>
-      <dd>A <code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>, or an object that can
+      <dd>A <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>, or an object that can
 be coerced to one, containing at least two columns with the DateTime and ID
 data as per <code>TORnames</code>.  It can also be a <code>trip</code> object for
 redefining <code>TORnames</code>.</dd>
@@ -107,48 +105,43 @@ character vector specifying the DateTime and ID column of <code>obj</code></dd>
 and ID of <code>obj</code>.</dd>
       <dt>x</dt>
       <dd>trip object</dd>
-      <dt>i, j, &amp;#8230;</dt>
+      <dt>i, j, &#8230;</dt>
       <dd>indices specifying elements to extract</dd>
       <dt>drop</dt>
       <dd>unused but necessary for method consistency</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>A trip object, with the usual slots of a
-<code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code> and the added
+    <p>A trip object, with the usual slots of a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code> and the added
 <code>TimeOrderedRecords</code>. For the most part this can be treated as a
 <code>data.frame</code> with <code>Spatial</code> coordinates.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
-    <div class="Methods">
-      <h2>Methods</h2>
-
-      <p></p>
-      <p>Most of the methods available are by virtue of the sp package.  Some, such
+    <p></p>
+    <p>Most of the methods available are by virtue of the sp package.  Some, such
 as <code>split.data.frame</code> have been added to SPDF so that trip has the same
 functionality.</p>
-      <p><dl class='dl-horizontal'></p>
-      <p><dt>trip</dt><dd><code>signature(obj=&quot;SpatialPointsDataFrame&quot;,
+    <p><dl class='dl-horizontal'></p>
+    <p><dt>trip</dt><dd><code>signature(obj=&quot;SpatialPointsDataFrame&quot;,
 TORnames=&quot;ANY&quot;)</code></dd>The main construction.</p>
-      <p><dt>trip</dt><dd><code>signature(obj=&quot;ANY&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>:
+    <p><dt>trip</dt><dd><code>signature(obj=&quot;ANY&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>:
 create a <code>trip</code> object from a data frame.</dd></p>
-      <p><dt>trip</dt><dd><code>signature(obj=&quot;trip&quot;, TORnames=&quot;ANY&quot;)</code>: (Re)-create a
+    <p><dt>trip</dt><dd><code>signature(obj=&quot;trip&quot;, TORnames=&quot;ANY&quot;)</code>: (Re)-create a
 <code>trip</code> object using a character vector for <code>TORnames</code>.</dd></p>
-      <p><dt>trip</dt><dd><code>signature(obj=&quot;trip&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>:
+    <p><dt>trip</dt><dd><code>signature(obj=&quot;trip&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>:
 (re)-create a trip object using a <code>TimeOrderedRecords</code> object.</dd></p>
-      <p></dl></p>
-    </div>
-
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='speedfilter.html'>speedfilter</a></code>, and <code><a href='tripGrid.html'>tripGrid</a></code> for simplistic
-speed filtering and spatial time spent gridding.</p>
-    </div>
+    <p></dl></p>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='speedfilter.html'>speedfilter</a></code>, and <code><a href='tripGrid.html'>tripGrid</a></code> for simplistic
+speed filtering and spatial time spent gridding.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'>rnorm</span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'>Sys.time</span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'>gl</span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
@@ -158,13 +151,12 @@ speed filtering and spatial time spent gridding.</p>
 (<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>d</span>, <span class='fu'>c</span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID (&quot;id&quot;) No.Records   startTime (&quot;tms&quot;)     endTime (&quot;tms&quot;) tripDuration
-#&gt; 1             1          5 2016-10-18 06:07:51 2016-10-18 06:07:55       4 secs
-#&gt; 2             2          5 2016-10-18 06:07:56 2016-10-18 06:08:00       4 secs
+#&gt; 1             1          5 2017-01-09 08:43:42 2017-01-09 08:43:46       4 secs
+#&gt; 2             2          5 2017-01-09 08:43:47 2017-01-09 08:43:51       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
 #&gt; 2           id     factor **trip ID**      
-#&gt; 
 #&gt; </div><div class='input'>
 <span class='co'>## don't want adehabitatMA to be loaded as a requirement here</span>
 <span class='co'>## Not run: ------------------------------------</span>
@@ -224,12 +216,32 @@ speed filtering and spatial time spent gridding.</p>
 <span class='co'>#    lines(porpoise)</span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#methods">Methods</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference. trip</title>
+<title>Function reference • trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-index">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,84 +67,183 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Function reference <small>version&nbsp;1.5.0</small></h1>
-</div>
-
-<div class="row">
+      <div class="row">
   <div class="col-md-9">
-    <div class="section ">
-      <h2>All functions</h2>
+    <div class="page-header">
+      <h1>Function reference</h1>
+      <h4>version&nbsp;1.5.0.9001</h4>
+    </div>
+
+    <div class="contents">
+      <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
       <p class="section-desc"></p>
 
-      <dl class="dl-horizontal">
-        <dt><a href="adjust.duplicateTimes.html">adjust.duplicateTimes</a></dt>
-        <dd>Adjust duplicate DateTime values</dd>
-        <dt><a href="argos.sigma.html">argos.sigma</a></dt>
-        <dd>Assign numeric values for Argos &quot;class&quot;</dd>
-        <dt><a href="as.Other.html">as.Other</a></dt><dt><a href="as.Other.html">as.ppp.trip</a></dt><dt><a href="as.Other.html">as.psp.trip</a></dt><dt><a href="as.Other.html">explode</a></dt>
-        <dd>As (&quot;trip&quot;, other-classes)</dd>
-        <dt><a href="as.trip-methods.html">as.trip</a></dt><dt><a href="as.trip-methods.html">as.trip,ltraj-method</a></dt><dt><a href="as.trip-methods.html">as.trip-methods</a></dt><dt><a href="as.trip-methods.html">coerce,trip,ltraj-method</a></dt><dt><a href="as.trip-methods.html">ltraj2trip</a></dt>
-        <dd>Coercion from other classes to </dd>
-        <dt><a href="cut.trip.html">cut.trip</a></dt>
-        <dd>Split trip events into exact time-based boundaries.</dd>
-        <dt><a href="filter.penSS.html">filter.penSS</a></dt>
-        <dd>Non-destructive smoothing filter</dd>
-        <dt><a href="forceCompliance.html">forceCompliance</a></dt>
-        <dd>Function to ensure dates and times are in order with trip ID</dd>
-        <dt><a href="homedist.html">homedist</a></dt>
-        <dd>Calculate maximum distance from 'home' for each trip</dd>
-        <dt><a href="makeGridTopology.html">makeGridTopology</a></dt>
-        <dd>Generate a GridTopology from a Spatial object</dd>
-        <dt><a href="oc.theme.html">oc.colors</a></dt><dt><a href="oc.theme.html">oc.theme</a></dt>
-        <dd>SeaWiFS ocean colour colours</dd>
-        <dt><a href="rasterize.html">rasterize</a></dt><dt><a href="rasterize.html">rasterize,trip,RasterLayer-method</a></dt><dt><a href="rasterize.html">rasterize,trip,missing-method</a></dt>
-        <dd>Rasterize trip objects based on line-segment attributes.</dd>
-        <dt><a href="readArgos.html">readArgos</a></dt><dt><a href="readArgos.html">readDiag</a></dt>
-        <dd>Read Argos &quot;DAT&quot; or &quot;DIAG&quot; files</dd>
-        <dt><a href="sda.html">sda</a></dt>
-        <dd>Filter track for speed, distance and angle.</dd>
-        <dt><a href="sepIdGaps.html">sepIdGaps</a></dt>
-        <dd>Separate a set of IDs based on gaps</dd>
-        <dt><a href="speedfilter.html">speedfilter</a></dt>
-        <dd>Filter track data for speed</dd>
-        <dt><a href="TimeOrderedRecords-class.html">TimeOrderedRecords-class</a></dt>
-        <dd>A class for the identifiers of DateTime and ID records in spatial data.</dd>
-        <dt><a href="TimeOrderedRecords.html">TimeOrderedRecords</a></dt>
-        <dd>TimeOrderedRecords</dd>
-        <dt><a href="trackAngle.html">trackAngle</a></dt><dt><a href="trackAngle.html">trackAngle.default</a></dt><dt><a href="trackAngle.html">trackAngle.trip</a></dt>
-        <dd>Determine internal angles along a track</dd>
-        <dt><a href="trackDistance.html">trackDistance</a></dt><dt><a href="trackDistance.html">trackDistance.default</a></dt><dt><a href="trackDistance.html">trackDistance.trip</a></dt>
-        <dd>Determine distances along a track</dd>
-        <dt><a href="trip-accessors.html">getTORnames</a></dt><dt><a href="trip-accessors.html">getTimeID</a></dt><dt><a href="trip-accessors.html">print.summary.TORdata</a></dt><dt><a href="trip-accessors.html">trip-accessors</a></dt>
-        <dd>Functions to retrieve DateTime and ID data from within (Spatial) data
-</dd>
-        <dt><a href="trip-class.html">lines,trip-method</a></dt><dt><a href="trip-class.html">plot,trip,missing-method</a></dt><dt><a href="trip-class.html">show,summary.TORdata-method</a></dt><dt><a href="trip-class.html">show,trip-method</a></dt><dt><a href="trip-class.html">subset,trip-method</a></dt><dt><a href="trip-class.html">summary,trip-method</a></dt><dt><a href="trip-class.html">trip-class</a></dt>
-        <dd>A class for sets of animal trips (track data).</dd>
-        <dt><a href="tripGrid.interp.html">countPoints</a></dt><dt><a href="tripGrid.interp.html">interpequal</a></dt><dt><a href="tripGrid.interp.html">kdePoints</a></dt><dt><a href="tripGrid.interp.html">tripGrid.interp</a></dt>
-        <dd>Generate a grid of time spent using approximate methods</dd>
-        <dt><a href="tripGrid.html">tripGrid</a></dt>
-        <dd>Generate a grid of time spent by line-to-cell gridding</dd>
-        <dt><a href="trip-internal.html">.abdali</a></dt><dt><a href="trip-internal.html">.distances</a></dt><dt><a href="trip-internal.html">.g2ow</a></dt><dt><a href="trip-internal.html">.gcdist.c</a></dt><dt><a href="trip-internal.html">.intpFun</a></dt><dt><a href="trip-internal.html">.oc.col</a></dt><dt><a href="trip-internal.html">.single.trip.split</a></dt><dt><a href="trip-internal.html">.tripRbind</a></dt><dt><a href="trip-internal.html">.validTORdata</a></dt><dt><a href="trip-internal.html">trip-internal</a></dt>
-        <dd>Internal trip Functions</dd>
-        <dt><a href="trip-methods.html">[,trip,ANY,ANY,ANY-method</a></dt><dt><a href="trip-methods.html">[,trip-method</a></dt><dt><a href="trip-methods.html">[[&lt;-,trip,ANY,missing-method</a></dt><dt><a href="trip-methods.html">trip</a></dt><dt><a href="trip-methods.html">trip,ANY,TimeOrderedRecords-method</a></dt><dt><a href="trip-methods.html">trip,SpatialPointsDataFrame,ANY-method</a></dt><dt><a href="trip-methods.html">trip,trip,ANY-method</a></dt><dt><a href="trip-methods.html">trip,trip,TimeOrderedRecords-method</a></dt><dt><a href="trip-methods.html">trip-methods</a></dt><dt><a href="trip-methods.html">trip&lt;-</a></dt><dt><a href="trip-methods.html">trip&lt;-,data.frame,character-method</a></dt>
-        <dd>Function to handle animal track data, organized as </dd>
-        <dt><a href="trip-package.html">trip-package</a></dt>
-        <dd>trip.</dd>
-        <dt><a href="trip.split.exact.html">as.SpatialLinesDataFrame.trip</a></dt><dt><a href="trip.split.exact.html">as.ltraj.trip</a></dt><dt><a href="trip.split.exact.html">as.trip.SpatialLinesDataFrame</a></dt><dt><a href="trip.split.exact.html">trip-deprecated</a></dt><dt><a href="trip.split.exact.html">trip.split.exact</a></dt><dt><a href="trip.split.exact.html">tripTransform</a></dt>
-        <dd>Deprecated functions in trip</dd>
-        <dt><a href="walrus818.html">walrus818</a></dt>
-        <dd>Walrus tracking data set.</dd>
-      </dl>
+      
+      <p><a href="adjust.duplicateTimes.html">Adjust duplicate DateTime values</a></p>
+      <ul>
+        <li><code><a href="adjust.duplicateTimes.html">adjust.duplicateTimes</a></code></li>
+      </ul>
+      
+      <p><a href="argos.sigma.html">Assign numeric values for Argos &quot;class&quot;</a></p>
+      <ul>
+        <li><code><a href="argos.sigma.html">argos.sigma</a></code></li>
+      </ul>
+      
+      <p><a href="as.Other.html">As (&quot;trip&quot;, other-classes)</a></p>
+      <ul>
+        <li><code><a href="as.Other.html">as.Other</a></code></li><li><code><a href="as.Other.html">as.ppp.trip</a></code></li><li><code><a href="as.Other.html">as.psp.trip</a></code></li><li><code><a href="as.Other.html">explode</a></code></li>
+      </ul>
+      
+      <p><a href="as.trip-methods.html">Coercion from other classes to </a></p>
+      <ul>
+        <li><code><a href="as.trip-methods.html">as.trip</a></code></li><li><code><a href="as.trip-methods.html">as.trip,ltraj-method</a></code></li><li><code><a href="as.trip-methods.html">as.trip-methods</a></code></li><li><code><a href="as.trip-methods.html">coerce,trip,ltraj-method</a></code></li><li><code><a href="as.trip-methods.html">ltraj2trip</a></code></li>
+      </ul>
+      
+      <p><a href="cut.trip.html">Split trip events into exact time-based boundaries.</a></p>
+      <ul>
+        <li><code><a href="cut.trip.html">cut.trip</a></code></li>
+      </ul>
+      
+      <p><a href="filter.penSS.html">Non-destructive smoothing filter</a></p>
+      <ul>
+        <li><code><a href="filter.penSS.html">filter.penSS</a></code></li>
+      </ul>
+      
+      <p><a href="forceCompliance.html">Function to ensure dates and times are in order with trip ID</a></p>
+      <ul>
+        <li><code><a href="forceCompliance.html">forceCompliance</a></code></li>
+      </ul>
+      
+      <p><a href="homedist.html">Calculate maximum distance from 'home' for each trip</a></p>
+      <ul>
+        <li><code><a href="homedist.html">homedist</a></code></li>
+      </ul>
+      
+      <p><a href="makeGridTopology.html">Generate a GridTopology from a Spatial object</a></p>
+      <ul>
+        <li><code><a href="makeGridTopology.html">makeGridTopology</a></code></li>
+      </ul>
+      
+      <p><a href="oc.theme.html">SeaWiFS ocean colour colours</a></p>
+      <ul>
+        <li><code><a href="oc.theme.html">oc.colors</a></code></li><li><code><a href="oc.theme.html">oc.theme</a></code></li>
+      </ul>
+      
+      <p><a href="rasterize.html">Rasterize trip objects based on line-segment attributes.</a></p>
+      <ul>
+        <li><code><a href="rasterize.html">rasterize</a></code></li><li><code><a href="rasterize.html">rasterize,trip,RasterLayer-method</a></code></li><li><code><a href="rasterize.html">rasterize,trip,missing-method</a></code></li>
+      </ul>
+      
+      <p><a href="readArgos.html">Read Argos &quot;DAT&quot; or &quot;DIAG&quot; files</a></p>
+      <ul>
+        <li><code><a href="readArgos.html">readArgos</a></code></li><li><code><a href="readArgos.html">readDiag</a></code></li>
+      </ul>
+      
+      <p><a href="sda.html">Filter track for speed, distance and angle.</a></p>
+      <ul>
+        <li><code><a href="sda.html">sda</a></code></li>
+      </ul>
+      
+      <p><a href="sepIdGaps.html">Separate a set of IDs based on gaps</a></p>
+      <ul>
+        <li><code><a href="sepIdGaps.html">sepIdGaps</a></code></li>
+      </ul>
+      
+      <p><a href="sf-methods.html">Coerce to sf, with XYM.</a></p>
+      <ul>
+        <li><code><a href="sf-methods.html">sf-methods</a></code></li><li><code><a href="sf-methods.html">st_as_sf.trip</a></code></li>
+      </ul>
+      
+      <p><a href="speedfilter.html">Filter track data for speed</a></p>
+      <ul>
+        <li><code><a href="speedfilter.html">speedfilter</a></code></li>
+      </ul>
+      
+      <p><a href="TimeOrderedRecords-class.html">A class for the identifiers of DateTime and ID records in spatial data.</a></p>
+      <ul>
+        <li><code><a href="TimeOrderedRecords-class.html">TimeOrderedRecords-class</a></code></li>
+      </ul>
+      
+      <p><a href="TimeOrderedRecords.html">TimeOrderedRecords</a></p>
+      <ul>
+        <li><code><a href="TimeOrderedRecords.html">TimeOrderedRecords</a></code></li>
+      </ul>
+      
+      <p><a href="trackAngle.html">Determine internal angles along a track</a></p>
+      <ul>
+        <li><code><a href="trackAngle.html">trackAngle</a></code></li><li><code><a href="trackAngle.html">trackAngle.default</a></code></li><li><code><a href="trackAngle.html">trackAngle.trip</a></code></li>
+      </ul>
+      
+      <p><a href="trackDistance.html">Determine distances along a track</a></p>
+      <ul>
+        <li><code><a href="trackDistance.html">trackDistance</a></code></li><li><code><a href="trackDistance.html">trackDistance.default</a></code></li><li><code><a href="trackDistance.html">trackDistance.trip</a></code></li>
+      </ul>
+      
+      <p><a href="trip-accessors.html">Functions to retrieve DateTime and ID data from within (Spatial) data
+</a></p>
+      <ul>
+        <li><code><a href="trip-accessors.html">getTORnames</a></code></li><li><code><a href="trip-accessors.html">getTimeID</a></code></li><li><code><a href="trip-accessors.html">print.summary.TORdata</a></code></li><li><code><a href="trip-accessors.html">trip-accessors</a></code></li>
+      </ul>
+      
+      <p><a href="trip-class.html">A class for sets of animal trips (track data).</a></p>
+      <ul>
+        <li><code><a href="trip-class.html">lines,trip-method</a></code></li><li><code><a href="trip-class.html">plot,trip,missing-method</a></code></li><li><code><a href="trip-class.html">show,summary.TORdata-method</a></code></li><li><code><a href="trip-class.html">show,trip-method</a></code></li><li><code><a href="trip-class.html">subset,trip-method</a></code></li><li><code><a href="trip-class.html">summary,trip-method</a></code></li><li><code><a href="trip-class.html">trip-class</a></code></li>
+      </ul>
+      
+      <p><a href="trip-methods.html">Function to handle animal track data, organized as </a></p>
+      <ul>
+        <li><code><a href="trip-methods.html">[,trip,ANY,ANY,ANY-method</a></code></li><li><code><a href="trip-methods.html">[,trip-method</a></code></li><li><code><a href="trip-methods.html">[[&lt;-,trip,ANY,missing-method</a></code></li><li><code><a href="trip-methods.html">trip</a></code></li><li><code><a href="trip-methods.html">trip,ANY,TimeOrderedRecords-method</a></code></li><li><code><a href="trip-methods.html">trip,SpatialPointsDataFrame,ANY-method</a></code></li><li><code><a href="trip-methods.html">trip,trip,ANY-method</a></code></li><li><code><a href="trip-methods.html">trip,trip,TimeOrderedRecords-method</a></code></li><li><code><a href="trip-methods.html">trip-methods</a></code></li><li><code><a href="trip-methods.html">trip&lt;-</a></code></li><li><code><a href="trip-methods.html">trip&lt;-,data.frame,character-method</a></code></li>
+      </ul>
+      
+      <p><a href="trip-package.html">trip.</a></p>
+      <ul>
+        <li><code><a href="trip-package.html">trip-package</a></code></li>
+      </ul>
+      
+      <p><a href="trip.split.exact.html">Deprecated functions in trip</a></p>
+      <ul>
+        <li><code><a href="trip.split.exact.html">as.SpatialLinesDataFrame.trip</a></code></li><li><code><a href="trip.split.exact.html">as.ltraj.trip</a></code></li><li><code><a href="trip.split.exact.html">as.trip.SpatialLinesDataFrame</a></code></li><li><code><a href="trip.split.exact.html">trip-deprecated</a></code></li><li><code><a href="trip.split.exact.html">trip.split.exact</a></code></li><li><code><a href="trip.split.exact.html">tripTransform</a></code></li>
+      </ul>
+      
+      <p><a href="tripGrid.interp.html">Generate a grid of time spent using approximate methods</a></p>
+      <ul>
+        <li><code><a href="tripGrid.interp.html">countPoints</a></code></li><li><code><a href="tripGrid.interp.html">interpequal</a></code></li><li><code><a href="tripGrid.interp.html">kdePoints</a></code></li><li><code><a href="tripGrid.interp.html">tripGrid.interp</a></code></li>
+      </ul>
+      
+      <p><a href="tripGrid.html">Generate a grid of time spent by line-to-cell gridding</a></p>
+      <ul>
+        <li><code><a href="tripGrid.html">tripGrid</a></code></li>
+      </ul>
+      
+      <p><a href="walrus818.html">Walrus tracking data set.</a></p>
+      <ul>
+        <li><code><a href="walrus818.html">walrus818</a></code></li>
+      </ul>
+    
     </div>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#section-all-functions">All functions</a></li>
+    </ul>
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>tripGrid.interp. trip</title>
+<title>Generate a grid of time spent using approximate methods — tripGrid.interp â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Generate a grid of time spent using approximate methods</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Generate a grid of time spent using approximate methods</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Create a grid of time spent from an object of class <code>trip</code> by
 approximating the time between locations for separate trip events.</p>
@@ -90,7 +88,7 @@ approximating the time between locations for separate trip events.</p>
 
 <span class='fu'>countPoints</span>(<span class='no'>x</span>, <span class='kw'>dur</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd>object of class trip</dd>
@@ -105,51 +103,65 @@ locations (see Details)</dd>
       <dd>kernel bandwidth</dd>
       <dt>resetTime</dt>
       <dd>rescale result back to the total duration of the input</dd>
-      <dt>&amp;#8230;</dt>
+      <dt>&#8230;</dt>
       <dd>other arguments passed to <code>interpequal</code> or <code>kdePoints</code></dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p><code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
+    <p><code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
 one column &quot;z&quot; containing the time spent in each cell in seconds. If
 kdePoints is used the units are not related to the time values and must be
 scaled for further use.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>This set of functions was the the original tripGrid from prior to version
+    <p>This set of functions was the the original tripGrid from prior to version
 1.1-6. <code>tripGrid</code> should be used for more exact and fast calculations
 assuming linear motion between fixes.</p>
-      <p>The intention is for <code>tripGrid.interp</code> to be used for exploring
+    <p>The intention is for <code>tripGrid.interp</code> to be used for exploring
 approximate methods of line-to-cell gridding.</p>
-      <p>Trip locations are first interpolated, based on an equal-time spacing
+    <p>Trip locations are first interpolated, based on an equal-time spacing
 between records. These interpolated points are then &quot;binned&quot; to a grid of
 cells.  The time spacing is specified by the <code>dur</code> (duration) argument to
 <code>interpequal</code> in seconds (i.e. <code>dur=3600</code> is used for 1 hour).
 Shorter time periods will require longer computation with a closer
 approximation to the total time spent in the gridded result.</p>
-      <p>Currently there are methods &quot;count&quot; and &quot;kde&quot; for quantifying time spent,
+    <p>Currently there are methods &quot;count&quot; and &quot;kde&quot; for quantifying time spent,
 corresponding to the functions &quot;countPoints&quot; and &quot;kdePoints&quot;. &quot;kde&quot; uses
 kernel density to smooth the locations, &quot;count&quot; simply counts the points
 falling in a grid cell.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class="See also">
-      <h2>See also</h2>
+    <p><code><a href='http://www.rdocumentation.org/packages/MASS/topics/bandwidth.nrd'>bandwidth.nrd</a></code> for the calculation of bandwidth values used internally when not supplied by the user</p>
+    
 
-      <p><code><a href='http://www.rdocumentation.org/packages/bandwidth.nrd/topics/MASS'>bandwidth.nrd</a></code> for the calculation of bandwidth values used internally when not supplied by the user</p>
-    </div>
-      </div>
-  <div class="col-md-3">
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

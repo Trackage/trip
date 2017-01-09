@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>as.Other. trip</title>
+<title>As (&quot;trip&quot;, other-classes) — as.Other â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>As (&quot;trip&quot;, other-classes)</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>As (&quot;trip&quot;, other-classes)</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Coercing <code>trip</code> objects to other classes.</p>
 
@@ -95,32 +93,31 @@ the start and end times, duration and the ID of the segment.</p>
 
 <span class='fu'>explode</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>X</dt>
       <dd><code>trip</code> object.</dd>
       <dt>...</dt>
       <dd>reserved for future methods</dd>
       <dt>fatal</dt>
-      <dd>Logical value, see Details of <code><a href='http://www.rdocumentation.org/packages/as.ppp/topics/spatstat'>as.ppp</a></code></dd>
+      <dd>Logical value, see Details of <code><a href='http://www.rdocumentation.org/packages/spatstat/topics/as.ppp'>as.ppp</a></code></dd>
       <dt>x</dt>
       <dd><code>trip</code> object</dd>
       <dt>from</dt>
-      <dd>see <code><a href='http://www.rdocumentation.org/packages/as.psp/topics/spatstat'>as.psp</a></code> for that method.</dd>
+      <dd>see <code><a href='http://www.rdocumentation.org/packages/spatstat/topics/as.psp'>as.psp</a></code> for that method.</dd>
       <dt>to</dt>
-      <dd>See <code><a href='http://www.rdocumentation.org/packages/as.psp/topics/spatstat'>as.psp</a></code>.</dd>
+      <dd>See <code><a href='http://www.rdocumentation.org/packages/spatstat/topics/as.psp'>as.psp</a></code>.</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>ppp object</p>
-      <p>psp object</p>
-      <p>SpatialLinesDataFrame</p>
-      <p>SpatialLinesDataFrame object with each individual line segment identified by start/end time and trip ID</p>
-    </div>
+    <p>ppp object</p>
+    <p>psp object</p>
+    <p>SpatialLinesDataFrame</p>
+    <p>SpatialLinesDataFrame object with each individual line segment identified by start/end time and trip ID</p>
     
-    <h2 id="examples">Examples</h2>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
 <span class='co'>#   ## Continuing the example from '?trip-methods:</span>
 <span class='co'># utils::example("trip-methods", package="trip",</span>
@@ -135,31 +132,30 @@ the start and end times, duration and the ID of the segment.</p>
 <span class='co'>## ---------------------------------------------</span>
 <span class='co'>## Continuing the example from '?trip-methods:</span>
 <span class='kw'>utils</span><span class='kw'>::</span><span class='fu'>example</span>(<span class='st'>"trip-methods"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"trip"</span>,
-           <span class='kw'>ask</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>echo</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output'><strong class='text-warning'>Warning message:
-no help found for â€˜trip-methodsâ€™</strong></div><div class='input'><span class='no'>spldf</span> <span class='kw'>&lt;-</span> <span class='fu'>explode</span>(<span class='no'>tr</span>)</div><strong class='error'>Error in getTORnames(x): trying to get slot &quot;TOR.columns&quot; from an object (class &quot;data.frame&quot;) that is not an S4 object </strong><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;       id                 time                     class        lon         
-#&gt;  Length:1912        Min.   :2002-09-10 00:11:29   Z: 26   Min.   :-99.787  
-#&gt;  Class :character   1st Qu.:2002-09-28 00:40:50   B:708   1st Qu.: 11.644  
-#&gt;  Mode  :character   Median :2002-10-21 07:18:41   A:460   Median : 11.944  
-#&gt;                     Mean   :2003-05-13 18:30:27   0: 95   Mean   : -3.475  
-#&gt;                     3rd Qu.:2002-11-14 06:35:42   1:231   3rd Qu.: 12.072  
-#&gt;                     Max.   :2006-11-23 05:09:59   2:224   Max.   : 17.783  
-#&gt;                                                   3:168                    
-#&gt;       lat       
-#&gt;  Min.   :40.45  
-#&gt;  1st Qu.:77.83  
-#&gt;  Median :78.81  
-#&gt;  Mean   :73.50  
-#&gt;  3rd Qu.:78.82  
-#&gt;  Max.   :81.15  
-#&gt;                 
-#&gt; </div></pre>
+           <span class='kw'>ask</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>echo</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: no help found for ‘trip-methods’</span></div><div class='input'><span class='no'>spldf</span> <span class='kw'>&lt;-</span> <span class='fu'>explode</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in getTORnames(x): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(tr): object &#39;tr&#39; not found</span></div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

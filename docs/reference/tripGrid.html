@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>tripGrid. trip</title>
+<title>Generate a grid of time spent by line-to-cell gridding — tripGrid â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Generate a grid of time spent by line-to-cell gridding</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Generate a grid of time spent by line-to-cell gridding</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Create a grid of time spent from an object of class <code>trip</code> by exact
 cell crossing methods, weighted by the time between locations for separate
@@ -87,7 +85,7 @@ trip events.</p>
 
     <pre><span class='fu'>tripGrid</span>(<span class='no'>x</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pixellate"</span>, <span class='no'>...</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd>object of class <code>trip</code></dd>
@@ -95,38 +93,52 @@ trip events.</p>
       <dd>GridTopology - will be generated automatically if NULL</dd>
       <dt>method</dt>
       <dd>pixellate or density</dd>
-      <dt>&amp;#8230;</dt>
+      <dt>&#8230;</dt>
       <dd>pass arguments to density.psp if that method is chosen (and
 temporary mechanism to direct users of legacy methods to
 <code><a href='tripGrid.interp.html'>tripGrid.interp</a></code>)</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p><code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
+    <p><code>tripGrid</code> returns an object of class <code>SpatialGridDataFrame</code>, with
 one column &quot;z&quot; containing the time spent in each cell in seconds.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>Zero-length lines cannot be summed directly, their time value is summed by
+    <p>Zero-length lines cannot be summed directly, their time value is summed by
 assuming the line is a point. A warning used to be given, but as it achieved
 nothing but create confusion it has been removed. The density method returns
 proportionate values, not summed time durations.</p>
-      <p>See <code>pixellate.psp</code> and <code>pixellate.ppp</code> for the details on the
+    <p>See <code>pixellate.psp</code> and <code>pixellate.ppp</code> for the details on the
 method used. See <code>density.psp</code> for method=&quot;density&quot;.</p>
-      <p>Trip events are assumed to start and end as per the object passed in. To
+    <p>Trip events are assumed to start and end as per the object passed in. To
 work with inferred &quot;cutoff&quot; positions see <code>split.trip.exact</code>.</p>
-    </div>
-      </div>
-  <div class="col-md-3">
+    
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>trip-class. trip</title>
+<title>A class for sets of animal trips (track data). — trip-class â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,42 +67,40 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>A class for sets of animal trips (track data).</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>A class for sets of animal trips (track data).</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
-    <p>An extension of <code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code> by including
+    <p>An extension of <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code> by including
 <code>&quot;TimeOrderedRecords&quot;</code>.  The records within the data frame are
 explicitly ordered by DateTime data within IDs.</p>
     
 
         
-    <div class="Objects from the Class">
-      <h2>Objects from the Class</h2>
+    <h2 class="hasAnchor" id="objects-from-the-class"><a class="anchor" href="#objects-from-the-class"></a>Objects from the Class</h2>
 
-      <p></p>
-      <p>Objects can be created by calls of the form
+    <p></p>
+    <p>Objects can be created by calls of the form
 <code>trip(obj=&quot;SpatialPointsDataFrame&quot;, TORnames=&quot;TimeOrderedRecords&quot;)</code>.
 The object contains all the slots present within a
-<code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>, particularly <code>data</code> which
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>, particularly <code>data</code> which
 contains columns of at least those specified by <code>TOR.columns</code>.</p>
-    </div>
-
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='trip-methods.html'>trip</a></code> for examples of directly using the class.</p>
-      <p><code><a href='trip-accessors.html'>trip-accessors</a></code> describes methods for accessing information on
-<code>trip</code> objects.</p>
-    </div>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='trip-methods.html'>trip</a></code> for examples of directly using the class.</p>
+    <p><code><a href='trip-accessors.html'>trip-accessors</a></code> describes methods for accessing information on
+<code>trip</code> objects.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='fu'>showClass</span>(<span class='st'>"trip"</span>)</div><div class='output co'>#&gt; Class &quot;trip&quot; [package &quot;trip&quot;]
@@ -120,595 +115,42 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; Class &quot;SpatialPointsDataFrame&quot;, directly
 #&gt; Class &quot;SpatialPoints&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 2
 #&gt; Class &quot;Spatial&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 3
-#&gt; Class &quot;SpatialVector&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 3
-#&gt; </div><div class='input'>
+#&gt; Class &quot;SpatialVector&quot;, by class &quot;SpatialPointsDataFrame&quot;, distance 3</div><div class='input'>
 <span class='co'>## Examples of general methods</span>
 <span class='co'>## Continuing the example from '?trip-methods:</span>
 <span class='kw'>utils</span><span class='kw'>::</span><span class='fu'>example</span>(<span class='st'>"trip-methods"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"trip"</span>,
-               <span class='kw'>ask</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>echo</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output'><strong class='text-warning'>Warning message:
-no help found for â€˜trip-methodsâ€™</strong></div><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;       id                 time                     class        lon         
-#&gt;  Length:1912        Min.   :2002-09-10 00:11:29   Z: 26   Min.   :-99.787  
-#&gt;  Class :character   1st Qu.:2002-09-28 00:40:50   B:708   1st Qu.: 11.644  
-#&gt;  Mode  :character   Median :2002-10-21 07:18:41   A:460   Median : 11.944  
-#&gt;                     Mean   :2003-05-13 18:30:27   0: 95   Mean   : -3.475  
-#&gt;                     3rd Qu.:2002-11-14 06:35:42   1:231   3rd Qu.: 12.072  
-#&gt;                     Max.   :2006-11-23 05:09:59   2:224   Max.   : 17.783  
-#&gt;                                                   3:168                    
-#&gt;       lat       
-#&gt;  Min.   :40.45  
-#&gt;  1st Qu.:77.83  
-#&gt;  Median :78.81  
-#&gt;  Mean   :73.50  
-#&gt;  3rd Qu.:78.82  
-#&gt;  Max.   :81.15  
-#&gt;                 
-#&gt; </div><div class='input'><span class='fu'>plot</span>(<span class='no'>tr</span>)</div><div class='output'><strong class='text-warning'>Warning message:
-NAs introduced by coercion</strong></div><div class='output'><strong class='text-warning'>Warning message:
-no non-missing arguments to min; returning Inf</strong></div><div class='output'><strong class='text-warning'>Warning message:
-no non-missing arguments to max; returning -Inf</strong></div><div class='output'><strong class='text-warning'>Warning message:
-no non-missing arguments to min; returning Inf</strong></div><div class='output'><strong class='text-warning'>Warning message:
-no non-missing arguments to max; returning -Inf</strong></div><strong class='error'>Error in plot.window(...): need finite &#39;xlim&#39; values</strong><img src='trip-class-14.png' alt='' width='540' height='400' /><div class='input'><span class='fu'>lines</span>(<span class='no'>tr</span>)</div><div class='output'><strong class='text-warning'>Warning message:
-NAs introduced by coercion</strong></div><div class='input'>
-<span class='fu'>dim</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] 1912    5
-#&gt; </div><div class='input'><span class='fu'>names</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] &quot;id&quot;    &quot;time&quot;  &quot;class&quot; &quot;lon&quot;   &quot;lat&quot;  
-#&gt; </div><div class='input'><span class='fu'>subset</span>(<span class='no'>tr</span>, <span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"2"</span>)</div><div class='output co'>#&gt; [1] id    time  class lon   lat  
-#&gt; &lt;0 rows&gt; (or 0-length row.names)
-#&gt; </div><div class='input'><span class='fu'>as.data.frame</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;             id                time class     lon    lat
-#&gt; 1        ringy 2006-06-14 20:31:46     2 -72.655 40.915
-#&gt; 2        ringy 2006-06-15 05:58:14     3 -72.656 40.918
-#&gt; 3        ringy 2006-06-15 07:56:32     3 -72.657 40.919
-#&gt; 4        ringy 2006-06-15 19:07:49     2 -72.474 40.834
-#&gt; 5        ringy 2006-06-16 02:30:18     2 -72.275 40.885
-#&gt; 6        ringy 2006-06-16 09:27:22     A -72.059 40.880
-#&gt; 7        ringy 2006-06-17 07:19:38     2 -71.538 40.959
-#&gt; 8        ringy 2006-06-18 02:02:44     A -71.096 41.006
-#&gt; 9        ringy 2006-06-21 22:44:36     0 -68.745 41.508
-#&gt; 10       ringy 2006-06-22 04:02:29     1 -68.568 41.502
-#&gt; 11       ringy 2006-06-23 15:53:47     B -67.141 41.461
-#&gt; 12       ringy 2006-06-24 06:10:04     B -66.697 41.255
-#&gt; 13       ringy 2006-06-25 07:39:47     1 -66.072 41.386
-#&gt; 14       ringy 2006-06-26 00:21:25     2 -65.296 41.803
-#&gt; 15       ringy 2006-06-26 07:29:16     3 -65.044 41.960
-#&gt; 16       ringy 2006-06-27 01:45:41     1 -64.499 42.416
-#&gt; 17       ringy 2006-06-28 07:12:16     B -63.388 43.332
-#&gt; 18       ringy 2006-06-29 11:30:16     B -63.998 43.798
-#&gt; 19       ringy 2006-06-30 01:10:11     A -63.623 44.142
-#&gt; 20       ringy 2006-07-01 10:47:42     B -62.518 44.713
-#&gt; 21       ringy 2006-07-02 09:39:17     B -61.662 44.990
-#&gt; 22       ringy 2006-07-03 09:28:57     B -60.659 45.399
-#&gt; 23       ringy 2006-07-04 02:45:06     B -60.232 45.665
-#&gt; 24       ringy 2006-07-05 05:52:47     A -59.503 46.179
-#&gt; 25       ringy 2006-07-06 10:27:32     B -60.706 47.075
-#&gt; 26       ringy 2006-07-07 11:39:12     B -59.632 47.416
-#&gt; 27       ringy 2006-07-07 19:45:05     B -59.469 48.068
-#&gt; 28       ringy 2006-07-09 09:52:25     B -59.240 48.728
-#&gt; 29       ringy 2006-07-10 10:26:29     B -57.663 48.785
-#&gt; 30       ringy 2006-07-11 07:52:30     B -58.862 51.019
-#&gt; 32       ringy 2006-07-12 17:51:43     2 -59.378 50.590
-#&gt; 33       ringy 2006-07-14 08:51:24     B -59.064 50.990
-#&gt; 34       ringy 2006-07-15 10:10:08     A -57.934 51.150
-#&gt; 35       ringy 2006-07-16 01:29:46     B -60.614 50.738
-#&gt; 37       ringy 2006-07-19 08:27:25     B -55.112 52.381
-#&gt; 39       ringy 2006-07-21 22:32:55     B -55.601 53.704
-#&gt; 40       ringy 2006-07-23 11:40:00     A -56.603 54.486
-#&gt; 41       ringy 2006-07-23 17:04:22     0 -56.817 54.562
-#&gt; 43       ringy 2006-07-25 15:16:04     A -57.555 55.277
-#&gt; 45       ringy 2006-07-28 00:16:45     1 -59.387 56.804
-#&gt; 46       ringy 2006-07-29 11:16:00     1 -60.268 57.654
-#&gt; 47       ringy 2006-07-30 10:50:02     A -61.219 58.259
-#&gt; 48       ringy 2006-07-31 01:15:53     A -61.449 58.673
-#&gt; 49       ringy 2006-08-01 09:38:25     B -61.677 59.526
-#&gt; 50       ringy 2006-08-02 00:48:21     A -61.239 59.894
-#&gt; 51       ringy 2006-08-03 10:04:59     B -61.667 60.411
-#&gt; 52       ringy 2006-08-04 11:42:45     B -62.019 61.079
-#&gt; 53       ringy 2006-08-05 00:35:00     1 -62.396 61.347
-#&gt; 54       ringy 2006-08-05 09:41:53     3 -62.724 61.551
-#&gt; 55       ringy 2006-08-06 08:43:35     1 -63.531 62.090
-#&gt; 56       ringy 2006-08-06 20:46:21     A -63.790 62.426
-#&gt; 57       ringy 2006-08-07 09:20:26     B -63.923 62.843
-#&gt; 58       ringy 2006-08-08 01:06:54     0 -63.457 63.274
-#&gt; 59       ringy 2006-08-09 00:57:37     0 -63.683 63.807
-#&gt; 60       ringy 2006-08-10 10:21:18     1 -64.074 64.697
-#&gt; 61       ringy 2006-08-11 08:30:07     A -63.900 65.010
-#&gt; 62       ringy 2006-08-12 11:45:43     1 -62.671 65.155
-#&gt; 63       ringy 2006-08-13 09:12:06     1 -61.777 65.614
-#&gt; 64       ringy 2006-08-14 09:01:59     0 -61.350 66.254
-#&gt; 65       ringy 2006-08-16 11:45:39     0 -61.545 67.491
-#&gt; 66       ringy 2006-08-17 01:02:06     0 -61.736 67.902
-#&gt; 67       ringy 2006-08-18 09:55:08     2 -63.441 68.694
-#&gt; 68       ringy 2006-08-19 06:53:33     A -64.619 69.006
-#&gt; 69       ringy 2006-08-20 01:32:30     A -65.977 69.196
-#&gt; 70       ringy 2006-08-21 04:31:29     3 -67.217 69.714
-#&gt; 71       ringy 2006-08-22 11:21:19     2 -67.563 70.356
-#&gt; 72       ringy 2006-08-23 09:39:08     1 -69.050 70.783
-#&gt; 73       ringy 2006-08-24 10:55:37     A -70.629 71.239
-#&gt; 74       ringy 2006-08-25 02:35:14     3 -71.598 71.564
-#&gt; 75       ringy 2006-08-26 11:48:34     1 -73.864 71.980
-#&gt; 76       ringy 2006-08-27 03:53:33     3 -75.056 72.388
-#&gt; 77       ringy 2006-08-28 20:31:39     1 -77.564 72.802
-#&gt; 78       ringy 2006-08-29 10:01:32     1 -78.540 72.755
-#&gt; 79       ringy 2006-08-30 11:29:40     1 -80.349 72.282
-#&gt; 80       ringy 2006-08-31 22:37:35     3 -80.612 72.941
-#&gt; 81       ringy 2006-09-01 00:17:48     2 -80.579 72.981
-#&gt; 82       ringy 2006-09-02 10:40:34     A -81.468 73.735
-#&gt; 83       ringy 2006-09-03 10:14:29     1 -82.758 73.852
-#&gt; 84       ringy 2006-09-04 00:51:17     2 -83.599 73.912
-#&gt; 85       ringy 2006-09-05 11:50:14     0 -86.686 73.903
-#&gt; 86       ringy 2006-09-06 08:27:31     A -88.454 73.856
-#&gt; 87       ringy 2006-09-07 09:58:24     A -90.173 73.622
-#&gt; 88       ringy 2006-09-08 04:16:03     A -91.347 73.157
-#&gt; 89       ringy 2006-09-09 11:54:27     3 -93.787 72.771
-#&gt; 90       ringy 2006-09-10 10:48:33     A -94.114 72.763
-#&gt; 91       ringy 2006-09-11 23:25:01     3 -93.462 72.797
-#&gt; 92       ringy 2006-09-12 06:10:14     1 -93.208 72.758
-#&gt; 93       ringy 2006-09-13 00:41:08     3 -92.573 72.740
-#&gt; 94       ringy 2006-09-14 16:58:19     2 -90.516 73.417
-#&gt; 95       ringy 2006-09-15 15:15:15     3 -90.319 73.882
-#&gt; 96       ringy 2006-09-16 02:55:13     1 -89.885 73.829
-#&gt; 97       ringy 2006-09-17 04:07:53     A -89.676 74.135
-#&gt; 98       ringy 2006-09-18 09:44:36     2 -91.604 74.617
-#&gt; 99       ringy 2006-09-19 03:23:47     2 -93.500 74.681
-#&gt; 100      ringy 2006-09-20 04:18:17     1 -94.988 74.562
-#&gt; 101      ringy 2006-09-21 11:57:23     A -97.588 75.006
-#&gt; 102      ringy 2006-09-22 11:32:10     2 -98.703 74.934
-#&gt; 103      ringy 2006-09-23 15:05:33     3 -99.476 74.899
-#&gt; 104      ringy 2006-09-24 10:40:50     3 -99.379 74.789
-#&gt; 105      ringy 2006-09-25 08:32:47     3 -99.405 74.813
-#&gt; 106      ringy 2006-09-26 11:45:30     1 -99.693 74.859
-#&gt; 107      ringy 2006-09-27 00:30:53     B -99.787 74.871
-#&gt; 108      ringy 2006-09-28 09:13:37     3 -99.178 74.821
-#&gt; 109      ringy 2006-09-29 04:34:36     3 -98.806 74.669
-#&gt; 110      ringy 2006-09-30 12:13:52     1 -99.560 74.872
-#&gt; 111      ringy 2006-10-01 11:10:33     A -99.748 74.771
-#&gt; 112      ringy 2006-10-03 06:26:24     3 -98.216 74.596
-#&gt; 113      ringy 2006-10-05 08:31:00     3 -98.273 74.409
-#&gt; 114      ringy 2006-10-05 23:40:22     B -97.723 74.434
-#&gt; 115      ringy 2006-10-07 09:07:21     A -95.794 74.554
-#&gt; 116      ringy 2006-10-07 23:20:33     2 -95.411 74.460
-#&gt; 117      ringy 2006-10-09 00:06:20     1 -94.812 74.444
-#&gt; 118      ringy 2006-10-11 10:50:11     B -92.700 74.694
-#&gt; 119      ringy 2006-10-13 07:58:48     A -91.061 74.612
-#&gt; 120      ringy 2006-10-13 22:52:17     1 -90.343 74.563
-#&gt; 121      ringy 2006-10-15 01:47:57     A -89.393 74.531
-#&gt; 122      ringy 2006-10-15 23:35:01     A -88.990 74.484
-#&gt; 123      ringy 2006-10-17 00:54:34     1 -88.734 74.465
-#&gt; 124      ringy 2006-10-17 23:00:27     A -88.627 74.437
-#&gt; 125      ringy 2006-10-19 11:09:13     0 -89.334 74.506
-#&gt; 126      ringy 2006-10-19 20:16:05     1 -89.229 74.509
-#&gt; 127      ringy 2006-10-21 01:08:32     0 -88.716 74.427
-#&gt; 128      ringy 2006-10-21 22:52:21     A -87.900 74.294
-#&gt; 129      ringy 2006-10-23 08:46:39     3 -88.309 74.300
-#&gt; 130      ringy 2006-10-23 22:22:03     0 -88.101 74.365
-#&gt; 131      ringy 2006-10-25 08:24:24     A -87.948 74.209
-#&gt; 132      ringy 2006-10-25 22:56:46     A -87.532 74.212
-#&gt; 133      ringy 2006-10-27 06:23:06     B -86.577 74.268
-#&gt; 134      ringy 2006-10-27 23:44:14     2 -85.948 74.169
-#&gt; 135      ringy 2006-10-29 04:47:08     3 -85.348 73.904
-#&gt; 136      ringy 2006-10-29 20:44:37     1 -84.500 73.889
-#&gt; 137      ringy 2006-10-31 10:34:43     3 -84.502 74.117
-#&gt; 138      ringy 2006-11-01 05:18:22     A -84.407 74.196
-#&gt; 139      ringy 2006-11-03 11:58:03     B -83.147 74.536
-#&gt; 140      ringy 2006-11-03 20:38:36     2 -83.267 74.608
-#&gt; 141      ringy 2006-11-05 08:13:06     2 -83.194 74.800
-#&gt; 142      ringy 2006-11-05 22:34:10     3 -83.170 74.777
-#&gt; 143      ringy 2006-11-09 00:30:35     B -83.187 74.688
-#&gt; 144      ringy 2006-11-13 23:44:21     A -83.178 74.654
-#&gt; 145      ringy 2006-11-19 02:50:26     B -83.458 74.354
-#&gt; 146      ringy 2006-11-23 05:09:59     B -82.195 73.999
-#&gt; 147  stephanie 2005-02-02 06:39:33     2 -68.343 44.155
-#&gt; 148  stephanie 2005-02-02 12:22:22     2 -68.302 44.128
-#&gt; 149  stephanie 2005-02-03 01:26:25     3 -68.208 44.196
-#&gt; 150  stephanie 2005-02-04 01:05:55     2 -68.075 44.292
-#&gt; 151  stephanie 2005-02-05 09:12:37     3 -68.233 44.221
-#&gt; 152  stephanie 2005-02-06 03:37:43     3 -68.440 44.039
-#&gt; 153  stephanie 2005-02-07 03:15:08     2 -68.532 44.070
-#&gt; 154  stephanie 2005-02-08 16:46:17     2 -68.581 44.043
-#&gt; 155  stephanie 2005-02-09 07:01:41     2 -68.602 43.983
-#&gt; 156  stephanie 2005-02-10 10:55:09     3 -68.600 44.004
-#&gt; 157  stephanie 2005-02-11 06:35:33     2 -68.654 43.990
-#&gt; 158  stephanie 2005-02-12 01:23:08     3 -68.757 44.060
-#&gt; 159  stephanie 2005-02-12 11:21:44     1 -68.691 44.127
-#&gt; 160  stephanie 2005-02-13 00:59:18     2 -68.771 44.065
-#&gt; 161  stephanie 2005-02-14 03:54:45     3 -68.750 44.128
-#&gt; 162  stephanie 2005-02-15 03:32:09     3 -68.773 44.081
-#&gt; 163  stephanie 2005-02-16 01:28:51     2 -68.665 44.101
-#&gt; 164  stephanie 2005-02-17 16:39:13     3 -68.698 44.027
-#&gt; 165  stephanie 2005-02-18 00:41:55     2 -68.663 43.998
-#&gt; 166  stephanie 2005-02-19 02:01:10     3 -68.680 44.046
-#&gt; 167  stephanie 2005-02-20 01:38:49     3 -68.745 43.983
-#&gt; 168  stephanie 2005-02-20 15:32:47     1 -68.853 44.007
-#&gt; 169  stephanie 2005-02-21 01:17:13     2 -68.864 43.930
-#&gt; 170  stephanie 2005-02-22 07:51:38     1 -68.854 43.940
-#&gt; 171  stephanie 2005-02-23 02:10:37     2 -68.661 44.008
-#&gt; 172  stephanie 2005-02-24 15:41:06     0 -68.836 44.063
-#&gt; 173  stephanie 2005-02-25 00:54:47     3 -68.700 44.075
-#&gt; 174  stephanie 2005-02-26 14:55:45     3 -68.766 44.144
-#&gt; 175  stephanie 2005-02-27 14:26:06     2 -68.592 43.975
-#&gt; 176  stephanie 2005-02-28 01:55:58     3 -68.591 44.009
-#&gt; 177  stephanie 2005-03-01 01:33:04     2 -68.267 43.821
-#&gt; 178  stephanie 2005-03-02 01:30:18     2 -68.449 43.739
-#&gt; 179  stephanie 2005-03-03 04:08:12     2 -68.698 43.947
-#&gt; 180  stephanie 2005-03-03 12:35:53     2 -68.792 43.938
-#&gt; 181  stephanie 2005-03-04 01:02:50     3 -69.113 43.836
-#&gt; 182  stephanie 2005-03-05 01:42:56     3 -69.302 43.842
-#&gt; 183  stephanie 2005-03-06 01:19:37     2 -68.868 43.780
-#&gt; 184  stephanie 2005-03-07 10:12:37     1 -68.844 43.813
-#&gt; 185  stephanie 2005-03-08 02:13:04     1 -68.828 43.851
-#&gt; 186  stephanie 2005-03-09 01:40:23     2 -68.797 43.825
-#&gt; 187  stephanie 2005-03-10 11:29:31     0 -69.055 43.769
-#&gt; 188  stephanie 2005-03-11 11:52:21     1 -69.303 43.776
-#&gt; 189  stephanie 2005-03-12 00:42:42     1 -69.485 43.733
-#&gt; 190  stephanie 2005-03-13 01:58:33     3 -69.620 43.752
-#&gt; 191  stephanie 2005-03-14 14:33:08     2 -69.997 43.601
-#&gt; 192  stephanie 2005-03-15 01:13:24     3 -70.119 43.540
-#&gt; 193  stephanie 2005-03-16 20:31:43     2 -70.288 43.489
-#&gt; 194  stephanie 2005-03-17 03:48:27     3 -70.141 43.526
-#&gt; 195  stephanie 2005-03-18 01:23:39     2 -69.825 43.695
-#&gt; 196  stephanie 2005-03-19 08:06:52     2 -69.835 43.697
-#&gt; 197  stephanie 2005-03-20 02:39:28     2 -69.816 43.710
-#&gt; 198  stephanie 2005-03-21 09:27:07     3 -69.830 43.708
-#&gt; 199  stephanie 2005-03-22 01:53:57     3 -69.861 43.704
-#&gt; 200  stephanie 2005-03-23 19:59:14     2 -70.074 43.571
-#&gt; 201  stephanie 2005-03-24 01:09:25     2 -70.111 43.551
-#&gt; 202  stephanie 2005-03-25 00:45:44     3 -70.261 43.449
-#&gt; 203  stephanie 2005-03-26 08:24:51     2 -69.944 43.687
-#&gt; 204  stephanie 2005-03-27 08:13:47     3 -69.666 43.341
-#&gt; 205  stephanie 2005-03-28 19:31:12     3 -69.173 42.696
-#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 1712 rows ]
-#&gt; </div><div class='input'>
-<span class='no'>tr</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]</div><div class='output co'>#&gt;      id                time class     lon    lat
-#&gt; 1 ringy 2006-06-14 20:31:46     2 -72.655 40.915
-#&gt; 2 ringy 2006-06-15 05:58:14     3 -72.656 40.918
-#&gt; 3 ringy 2006-06-15 07:56:32     3 -72.657 40.919
-#&gt; </div><div class='input'><span class='no'>tr</span>[, <span class='fl'>1</span>]</div><div class='output co'>#&gt;    [1] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;    [7] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [13] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [19] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [25] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [31] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [37] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [43] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [49] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [55] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [61] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [67] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [73] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [79] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [85] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [91] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [97] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [103] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [109] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [115] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [121] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [127] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [133] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [139] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [145] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [151] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [157] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [163] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [169] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [175] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [181] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [187] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [193] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [199] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [205] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [211] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [217] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [223] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [229] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [235] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [241] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [247] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [253] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [259] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [265] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [271] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [277] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [283] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [289] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [295] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [301] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [307] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [313] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [319] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [325] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [331] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [337] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [343] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [349] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [355] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;ringy2&quot;   
-#&gt;  [361] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [367] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [373] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [379] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [385] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [391] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [397] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [403] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [409] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [415] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [421] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [427] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [433] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [439] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [445] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [451] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [457] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [463] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [469] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [475] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [481] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [487] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [493] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [499] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [505] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [511] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [517] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [523] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [529] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [535] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [541] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [547] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [553] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [559] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [565] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [571] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [577] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [583] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [589] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [595] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [601] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [607] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [613] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [619] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [625] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [631] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [637] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [643] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [649] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [655] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [661] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [667] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [673] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [679] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [685] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [691] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [697] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [703] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [709] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [715] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [721] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [727] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [733] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [739] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [745] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [751] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [757] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [763] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [769] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [775] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [781] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [787] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [793] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [799] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [805] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [811] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [817] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [823] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [829] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [835] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [841] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [847] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [853] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [859] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [865] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [871] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [877] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [883] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [889] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [895] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [901] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [907] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [913] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [919] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [925] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [931] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [937] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [943] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [949] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [955] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [961] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [967] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [973] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [979] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [985] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [991] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [997] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 912 entries ]
-#&gt; </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;    [1] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;    [7] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [13] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [19] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [25] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [31] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [37] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [43] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [49] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [55] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [61] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [67] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [73] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [79] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [85] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [91] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;   [97] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [103] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [109] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [115] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [121] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [127] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [133] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;    
-#&gt;  [139] &quot;ringy&quot;     &quot;ringy&quot;     &quot;ringy&quot;     &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [145] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [151] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [157] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [163] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [169] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [175] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [181] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [187] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [193] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [199] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [205] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [211] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [217] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [223] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [229] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [235] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [241] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [247] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [253] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [259] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [265] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [271] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [277] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [283] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [289] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [295] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [301] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [307] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [313] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [319] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [325] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [331] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [337] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [343] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [349] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot;
-#&gt;  [355] &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;stephanie&quot; &quot;ringy2&quot;   
-#&gt;  [361] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [367] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [373] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [379] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [385] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [391] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [397] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [403] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [409] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [415] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [421] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [427] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [433] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [439] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [445] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [451] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [457] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [463] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [469] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [475] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [481] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [487] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [493] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [499] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [505] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [511] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [517] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [523] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [529] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [535] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [541] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [547] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [553] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [559] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [565] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [571] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [577] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [583] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [589] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [595] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [601] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [607] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [613] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [619] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [625] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [631] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [637] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [643] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [649] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [655] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [661] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [667] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [673] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [679] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [685] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [691] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [697] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [703] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [709] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [715] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [721] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [727] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [733] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [739] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [745] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [751] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [757] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [763] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [769] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [775] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [781] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [787] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [793] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [799] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [805] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [811] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [817] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [823] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [829] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [835] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [841] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [847] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [853] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [859] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [865] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [871] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [877] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [883] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [889] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [895] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [901] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [907] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [913] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [919] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [925] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [931] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [937] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [943] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [949] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [955] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [961] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [967] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [973] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [979] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [985] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [991] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [997] &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;    &quot;ringy2&quot;   
-#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 912 entries ]
-#&gt; </div><div class='input'>
+               <span class='kw'>ask</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>echo</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: no help found for ‘trip-methods’</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(tr): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(tr): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>lines</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in lines(tr): object &#39;tr&#39; not found</span></div><div class='input'>
+<span class='fu'>dim</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>names</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>subset</span>(<span class='no'>tr</span>, <span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"2"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in subset(tr, id == &quot;2&quot;): object &#39;tr&#39; not found</span></div><div class='input'><span class='fu'>as.data.frame</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(tr): object &#39;tr&#39; not found</span></div><div class='input'>
+<span class='no'>tr</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object &#39;tr&#39; not found</span></div><div class='input'><span class='no'>tr</span>[, <span class='fl'>1</span>]</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object &#39;tr&#39; not found</span></div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object &#39;tr&#39; not found</span></div><div class='input'>
 <span class='kw'>if</span> (<span class='fu'>exists</span>(<span class='st'>"porpoise"</span>)) {
     <span class='fu'>dim</span>(<span class='no'>porpoise</span>)
     <span class='fu'>names</span>(<span class='no'>porpoise</span>)
     <span class='no'>porpoise</span>[<span class='no'>porpoise</span><span class='kw'>[[</span><span class='st'>"id"</span>]] <span class='kw'>==</span> <span class='st'>"GUS"</span>, ]
 }</div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#objects-from-the-class">Objects from the Class</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

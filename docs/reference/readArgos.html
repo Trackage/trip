@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>readArgos. trip</title>
+<title>Read Argos &quot;DAT&quot; or &quot;DIAG&quot; files — readArgos â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Read Argos &quot;DAT&quot; or &quot;DIAG&quot; files</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Read Argos &quot;DAT&quot; or &quot;DIAG&quot; files</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Return a (Spatial) data frame of location records from raw Argos files.
 Multiple files may be read, and each set of records is appended to the data
@@ -91,7 +89,7 @@ frame in turn.  Basic validation of the data is enforced by default.</p>
 
 <span class='fu'>readDiag</span>(<span class='no'>x</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd>vector of file names of Argos &quot;DAT&quot; or &quot;DIAG&quot; files.</dd>
@@ -111,12 +109,11 @@ pasted together</dd>
       <dd>if TRUE, details on date-time adjustment is reported</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p><code>readArgos</code> returns a <code>trip</code> object, if all goes well, or simply a
-<code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>.</p>
-      <p><code>readDiag</code> returns a <code>data.frame</code> with 8 columns:
+    <p><code>readArgos</code> returns a <code>trip</code> object, if all goes well, or simply a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>.</p>
+    <p><code>readDiag</code> returns a <code>data.frame</code> with 8 columns:
 <ul>
 <li> <code>lon1</code>,<code>lat1</code> first pair of coordinates
 </li>
@@ -131,63 +128,78 @@ pasted together</dd>
 <li> iq some other thing
 </li>
 </ul></p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p><code>readArgos</code> performs basic validation checks for class <code>trip</code> are
+    <p><code>readArgos</code> performs basic validation checks for class <code>trip</code> are
 made, and enforced based on <code>correct.all</code>:</p>
-      <p>No duplicate records in the data, these are simply removed.  Records are
+    <p>No duplicate records in the data, these are simply removed.  Records are
 ordered by DateTime (&quot;date&quot;, &quot;time&quot;, &quot;gmt&quot;) within ID (&quot;ptt&quot;).  No duplicate
 DateTime values within ID are allowed: to enforce this the time values are
 moved forward by one second - this is done recursively and is not robust.</p>
-      <p>If validation fails the function will return a
-<code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>.  Files that are not obviously of
+    <p>If validation fails the function will return a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>.  Files that are not obviously of
 the required format are skipped.</p>
-      <p>Argos location quality data &quot;class&quot; are ordered, assuming that the available
+    <p>Argos location quality data &quot;class&quot; are ordered, assuming that the available
 levels is <code>levels=c(&quot;Z&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;)</code>.</p>
-      <p>A projection string is added to the data, assuming the PROJ.4 longlat - if
+    <p>A projection string is added to the data, assuming the PROJ.4 longlat - if
 any longitudes are greater than 360 the PROJ.4 argument &quot;+over&quot; is added.</p>
-      <p><code>readDiag</code> simply builds a <code>data.frame</code>.</p>
-    </div>
+    <p><code>readDiag</code> simply builds a <code>data.frame</code>.</p>
+    
+    <h2 class="hasAnchor" id="warning-"><a class="anchor" href="#warning-"></a>Warning </h2>
 
-    <div class="Warning ">
-      <h2>Warning </h2>
-
-      <p></p>
-      <p>This works on some Argos files I have seen, it is not a guaranteed method
+    <p></p>
+    <p>This works on some Argos files I have seen, it is not a guaranteed method
 and is in no way linked officially to Argos.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <div class="References">
-      <h2>References</h2>
-
-      <p>The Argos data documentation was (ca. 2003) at
+    <p>The Argos data documentation was (ca. 2003) at
 http://www.argos-system.org/manual.  Specific details on the PRV
 (&quot;provide data&quot;) format were found in Chapter 4_4_8, originally at 
 &#39;http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm&#39;.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='trip-methods.html'>trip</a></code>, <code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>,
+    <p><code><a href='trip-methods.html'>trip</a></code>, <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>,
 <code><a href='adjust.duplicateTimes.html'>adjust.duplicateTimes</a></code>, for manipulating these data, and
 <code><a href='argos.sigma.html'>argos.sigma</a></code> for relating a numeric value to Argos quality
 &quot;classes&quot;.</p>
-      <p><code><a href='sepIdGaps.html'>sepIdGaps</a></code> for splitting the IDs in these data on some minimum
+    <p><code><a href='sepIdGaps.html'>sepIdGaps</a></code> for splitting the IDs in these data on some minimum
 gap.</p>
-      <p><code>order</code>, <code>duplicated</code>, , <code>ordered</code> for
+    <p><code>order</code>, <code>duplicated</code>, , <code>ordered</code> for
 general manipulation of this type.</p>
-    </div>
-      </div>
-  <div class="col-md-3">
+    
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#warning-">Warning </a></li>
+
+      <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

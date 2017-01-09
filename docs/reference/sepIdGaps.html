@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>sepIdGaps. trip</title>
+<title>Separate a set of IDs based on gaps — sepIdGaps â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Separate a set of IDs based on gaps</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Separate a set of IDs based on gaps</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>A new set of ID levels can be created by separating those given based on a
 minimum gap in another set of data. This is useful for separating
@@ -87,7 +85,7 @@ instruments identified only by their ID into separate events in time.</p>
 
     <pre><span class='fu'>sepIdGaps</span>(<span class='no'>id</span>, <span class='no'>gapdata</span>, <span class='kw'>minGap</span> <span class='kw'>=</span> <span class='fl'>3600</span> * <span class='fl'>24</span> * <span class='fl'>7</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>id</dt>
       <dd>existing ID levels</dd>
@@ -97,53 +95,67 @@ instruments identified only by their ID into separate events in time.</p>
       <dd>the minimum &quot;gap&quot; to use in gapdata to create a new ID level</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>A new set of ID levels, named following the pattern that &quot;ID&quot; split into 3
+    <p>A new set of ID levels, named following the pattern that &quot;ID&quot; split into 3
 would provided &quot;ID&quot;, &quot;ID\_2&quot; and &quot;ID\_3&quot;.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>The assumption is that a week is a long time for a tag not to record
+    <p>The assumption is that a week is a long time for a tag not to record
 anything.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
 
-    <div class="Warning">
-      <h2>Warning</h2>
-
-      <p></p>
-      <p>It is assumed that each vector provides is sorted by <code>gapdata</code> within
+    <p></p>
+    <p>It is assumed that each vector provides is sorted by <code>gapdata</code> within
 <code>id</code>. No checking is done, and so it is suggested that this only be
 used on ID columns within existing, validated <code>trip</code> objects.</p>
-    </div>
-
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='trip-methods.html'>trip</a></code></p>
-    </div>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='trip-methods.html'>trip</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'>gl</span>(<span class='fl'>2</span>, <span class='fl'>8</span>)
 <span class='no'>gd</span> <span class='kw'>&lt;-</span> <span class='fu'>Sys.time</span>() + <span class='fl'>1</span>:<span class='fl'>16</span>
 <span class='no'>gd</span>[<span class='fu'>c</span>(<span class='fl'>4</span>:<span class='fl'>6</span>, <span class='fl'>12</span>:<span class='fl'>16</span>)] <span class='kw'>&lt;-</span> <span class='no'>gd</span>[<span class='fu'>c</span>(<span class='fl'>4</span>:<span class='fl'>6</span>, <span class='fl'>12</span>:<span class='fl'>16</span>)] + <span class='fl'>10000</span>
 <span class='fu'>sepIdGaps</span>(<span class='no'>id</span>, <span class='no'>gd</span>, <span class='fl'>1000</span>)</div><div class='output co'>#&gt;  [1] &quot;1&quot;   &quot;1&quot;   &quot;1&quot;   &quot;1_2&quot; &quot;1_2&quot; &quot;1_2&quot; &quot;1_2&quot; &quot;1_2&quot; &quot;2&quot;   &quot;2&quot;   &quot;2&quot;   &quot;2_2&quot;
-#&gt; [13] &quot;2_2&quot; &quot;2_2&quot; &quot;2_2&quot; &quot;2_2&quot;
-#&gt; </div><div class='input'>
+#&gt; [13] &quot;2_2&quot; &quot;2_2&quot; &quot;2_2&quot; &quot;2_2&quot;</div><div class='input'>
 
 </div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#warning">Warning</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

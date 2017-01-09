@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>argos.sigma. trip</title>
+<title>Assign numeric values for Argos &quot;class&quot; — argos.sigma â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Assign numeric values for Argos &quot;class&quot;</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Assign numeric values for Argos &quot;class&quot;</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Assign numeric values for Argos &quot;class&quot; by matching the levels available to
 given numbers. An adjustment is made to allow sigma to be specified in
@@ -89,7 +87,7 @@ least precise to most precise.</p>
 
     <pre><span class='fu'>argos.sigma</span>(<span class='no'>x</span>, <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>100</span>, <span class='fl'>80</span>, <span class='fl'>50</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>4</span>, <span class='fl'>2</span>), <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>111.12</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd>factor of Argos location quality &quot;classes&quot;</dd>
@@ -99,22 +97,19 @@ least precise to most precise.</p>
       <dd>a numeric adjustment to convert from kms to degrees</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>Numeric values for given levels.</p>
-    </div>
-
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>The available levels in Argos are <code>levels=c(&quot;Z&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;1&quot;,
-&quot;2&quot;, &quot;3&quot;)</code>.</p>
-      <p>The actual sigma values given by default are (as far as can be determined) a
-reasonable stab at what Argos believes.</p>
-    </div>
+    <p>Numeric values for given levels.</p>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The available levels in Argos are <code>levels=c(&quot;Z&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;1&quot;,
+&quot;2&quot;, &quot;3&quot;)</code>.</p>
+    <p>The actual sigma values given by default are (as far as can be determined) a
+reasonable stab at what Argos believes.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='no'>cls</span> <span class='kw'>&lt;-</span> <span class='fu'>ordered</span>(<span class='fu'>sample</span>(<span class='fu'>c</span>(<span class='st'>"Z"</span>, <span class='st'>"B"</span>, <span class='st'>"A"</span>, <span class='st'>"0"</span>, <span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>), <span class='fl'>30</span>,
@@ -129,17 +124,34 @@ reasonable stab at what Argos believes.</p>
 #&gt;          1          2          B          3          2          Z          0 
 #&gt; 0.08999280 0.03599712 0.71994240 0.01799856 0.03599712 0.89992801 0.17998560 
 #&gt;          1          1 
-#&gt; 0.08999280 0.08999280 
-#&gt; </div><div class='input'>
+#&gt; 0.08999280 0.08999280 </div><div class='input'>
 
 </div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

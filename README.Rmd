@@ -24,6 +24,10 @@ The trip package provides functions for accessing and manipulating
 spatial data for animal tracking.  Filter for speed and create time
 spent plots from animal track data.
 
+# Development
+
+There is some ongoing integration with the `sf` package, mostly to provide outputs in its
+formats. Trip itself would be better implemented on top of the ideas in https://github.com/r-gris/rangl/, rather than shoe-horned into a weird twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
 
 ## Installing
 

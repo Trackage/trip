@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>filter.penSS. trip</title>
+<title>Non-destructive smoothing filter — filter.penSS â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,22 +67,23 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Non-destructive smoothing filter</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Non-destructive smoothing filter</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Non-destructive filter for track data using penalty smoothing on velocity.</p>
     
 
     <pre><span class='fu'>filter.penSS</span>(<span class='no'>tr</span>, <span class='no'>lambda</span>, <span class='kw'>first</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>tr</dt>
       <dd>A <code>trip</code> object.</dd>
@@ -97,45 +95,38 @@ filter.</dd>
       <dt>last</dt>
       <dd>Fix the last location and prevent it from being updated by the
 filter.</dd>
-      <dt>&amp;#8230;</dt>
+      <dt>&#8230;</dt>
       <dd>Arguments passed on to <code>nlm</code></dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>A trip object with updated coordinate values based on the filter - all the
+    <p>A trip object with updated coordinate values based on the filter - all the
 data, including original coordinates which are maintained in the trip data
 frame.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>Destructive filters such as <code><a href='speedfilter.html'>speedfilter</a></code> can be recast using a
+    <p>Destructive filters such as <code><a href='speedfilter.html'>speedfilter</a></code> can be recast using a
 penalty smoothing approach in the style of Green and Silverman (1994).</p>
-      <p>This filter works by penalizing the fit of the smoothed track to the
+    <p>This filter works by penalizing the fit of the smoothed track to the
 observed locations by the sum of squared velocities.  That is, we trade off
 goodness of fit against increasing the total sum of squared velocities.</p>
-      <p>When lambda=0 the smoothed track reproduces the raw track exactly.
+    <p>When lambda=0 the smoothed track reproduces the raw track exactly.
 Increasing lambda favours tracks requiring less extreme velocities, at the
 expense of reproducing the original locations.</p>
-    </div>
-
-    <div class="References">
-      <h2>References</h2>
-
-      <p>Green, P. J. and Silverman, B. W. (1994). Nonparametric regression and
-generalized linear models: a roughness penalty approach. CRC Press.</p>
-    </div>
-
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='speedfilter.html'>speedfilter</a></code></p>
-    </div>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Green, P. J. and Silverman, B. W. (1994). Nonparametric regression and
+generalized linear models: a roughness penalty approach. CRC Press.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='speedfilter.html'>speedfilter</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='co'>## Not run: ------------------------------------</span>
@@ -184,7 +175,22 @@ generalized linear models: a roughness penalty approach. CRC Press.</p>
 <span class='co'># </span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
     <h2>Author</h2>
     
 Simon Wotherspoon and Michael Sumner
@@ -193,7 +199,14 @@ Simon Wotherspoon and Michael Sumner
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

@@ -6,11 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>speedfilter. trip</title>
+<title>Filter track data for speed — speedfilter â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +21,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +34,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +49,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,15 +67,16 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Filter track data for speed</h1>
-</div>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Filter track data for speed</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Create a filter of a track for &quot;bad&quot; points implying a speed of motion that
 is unrealistic.</p>
@@ -86,7 +84,7 @@ is unrealistic.</p>
 
     <pre><span class='fu'>speedfilter</span>(<span class='no'>x</span>, <span class='kw'>max.speed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd>trip object</dd>
@@ -96,64 +94,71 @@ is unrealistic.</p>
       <dd>cut the algorithm short and just return first pass</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p>Logical vector matching positions in the coordinate records that pass the
+    <p>Logical vector matching positions in the coordinate records that pass the
 filter.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>Using an algorithm (McConnnell et al., 1992), points are tested for speed
+    <p>Using an algorithm (McConnnell et al., 1992), points are tested for speed
 between previous / next and 2nd previous / next points.  Contiguous sections
 with an root mean square speed above a given maximum have their highest rms
 point removed, then rms is recalculated, until all points are below the
 maximum.  By default an (internal) root mean square function is used, this
 can be specified by the user.</p>
-      <p>If the coordinates of the <code>trip</code> data are not projected, or NA the
+    <p>If the coordinates of the <code>trip</code> data are not projected, or NA the
 distance calculation assumes longlat and kilometres (great circle). For
 projected coordinates the speed must match the units of the coordinate
 system.  (The PROJ.4 argument &quot;units=km&quot; is suggested).</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <div class="Note">
-      <h2>Note</h2>
-
-      <p>This algorithm was originally taken from IDL code by David Watts at the
+    <p>This algorithm was originally taken from IDL code by David Watts at the
 Australian Antarctic Division, and used in various other environments before
 the development of this version.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
 
-    <div class="Warning">
-      <h2>Warning</h2>
-
-      <p></p>
-      <p>This algorithm is destructive, and provides little information about
+    <p></p>
+    <p>This algorithm is destructive, and provides little information about
 location uncertainty.  It is provided because it&#39;s commonly used
 and provides an illustrative benchmark for further work.</p>
-      <p>It is possible for the filter to become stuck in an infinite loop, depending
+    <p>It is possible for the filter to become stuck in an infinite loop, depending
 on the function passed to the filter.  Several minutes is probably too long
 for hundreds of points, test on smaller sections if unsure.</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <div class="References">
-      <h2>References</h2>
-
-      <p>The algorithm comes from McConnell, B. J. and Chambers, C. and Fedak, M. A.
+    <p>The algorithm comes from McConnell, B. J. and Chambers, C. and Fedak, M. A.
 (1992) Foraging ecology of southern elephant seals in relation to the
 bathymetry and productivity of the southern ocean.  Antarctic Science
 <em>4</em> 393-398</p>
-    </div>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class="See also">
-      <h2>See also</h2>
+    <p><code><a href='trip-methods.html'>trip</a></code></p>
+    
 
-      <p><code><a href='trip-methods.html'>trip</a></code></p>
-    </div>
-      </div>
-  <div class="col-md-3">
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#warning">Warning</a></li>
+
+      <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
     <h2>Author</h2>
     
 David Watts and Michael D. Sumner
@@ -162,7 +167,14 @@ David Watts and Michael D. Sumner
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 

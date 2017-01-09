@@ -6,11 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>trip-accessors. trip</title>
+<title>Functions to retrieve DateTime and ID data from within (Spatial) data
+ — trip-accessors â€¢ trip</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
-
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,6 +22,7 @@
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
@@ -34,10 +35,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container template-reference-topic">
       <header>
-      
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,15 +50,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">Home</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mdsumner/trip">
@@ -70,16 +68,17 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+
       
       </header>
 
-      <div class="page-header">
-  <h1>Functions to retrieve DateTime and ID data from within (Spatial) data
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Functions to retrieve DateTime and ID data from within (Spatial) data
 </h1>
-</div>
+    </div>
 
-<div class="row">
-  <div class="col-md-9">
     
     <p>Functions for retrieving the names of the columns used for DateTime and ID,
 as well as the data.</p>
@@ -92,46 +91,60 @@ as well as the data.</p>
 <span class='co'># S3 method for summary.TORdata</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
-    <h2>Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>obj</dt>
       <dd><code>trip</code> object.</dd>
       <dt>x</dt>
       <dd>trip object</dd>
-      <dt>&amp;#8230;</dt>
+      <dt>&#8230;</dt>
       <dd>currently ignored</dd>
     </dl>
     
-    <div class="Value">
-      <h2>Value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <p><code>getTORnames</code> retrieves the column names from an object extending the
+    <p><code>getTORnames</code> retrieves the column names from an object extending the
 class <code>TimeOrderedRecords</code>, and <code>getTimeID</code> returns the data as a
 data frame from an object extending the class <code>TimeOrderedRecords</code>.</p>
-    </div>
-
-    <div class="See also">
-      <h2>See also</h2>
-
-      <p><code><a href='trip-class.html'>trip-class</a></code>, for the use of this class with
-<code><a href='http://www.rdocumentation.org/packages/SpatialPoints/topics/sp'>SpatialPointsDataFrame</a></code>.</p>
-      <p><code><a href='trip-methods.html'>trip</a></code></p>
-    </div>
     
-    <h2 id="examples">Examples</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='trip-class.html'>trip-class</a></code>, for the use of this class with
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code>.</p>
+    <p><code><a href='trip-methods.html'>trip</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
 <span class='no'>tor</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TimeOrderedRecords.html'>TimeOrderedRecords</a></span>(<span class='fu'>c</span>(<span class='st'>"time"</span>, <span class='st'>"id"</span>))
-<span class='fu'>getTORnames</span>(<span class='no'>tor</span>)</div><div class='output co'>#&gt; [1] &quot;time&quot; &quot;id&quot;  
-#&gt; </div><div class='input'>
+<span class='fu'>getTORnames</span>(<span class='no'>tor</span>)</div><div class='output co'>#&gt; [1] &quot;time&quot; &quot;id&quot;  </div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
       <footer>
-      <p>Built by <a href="http://hadley.github.io/pkgdown/">pkgdown</a>. Styled with <a href="http://getbootstrap.com">Bootstrap 3</a>.</p>
+      <div class="copyright">
+  <p>Developed by Michael D. Sumner.</p>
+</div>
+
+<div class="pkgdown">
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+</div>
+
       </footer>
    </div>
 
