@@ -10,5 +10,6 @@ proj4string(d) <- CRS("+proj=laea +ellps=sphere")
 
 
 test_that("trip works", {
-  expect_that(trip(d, c("tms", "id")), is_a("trip"))
+  expect_that(tr <- trip(d, c("tms", "id")), is_a("trip"))
+  expect_that(raster(tr), is_a("RasterLayer"))
 })
