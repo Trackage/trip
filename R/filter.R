@@ -60,6 +60,16 @@ speedfilter <- function (x, max.speed=NULL, test=FALSE) {
         print("no max.speed given, nothing to do here")
         return(x)
     }
+    if (projected) {
+      crs <- sp::proj4string(x)
+      cat(rgdal::CRSargs(CRS(crs)), "\n")
+      print(c(xmin = raster::xmin(x), xmax = raster::xmax(x), 
+              ymin = raster::ymin(x), ymax = raster::ymax(x)))
+      cat("trip is in projected coordinates, max.speed provided is assumed to be\n")
+      cat("in those same units per hour (probably metres)\n")
+
+     cat("max.speed: ", max.speed)
+    }
     longlat <- !projected
     coords <- coordinates(x)
     tids <- getTimeID(x)

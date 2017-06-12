@@ -31,8 +31,8 @@ Description: Functions for accessing and manipulating spatial data for animal
     for speed and create time spent maps from animal track data. There are
     coercion methods to convert between 'trip' and 'ltraj' from 'adehabitatLT', 
     and between 'trip' and 'psp' and 'ppp' from 'spatstat'. 
-URL: https://github.com/mdsumner/trip
-BugReports: https://github.com/mdsumner/trip/issues
+URL: https://github.com/Trackage/trip
+BugReports: https://github.com/Trackage/trip/issues
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
