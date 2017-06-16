@@ -31,6 +31,7 @@ I have no idea what goes on at CLS when they output data that are either not
 ordered by time or have duplicates. If this problem exists in your data it's
 probably worth finding out why.
 }
+
 \examples{
 
 
@@ -48,4 +49,3 @@ range(diff(tms.adj))
 \seealso{
 \code{\link{readArgos}}
 }
-

@@ -39,4 +39,3 @@ Trip events are assumed to start and end as per the object passed in. To
 work with inferred "cutoff" positions see \code{split.trip.exact}.
 }
 \keyword{manip}
-

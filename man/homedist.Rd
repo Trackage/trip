@@ -22,4 +22,3 @@ is \code{NULL} (the default), then each individual trip's first location is used
 \seealso{
 \code{\link[sp]{spDistsN1}}
 }
-

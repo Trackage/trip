@@ -89,9 +89,6 @@ lines(trf)
 
 
 }
-\author{
-Simon Wotherspoon and Michael Sumner
-}
 \references{
 Green, P. J. and Silverman, B. W. (1994). Nonparametric regression and
 generalized linear models: a roughness penalty approach. CRC Press.
@@ -99,6 +96,8 @@ generalized linear models: a roughness penalty approach. CRC Press.
 \seealso{
 \code{\link{speedfilter}}
 }
+\author{
+Simon Wotherspoon and Michael Sumner
+}
 \keyword{manip}
 \keyword{misc}
-

@@ -3,10 +3,10 @@
 \docType{methods}
 \name{as.trip}
 \alias{as.trip}
-\alias{as.trip,ltraj-method}
 \alias{as.trip-methods}
-\alias{coerce,trip,ltraj-method}
+\alias{as.trip,ltraj-method}
 \alias{ltraj2trip}
+\alias{coerce,trip,ltraj-method}
 \title{Coercion from other classes to \code{trip} objects}
 \usage{
 as.trip(x, ...)
@@ -31,6 +31,7 @@ Coercing objects to \code{trip} class
 
 }
 }
+
 \examples{
 ## Continuing the example from '?trip-methods:
 utils::example("trip-methods", package="trip",
@@ -42,4 +43,3 @@ if (require(adehabitatLT)) {
     ##as.trip(l)
 }
 }
-

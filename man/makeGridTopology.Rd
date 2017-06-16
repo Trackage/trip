@@ -33,4 +33,3 @@ Approximations for kilometres in longlat can be made using \code{cellsize}
 and \code{adjust2longlat}.
 }
 \keyword{manip}
-

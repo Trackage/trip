@@ -28,4 +28,3 @@ function makes the most common trip problems easy to apply.
 \seealso{
 \code{\link{trip}}
 }
-

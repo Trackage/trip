@@ -64,10 +64,9 @@ trackDistance(tr)
  trackAngle(tr)
  }
 }
-\author{
-Roger Bivand and Michael Sumner
-}
 \references{
 Original source taken from sp package.
 }
-
+\author{
+Roger Bivand and Michael Sumner
+}

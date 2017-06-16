@@ -34,4 +34,3 @@ K. M. (2008), A simple new algorithm to filter marine mammal Argos
 locations. Marine Mammal Science, 24: 315?V325. doi:
 10.1111/j.1748-7692.2007.00180.x
 }
-

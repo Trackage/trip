@@ -2,16 +2,24 @@
 % Please edit documentation in R/AllClass.R, R/colours.R, R/grid.R, R/trip.R
 \docType{data}
 \name{trip-internal}
-\alias{.abdali}
-\alias{.distances}
+\alias{trip-internal}
+\alias{.validTORdata}
+\alias{.oc.col}
+\alias{.single.trip.split}
 \alias{.g2ow}
 \alias{.gcdist.c}
 \alias{.intpFun}
-\alias{.oc.col}
-\alias{.single.trip.split}
 \alias{.tripRbind}
-\alias{.validTORdata}
-\alias{trip-internal}
+\alias{.distances}
+\alias{.abdali}
+\alias{.oc.col}
+\alias{.g2ow}
+\alias{.intpFun}
+\alias{.distances}
+\alias{.gcdist.c}
+\alias{.abdali}
+\alias{.tripRbind}
+\alias{.single.trip.split}
 \title{Internal trip Functions}
 \format{An object of class \code{character} of length 256.}
 \usage{
@@ -42,4 +50,3 @@ for proper documentation to be written).
 }
 \keyword{datasets}
 \keyword{internal}
-

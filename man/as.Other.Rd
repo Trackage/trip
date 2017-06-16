@@ -61,4 +61,3 @@ utils::example("trip-methods", package="trip",
 spldf <- explode(tr)
 summary(tr)
 }
-

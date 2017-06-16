@@ -50,9 +50,7 @@ It is possible for the filter to become stuck in an infinite loop, depending
 on the function passed to the filter.  Several minutes is probably too long
 for hundreds of points, test on smaller sections if unsure.
 }
-\author{
-David Watts and Michael D. Sumner
-}
+
 \references{
 The algorithm comes from McConnell, B. J. and Chambers, C. and Fedak, M. A.
 (1992) Foraging ecology of southern elephant seals in relation to the
@@ -62,5 +60,7 @@ bathymetry and productivity of the southern ocean.  Antarctic Science
 \seealso{
 \code{\link{trip}}
 }
+\author{
+David Watts and Michael D. Sumner
+}
 \keyword{manip}
-

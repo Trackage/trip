@@ -2,8 +2,8 @@
 % Please edit documentation in R/trip.R
 \name{trackAngle}
 \alias{trackAngle}
-\alias{trackAngle.default}
 \alias{trackAngle.trip}
+\alias{trackAngle.default}
 \title{Determine internal angles along a track}
 \usage{
 trackAngle(x)
@@ -29,4 +29,3 @@ start and end point of each individual trip, with value NA.
 This is an optimized hybrid of "raster::bearing" and
 \code{\link[maptools]{gzAzimuth}}.
 }
-

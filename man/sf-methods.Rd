@@ -13,4 +13,3 @@
 \description{
 Coerce to sf, with XYM.
 }
-

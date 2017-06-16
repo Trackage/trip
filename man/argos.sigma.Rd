@@ -41,4 +41,3 @@ argos.sigma(cls)
 
 }
 \keyword{manip}
-
