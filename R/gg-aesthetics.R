@@ -46,3 +46,8 @@ trip2 <- function(.data, ..., crs = NULL) {
 }
 
 
+#' @importFrom dplyr filter
+filter.trip <- function(.data, ...)  {\
+  ## how do we achiever this?
+  ## filter(speedfilter(x, y, time))
+}

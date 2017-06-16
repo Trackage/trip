@@ -13,9 +13,11 @@ Depends:
     methods,
     sp
 Imports:
+    dplyr,
     maptools,
     MASS,
     raster,
+    rlang,
     sf,
     spatstat
 Suggests:
