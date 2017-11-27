@@ -16,7 +16,7 @@
 #' @importFrom sp CRS SpatialPoints SpatialPointsDataFrame
 #' @examples
 #' d <- tibble::as_tibble(as.data.frame(walrus818[1:100, ]))
-#' trip2(d, x = X_AED170_70, y = Y_AED170_70, time = DataDT, id = Deployment)
+#' g <- trip2(d, x = X_AED170_70, y = Y_AED170_70, time = DataDT, id = Deployment)
 trip2 <- function(.data, ..., crs = NULL) {
 
   quo_named <- rlang::quos(...)
@@ -36,9 +36,9 @@ trip2 <- function(.data, ..., crs = NULL) {
      }
    }
       if (ncol(.data) == 4) {
-     .data <- tibble(nominal = seq_len(nrow(.data)))
+     .data <- tibble::tibble(nominal = seq_len(nrow(.data)))
    } else {
-     .data <- as_tibble(.data[, base::setdiff(names(.data), names(xytg))])
+     .data <- tibble::as_tibble(.data[, base::setdiff(names(.data), names(xytg))])
    }
    new("trip", SpatialPointsDataFrame(SpatialPoints(as.matrix(xytg[,1:2]), 
                                       proj4string = CRS(crs)), 
@@ -47,7 +47,7 @@ trip2 <- function(.data, ..., crs = NULL) {
 
 
 #' @importFrom dplyr filter
-filter.trip <- function(.data, ...)  {\
+filter.trip <- function(.data, ...)  {
   ## how do we achiever this?
   ## filter(speedfilter(x, y, time))
 }
