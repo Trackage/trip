@@ -2,17 +2,18 @@
 % Please edit documentation in R/AllMethod.R
 \docType{methods}
 \name{trip-methods}
-\alias{[,trip,ANY,ANY,ANY-method}
-\alias{[,trip-method}
-\alias{[[<-,trip,ANY,missing-method}
+\alias{trip-methods}
 \alias{trip}
-\alias{trip,ANY,TimeOrderedRecords-method}
 \alias{trip,SpatialPointsDataFrame,ANY-method}
+\alias{trip,ANY,TimeOrderedRecords-method}
 \alias{trip,trip,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
-\alias{trip-methods}
-\alias{trip<-}
+\alias{[,trip-method}
+\alias{[,trip,ANY,ANY,ANY-method}
+\alias{[[<-,trip,ANY,missing-method}
 \alias{trip<-,data.frame,character-method}
+\alias{trip<-}
+\alias{[,trip,ANY,ANY,ANY-method}
 \title{Function to handle animal track data, organized as \code{"trip"}s}
 \usage{
 trip(obj, TORnames)
@@ -73,6 +74,7 @@ create a \code{trip} object from a data frame.}
 
 }
 }
+
 \examples{
 
 
@@ -144,4 +146,3 @@ tr <- trip(dat, c("gmt", "seal"))
 \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simplistic
 speed filtering and spatial time spent gridding.
 }
-

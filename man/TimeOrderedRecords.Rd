@@ -19,4 +19,3 @@ Object to identify DateTimes and IDs in a Spatial object.
 \examples{
 ##' tor <- TimeOrderedRecords(c("datetime", "ID"))
 }
-

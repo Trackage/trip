@@ -16,7 +16,6 @@ Imports:
     maptools,
     MASS,
     raster,
-    sf,
     spatstat
 Suggests:
     adehabitatLT,
@@ -38,4 +37,4 @@ ByteCompile: yes
 License: GPL-3
 LazyData: yes
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

@@ -3,6 +3,7 @@
 \name{readArgos}
 \alias{readArgos}
 \alias{readDiag}
+\alias{readDiag}
 \title{Read Argos "DAT" or "DIAG" files}
 \usage{
 readArgos(x, correct.all = TRUE, dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",
@@ -74,6 +75,7 @@ any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
 This works on some Argos files I have seen, it is not a guaranteed method
 and is in no way linked officially to Argos.
 }
+
 \references{
 The Argos data documentation was (ca. 2003) at
 http://www.argos-system.org/manual.  Specific details on the PRV
@@ -94,4 +96,3 @@ general manipulation of this type.
 }
 \keyword{IO}
 \keyword{manip}
-

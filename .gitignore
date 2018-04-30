@@ -1,6 +1,5 @@
 #################
 ## R packages
-
 *.Rproj
 .Rhistory
 #*NAMESPACE
@@ -24,3 +23,4 @@ data-raw/MI_albatross_final.csv
 data-raw/nform.r
 data-raw/mia.r
 inst/doc
+.httr-oauth

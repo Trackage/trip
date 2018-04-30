@@ -24,4 +24,3 @@ lines(walrus818)
 ## library(mapview)
 ##mapview(as(walrus818, "SpatialLinesDataFrame"), burst = TRUE)
 }
-

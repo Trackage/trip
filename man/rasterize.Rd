@@ -44,4 +44,3 @@ rasterize(tr, r2)
 }
 
 }
-

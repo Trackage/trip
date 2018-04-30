@@ -47,14 +47,12 @@ setAs("trip", "sf", function(from) {
   lns <- lapply(lns, mk_linestring)
   mk_sfc <- function(x, bb, crs) structure(x, n_empty = 0, precision = 0, bbox = bb, crs = crs, class = c("sfc_LINESTRING", "sfc"))
   df[["geometry"]] <- mk_sfc(lns, bb, crs = structure(list(epsg = NA_integer_, proj4string = sp::proj4string(from)), class = "crs"))
-  sf::st_as_sf(df)
+  class(df) <- c("sf", "data.frame")
+  attr(df, "sf_column") <- "geometry"
+  attr(df, "agr") <- setNames(rep(NA, ncol(from)), names(from))
+  df
 })
 
-#' Coerce to sf, with XYM. 
-#' @name sf-methods
-#' @param x trip object
-#' @export
-st_as_sf.trip <- function(x) as(x, "sf")
 
 setAs("trip", "ltraj", function(from) {
   if(!requireNamespace("adehabitatLT")) stop("adhabitatLT not available")

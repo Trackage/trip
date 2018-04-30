@@ -10,4 +10,4 @@
 ^data-raw$
 ^revdep$
 ^prepare-package.r$
-
+^\.httr-oauth$

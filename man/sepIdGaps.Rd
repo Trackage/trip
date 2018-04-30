@@ -33,6 +33,7 @@ It is assumed that each vector provides is sorted by \code{gapdata} within
 \code{id}. No checking is done, and so it is suggested that this only be
 used on ID columns within existing, validated \code{trip} objects.
 }
+
 \examples{
 
 
@@ -47,4 +48,3 @@ sepIdGaps(id, gd, 1000)
 \code{\link{trip}}
 }
 \keyword{manip}
-

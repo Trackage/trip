@@ -94,12 +94,11 @@ print("you may need to resize the window to see the grid data")
 }
 
 }
-\author{
-Michael D. Sumner and Sebastian Luque
-}
 \seealso{
 See also \code{\link{tripGrid}}.
 }
+\author{
+Michael D. Sumner and Sebastian Luque
+}
 \keyword{chron}
 \keyword{manip}
-
