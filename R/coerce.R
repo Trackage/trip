@@ -27,7 +27,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                         df)
 })
 
-#' @importFrom sf  st_as_sf 
+#importFrom sf  st_as_sf 
 setAs("trip", "sf", function(from) {
   split.from <- split(from, from[[getTORnames(from)[2]]])
   sdf <- suppressWarnings(summary(from))
