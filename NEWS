@@ -1,6 +1,6 @@
 dev
 
-o add support to coerce to sf with `as(x, "sf")` and `st_as_sf(x)`
+o add support to coerce to sf with `as(x, "sf")` 
 
    CHANGES IN trip VERSION 1.5.0
 

@@ -907,7 +907,16 @@ trackAngle.default <- function(x) {
 #' print("you may need to resize the window to see the grid data")
 #'
 #' }
-#'
+#' 
+#' data("walrus818", package = "trip")
+#' library(lubridate)
+#' walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"), 
+#' ceiling_date(max(walrus818$DataDT), "month"), by = "1 month"))
+#' g <- rasterize(walrus818) * NA_real_
+#' st <- aggregate(raster::stack(lapply(walrus_list, rasterize, grid = g)), fact = 4, fun = sum, na.rm = TRUE)
+#' st[!st > 0] <- NA_real_
+#' 
+#' plot(st, col = oc.colors(52))
 #' @method cut trip
 #' @export
 cut.trip <-
