@@ -3,7 +3,6 @@
 \name{readArgos}
 \alias{readArgos}
 \alias{readDiag}
-\alias{readDiag}
 \title{Read Argos "DAT" or "DIAG" files}
 \usage{
 readArgos(x, correct.all = TRUE, dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",

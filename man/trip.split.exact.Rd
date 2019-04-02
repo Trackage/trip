@@ -7,10 +7,6 @@
 \alias{tripTransform}
 \alias{as.ltraj.trip}
 \alias{as.SpatialLinesDataFrame.trip}
-\alias{trip.split.exact}
-\alias{as.ltraj.trip}
-\alias{as.trip.SpatialLinesDataFrame}
-\alias{tripTransform}
 \title{Deprecated functions in trip}
 \usage{
 as.SpatialLinesDataFrame.trip(from)

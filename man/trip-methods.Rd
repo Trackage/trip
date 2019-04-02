@@ -13,7 +13,6 @@
 \alias{[[<-,trip,ANY,missing-method}
 \alias{trip<-,data.frame,character-method}
 \alias{trip<-}
-\alias{[,trip,ANY,ANY,ANY-method}
 \title{Function to handle animal track data, organized as \code{"trip"}s}
 \usage{
 trip(obj, TORnames)

@@ -4,8 +4,6 @@
 \alias{trip-accessors}
 \alias{getTORnames}
 \alias{getTimeID}
-\alias{getTORnames}
-\alias{getTimeID}
 \alias{print.summary.TORdata}
 \title{Functions to retrieve DateTime and ID data from within (Spatial) data
 frames.}

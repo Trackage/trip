@@ -5,8 +5,6 @@
 \alias{interpequal}
 \alias{countPoints}
 \alias{kdePoints}
-\alias{kdePoints}
-\alias{countPoints}
 \title{Generate a grid of time spent using approximate methods}
 \usage{
 tripGrid.interp(x, grid = NULL, method = "count", dur = NULL, ...)

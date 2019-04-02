@@ -3,7 +3,6 @@
 \name{oc.theme}
 \alias{oc.theme}
 \alias{oc.colors}
-\alias{oc.colors}
 \title{SeaWiFS ocean colour colours}
 \usage{
 oc.theme(x = 50)
