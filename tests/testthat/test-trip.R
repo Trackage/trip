@@ -72,7 +72,7 @@ test_that("compliance works", {
 
 
 
-expect_that("exact cut works", {
+test_that("exact cut works", {
             tr1 <- walrus818[1:20, ]
             
             cutter <- c(tr1$DataDT[1] - 1, tr1$DataDT[5] - 360, max(tr1$DataDT) + 1)
