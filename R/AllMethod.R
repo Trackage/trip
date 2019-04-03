@@ -361,6 +361,7 @@ setMethod("[", signature(x="trip"),
               if (any(is.na(i)))
                   stop("NAs not permitted in row index")
               spdf <- as(x, "SpatialPointsDataFrame")[i, j, ..., drop=drop]
+          
               tor <- getTORnames(x)
               if (is.factor(spdf[[tor[2]]]))
                   spdf[[tor[2]]] <- factor(spdf[[tor[2]]])

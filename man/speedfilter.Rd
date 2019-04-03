@@ -9,7 +9,9 @@ speedfilter(x, max.speed = NULL, test = FALSE)
 \arguments{
 \item{x}{trip object}
 
-\item{max.speed}{speed in kilometres per hour}
+\item{max.speed}{speed in kilometres (or other unit) per hour, the unit is kilometres 
+if the trip is in longitude latitude coordinates, or in the unit of the 
+projection projection (usually metres per hour)}
 
 \item{test}{cut the algorithm short and just return first pass}
 }
@@ -58,7 +60,7 @@ bathymetry and productivity of the southern ocean.  Antarctic Science
 \emph{4} 393-398
 }
 \seealso{
-\code{\link{trip}}
+\code{\link{sda}} for a fast distance angle filter to combine with speed filtering
 }
 \author{
 David Watts and Michael D. Sumner
