@@ -11,5 +11,25 @@ proj4string(d) <- CRS("+proj=laea +ellps=sphere")
 
 test_that("trip works", {
   expect_that(tr <- trip(d, c("tms", "id")), is_a("trip"))
-  expect_that(raster(tr), is_a("RasterLayer"))
+  
+  filt <- speedfilter(tr, max.speed = 1) %>% 
+    expect_type("logical")
+  expect_equal(sum(filt), 8)
+  ## metres per hour
+  xx <- walrus818[1:1000, ]
+  filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")
+  expect_true(sum(filt2) > 900)
+  expect_that(raster::raster(tr), is_a("RasterLayer"))
+  library(raster)
+  expect_that(timed <- rasterize(tr), is_a("RasterLayer"))
+  expect_true(raster::cellStats(timed, "sum") > 7)
+})
+
+
+test_that("plot works", {
+  expect_silent({plot(walrus818); lines(walrus818)})
+})
+
+test_that("compliance works", {
+  expect_that(tr <- trip(d, c("tms", "id"), correct_all = TRUE), is_a("trip"))
 })

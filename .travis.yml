@@ -1,32 +1,47 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
-sudo: required
-cache: packages
-r_binary_packages:
-  - rgdal
-af# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-## https://github.com/edzer/sfr/issues/142
-
-language: R
-sudo: required
-
-# https://github.com/ropensci/rgbif/blob/master/.travis.yml#L9
+language: r
+sudo: enabled
 dist: trusty
+cache:
+  - packages
+  - ccache
+latex: false
 
-before_install:
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install -y libudunits2-dev libproj-dev libgeos++-dev libgdal-dev
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:opencpu/jq'
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
 
-# We use clang, --without-libtool and --with-debug for faster build
-compiler:
-  - clang
+    packages:
+      - libproj-dev
+      - libgeos-dev
+      - libspatialite-dev
+      - libgdal-dev
+      - gdal-bin
 
-
-r_github_packages:
-  - jimhester/covr
+matrix:
+    include:
+        - os: linux
+          r: release
+          dist: trusty # 14.04
+          env:
+           - BUILD_NAME=trusty_release
+           - R_CODECOV=true
+        - os: linux
+          r: devel
+          dist: trusty
+        - os: linux
+          r: oldrel
+          dist: trusty
+        - os: osx
+          r: release
+          before_install: ''
+          disable_homebrew: true
+          env:
+           - BUILD_NAME=osx_release
+           - R_CODECOV=true
 
 after_success:
-  - R -e 'covr::codecov()'ter_success:
   - Rscript -e 'covr::codecov()'

@@ -19,91 +19,53 @@
 #' @seealso \code{\link{trip}}
 #' @export forceCompliance
 forceCompliance <- function(x, tor) {
-    isSpatial <- is(x, "SpatialPointsDataFrame")
-    if (isSpatial) {
-        crd.nrs <- x@coords.nrs
-        x <- as.data.frame(x)
-    }
-    levs <- unique(x[[tor[2]]])
-    tooshort <- tapply(x[[1]], x[[tor[2]]], function(x) length(x) < 3)
-    x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
-    x <- x[!duplicated(x), ]
-    x <- x[order(x[[tor[2]]], x[[tor[1]]]), ]
-    x[[tor[1]]] <- adjust.duplicateTimes(x[[tor[1]]], x[[tor[2]]])
-    if (isSpatial) {
-        coordinates(x) <- crd.nrs
-        x <- trip(x, tor)
-    }
-    x
-}
-
-##' @rdname trip-internal
-.intpFun <- function(x) {
-    len <- round(x[3] + 1)
-    new <- seq(x[1], x[2], length=len)
-    if (len > 1)
-        new[-len]
-    else new
-}
-
-interpequal <- function(x, dur=NULL, quiet=FALSE) {
-  if (!is(x, "trip"))
-    stop("only trip objects supported")
-  if (is.null(dur))
-    stop("equal time duration must be specified \"dur=?\"")
-  ## x must be a single trip
-  tor <- getTORnames(x)
-  tids <- getTimeID(x)
-  time <- tids[, 1]
-  id <- factor(tids[, 2])
-  coords <- coordinates(x)
-  x <- coords[,1]
-  y <- coords[,2]
-  levs <- levels(id)
-  newPts <- vector("list", length(levs))
-  ##if (is.null(dur))
-  ##   dur <- as.numeric(min(unlist(tapply(as.integer(time),
-  ##            id, diff))))
-  for (isub in seq_along(levs)) {
-    ind <- id == levs[isub]
-    xx <- x[ind]
-    yy <- y[ind]
-    tms <- time[ind]
-    dt <- diff(as.numeric(tms))
-    dtn <- dt/dur
-    ax <- cbind(xx, c(xx[-1], xx[length(xx)]), c(dtn, 0))
-    ay <- cbind(yy, c(yy[-1], yy[length(yy)]), c(dtn, 0))
-    intime <- as.numeric(tms) - min(as.numeric(tms))
-    at <- cbind(intime, c(intime[-1], intime[length(intime)]),
-                c(dtn, 0))
-    nx <- unlist(apply(ax, 1, .intpFun))
-    ny <- unlist(apply(ay, 1, .intpFun))
-    nt <- unlist(apply(at, 1, .intpFun)) + min(tms)
-    ni <- factor(rep(levs[isub], length=length(nt)))
-##    newPts <- rbind(newPts,
-    newPts[[isub]] <- data.frame(x=nx, y=ny, time=nt, id=ni)
+  isSpatial <- is(x, "SpatialPointsDataFrame")
+ x <- force_internal(x, tor)
+  if (isSpatial) {
+    x <- trip(x, tor)
   }
-  newPts <- do.call("rbind", newPts)
-
-  origTotal <- sum(tapply(time, id, function(x) {
-    diff(range(as.numeric(x)))
-  }))
-  newTotal <- nrow(newPts) * dur
-  uType <- "hours"
-  hTotal <- sum(tapply(time, id, function(x) {
-    difftime(range(x)[2], range(x)[1], units=uType)
-  }))
-  if (!quiet) {
-    cat("lost seconds=", as.integer(origTotal - newTotal),
-        " out of a total ", hTotal, " ", uType, "\n")
-  }
-  coordinates(newPts) <- c("x", "y")
-  names(newPts) <- tor
-  newPts
+  x
 }
 
+force_internal <- function(x, tor) {
+  isSpatial <- is(x, "SpatialPointsDataFrame")
+  if (isSpatial) {
+    prenames <- names(x)
+    proj <- sp::proj4string(x)
+    x <- as.data.frame(x)
+    crdnames <- setdiff(names(x), prenames)
+ 
+  }
+  levs <- unique(x[[tor[2]]])
+  tooshort <- tapply(x[[1]], x[[tor[2]]], function(x) length(x) < 3)
+  if (any(tooshort)) {
+    warning(sprintf("removing trip records that have too few elements (<3):  \n'%s'", paste(names(tooshort)[tooshort], collapse = ",")))
+  }
+  x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
+  duperecords <- duplicated(x)
+  if (any(duperecords)) {
+    warning(sprintf("removing records that are complete duplicates at rows:  \n'%s'", paste(which(duperecords), collapse = ",")))
+  }
+  x <- x[!duperecords, ]
+  triporder <- order(x[[tor[2]]], x[[tor[1]]])
+  if (!all(triporder == seq_len(nrow(x)))) {
+    warning("ordering input records by trip ID, then time")
+    x <- x[triporder, ]
+  }
+  
+  adjusted <- adjust.duplicateTimes(x[[tor[1]]], x[[tor[2]]])
 
-
+  if (any(abs(unclass(adjusted) - unclass(x[[tor[1]]])) > 0)) {
+    warning("updating  duplicated time records by a small adjustment")
+    x[[tor[1]]] <- adjusted
+  }
+  if (isSpatial) {
+    coordinates(x) <- crdnames
+    sp::proj4string(x) <- sp::CRS(proj)
+  }
+  x
+}
+ 
 
 
 
@@ -197,233 +159,6 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 
 
 
-#' Read Argos "DAT" or "DIAG" files
-#'
-#'
-#' Return a (Spatial) data frame of location records from raw Argos files.
-#' Multiple files may be read, and each set of records is appended to the data
-#' frame in turn.  Basic validation of the data is enforced by default.
-#'
-#'
-#' \code{readArgos} performs basic validation checks for class \code{trip} are
-#' made, and enforced based on \code{correct.all}:
-#'
-#' No duplicate records in the data, these are simply removed.  Records are
-#' ordered by DateTime ("date", "time", "gmt") within ID ("ptt").  No duplicate
-#' DateTime values within ID are allowed: to enforce this the time values are
-#' moved forward by one second - this is done recursively and is not robust.
-#'
-#' If validation fails the function will return a
-#' \code{\link[sp]{SpatialPointsDataFrame}}.  Files that are not obviously of
-#' the required format are skipped.
-#'
-#' Argos location quality data "class" are ordered, assuming that the available
-#' levels is \code{levels=c("Z", "B", "A", "0", "1", "2", "3")}.
-#'
-#' A projection string is added to the data, assuming the PROJ.4 longlat - if
-#' any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
-#'
-#' \code{readDiag} simply builds a \code{data.frame}.
-#'
-#' @aliases readArgos readDiag
-#' @param x vector of file names of Argos "DAT" or "DIAG" files.
-#' @param correct.all logical - enforce validity of data as much as possible?
-#' (see Details)
-#' @param dtFormat the DateTime format used by the Argos data "date" and "time"
-#' pasted together
-#' @param tz timezone - GMT/UTC is assumed
-#' @param duplicateTimes.eps what is the tolerance for times being duplicate?
-#' @param p4 PROJ.4 projection string, "+proj=longlat +ellps=WGS84" is assumed
-#' @param verbose if TRUE, details on date-time adjustment is reported
-#' @return
-#'
-#' \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
-#' \code{\link[sp]{SpatialPointsDataFrame}}.
-#'
-#' \code{readDiag} returns a \code{data.frame} with 8 columns:
-#' \itemize{
-#' \item {\code{lon1},\code{lat1} first pair of coordinates}
-#' \item {\code{lon1},\code{lat1} second pair of coordinates}
-#' \item {gmt DateTimes as POSIXct}
-#' \item {id Platform Transmitting Terminal (PTT) ID}
-#' \item {lq Argos location quality class}
-#' \item {iq some other thing}
-#' }
-#' @section Warning :
-#'
-#' This works on some Argos files I have seen, it is not a guaranteed method
-#' and is in no way linked officially to Argos.
-#' @seealso
-#'
-#' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
-#' \code{\link{adjust.duplicateTimes}}, for manipulating these data, and
-#' \code{\link{argos.sigma}} for relating a numeric value to Argos quality
-#' "classes".
-#'
-#' \code{\link{sepIdGaps}} for splitting the IDs in these data on some minimum
-#' gap.
-#'
-#' \code{\link{order}}, \code{\link{duplicated}}, , \code{\link{ordered}} for
-#' general manipulation of this type.
-#' @references
-#'
-#' The Argos data documentation was (ca. 2003) at
-#' http://www.argos-system.org/manual.  Specific details on the PRV
-#' ("provide data") format were found in Chapter 4_4_8, originally at 
-#' 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
-#' @keywords IO manip
-#' @export readArgos
-readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
-                       tz="GMT", duplicateTimes.eps=1e-2,
-                       p4="+proj=longlat +ellps=WGS84", verbose=FALSE) {
-    ## add "correct.all" argument - just return data frame if it fails, with
-    ## suggestions of how to sort/fix it
-
-
-  ## this should be heaps faster
-    dout <- vector("list", length(x))
-    for (icon in seq_along(x)) {
-        old.opt <- options(warn=-1)
-        dlines <- strsplit(readLines(x[icon]), "\\s+", perl=TRUE)
-        options(old.opt)
-        loclines <- sapply(dlines, length) == 12
-        if (any(loclines)) {
-            dfm <- matrix(unlist(dlines[sapply(dlines, length) == 12]),
-                          ncol=12, byrow=TRUE)
-            if (dfm[1,7] == "LC") {
-                msg <- paste(" appears to be a diag file, skipping.",
-                             "Use readDiag to obtain a dataframe. \n\n")
-            	cat("file ", icon, msg)
-            	next
-            }
-            df <- vector("list", 12)
-            names(df) <- c("prognum", "ptt", "nlines", "nsensor",
-                           "satname", "class", "date", "time", "latitude",
-                           "longitude", "altitude", "transfreq")
-            for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
-            for (i in 5:6) df[[i]] <- factor(dfm[, i])
-            for (i in 7:8) df[[i]] <- dfm[, i]
-            df <- as.data.frame(df)
-            df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
-                                          dtFormat), tz)
-            dout[[icon]] <- df
-        } else {
-            cat("Problem with file: ", x[icon], " skipping\n")
-
-        }
-    }
-    if (all(sapply(dout, is.null)))
-        stop("No data to return: check the files")
-
-    dout <- do.call(rbind, dout)
-    if (correct.all) {
-        ## should add a reporting mechanism for these as well
-        ##  and return a data.frame if any of the tests fail
-        ## sort them
-        dout <- dout[order(dout$ptt, dout$gmt), ]
-        ## remove duplicate rows
-        dout <- dout[!duplicated(dout), ]
-        ## adjust duplicate times (now that they are sorted properly)
-        dt.by.id <- unlist(tapply(dout$gmt, dout$ptt,
-                                  function(x) c(-1, diff(x))))
-        dup.by.eps <- which(abs(dt.by.id) < duplicateTimes.eps)
-        if (length(dup.by.eps) >= 1) {
-            if (verbose) {
-                cat("Adjusting duplicate times\n.....\n")
-                for (i in  dup.by.eps) {
-                    ind <- i + (-2:1)
-                    print(cbind(dout[ind,c("ptt", "gmt", "class")],
-                                row.number=ind))
-                }
-            }
-            dout$gmt <- adjust.duplicateTimes(dout$gmt, dout$ptt)
-            if (verbose) {
-                cat("\n  Adjusted records now: \n\n")
-                for (i in  dup.by.eps) {
-                    ind <- i + (-2:1)
-                    print(cbind(dout[ind,c("ptt", "gmt", "class")],
-                                row.number=ind))
-                }
-            }
-        }
-        if(any(dout$longitude > 180)) {
-            msg <- paste("\nLongitudes contain values greater than 180,",
-                         "assuming proj.4 +over\n\n")
-            cat(msg)
-            p4 <- "+proj=longlat +ellps=WGS84 +over"
-        }
-        dout$class <- ordered(dout$class,
-                              levels=c("Z", "B", "A", "0", "1", "2", "3"))
-        coordinates(dout) <- c("longitude", "latitude")
-        proj4string(dout) <- CRS(p4)
-        ##tor <- TimeOrderedRecords(c("gmt", "ptt"))
-        test <- try(dout <- trip(dout, c("gmt", "ptt")))
-        if (!is(test, "trip")) {
-            cat("\n\n\n Data not validated: returning object of class ",
-                class(dout), "\n")
-            return(dout)
-        }
-        ## for now, only return spdftor if correct.all is TRUE
-        cat("\n\n\n Data fully validated: returning object of class ",
-            class(dout), "\n")
-        return(dout)
-    }
-    cat("\n\n\n Data not validated: returning object of class ",
-        class(dout), "\n")
-    dout
-}
-
-##' @rdname readArgos
-##' @export
-readDiag <- function (x) {
-  data <- NULL
-  for (fl in x) {
-    d <- readLines(fl)
-    locs <- d[grep("LON1", d, ignore.case=TRUE)]
-    tms <- d[grep("DATE", d, ignore.case=TRUE)]
-    bad <- (grep("\\?", locs))
-    if (length(bad) > 0) {
-      if (length(locs[-bad]) == 0) {
-        warning(paste("no valid locations in:", fl, "\n ...ignoring"))
-        next
-      }
-      locs <- locs[-bad]
-      tms <- tms[-(bad)]
-    }
-    dlines <- paste(locs, tms)
-    dlines <- strsplit(dlines, "\\s+", perl=TRUE)
-    reclen <- length(dlines[[1]])
-    dfm <- matrix(unlist(dlines[sapply(dlines, length) ==
-                                  reclen]), ncol=reclen, byrow=TRUE)
-    lonlat <- dfm[, c(4, 7, 10, 13)]
-    dic <- dfm[, c(14, 17, 18, 21, 24), drop=FALSE]
-    id <- dic[, 1]
-    gmt <- as.POSIXct(strptime(paste(dic[, 2], dic[, 3]),
-                               "%d.%m.%y %H:%M:%S"), tz="GMT")
-    lq <- dic[, 4]
-    iq <- dic[, 5]
-    ll <- as.vector(lonlat)
-    ll[grep("S", ll)] <- paste("-", ll[grep("S", ll)], sep="")
-    ll <- gsub("S", "", ll)
-    ll[grep("N", ll)] <- paste("", ll[grep("N", ll)], sep="")
-    ll <- gsub("N", "", ll)
-    ll[grep("E", ll)] <- paste("", ll[grep("E", ll)], sep="")
-    ll <- gsub("E", "", ll)
-    ll[grep("W", ll)] <- paste("-", ll[grep("W", ll)], sep="")
-    ll <- gsub("W", "", ll)
-    ll <- matrix(as.numeric(ll), ncol=4)
-    lon <- ll[, 2]
-    lon2 <- ll[, 4]
-    lq <- factor(lq, ordered=TRUE,
-                 levels=c("Z", "B", "A", "0", "1", "2", "3"))
-    data <- rbind(data,
-                  data.frame(lon1=lon, lat1=ll[, 1],
-                             lon2=lon2, lat2=ll[, 3],
-                             gmt=gmt, id=id, lq=lq, iq=iq))
-  }
-  data
-}
-
 
 
 #' Separate a set of IDs based on gaps
@@ -480,107 +215,6 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 
 
 
-
-
-#' Determine internal angles along a track
-#'
-#'
-#' Calculate the angles between subsequent 2-D coordinates using Great Circle
-#' distance (spherical) methods.
-#'
-#' If \code{x} is a trip object, the return result has an extra element for the
-#' start and end point of each individual trip, with value NA.
-#'
-#' This is an optimized hybrid of "raster::bearing" and
-#' \code{\link[maptools]{gzAzimuth}}.
-#'
-#' @rdname trackAngle
-#' @param x trip object, or matrix of 2-columns, with x/y coordinates
-#' @return Vector of angles (degrees) between coordinates.
-#' @rdname trackAngle
-#' @export trackAngle
-trackAngle <- function(x) {
-  UseMethod("trackAngle")
-}
-
-#' @rdname trackAngle
-#' @method trackAngle trip
-
-#' @export
-trackAngle.trip <- function(x) {
-  isproj <- is.projected(x)
-  if (is.na(isproj)) {
-    warning("object CRS is NA, assuming longlat")
-  } else {
-    if (isproj) {
-      x <- try(spTransform(x, "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"))
-      if (inherits(x, "try-error")) {
-        stop("Object x is projected, attempts to transform to longlat failed. Is rgdal installed?")
-      }
-    }
-  }
-  st <- split(x, x[[getTORnames(x)[2]]])
-  unlist(lapply(st, function(x1) c(NA, trackAngle(coordinates(x1)), NA)))
-
-}
-
-#' @rdname trackAngle
-#' @method trackAngle default
-#' @export
-trackAngle.default <- function(x) {
-  n <- nrow(x)
-  ## MDSumner 2013-06-14 not sure what to expose here, will start with optimized gzAzimuth(abdali)/bearing() hybrid
-  ##if (type == "geosphere") {
-  ##  require(geosphere)
-  ##  angle <- bearing(xy[2:(n-1),],xy[3:n,]) - bearing(xy[2:(n-1),],xy[1:(n-2),])
-  ##} else {
-  ##  if(!type == "abdali") stop(sprintf("type '%s' not implemented", type))
-    angle <- .abdali(x[2:(n-1),],x[3:n,]) - .abdali(x[2:(n-1),],x[1:(n-2),])
-
-  ##}
-  angle <- (angle+180)%%360-180
-  abs(angle)
-}
-
-
-## "abdali", replacement for raster::bearing
-##' @rdname trip-internal
-.abdali <- function (p1, p2)
-{
-  stopifnot(nrow(p1) == nrow(p2))
-
-  toRad <- pi/180
-  p1 <- p1 * toRad
-  p2 <- p2 * toRad
-  keep <- !(.rowSums(p1 == p2, nrow(p1), ncol(p1)) == 2L)
-  res <- rep(as.numeric(NA), length = nrow(p1))
-  if (sum(keep) == 0) {
-    return(res)
-  }
-  p1 <- p1[keep, , drop = FALSE]
-  p2 <- p2[keep, , drop = FALSE]
-  dLon = p2[, 1] - p1[, 1]
-  y = sin(dLon)
-  x = cos(p1[, 2]) * tan(p2[, 2]) - sin(p1[, 2]) * cos(dLon)
-  azm = atan2(y, x)/toRad
-  res[keep] <- (azm + 360)%%360
-  return(res)
-}
-
-
-##n <- 10000;x <- cbind(runif(n, -180, 180), runif(n, -90, 90));
-
-##max(abs(trackAngle(x) - trackAngle(x, type = "abdali")))
-## [1] 1.136868e-13
-
-##library(rbenchmark)
-
-##n <- 5000;x <- cbind(runif(n, -180, 180), runif(n, -90, 90));
-
-##benchmark(trackAngle(x, type = "geosphere"), trackAngle(x, type = "abdali"), replications = 300)
-##test replications elapsed relative user.self sys.self user.child sys.child
-##2    trackAngle(x, type = "abdali")          300    1.62    1.000      1.62        0         NA        NA
-##1 trackAngle(x, type = "geosphere")          300    8.49    5.241      8.49        0         NA        NA
 
 
 ## TODO:
@@ -787,7 +421,8 @@ trackAngle.default <- function(x) {
 #' walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"), 
 #' ceiling_date(max(walrus818$DataDT), "month"), by = "1 month"))
 #' g <- rasterize(walrus818) * NA_real_
-#' st <- aggregate(raster::stack(lapply(walrus_list, rasterize, grid = g)), fact = 4, fun = sum, na.rm = TRUE)
+#' stk <- raster::stack(lapply(walrus_list, rasterize, grid = g))
+#' st <- raster::aggregate(stk, fact = 4, fun = sum, na.rm = TRUE)
 #' st[!st > 0] <- NA_real_
 #' 
 #' plot(st, col = oc.colors(52))

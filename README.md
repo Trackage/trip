@@ -2,12 +2,12 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Travis-CI Build
-Status](https://travis-ci.org/Trackage/trip.svg?branch=master)](https://travis-ci.org/Trackage/trip)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip)
+Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/Trackage/trip)
+[![OSX Build
+Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/Trackage/trip)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip)[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 
 # Tools for animal track data

@@ -15,7 +15,7 @@
 \alias{trip<-}
 \title{Function to handle animal track data, organized as \code{"trip"}s}
 \usage{
-trip(obj, TORnames)
+trip(obj, TORnames, correct_all = TRUE)
 
 trip(obj) <- value
 
@@ -29,6 +29,8 @@ redefining \code{TORnames}.}
 
 \item{TORnames}{Either a \code{TimeOrderedRecords} object, or a 2-element
 character vector specifying the DateTime and ID column of \code{obj}}
+
+\item{correct_all}{logical value, if `TRUE` the input data is corrected for common problems}
 
 \item{value}{A 4-element character vector specifying the X, Y, DateTime coordinates 
 and ID of \code{obj}.}
@@ -49,6 +51,12 @@ A trip object, with the usual slots of a
 Create an object of class \code{"trip"}, extending the basic functionality
 of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 that define the "TimeOrdered" quality of the records.
+}
+\details{
+Track data often contains problems, with missing values in location or time, 
+times out of order or with duplicated times. The `correct_all` argument is 
+set to `TRUE` by default and will report any inconsistencies. Data really should
+be checked first.
 }
 \section{Methods}{
 

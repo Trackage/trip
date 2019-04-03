@@ -1,5 +1,6 @@
 context("coerce-sf")
 
 test_that("sf works", {
-  expect_that(st_as_sf(walrus818), is_a("sf"))
+  sfx <- as(walrus818, "sf") %>% expect_s3_class("sf")
+  sfx$geometry %>% expect_s3_class("sfc_LINESTRING")
 })

@@ -27,6 +27,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                         df)
 })
 
+#' @importFrom stats setNames
 setAs("trip", "sf", function(from) {
   split.from <- split(from, from[[getTORnames(from)[2]]])
   sdf <- suppressWarnings(summary(from))
@@ -48,7 +49,7 @@ setAs("trip", "sf", function(from) {
   df[["geometry"]] <- mk_sfc(lns, bb, crs = structure(list(epsg = NA_integer_, proj4string = sp::proj4string(from)), class = "crs"))
   class(df) <- c("sf", "data.frame")
   attr(df, "sf_column") <- "geometry"
-  attr(df, "agr") <- setNames(rep(NA, ncol(from)), names(from))
+  attr(df, "agr") <- stats::setNames(rep(NA, ncol(from)), names(from))
   df
 })
 

@@ -5,7 +5,10 @@
 #' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
 #'
-#'
+#' Track data often contains problems, with missing values in location or time, 
+#' times out of order or with duplicated times. The `correct_all` argument is 
+#' set to `TRUE` by default and will report any inconsistencies. Data really should
+#' be checked first. 
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
@@ -19,6 +22,7 @@
 #' character vector specifying the DateTime and ID column of \code{obj}
 #' @param value A 4-element character vector specifying the X, Y, DateTime coordinates 
 #' and ID of \code{obj}. 
+#' @param correct_all logical value, if `TRUE` the input data is corrected for common problems
 #' @return
 #'
 #' A trip object, with the usual slots of a
@@ -118,7 +122,7 @@
 #'    lines(porpoise)
 #' }
 setGeneric("trip",
-             function(obj, TORnames) standardGeneric("trip"))
+             function(obj, TORnames, correct_all = TRUE) standardGeneric("trip"))
 
 if (!isGeneric("points"))
   setGeneric("points",
@@ -198,26 +202,40 @@ getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 
 
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
-          function(obj, TORnames) {
+          function(obj, TORnames, correct_all = TRUE) {
               if (is.factor(obj[[TORnames[2]]]))
                   obj[[TORnames[2]]] <- factor(obj[[TORnames[2]]])
+              if (correct_all) {
+
+                obj <- force_internal(obj, TORnames)
+              }
+
               new("trip", obj, TimeOrderedRecords(TORnames))
           })
 
 setMethod("trip", signature(obj="ANY", TORnames="TimeOrderedRecords"),
-          function(obj, TORnames) {
+          function(obj, TORnames, correct_all = TRUE) {
+            if (correct_all) {
+              obj <- force_internal(obj, TORnames)
+            }
               new("trip", obj, TORnames)
           })
 
 setMethod("trip", signature(obj="trip", TORnames="TimeOrderedRecords"),
-          function(obj, TORnames) {
+          function(obj, TORnames, correct_all = TRUE) {
+            if (correct_all) {
+              obj <- force_internal(obj, TORnames)
+            }
               new("trip",
                   as(obj, "SpatialPointsDataFrame"),
                   TORnames)
           })
 
 setMethod("trip", signature(obj="trip", TORnames="ANY"),
-          function(obj, TORnames) {
+          function(obj, TORnames, correct_all = TRUE) {
+            if (correct_all) {
+              obj <- force_internal(obj, TORnames)
+            }
               trip(as(obj, "SpatialPointsDataFrame"), TORnames)
           })
 
@@ -360,7 +378,7 @@ setMethod("[", signature(x="trip"),
                       cat(msg)
                       return(spdf)
                   } else {
-                      return(trip(spdf, tor))
+                      return(trip(spdf, tor, correct_all = F))
                   }
               }
           })
@@ -533,6 +551,8 @@ setMethod("recenter", signature(obj="trip"),
 
 
 
+setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
+         function(x, CRSobj, ...) spTransform(x, sp::CRS(CRSobj), ...))
 
 setMethod("spTransform", signature("trip", "CRS"),
           function(x, CRSobj, ...) {
@@ -547,6 +567,7 @@ setMethod("spTransform", signature("trip", "CRS"),
                 stop(msg)
               }
             }
+  
             pts <- spTransform(as(x, "SpatialPointsDataFrame"),
                                CRSobj, ...)
             trip(pts, getTORnames(x))

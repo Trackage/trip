@@ -1,8 +1,9 @@
 ## S Wotherspoon, ca. 2002 pre-tripEstimation
 
 ## Brownian motion tethered at each end
+#' @importFrom stats rnorm rgamma
 brownian_bridge <- function(n, r) {
-  x <- cumsum(rnorm(n, 0, 1))
+  x <- cumsum(stats::rnorm(n, 0, 1))
   x <- x - (x[1] + seq(0, 1, length=n) * (x[n] - x[1]))
   r * x
 }

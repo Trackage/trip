@@ -121,11 +121,13 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
                                   data.frame(z=rep(0, prod(grid@cells.dim))))
     res <- as.image.SpatialGridDataFrame(spgdf)
     tor <- x@TOR.columns
-    trip.list <- split.data.frame(x[, tor], x[[tor[2]]])
+    
+   trip.list <- split.data.frame(x[, tor], x[[tor[2]]])
     ow <- .g2ow(grid)
     sm <- 0
     zero.lengths <- FALSE
     sz <- 0
+
     for (this in trip.list) {
         xs <- coordinates(this)[, 1]
         ys <- coordinates(this)[, 2]
