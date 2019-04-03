@@ -12,38 +12,7 @@
   lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = !proj))
   
 }
-## taken from package sp/src/gcdist.c
-##' @rdname trip-internal
-.gcdist.c <- function(lon1, lat1, lon2, lat2) {
-  DE2RA <- pi / 180
-  a <- 6378.137            # /* WGS-84 equatorial radius in km */
-  f <- 1.0 / 298.257223563 # /* WGS-84 ellipsoid flattening factor */
-  lat1R <- lat1 * DE2RA
-  lat2R <- lat2 * DE2RA
-  lon1R <- lon1 * DE2RA
-  lon2R <- lon2 * DE2RA
-  F <- ( lat1R + lat2R ) / 2.0
-  G <- ( lat1R - lat2R ) / 2.0
-  L <- ( lon1R - lon2R ) / 2.0
-  sinG2 <- sin( G ) ^ 2
-  cosG2 <- cos( G ) ^ 2
-  sinF2 <- sin( F ) ^ 2
-  cosF2 <- cos( F ) ^ 2
-  sinL2 <- sin( L ) ^ 2
-  cosL2 <- cos( L ) ^ 2
-  S <- sinG2 * cosL2 + cosF2 * sinL2
-  C <- cosG2 * cosL2 + sinF2 * sinL2
-  w <- atan( sqrt( S / C ) )
-  R <- sqrt( S * C ) / w
-  D <- 2 * w * a
-  H1 <- ( 3 * R - 1 ) / ( 2 * C )
-  H2 <- ( 3 * R + 2 ) / ( 2 * S )
-  dist <- D * ( 1 + f * H1 * sinF2 * cosG2 - f * H2 * cosF2 * sinG2 )
-  ##dist <- ifelse((abs(lat1 - lat2) < .Machine$double.eps) & (abs(lon1 - lon2) < .Machine$double.eps), 0.0, dist)
-  #dist <- ifelse(abs((abs(lon1) + abs(lon2)) - 360.0) < .Machine$double.eps, 0.0, dist)
-  dist[is.na(dist)] <- 0
-  dist
-}
+
 
 ##trackDistance <- function(x) UseMethod("trackDistance")
 

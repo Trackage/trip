@@ -26,10 +26,6 @@ The trip package provides functions for accessing and manipulating
 spatial data for animal tracking.  Filter for speed and create time
 spent plots from animal track data.
 
-# Development
-
-There is some ongoing integration with the `sf` package, mostly to provide outputs in its
-formats. Trip itself would be better implemented on top of the ideas in https://github.com/r-gris/rangl/, rather than shoe-horned into a weird twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
 
 ## Installing
 
@@ -41,13 +37,49 @@ install.packages("trip")
 
 ## Install dev version
 
-To install the development package from Github, use `devtools`: 
+To install the development package from Github: 
 
 ```R
-devtools::install_github("mdsumner/trip")
+remotes::install_github("Trackage/trip")
+```
+# Development
+
+
+Currently working on tidying up old daggy ends, see [next release milestones](https://github.com/Trackage/trip/milestone/2). 
+
+Particulary, I want it to be very easy to create trip objects from other forms, either by reading known formats (Argos), coercion from other packages (sp, sf, adehabitatLT, move, etc.), or from raw data with a dplyr/gg aesthetic e.g. this kind of construct from a data frame: 
+
+```R
+## NOTE: this is pseudocode, neither works yet
+d %>% arrange(id, time) %>% group_by(id) %>%  select(x, y, time, everything()) %>% trip(crs = "+proj=longlat")
+
+## OR this for the same outcome
+trip(d, x, y, time, id, crs = "+proj=longlat")
 ```
 
+We could assume longlat is input if it has sane ranges, much like raster does. 
 
+
+
+There is some ongoing integration with the `sf` package, mostly to provide outputs in its
+formats. 
+
+We can already convert to POINT: 
+
+```{r coerce-sf-1}
+library(trip)
+sf::st_as_sf(walrus818)
+
+```
+or atomic LINESTRING with time on the MEASURE:
+
+```{r coerce-sf-2}
+as(walrus818, "sf")
+```
+Trip itself would be better implemented on top of the ideas in [the silicate package](https://github.com/hypertidy/silicate/), rather than the twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
+
+
+Let me know what you think via [Issues](https://github.com/Trackage/trip/issues). 
 
 ## TODO
 
@@ -61,5 +93,8 @@ individual grid summaries for each implicit line segment.
 - **Coercion to/from other classes** See [spbabel](https://github.com/mdsumner/spbabel). 
 
 - **Validation** Must include a detailed report object of where the problems are, and how to filter/fix/flush them. 
+ 
+ 
+ 
  
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
