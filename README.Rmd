@@ -26,6 +26,8 @@ The trip package provides functions for accessing and manipulating
 spatial data for animal tracking.  Filter for speed and create time
 spent plots from animal track data.
 
+Let me know what you think via [Issues](https://github.com/Trackage/trip/issues). 
+
 
 ## Installing
 
@@ -42,12 +44,14 @@ To install the development package from Github:
 ```R
 remotes::install_github("Trackage/trip")
 ```
-# Development
+
+
+# Current concerns
 
 
 Currently working on tidying up old daggy ends, see [next release milestones](https://github.com/Trackage/trip/milestone/2). 
 
-Particulary, I want it to be very easy to create trip objects from other forms, either by reading known formats (Argos), coercion from other packages (sp, sf, adehabitatLT, move, etc.), or from raw data with a dplyr/gg aesthetic e.g. this kind of construct from a data frame: 
+I want it to be very easy to create trip objects from other forms, either by reading known formats (Argos), coercion from other packages (sp, sf, adehabitatLT, move, etc.), or from raw data with a dplyr/gg aesthetic e.g. this kind of construct from a data frame: 
 
 ```R
 ## NOTE: this is pseudocode, neither works yet
@@ -79,7 +83,17 @@ as(walrus818, "sf")
 Trip itself would be better implemented on top of the ideas in [the silicate package](https://github.com/hypertidy/silicate/), rather than the twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
 
 
+
+# Development
+
+* trip should work with sf or sp, there's really no need to distinguish these
+* ability to treat all line segments as continuous, as `cut.trip` can for rasterizing, possibly needs a second-level ID grouping
+* separate out reading functionality to [rgos](https://github.com/mdsumner/rgos)
+* separate out algorithm functions into a generic package that other tracking packages could use (distance, speed, angle filtering, rasterizing, time spent, interpolation etc.)
+
+
 Let me know what you think via [Issues](https://github.com/Trackage/trip/issues). 
+
 
 ## TODO
 
