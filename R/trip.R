@@ -37,9 +37,11 @@ force_internal <- function(x, tor) {
  
   }
   levs <- unique(x[[tor[2]]])
-  tooshort <- tapply(x[[1]], x[[tor[2]]], function(x) length(x) < 3)
+  tooshort <- tapply(x[[tor[2]]], x[[tor[2]]], function(x) length(x) < 3)
+
   if (any(tooshort)) {
-    warning(sprintf("removing trip records that have too few elements (<3):  \n'%s'", paste(names(tooshort)[tooshort], collapse = ",")))
+    warning(sprintf("removing trip IDs that have too few elements (<3):  \n'%s'", 
+        paste(names(tooshort)[tooshort], collapse = ",")))
   }
   x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
   duperecords <- duplicated(x)
@@ -55,8 +57,9 @@ force_internal <- function(x, tor) {
   
   adjusted <- adjust.duplicateTimes(x[[tor[1]]], x[[tor[2]]])
 
-  if (any(abs(unclass(adjusted) - unclass(x[[tor[1]]])) > 0)) {
-    warning("updating  duplicated time records by a small adjustment")
+  diffs <- abs(unclass(adjusted) - unclass(x[[tor[1]]])) > 0
+  if (any(diffs)) {
+    warning(sprintf("updating (%i) duplicated time records by a small adjustment", sum(diffs)))
     x[[tor[1]]] <- adjusted
   }
   if (isSpatial) {
