@@ -104,10 +104,11 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
 tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 {
     if (method %in% c("kde", "count")) {
-        msg <- paste("kde and count methods no longer supported",
+        msg <- paste("'kde' and 'count' methods no longer supported, using 'pixellate'",
                      "from trip_1.1-6 and will be ignored,",
                      "see ?tripGrid.interp for legacy function")
         warning(msg)
+        method <- "pixellate"
     }
     if (!is.null(list(...)$dur)) {
         msg <- paste("dur(ation) not necessary for this function from",

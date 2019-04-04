@@ -88,3 +88,22 @@ test_that("home distance works", {
   
   
 })
+
+
+test_that("time spent calc works", {
+  expect_s4_class(trip_raster(walrus818), "BasicRaster")
+  expect_s4_class(trip_raster(walrus818, grid = raster(walrus818)), "BasicRaster")
+  
+  expect_warning(rasterize(walrus818[1:10, ], method = "kde"))
+  expect_error(rasterize(walrus818[1:10, ], method = "pixellate", dur = 1000))
+  expect_s4_class(rasterize(walrus818[1:100, ]), "BasicRaster")
+
+  expect_s4_class(tripGrid(walrus818[1:100, ]), "SpatialGridDataFrame")  
+  expect_s4_class(tripGrid(walrus818[1:100, ], grid = as(raster(walrus818), "GridTopology")), "SpatialGridDataFrame")
+  
+  context("check when locations don't change")
+  ww <- walrus818[1:100, ]
+  ww@coords[10, ] <- ww@coords[9, ]
+  expect_s4_class(rasterize(ww), "BasicRaster")
+  
+})

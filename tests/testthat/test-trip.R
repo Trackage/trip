@@ -23,6 +23,15 @@ test_that("trip works", {
   library(raster)
   expect_that(timed <- rasterize(tr), is_a("RasterLayer"))
   expect_true(raster::cellStats(timed, "sum") > 7)
+  tr$d <- 1:nrow(tr)
+  expect_silent(subset(tr, d < 4))
+  expect_warning(subset(tr, d < 3))
+  
+  tr$id <- as.integer(tr$id)
+  expect_silent(subset(tr, d < 4))
+  expect_warning(subset(tr, d < 3))
+  
+  expect_silent(spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
 })
 
 

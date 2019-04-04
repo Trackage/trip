@@ -348,7 +348,7 @@ setMethod("subset", signature(x="trip"),
               if (any(is.na(match(tor, names(spdf))))) {
                   msg <- paste("trip-defining Date or ID columns dropped,",
                                "reverting to SpatialPointsDataFrame\n\n")
-                  cat(msg)
+                  warning(msg)
                   return(spdf)
               } else {
                   tst <- any(tapply(spdf[[tor[1]]],
@@ -356,7 +356,7 @@ setMethod("subset", signature(x="trip"),
                   if (tst) {
                       msg <- paste("subset loses too many locations,",
                                "reverting to SpatialPointsDataFrame\n\n")
-                      cat(msg)
+                      warning(msg)
                       return(spdf)
                   } else return(trip(spdf, tor))
               }

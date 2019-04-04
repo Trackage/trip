@@ -10,4 +10,13 @@ test_that("summary of trip works", {
                  tripDuration = 14L, TORnames = 2L, nRecords = 14L, tripID = 14L, 
                  tmaxs = 14L, tmins = 14L, class = 1L))
   
+  expect_named(as.data.frame(ss), c("tripID", "No.Records", "startTime", "endTime", "tripDuration", 
+                                    "tripDistance", "meanSpeed", "maxSpeed"))
+  expect_output(print(ss))
+  
+  
+  expect_output(show(ss))
+ expect_output(show(walrus818))  
+ 
+ expect_output(print(walrus818))
 })
