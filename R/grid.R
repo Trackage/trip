@@ -148,9 +148,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
             zero.lengths <- TRUE
             zeros <- which(!lngths > 0)
             cc <- coordinates(this)[zeros, , drop=FALSE]
-            op <- options(warn=-1)
-            x.ppp <- ppp(cc[, 1], cc[, 2], window=ow)
-            options(op)
+            suppressWarnings(x.ppp <- ppp(cc[, 1], cc[, 2], window=ow))
             if (method == "pixellate") {
                 v <- pixellate(x.ppp, W=ow, weights=dt[zeros])$v
             }
