@@ -30,10 +30,12 @@ contains columns of at least those specified by \code{TOR.columns}.
 
 showClass("trip")
 
-## Examples of general methods
-## Continuing the example from '?trip-methods:
-utils::example("trip-methods", package="trip",
-               ask=FALSE, echo=FALSE)
+d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+coordinates(d) <- ~x+y
+## this avoids complaints later, but these are not real track data (!)
+proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+tr <- trip(d, c("tms", "id"))
+
 summary(tr)
 plot(tr)
 lines(tr)
@@ -47,11 +49,6 @@ tr[1:3, ]
 tr[, 1]
 tr[[1]]
 
-if (exists("porpoise")) {
-    dim(porpoise)
-    names(porpoise)
-    porpoise[porpoise[["id"]] == "GUS", ]
-}
 
 
 }

@@ -9,6 +9,8 @@ output:
 vignette: >
   %\VignetteIndexEntry{trip}
   %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 

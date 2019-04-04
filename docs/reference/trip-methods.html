@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function to handle animal track data, organized as <code>"trip"</code>s — trip-methods • trip</title>
+<title>Function to handle animal track data, organized as <code>trip</code> objects — trip-methods • trip</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Function to handle animal track data, organized as <code>"trip"</code>s — trip-methods" />
+<meta property="og:title" content="Function to handle animal track data, organized as <code>trip</code> objects — trip-methods" />
 
-<meta property="og:description" content="Create an object of class &quot;trip&quot;, extending the basic functionality
+<meta property="og:description" content="Create an object of class trip, extending the basic functionality
 of SpatialPointsDataFrame by specifying the data columns
 that define the &quot;TimeOrdered&quot; quality of the records." />
 <meta name="twitter:card" content="summary" />
@@ -107,14 +107,14 @@ that define the &quot;TimeOrdered&quot; quality of the records." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function to handle animal track data, organized as <code>"trip"</code>s</h1>
+    <h1>Function to handle animal track data, organized as <code>trip</code> objects</h1>
     <small class="dont-index">Source: <a href='https://github.com/mdsumner/trip/blob/master/R/AllMethod.R'><code>R/AllMethod.R</code></a></small>
     <div class="hidden name"><code>trip-methods.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create an object of class <code>"trip"</code>, extending the basic functionality
+    <p>Create an object of class <code>trip</code>, extending the basic functionality
 of <code><a href='https://www.rdocumentation.org/packages/sp/topics/SpatialPoints'>SpatialPointsDataFrame</a></code> by specifying the data columns
 that define the "TimeOrdered" quality of the records.</p>
     
@@ -177,7 +177,7 @@ and ID of <code>obj</code>.</p></td>
     <p>Track data often contains problems, with missing values in location or time, 
 times out of order or with duplicated times. The `correct_all` argument is 
 set to `TRUE` by default and will report any inconsistencies. Data really should
-be checked first.</p>
+be checked first rather than relying on this auto-cleanup.</p>
     
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -188,7 +188,9 @@ functionality.</p>
 <dl class='dl-horizontal'>
     <dt>trip</dt><dd><p><code>signature(obj="SpatialPointsDataFrame",
 TORnames="ANY")</code></p></dd>The main construction.
-    <dt>trip</dt><dd><p><code>signature(obj="ANY", TORnames="TimeOrderedRecords")</code>:
+<dt>trip</dt><dd><p><code>signature(obj="SpatialPointsDataFrame",
+TORnames="TimeOrderedRecords")</code></p></dd> Object and TimeOrdered records class
+<dt>trip</dt><dd><p><code>signature(obj="ANY", TORnames="TimeOrderedRecords")</code>:
 create a <code>trip</code> object from a data frame.</p></dd>
     <dt>trip</dt><dd><p><code>signature(obj="trip", TORnames="ANY")</code>: (Re)-create a
 <code>trip</code> object using a character vector for <code>TORnames</code>.</p></dd>
@@ -212,8 +214,8 @@ speed filtering and spatial time spent gridding.</p></div>
 (<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2019-04-04 01:45:47 2019-04-04 01:45:51       4 secs
-#&gt; 2             2          5 2019-04-04 01:45:52 2019-04-04 01:45:56       4 secs
+#&gt; 1             1          5 2019-04-04 02:18:46 2019-04-04 02:18:50       4 secs
+#&gt; 2             2          5 2019-04-04 02:18:51 2019-04-04 02:18:55       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -222,18 +224,18 @@ speed filtering and spatial time spent gridding.</p></div>
  <span class='co'>## real world data in CSV</span>
 <span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/MI_albatross_final.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"trip"</span>),
             <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'>## subset because the data is quite dense</span>
+<span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='no'>mi_dat</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>mi_dat</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>10</span>), ]
 <span class='no'>mi_dat</span>$<span class='no'>gmt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.POSIXlt'>as.POSIXct</a></span>(<span class='no'>mi_dat</span>$<span class='no'>gmt</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>)
 <span class='no'>mi_dat</span>$<span class='no'>sp_id</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sprintf'>sprintf</a></span>(<span class='st'>"%s%s_%s_%s"</span>, <span class='no'>mi_dat</span>$<span class='no'>species</span>,
          <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substr'>substr</a></span>(<span class='no'>mi_dat</span>$<span class='no'>breeding_status</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='no'>mi_dat</span>$<span class='no'>band</span>, <span class='no'>mi_dat</span>$<span class='no'>tag_ID</span>)
 <span class='fu'>coordinates</span>(<span class='no'>mi_dat</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"lon"</span>, <span class='st'>"lat"</span>)
 <span class='co'>## there are many warnings, but the outcome is fine (sp_id == 'WAi_14030938_2123' has &lt; 3 locations)</span>
-<span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>mi_dat</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"sp_id"</span>) )</div><div class='output co'>#&gt; <span class='warning'>Warning: removing records that are complete duplicates at rows:  </span>
-#&gt; <span class='warning'>'1724,1774,1867,1929,2341,2357,2611,5020,5690,5783,5847,5907,5999,6123,6292,6324,6386,6479,6632,6755,7127,7232,7234'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: ordering input records by trip ID, then time</span></div><div class='output co'>#&gt; <span class='warning'>Warning: removing trip IDs that have too few elements (&lt;3):  </span>
-#&gt; <span class='warning'>'WAi_14030938_2123'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: updating (1) duplicated time records by a small adjustment</span></div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mi_dat</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='img'><img src='trip-methods-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#lines(mi_dat)  ## ugly</span>
+<span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>mi_dat</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"sp_id"</span>) )</div><div class='output co'>#&gt; <span class='warning'>Warning: ordering input records by trip ID, then time</span></div><div class='output co'>#&gt; <span class='warning'>Warning: removing trip IDs that have too few elements (&lt;3):  </span>
+#&gt; <span class='warning'>'LMi_12143650_14257,WAi_14030938_2123'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mi_dat</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='img'><img src='trip-methods-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#lines(mi_dat)  ## ugly</span>
 
 <span class='no'>mi_dat_polar</span> <span class='kw'>&lt;-</span> <span class='fu'>spTransform</span>(<span class='no'>mi_dat</span>, <span class='st'>"+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mi_dat_polar</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>mi_dat_polar</span>)</div><div class='img'><img src='trip-methods-2.png' alt='' width='700' height='433' /></div><div class='input'>## don't want adehabitatMA to be loaded as a requirement here
-</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>mi_dat_polar</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>mi_dat_polar</span>)</div><div class='img'><img src='trip-methods-2.png' alt='' width='700' height='433' /></div><span class='co'># NOT RUN {</span>
 <span class='co'>## a simple example with the common fixes required for basic track data</span>
 
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='st'>"trackfile.csv"</span>)

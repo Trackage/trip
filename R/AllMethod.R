@@ -1,14 +1,14 @@
-#' Function to handle animal track data, organized as \code{"trip"}s
+#' Function to handle animal track data, organized as \code{trip} objects
 #'
 #'
-#' Create an object of class \code{"trip"}, extending the basic functionality
+#' Create an object of class \code{trip}, extending the basic functionality
 #' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
 #'
 #' Track data often contains problems, with missing values in location or time, 
 #' times out of order or with duplicated times. The `correct_all` argument is 
 #' set to `TRUE` by default and will report any inconsistencies. Data really should
-#' be checked first. 
+#' be checked first rather than relying on this auto-cleanup. 
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method
@@ -69,6 +69,8 @@
 #'  ## real world data in CSV
 #' mi_dat <- read.csv(system.file("extdata/MI_albatross_final.csv", package = "trip"), 
 #'             stringsAsFactors = FALSE)
+#' ## subset because the data is quite dense
+#' mi_dat <- mi_dat[seq(1, nrow(mi_dat), by = 10), ]
 #' mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
 #' mi_dat$sp_id <-  sprintf("%s%s_%s_%s", mi_dat$species, 
 #'          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)
