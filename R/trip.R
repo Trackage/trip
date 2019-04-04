@@ -36,14 +36,8 @@ force_internal <- function(x, tor) {
     crdnames <- setdiff(names(x), prenames)
  
   }
-  levs <- unique(x[[tor[2]]])
-  tooshort <- tapply(x[[tor[2]]], x[[tor[2]]], function(x) length(x) < 3)
-
-  if (any(tooshort)) {
-    warning(sprintf("removing trip IDs that have too few elements (<3):  \n'%s'", 
-        paste(names(tooshort)[tooshort], collapse = ",")))
-  }
-  x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
+ 
+  
   duperecords <- duplicated(x)
   if (any(duperecords)) {
     warning(sprintf("removing records that are complete duplicates at rows:  \n'%s'", paste(which(duperecords), collapse = ",")))
@@ -55,6 +49,17 @@ force_internal <- function(x, tor) {
     x <- x[triporder, ]
   }
   
+  
+  ## checks for tooshorts must happen AFTER duplicates are removed ...
+  tooshort <- tapply(x[[tor[2]]], x[[tor[2]]], function(x) length(x) < 3)
+  levs <- unique(x[[tor[2]]])
+  
+  if (any(tooshort)) {
+    warning(sprintf("removing trip IDs that have too few elements (<3):  \n'%s'", 
+                    paste(names(tooshort)[tooshort], collapse = ",")))
+    x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
+  }
+  if (is.factor(x[[tor[2]]])) x[[tor[2]]] <- factor(x[[tor[2]]])
   adjusted <- adjust.duplicateTimes(x[[tor[1]]], x[[tor[2]]])
 
   diffs <- abs(unclass(adjusted) - unclass(x[[tor[1]]])) > 0
@@ -66,6 +71,7 @@ force_internal <- function(x, tor) {
     coordinates(x) <- crdnames
     sp::proj4string(x) <- sp::CRS(proj)
   }
+
   x
 }
  

@@ -52,7 +52,7 @@ speedfilter <- function (x, max.speed=NULL, test=FALSE) {
     if (!is(x, "trip"))
         stop("only trip objects supported")
     projected <- is.projected(x)
-    if (is.na(projected)) {
+    if (is.na(projected) ) {
         projected <- FALSE
         warning("coordinate system is NA, assuming longlat . . .")
     }
@@ -89,7 +89,7 @@ speedfilter <- function (x, max.speed=NULL, test=FALSE) {
         RMS <- rep(max.speed + 1, npts)
         offset <- pprm - 1
         ok <- rep(TRUE, npts)
-        if (npts < (pprm + 1)) {
+        if (npts < (pprm + 1) && !test) {
             warning("Not enough points to filter ID: \"", sub,
                     "\"\n continuing . . . \n")
             okFULL[ind] <- ok

@@ -6,7 +6,9 @@ MAJOR CHANGES
  usually succeed on creation as long as the nominated coordinates, trip group ID and date-times 
  are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated 
  date-times 3) records out of order. 
- 
+
+* `summary(trip)` now does not calcuate the rolling RMS speed for performance reasons, this might be reviewed in future. 
+
 MINOR CHANGES
 
 * Now using geodist package rather than internal distance function. There's no speed benefit for moderately small

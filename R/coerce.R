@@ -16,7 +16,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
   df <- data.frame(tripID=sdf$tripID, tripStart=sdf$tmins,
                    tripEnd=sdf$tmaxs,
                    tripDur=as.vector(sdf$tripDurationSeconds),
-                   row.names=sdf$tripID)
+                   stringsAsFactors = FALSE)
   lns <- vector("list", nrow(df))
   for (i in 1:length(lns)) {
     lns[[i]] <- Lines(list(Line(coordinates(split.from[[i]]))),
