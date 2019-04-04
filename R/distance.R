@@ -49,10 +49,12 @@
 #' @references Original source taken from sp package.
 #' @author Roger Bivand and Michael Sumner
 #' @examples
-#'   ## Continuing the example from '?"trip-methods"':
-#' utils::example("trip-methods", package="trip",
-#'                ask=FALSE, echo=FALSE)
-#'
+#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' coordinates(d) <- ~x+y
+#' ## this avoids complaints later, but these are not real track data (!)
+#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' tr <- trip(d, c("tms", "id"))
+#' 
 #'  ## the method knows this is a trip, so there is a distance for every
 #'  ## point, including 0s as the start and at transitions between
 #'  ## individual trips

@@ -25,8 +25,12 @@
 #'  oc.colors(10)
 #'  library(lattice)
 #'  trellis.par.set(oc.theme())
-#'  utils::example("trip-methods", package="trip",
-#'                 ask=FALSE, echo=FALSE)
+#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' coordinates(d) <- ~x+y
+#' ## this avoids complaints later, but these are not real track data (!)
+#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' tr <- trip(d, c("tms", "id"))
+#' 
 #'  tg <- tripGrid(tr)
 #'  spplot(tg)
 #' }

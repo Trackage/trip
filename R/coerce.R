@@ -75,9 +75,12 @@ setAs("trip", "ltraj", function(from) {
 #' @method as.ppp trip
 #' @examples
 #' \dontrun{
-#'   ## Continuing the example from '?trip-methods:
-#' utils::example("trip-methods", package="trip",
-#'            ask=FALSE, echo=FALSE)
+#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' coordinates(d) <- ~x+y
+#' ## this avoids complaints later, but these are not real track data (!)
+#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' tr <- trip(d, c("tms", "id"))
+#' 
 #'  as(tr, "ppp")
 #' }
 as.ppp.trip <- function(X, ..., fatal) {
@@ -95,9 +98,12 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @method as.psp trip
 #' @examples
 #' \dontrun{
-#'  ## Continuing the example from '?trip-methods:
-#' utils::example("trip-methods", package="trip",
-#'            ask=FALSE, echo=FALSE)
+#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' coordinates(d) <- ~x+y
+#' ## this avoids complaints later, but these are not real track data (!)
+#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' tr <- trip(d, c("tms", "id"))
+#' 
 #'  as.psp.trip(tr)
 #' }
 as.psp.trip <- function(x, ..., from, to) {
@@ -128,9 +134,12 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' @param ... reserved for future methods
 #' @return SpatialLinesDataFrame
 #' @examples
-#' ## Continuing the example from '?trip-methods:
-#' utils::example("trip-methods", package="trip",
-#'            ask=FALSE, echo=FALSE)
+#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' coordinates(d) <- ~x+y
+#' ## this avoids complaints later, but these are not real track data (!)
+#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' tr <- trip(d, c("tms", "id"))
+#' 
 #' spldf <- explode(tr)
 #' summary(tr)
 #' @return SpatialLinesDataFrame object with each individual line segment identified by start/end time and trip ID

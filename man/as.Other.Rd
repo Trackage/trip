@@ -44,20 +44,29 @@ the start and end times, duration and the ID of the segment.
 }
 \examples{
 \dontrun{
-  ## Continuing the example from '?trip-methods:
-utils::example("trip-methods", package="trip",
-           ask=FALSE, echo=FALSE)
+ d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+coordinates(d) <- ~x+y
+## this avoids complaints later, but these are not real track data (!)
+proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+tr <- trip(d, c("tms", "id"))
+
  as(tr, "ppp")
 }
 \dontrun{
- ## Continuing the example from '?trip-methods:
-utils::example("trip-methods", package="trip",
-           ask=FALSE, echo=FALSE)
+ d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+coordinates(d) <- ~x+y
+## this avoids complaints later, but these are not real track data (!)
+proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+tr <- trip(d, c("tms", "id"))
+
  as.psp.trip(tr)
 }
-## Continuing the example from '?trip-methods:
-utils::example("trip-methods", package="trip",
-           ask=FALSE, echo=FALSE)
+ d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+coordinates(d) <- ~x+y
+## this avoids complaints later, but these are not real track data (!)
+proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+tr <- trip(d, c("tms", "id"))
+
 spldf <- explode(tr)
 summary(tr)
 }

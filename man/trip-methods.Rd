@@ -5,6 +5,7 @@
 \alias{trip-methods}
 \alias{trip}
 \alias{trip,SpatialPointsDataFrame,ANY-method}
+\alias{trip,SpatialPointsDataFrame,TimeOrderedRecords-method}
 \alias{trip,ANY,TimeOrderedRecords-method}
 \alias{trip,trip,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
@@ -69,7 +70,8 @@ functionality.
 
 \item{trip}{\code{signature(obj="SpatialPointsDataFrame",
 TORnames="ANY")}}The main construction.
-
+\item{trip}{\code{signature(obj="SpatialPointsDataFrame",
+TORnames="TimeOrderedRecords")}} Object and TimeOrdered records class
 \item{trip}{\code{signature(obj="ANY", TORnames="TimeOrderedRecords")}:
 create a \code{trip} object from a data frame.}
 
@@ -106,7 +108,6 @@ plot(mi_dat, pch = ".")
 mi_dat_polar <- spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
 plot(mi_dat_polar, pch = ".") 
 lines(mi_dat_polar)
-## don't want adehabitatMA to be loaded as a requirement here
 \dontrun{
 ## a simple example with the common fixes required for basic track data
 
