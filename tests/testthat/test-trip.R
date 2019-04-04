@@ -17,6 +17,11 @@ test_that("trip works", {
   expect_equal(sum(filt), 8)
   ## metres per hour
   xx <- walrus818[1:1000, ]
+  expect_error(recenter(xx), "cannot recenter projected coordinate reference system")
+
+  expect_s4_class(recenter(xxx), "trip")
+
+    expect_that(dim(xx), equals(c(1000, 4)))
   filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")
   expect_true(sum(filt2) > 900)
   expect_that(raster::raster(tr), is_a("RasterLayer"))
@@ -32,6 +37,13 @@ test_that("trip works", {
   expect_warning(subset(tr, d < 3))
   
   expect_silent(spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
+  
+  
+  expect_s4_class(trip(tr, c("tms", "id")), "trip")
+  expect_s4_class(trip(as(tr, "SpatialPointsDataFrame"), TimeOrderedRecords(c("tms", "id"))), "trip")
+  expect_s4_class(trip(as(tr, "SpatialPointsDataFrame"), c("tms", "id")), "trip")
+  
+  
 })
 
 
@@ -78,6 +90,5 @@ test_that("compliance works", {
   expect_equal(argos.sigma(factor(c("Z", "B", "A", "0", "1", "2", "3"), levels=c("Z", "B", "A", "0", "1", "2", "3")), adjust  = 1), 
                c(Z = 100, B = 80, A = 50, "0"= 20, "1" = 10, "2" =  4, "3" =  2))
 })
-
 
 

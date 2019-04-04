@@ -86,7 +86,7 @@ as.ppp.trip <- function(X, ..., fatal) {
 setAs("trip", "ppp", function(from) as.ppp.trip(from))
 
 #' @export
-#' @importFrom spatstat as.psp
+#' @importFrom spatstat as.psp owin psp superimpose
 #' @param x \code{trip} object
 #' @param from see \code{\link[spatstat]{as.psp}} for that method.
 #' @param to See \code{\link[spatstat]{as.psp}}.

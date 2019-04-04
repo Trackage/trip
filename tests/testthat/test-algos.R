@@ -93,13 +93,26 @@ test_that("home distance works", {
 test_that("time spent calc works", {
   expect_s4_class(trip_raster(walrus818), "BasicRaster")
   expect_s4_class(trip_raster(walrus818, grid = raster(walrus818)), "BasicRaster")
-  
-  expect_warning(rasterize(walrus818[1:10, ], method = "kde"))
-  expect_error(rasterize(walrus818[1:10, ], method = "pixellate", dur = 1000))
-  expect_s4_class(rasterize(walrus818[1:100, ]), "BasicRaster")
+  w10 <- walrus818[1:10, ]
+  expect_warning(rasterize(w10, method = "kde"))
+  expect_error(rasterize(w10, method = "pixellate", dur = 1000))
+  expect_s4_class(rasterize(w10), "BasicRaster")
 
-  expect_s4_class(tripGrid(walrus818[1:100, ]), "SpatialGridDataFrame")  
-  expect_s4_class(tripGrid(walrus818[1:100, ], grid = as(raster(walrus818), "GridTopology")), "SpatialGridDataFrame")
+ 
+  expect_s4_class(tripGrid(w10), "SpatialGridDataFrame")  
+  expect_s4_class(tripGrid(w10, grid = as(raster(w10), "GridTopology")), "SpatialGridDataFrame")
+  expect_error(tripGrid(w10, grid =  raster(w10), field = w10$Wet), "GridTopology")
+  expect_s4_class(rasterize(w10, grid = raster(w10), field = "Wet"), "BasicRaster")
+  expect_s4_class(rasterize(w10, grid = raster(w10), method = "density"), "BasicRaster")
+  
+  
+  expect_output(expect_s4_class(tripGrid.interp(w10, grid = as(raster(w10), "GridTopology"), method = "count", dur = 1300), "SpatialGridDataFrame"))
+  
+  expect_s4_class(makeGridTopology(w10), "GridTopology")
+  expect_s4_class(makeGridTopology(xlim = c(0, 10), ylim = c(10, 100)), "GridTopology")
+  expect_s4_class(makeGridTopology(xlim = c(0, 10), ylim = c(10, 100), buffer = 50), "GridTopology")
+  expect_s4_class(makeGridTopology(xlim = c(0, 10), ylim = c(10, 100), cellsize = c(20, 30), adjust2longlat = TRUE), "GridTopology")
+  expect_s4_class(makeGridTopology(xlim = c(0, 10), ylim = c(10, 100), buffer = 19, cellsize = c(20, 30), adjust2longlat = TRUE), "GridTopology")
   
   context("check when locations don't change")
   ww <- walrus818[1:100, ]

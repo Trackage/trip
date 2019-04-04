@@ -221,7 +221,17 @@ assume_if_longlat <- function(x) {
   }
   x
 }
-
+setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords"),
+          function(obj, TORnames, correct_all = TRUE) {
+  
+            if (correct_all) {
+              
+              obj <- force_internal(obj, TORnames@TOR.columns)
+            }
+            
+            out <- new("trip", obj, TORnames)
+            assume_if_longlat(out)
+          })
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
           function(obj, TORnames, correct_all = TRUE) {
               if (is.factor(obj[[TORnames[2]]]))
@@ -238,7 +248,7 @@ setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
 setMethod("trip", signature(obj="ANY", TORnames="TimeOrderedRecords"),
           function(obj, TORnames, correct_all = TRUE) {
             if (correct_all) {
-              obj <- force_internal(obj, TORnames)
+              obj <- force_internal(obj, TORnames@TOR.columns)
             }
               out <- new("trip", obj, TORnames)
               assume_if_longlat(out)
@@ -247,7 +257,7 @@ setMethod("trip", signature(obj="ANY", TORnames="TimeOrderedRecords"),
 setMethod("trip", signature(obj="trip", TORnames="TimeOrderedRecords"),
           function(obj, TORnames, correct_all = TRUE) {
             if (correct_all) {
-              obj <- force_internal(obj, TORnames)
+              obj <- force_internal(obj, TORnames@TOR.columns)
             }
               out <- new("trip",
                   as(obj, "SpatialPointsDataFrame"),
