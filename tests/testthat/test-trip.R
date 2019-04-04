@@ -19,9 +19,10 @@ test_that("trip works", {
   xx <- walrus818[1:1000, ]
   expect_error(recenter(xx), "cannot recenter projected coordinate reference system")
 
+  xxx <- spTransform(xx, "+proj=longlat +datum=WGS84")
   expect_s4_class(recenter(xxx), "trip")
 
-    expect_that(dim(xx), equals(c(1000, 4)))
+  expect_that(dim(xx), equals(c(1000, 4)))
   filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")
   expect_true(sum(filt2) > 900)
   expect_that(raster::raster(tr), is_a("RasterLayer"))
