@@ -64,6 +64,21 @@
 #' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
 #' (tr <- trip(d, c("tms", "id")))
 #'
+#'  ## real world data in CSV
+#' mi_dat <- read.csv(system.file("extdata/MI_albatross_final.csv", package = "trip"), 
+#'             stringsAsFactors = FALSE)
+#' mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
+#' mi_dat$sp_id <-  sprintf("%s%s_%s_%s", mi_dat$species, 
+#'          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)
+#' coordinates(mi_dat) <- c("lon", "lat")
+#' ## there are many warnings, but the outcome is fine (sp_id == 'WAi_14030938_2123' has < 3 locations)
+#' mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
+#' plot(mi_dat, pch = ".")
+#' #lines(mi_dat)  ## ugly
+#' 
+#' mi_dat_polar <- spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+#' plot(mi_dat_polar, pch = ".") 
+#' lines(mi_dat_polar)
 #' ## don't want adehabitatMA to be loaded as a requirement here
 #' \dontrun{
 #' ## a simple example with the common fixes required for basic track data
@@ -199,7 +214,13 @@ getTORnames <- function(obj) obj@TOR.columns
 ##' @rdname trip-accessors
 ##' @export
 getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
-
+assume_if_longlat <- function(x) {
+  if (is.na(x@proj4string@projargs) && raster::couldBeLonLat(x, warnings = FALSE)) {
+    warning("input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84")
+    x@proj4string@projargs <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+  }
+  x
+}
 
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
           function(obj, TORnames, correct_all = TRUE) {
@@ -210,7 +231,8 @@ setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
                 obj <- force_internal(obj, TORnames)
               }
 
-              new("trip", obj, TimeOrderedRecords(TORnames))
+              out <- new("trip", obj, TimeOrderedRecords(TORnames))
+              assume_if_longlat(out)
           })
 
 setMethod("trip", signature(obj="ANY", TORnames="TimeOrderedRecords"),
@@ -218,7 +240,8 @@ setMethod("trip", signature(obj="ANY", TORnames="TimeOrderedRecords"),
             if (correct_all) {
               obj <- force_internal(obj, TORnames)
             }
-              new("trip", obj, TORnames)
+              out <- new("trip", obj, TORnames)
+              assume_if_longlat(out)
           })
 
 setMethod("trip", signature(obj="trip", TORnames="TimeOrderedRecords"),
@@ -226,9 +249,10 @@ setMethod("trip", signature(obj="trip", TORnames="TimeOrderedRecords"),
             if (correct_all) {
               obj <- force_internal(obj, TORnames)
             }
-              new("trip",
+              out <- new("trip",
                   as(obj, "SpatialPointsDataFrame"),
                   TORnames)
+              assume_if_longlat(out)
           })
 
 setMethod("trip", signature(obj="trip", TORnames="ANY"),
@@ -236,7 +260,8 @@ setMethod("trip", signature(obj="trip", TORnames="ANY"),
             if (correct_all) {
               obj <- force_internal(obj, TORnames)
             }
-              trip(as(obj, "SpatialPointsDataFrame"), TORnames)
+              out <- trip(as(obj, "SpatialPointsDataFrame"), TORnames)
+              assume_if_longlat(out)
           })
 
 triprepmethod <-   function(obj, value) {
@@ -397,7 +422,7 @@ setMethod("summary", signature(object="trip"),
               ids <- tids[, 2]
               ## list of distances only, km/hr or units of projection
               dists <- .distances(object)
-              rmsspeed <- split(speedfilter(object, max.speed = 1, test = TRUE)$rms, ids)
+              #rmsspeed <- split(speedfilter(object, max.speed = 1, test = TRUE)$rms, ids)
 
               ## list of time diferences only, in hours
               dtimes <- lapply(split(time, ids), function(x) diff(unclass(x)/3600))
@@ -423,8 +448,8 @@ setMethod("summary", signature(object="trip"),
                   tripDistance <- sapply(dists, sum)
                   meanSpeed <- sapply(speeds, mean)
                   maxSpeed <- sapply(speeds, max)
-                  meanRMSspeed <- sapply(rmsspeed, mean, na.rm = TRUE)
-                  maxRMSspeed <- sapply(rmsspeed, max, na.rm = TRUE)
+                 # meanRMSspeed <- sapply(rmsspeed, mean, na.rm = TRUE)
+                 #  maxRMSspeed <- sapply(rmsspeed, max, na.rm = TRUE)
               })
               class(obj) <- "summary.TORdata"
               ## invisible(obj)
@@ -439,9 +464,9 @@ as.data.frame.summary.TORdata <- function(x, row.names = NULL, optional = FALSE,
                         tripDuration=x$tripDuration,
                         tripDistance=x$tripDistance,
                         meanSpeed = x$meanSpeed,
-                        maxSpeed = x$maxSpeed,
-                        meanRMSspeed = x$meanRMSspeed,
-                        maxRMSspeed = x$maxRMSspeed)
+                        maxSpeed = x$maxSpeed, stringsAsFactors = FALSE)
+                        #meanRMSspeed = x$meanRMSspeed,
+                        #maxRMSspeed = x$maxRMSspeed)
   dsumm
 }
 

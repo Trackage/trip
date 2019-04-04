@@ -1,3 +1,5 @@
+## file MI_albatross_final.csv place in inst/extdata/MI_albatross_final.csv
+
 library(readr)
 library(dplyr)
 cl <- readr::cols(band = "c", breeding_status = "c", gmt = "T",  
