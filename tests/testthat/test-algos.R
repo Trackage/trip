@@ -107,3 +107,17 @@ test_that("time spent calc works", {
   expect_s4_class(rasterize(ww), "BasicRaster")
   
 })
+
+
+
+test_that("exact cut works", {
+  tr1 <- walrus818[1:20, ]
+  
+  cutter <- c(tr1$DataDT[1] - 1, tr1$DataDT[5] - 360, max(tr1$DataDT) + 1)
+  
+  expect_equal(length(cut(tr1, cutter)), 2L)
+  
+expect_error(  cut(tr1, c("arble", "2 min")), "if breaks is character, length\\(breaks\\) should be 1L")
+}
+)
+

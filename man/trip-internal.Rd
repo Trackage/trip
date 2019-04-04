@@ -18,8 +18,6 @@
 \usage{
 .validTORdata(object)
 
-.single.trip.split(tr1, boundary.dates)
-
 .intpFun(x)
 
 .abdali(p1, p2)

@@ -81,11 +81,3 @@ test_that("compliance works", {
 
 
 
-test_that("exact cut works", {
-            tr1 <- walrus818[1:20, ]
-            
-            cutter <- c(tr1$DataDT[1] - 1, tr1$DataDT[5] - 360, max(tr1$DataDT) + 1)
-            
-            expect_equal(length(cut(tr1, cutter)), 2L)
-}
-            )
