@@ -25,8 +25,6 @@ Suggests:
     testthat,
     covr,
     rmarkdown,
-    diveMove,
-    argosfilter,
     lubridate
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter

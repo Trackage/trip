@@ -101,11 +101,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms")
-## 1             1          5 2019-04-04 02:19:03 2019-04-04 02:19:07
-## 2             2          5 2019-04-04 02:19:08 2019-04-04 02:19:12
+## 1             1          5 2019-04-04 02:33:40 2019-04-04 02:33:44
+## 2             2          5 2019-04-04 02:33:45 2019-04-04 02:33:49
 ##   tripDuration tripDistance meanSpeed maxSpeed
-## 1       4 secs     6.846303  6161.673 9697.668
-## 2       4 secs     5.599667  5039.700 7421.218
+## 1       4 secs     6.946458  6251.812 10978.85
+## 2       4 secs    12.602142 11341.928 12011.22
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -115,18 +115,18 @@
 ## Coordinates:
 ##         min       max
 ## x  1.000000 10.000000
-## y -1.316976  1.519885
+## y -1.366221  2.510566
 ## Is projected: TRUE 
 ## proj4string : [+proj=laea +ellps=sphere]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2019-04-04 02:19:03   1:5  
-##  1st Qu.:2019-04-04 02:19:05   2:5  
-##  Median :2019-04-04 02:19:07        
-##  Mean   :2019-04-04 02:19:07        
-##  3rd Qu.:2019-04-04 02:19:09        
-##  Max.   :2019-04-04 02:19:12</code></pre>
+##  Min.   :2019-04-04 02:33:40   1:5  
+##  1st Qu.:2019-04-04 02:33:42   2:5  
+##  Median :2019-04-04 02:33:44        
+##  Mean   :2019-04-04 02:33:44        
+##  3rd Qu.:2019-04-04 02:33:46        
+##  Max.   :2019-04-04 02:33:49</code></pre>
 </div>
 </div>
 <div id="simple-plotting" class="section level1">
@@ -174,70 +174,6 @@
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgdal/topics/llgrid">llgridlines</a></span>(walrus818); <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(p)</a></code></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
-<div id="combine-multiple-sets-of-track-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#combine-multiple-sets-of-track-data" class="anchor"></a>Combine multiple sets of track data</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(diveMove)</a></code></pre></div>
-<pre><code>## Loading required package: stats4</code></pre>
-<pre><code>## This is diveMove 1.4.5. For overview type vignette("diveMove")</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">fname &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="st">"data"</span>, <span class="st">"sealLocs.csv"</span>),</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">                       <span class="dt">package=</span><span class="st">"diveMove"</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.table</a></span>(fname, <span class="dt">sep=</span><span class="st">";"</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">    dat<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">ordered</a></span>(dat<span class="op">$</span>class, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Z"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>))</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">    dat<span class="op">$</span>time &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.POSIXlt">as.POSIXct</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/strptime">strptime</a></span>(dat<span class="op">$</span>time, <span class="st">"%Y-%m-%d %H:%M:%S"</span>), <span class="dt">tz =</span> <span class="st">"GMT"</span>)</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">locs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(dat, <span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(dat<span class="op">$</span>lon))</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="kw"><a href="../reference/trip-methods.html">trip</a></span>(locs) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>, <span class="st">"id"</span>)</a></code></pre></div>
-<pre><code>## Warning in assume_if_longlat(out): input looks like longitude/latitude
-## data, assuming +proj=longlat +datum=WGS84</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">proj4string</span>(locs) &lt;-<span class="st"> " +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">## merge with data from argosfilter</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(argosfilter)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(seal)</a>
-<a class="sourceLine" id="cb18-6" data-line-number="6">seal<span class="op">$</span>id &lt;-<span class="st"> "ringy2"</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">seal[[<span class="st">"time"</span>]] &lt;-<span class="st"> </span>seal<span class="op">$</span>dtime</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8">seal<span class="op">$</span>dtime &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">## reconstruct the Argos labels</span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">seal[[<span class="st">"class"</span>]] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">ordered</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/levels">levels</a></span>(dat<span class="op">$</span>class)[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">factor</a></span>(seal<span class="op">$</span>lc, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(seal<span class="op">$</span>lc)))], <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/levels">levels</a></span>(dat<span class="op">$</span>class))</a>
-<a class="sourceLine" id="cb18-11" data-line-number="11">seal<span class="op">$</span>lc &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb18-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb18-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">## what are we supposed to do with duplicated times?</span></a>
-<a class="sourceLine" id="cb18-15" data-line-number="15"><span class="co">##  which(!diff(seal$time) &gt; 0)</span></a>
-<a class="sourceLine" id="cb18-16" data-line-number="16"><span class="co">##[1]   17  116  122 1008 1158 1231 1293 1300</span></a>
-<a class="sourceLine" id="cb18-17" data-line-number="17"><span class="co">##plot(seal[which(!diff(seal$time) &gt; 0),c("lon", "lat") ])</span></a>
-<a class="sourceLine" id="cb18-18" data-line-number="18"><span class="co">##points(seal[1 + which(!diff(seal$time) &gt; 0),c("lon", "lat") ], col = "red")</span></a>
-<a class="sourceLine" id="cb18-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb18-20" data-line-number="20">seal &lt;-<span class="st"> </span>seal[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/duplicated">duplicated</a></span>(seal<span class="op">$</span>time), ]</a>
-<a class="sourceLine" id="cb18-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb18-22" data-line-number="22"><span class="co">## drop missing data and combine</span></a>
-<a class="sourceLine" id="cb18-23" data-line-number="23">dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(dat[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(dat<span class="op">$</span>lon), ], seal[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(dat)])</a>
-<a class="sourceLine" id="cb18-24" data-line-number="24"><span class="co">##coordinates(dat) &lt;- c("lon", "lat")</span></a>
-<a class="sourceLine" id="cb18-25" data-line-number="25"><span class="co">##proj4string(dat) &lt;- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")</span></a>
-<a class="sourceLine" id="cb18-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb18-27" data-line-number="27">tr &lt;-<span class="st"> </span>dat</a>
-<a class="sourceLine" id="cb18-28" data-line-number="28"><span class="kw"><a href="../reference/trip-methods.html">trip</a></span>(dat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"time"</span>, <span class="st">"id"</span>)</a></code></pre></div>
-<pre><code>## Warning in force_internal(obj, TORnames): ordering input records by trip
-## ID, then time
-
-## Warning in force_internal(obj, TORnames): input looks like longitude/
-## latitude data, assuming +proj=longlat +datum=WGS84</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">proj4string</a></span>(dat) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgdal/topics/CRS-class">CRS</a></span>(<span class="st">"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"</span>)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)</a></code></pre></div>
-<pre><code>## 
-## Attaching package: 'raster'</code></pre>
-<pre><code>## The following object is masked from 'package:argosfilter':
-## 
-##     distance</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">d2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgdal/topics/spTransform-methods">spTransform</a></span>(dat, <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(walrus818))</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/union">union</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/extent">extent</a></span>(d2), <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/extent">extent</a></span>(walrus818)))</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/lines">lines</a></span>(d2)</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/lines">lines</a></span>(walrus818)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/rgdal/topics/spTransform-methods">spTransform</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(wrld_simpl, <span class="kw">coordinates</span>(wrld_simpl)[,<span class="dv">2</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(walrus818)), <span class="dt">add =</span> T, <span class="dt">col =</span> <span class="st">"grey"</span>)</a></code></pre></div>
-<p><img src="trip_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -253,7 +189,6 @@
       <li><a href="#simple-plotting">Simple plotting</a></li>
       <li><a href="#gridding-for-time-spent">Gridding for time spent</a></li>
       <li><a href="#walrus-tracks">Walrus tracks</a></li>
-      <li><a href="#combine-multiple-sets-of-track-data">Combine multiple sets of track data</a></li>
       </ul>
 </div>
       </div>
