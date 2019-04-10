@@ -1,0 +1,49 @@
+ 02160  Date : 29.06.98 16:57:30  LC : 1  IQ : 50                               
+      Lat1 : 33.405N  Lon1 : 111.814W  Lat2 : 36.830N  Lon2 : 127.591W          
+      Nb mes : 012  Nb mes>-120dB : 000  Best level : -123 dB                   
+      Pass duration : 528s   NOPC : 1                                           
+      Calcul freq : 401 650059.9 Hz   Altitude :    0 m                         
+              00                                                                
+ 02160  Date : 29.06.98 17:03:00  LC : 0  IQ : 52                               
+      Lat1 : 33.396N  Lon1 : 111.901W  Lat2 : 43.323N  Lon2 : 161.180W          
+      Nb mes : 007  Nb mes>-120dB : 000  Best level : -132 dB                   
+      Pass duration : 308s   NOPC : 3                                           
+      Calcul freq : 401 650027.5 Hz   Altitude :    0 m                         
+              00                                                                
+ 02161  Date : 29.06.98 16:56:40  LC : 1  IQ : 50                               
+      Lat1 : 33.401N  Lon1 : 111.842W  Lat2 : 36.881N  Lon2 : 127.675W          
+      Nb mes : 009  Nb mes>-120dB : 000  Best level : -124 dB                   
+      Pass duration : 495s   NOPC : 0                                           
+      Calcul freq : 401 649501.4 Hz   Altitude :    0 m                         
+              00                                                                
+ 02161  Date : 29.06.98 17:02:40  LC : B  IQ : 00                               
+      Lat1 : 33.424N  Lon1 : 111.839W  Lat2 : 43.137N  Lon2 : 161.203W          
+      Nb mes : 002  Nb mes>-120dB : 000  Best level : -134 dB                   
+      Pass duration : 045s   NOPC : 1                                           
+      Calcul freq : 401 649501.4 Hz   Altitude :    0 m                         
+              00                                                                
+ 02162  Date : 29.06.98 16:57:09  LC : 0  IQ : 40                               
+      Lat1 : 33.404N  Lon1 : 111.840W  Lat2 : 36.832N  Lon2 : 127.591W          
+      Nb mes : 012  Nb mes>-120dB : 001  Best level : -119 dB                   
+      Pass duration : 552s   NOPC : 1                                           
+      Calcul freq : 401 649231.9 Hz   Altitude :    0 m                         
+              00                                                                
+ 02162  Date : 29.06.98 17:02:54  LC : 0  IQ : 52                               
+      Lat1 : 33.436N  Lon1 : 111.952W  Lat2 : 43.355N  Lon2 : 161.060W          
+      Nb mes : 008  Nb mes>-120dB : 000  Best level : -134 dB                   
+      Pass duration : 414s   NOPC : 3                                           
+      Calcul freq : 401 649199.1 Hz   Altitude :    0 m                         
+              00                                                                
+ 06072  Date : 12.06.98 17:29:27  LC : Z  IQ : 00                               
+      Lat1 : ???????  Lon1 : ????????  Lat2 : ???????  Lon2 : ????????          
+      Nb mes : 001  Nb mes>-120dB : 000  Best level : -136 dB                   
+      Pass duration : ?  s   NOPC : ?                                           
+      Calcul freq : 401 650000.0 Hz   Altitude :    0 m                         
+             255          255          255          199                         
+              31          216          112           02                         
+ 09285  Date : 01.06.98 18:52:49  LC : Z  IQ : 00                               
+      Lat1 : ???????  Lon1 : ????????  Lat2 : ???????  Lon2 : ????????          
+      Nb mes : 001  Nb mes>-120dB : 000  Best level : -131 dB                   
+      Pass duration : ?  s   NOPC : ?                                           
+      Calcul freq : 401 650000.0 Hz   Altitude :    0 m                         
+              33           81          216           22                         
