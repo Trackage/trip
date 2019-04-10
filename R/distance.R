@@ -119,6 +119,7 @@ homedist <- function(x, home = NULL) {
   if (!is.null(home)) {
     if (is.numeric(home) & length(home) == 2) {
     home <- matrix(home, ncol = 2)
+    colnames(home) <- c("x", "y")
     } else {
       stop("stop, home must be a 2-element numeric")
     }
@@ -136,7 +137,12 @@ homedist <- function(x, home = NULL) {
   for (i in seq_along(ids)) {
     x0 <- coordinates(x[x[[tor[2L]]] == ids[i], ])
     if (is.null(home)) home <- x0[1, , drop = FALSE]
-    dists[i] <- max(spDistsN1(x0, home, longlat = longlat))
+    if (longlat) {
+      dists[i] <- max(geodist::geodist(x0, home, measure = "haversine"))/1000
+    } else {
+      dists[i] <- max(sqrt((x0[,1] - home[1])^2 + (x0[,2] - home[2])^2))
+    }
+    #dists[i] <- max(spDistsN1(x0, home, longlat = longlat))
   }
   dists
 }
