@@ -4,9 +4,9 @@ context("trip")
 ## TODO: Add more tests
 library(trip)
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 ## a projection should always be set, is it WGS84 or NAD83 . . .
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 
 
 test_that("trip works", {
@@ -19,7 +19,7 @@ test_that("trip works", {
   xx <- walrus818[1:1000, ]
   expect_error(recenter(xx), "cannot recenter projected coordinate reference system")
 
-  xxx <- spTransform(xx, "+proj=longlat +datum=WGS84")
+  xxx <- sp::spTransform(xx, "+proj=longlat +datum=WGS84")
   expect_s4_class(recenter(xxx), "trip")
 
   expect_that(dim(xx), equals(c(1000, 4)))
@@ -37,7 +37,7 @@ test_that("trip works", {
   expect_silent(subset(tr, d < 4))
   expect_warning(subset(tr, d < 3))
   
-  expect_silent(spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
+  expect_silent(sp::spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
   
   
   expect_s4_class(trip(tr, c("tms", "id")), "trip")

@@ -18,7 +18,7 @@ test_that("distance gives comparable values", {
                        `443` = 371292, `444` = 289451)
   )
   
-  wll <- spTransform(walrus818, "+proj=longlat +datum=WGS84")
+  wll <- sp::spTransform(walrus818, "+proj=longlat +datum=WGS84")
   expect_equivalent(round(homedist(wll), digits = 2), 
                     c(`353` = 193.59, `354` = 514.57, `355` = 512.07, `356` = 515.58, 
                       `357` = 518.37, `358` = 514.42, `359` = 512.68, `361` = 511.07, 

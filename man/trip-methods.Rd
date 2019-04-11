@@ -88,9 +88,9 @@ create a \code{trip} object from a data frame.}
 
 
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 (tr <- trip(d, c("tms", "id")))
 
  ## real world data in CSV
@@ -101,14 +101,14 @@ mi_dat <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip
 mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
 mi_dat$sp_id <-  sprintf("\%s\%s_\%s_\%s", mi_dat$species, 
          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)
-coordinates(mi_dat) <- c("lon", "lat")
+sp::coordinates(mi_dat) <- c("lon", "lat")
 ## there are many warnings, but the outcome is fine 
 ## (sp_id == 'WAi_14030938_2123' has < 3 locations as does LMi_12143650_14257)
 mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 plot(mi_dat, pch = ".")
 #lines(mi_dat)  ## ugly
 
-mi_dat_polar <- spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
 plot(mi_dat_polar, pch = ".") 
 lines(mi_dat_polar)
 \dontrun{
@@ -158,10 +158,10 @@ tr <- trip(dat, c("gmt", "seal"))
    library(raster)
 
    ## 3 degrees either side (for half a zone . . .)
-   ext <- as(extent(spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
+   ext <- as(extent(sp::spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
    proj4string(ext) <- CRS(proj4string(wrld_simpl))
    ## crop to the buffered tracks, and project to its native CRS
-   w <- spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
+   w <- sp::spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
     CRS(proj4string(porpoise)))
 
    plot(w)

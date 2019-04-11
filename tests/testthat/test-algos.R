@@ -30,7 +30,7 @@ test_that("speedfilter and sdafilter works", {
 
 
 test_that("non destructive filter works", {
-  trll <- spTransform(walrus818[c(1, 2, 3, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 35), ], 
+  trll <- sp::spTransform(walrus818[c(1, 2, 3, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 35), ], 
                       "+proj=longlat +datum=WGS84")
   expect_s4_class(aa <- filter.penSS(trll, 0.1), "trip")
   expect_true(sum(trackDistance(trll)) > sum(trackDistance(aa)))
@@ -48,9 +48,9 @@ test_that("angle calculation works", {
  expect_warning( expect_equal(unname(trackAngle(tra1)), c(NA, 180, 180, 180, NA)))
 })
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 (tr <- trip(d, c("tms", "id")))
 
 test_that("equal-time interpolation works", {
@@ -63,7 +63,7 @@ test_that("equal-time interpolation works", {
 test_that("home distance works", {
   expect_length(homedist(walrus818), length(unique(walrus818$Deployment)))
   
-  expect_length(homedist(spTransform(walrus818, "+proj=longlat +datum=WGS84")),length(unique(walrus818$Deployment)))
+  expect_length(homedist(sp::spTransform(walrus818, "+proj=longlat +datum=WGS84")),length(unique(walrus818$Deployment)))
   
   expect_length(homedist(walrus818, home = cbind(0, 0)), 
                     length(unique(walrus818$Deployment)))

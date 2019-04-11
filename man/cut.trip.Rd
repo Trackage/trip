@@ -36,7 +36,7 @@ set.seed(66)
 d <- data.frame(x=1:100, y=rnorm(100, 1, 10),
                 tms= as.POSIXct(as.character(Sys.time()), tz = "GMT") + c(seq(10, 1000, length=50),
                 seq(100, 1500, length=50)), id=gl(2, 50))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 tr <- trip(d, c("tms", "id"))
 
 cut(tr, "200 sec")
@@ -45,16 +45,16 @@ bound.dates <- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)
 trip.list <- cut(tr, bound.dates)
 bb <- bbox(tr)
 cn <- c(20, 8)
-g <- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
+g <- sp::GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
 
 tg <- tripGrid(tr, grid=g)
-tg <- as.image.SpatialGridDataFrame(tg)
+tg <- sp::as.image.SpatialGridDataFrame(tg)
 tg$x <- tg$x - diff(tg$x[1:2]) / 2
 tg$y <- tg$y - diff(tg$y[1:2]) / 2
 
 op <- par(mfcol=c(4, 1))
 for (i in 1:length(trip.list)) {
-  plot(coordinates(tr), pch=16, cex=0.7)
+  plot(sp::coordinates(tr), pch=16, cex=0.7)
   title(names(trip.list)[i], cex.main=0.9)
   lines(trip.list[[i]])
   abline(h=tg$y, v=tg$x, col="grey")
@@ -69,16 +69,16 @@ par(op)
 print("you may need to resize the window to see the grid data")
 
 cn <- c(200, 80)
-g <- GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
+g <- sp::GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
 
 tg <- tripGrid(tr, grid=g)
-tg <- as.image.SpatialGridDataFrame(tg)
+tg <- sp::as.image.SpatialGridDataFrame(tg)
 tg$x <- tg$x - diff(tg$x[1:2]) / 2
 tg$y <- tg$y - diff(tg$y[1:2]) / 2
 
 op <- par(mfcol=c(4, 1))
 for (i in 1:length(trip.list)) {
-  plot(coordinates(tr), pch=16, cex=0.7)
+  plot(sp::coordinates(tr), pch=16, cex=0.7)
   title(names(trip.list)[i], cex.main=0.9)
   image(tripGrid(trip.list[[i]], grid=g, method="density", sigma=1),
         interpolate=FALSE,

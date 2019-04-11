@@ -76,9 +76,9 @@ setAs("trip", "ltraj", function(from) {
 #' @examples
 #' \dontrun{
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' coordinates(d) <- ~x+y
+#' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #'  as(tr, "ppp")
@@ -99,9 +99,9 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @examples
 #' \dontrun{
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' coordinates(d) <- ~x+y
+#' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #'  as.psp.trip(tr)
@@ -135,9 +135,9 @@ setAs("trip", "psp", function(from) as.psp.trip(from))
 #' @return SpatialLinesDataFrame
 #' @examples
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' coordinates(d) <- ~x+y
+#' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #' spldf <- explode(tr)

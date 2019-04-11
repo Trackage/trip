@@ -20,9 +20,9 @@ Trip rasterize.
 }
 \examples{
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 tr <- trip(d, c("tms", "id"))
 
 tr$temp <- sort(runif(nrow(tr)))

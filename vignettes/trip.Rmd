@@ -22,9 +22,9 @@ Basic use of the trip package.
 ```{r}
 library(trip)
 d <- data.frame(x=1:10,y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-coordinates(d) <- ~x+y
+sp::coordinates(d) <- ~x+y
 ## a projection should always be set, is it WGS84 or NAD83 . . .
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 tr <- trip(d, c("tms", "id"))
 summary(tr)
 ```
@@ -64,7 +64,7 @@ lines(walrus818)
 library(maptools)
 library(rgdal)
 data(wrld_simpl)
-world <- spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
+world <- sp::spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
 p <- par(xpd = NA, mar = rep(0.5, 4))
 plot(walrus818, pch = ".")
 plot(world, add = TRUE, col = "grey")
