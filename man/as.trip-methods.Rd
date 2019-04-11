@@ -7,6 +7,7 @@
 \alias{as.trip,ltraj-method}
 \alias{ltraj2trip}
 \alias{coerce,trip,ltraj-method}
+\alias{as.trip,track_xyt-method}
 \title{Coercion from other classes to \code{trip} objects}
 \usage{
 as.trip(x, ...)

@@ -2,14 +2,17 @@
 % Please edit documentation in R/coerce.R
 \name{as.Other}
 \alias{as.Other}
-\alias{as.ppp.trip}
 \alias{as.psp.trip}
+\alias{as.track_xyt.trip}
+\alias{as.ppp.trip}
 \alias{explode}
 \title{As ("trip", other-classes)}
 \usage{
 \method{as.ppp}{trip}(X, ..., fatal)
 
 \method{as.psp}{trip}(x, ..., from, to)
+
+as.track_xyt.trip(x, ..., from, to)
 
 explode(x, ...)
 }

@@ -10,6 +10,9 @@
 \alias{trip,trip,ANY-method}
 \alias{trip,grouped_df,ANY-method}
 \alias{trip,data.frame,ANY-method}
+\alias{trip,track_xyt,ANY-method}
+\alias{trip,trackeRdata,ANY-method}
+\alias{trip,mousetrap,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
 \alias{[,trip-method}
 \alias{[,trip,ANY,ANY,ANY-method}

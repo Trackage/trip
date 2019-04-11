@@ -3,7 +3,7 @@
 #' Coercing \code{trip} objects to other classes.
 #'
 #' @name as.Other
-# aliases as.SpatialLinesDataFrame.trip
+#' @aliases  as.psp.trip as.track_xyt.trip
 # section Methods:
 #
 # ##\describe{
@@ -62,6 +62,9 @@ setAs("trip", "ltraj", function(from) {
                          id=from[[tor[2]]], typeII=TRUE, slsp="remove")
 })
 
+
+setAs("track_xyt", "trip", 
+      function(from) trip(from))
 
 
 
@@ -122,6 +125,20 @@ as.psp.trip <- function(x, ..., from, to) {
   do.call("superimpose", lapply(split.X, as.psp.trip1, ow=ow))
 }
 setAs("trip", "psp", function(from) as.psp.trip(from))
+
+#' @export
+#' @rdname as.Other
+as.track_xyt.trip <- function(x, ..., from, to) {
+  tor <- getTORnames(x)
+  xy <- sp::coordinates(x)
+  tori <- match(tor, names(x@data))
+  xd <- x@data[ , -tori, drop = FALSE]
+  structure(cbind(data.frame(x_ = xy[,1], y_ = xy[,2], t_ = x[[tor[1]]], id = x[[tor[2]]]), xd), 
+            class = c("track_xyt",  "track_xy",   "tbl_df",     "tbl",        "data.frame"), 
+            crs = x@proj4string)
+  
+}
+setAs("trip", "track_xyt", function(from) as.track_xyt.trip(from))
 
 
 

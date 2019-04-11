@@ -32,6 +32,11 @@ MINOR CHANGES
 *  New support to coerce to sf with `as(x, "sf")` which creates every segment as a LINESTRING. If `sf::st_as_sf()` is 
  used standard coercion from sp -> sf is used and results in POINT. 
 
+* Add `trip()` support including coercion from and to the `amt` package type `track_xyt`. 
+
+* Add `trip()` support for `trackeRdata` objects from the `trackeR` package, `mousetrap` objects from the `mousetrap` 
+ package. Conversion to these types from trip is not practical. 
+
 
 # trip 1.5.0 and prior
 

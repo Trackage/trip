@@ -250,6 +250,7 @@ readDiag <- function (x) {
     reclen <- length(dlines[[1]])
     dfm <- matrix(unlist(dlines[sapply(dlines, length) ==
                                   reclen]), ncol=reclen, byrow=TRUE)
+    if (ncol(dfm) < 24) {warning(sprintf("does not look like a Diag file: %s", fl)); next}
     lonlat <- dfm[, c(4, 7, 10, 13)]
     dic <- dfm[, c(14, 17, 18, 21, 24), drop=FALSE]
     id <- dic[, 1]
@@ -276,5 +277,6 @@ readDiag <- function (x) {
                              lon2=lon2, lat2=ll[, 3],
                              gmt=gmt, id=id, lq=lq, iq=iq))
   }
+  if (is.null(data)) stop("no valid Diag records found")
   data
 }

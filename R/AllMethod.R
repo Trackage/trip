@@ -25,7 +25,8 @@
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
-#' trip,grouped_df,ANY-method trip,data.frame,ANY-method
+#' trip,grouped_df,ANY-method trip,data.frame,ANY-method trip,track_xyt,ANY-method
+#' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
@@ -260,6 +261,53 @@ trip.grouped_df <- function(obj, ..., crs = NULL) {
   if (!is.null(crs)) sp::proj4string(obj)
   trip(obj, tor, ...)
 }
+setMethod("trip", signature(obj = "mousetrap"), 
+          function(obj, TORnames, correct_all = TRUE) {
+            dat <- data.frame(xpos = as.vector(t(obj$trajectories[,,2L])), 
+                              ypos = as.vector(t(obj$trajectories[,,3L])), 
+                        timestamps = as.vector(t(obj$trajectories[,,1L])))
+            dat$timestamps <- ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC") + dat$timestamps
+            idx <- rep(seq_len(nrow(obj$data)), ncol(obj$trajectories))
+            dat$id <- rownames(obj$data)[idx] 
+            warning("assuming UNIX epoch for timestamp, where zero is 1970-01-01 00:00:00 UTC")
+            dat <- cbind(dat, obj$data[idx, ])
+            bad <- is.na(dat$xpos) | is.na(dat$ypos) | is.na(dat$timestamps) | is.na(dat$id)
+            if (sum(bad) > 0) {
+              warning(sprintf("removing %i records with missing coordinate values", sum(bad)))
+              dat <- dat[!bad, ]
+            }
+            sp::coordinates(dat) <- c("xpos", "ypos")
+            trip(dat, c("timestamps", "id"))
+          })
+setMethod("trip", signature(obj = "trackeRdata"), 
+          function(obj, TORnames, correct_all = TRUE) {
+            ns <- unlist(lapply(obj, function(df) dim(df)[1]))
+            
+            time <- do.call(c, lapply(obj, function(a) attr(a, "index")))
+            d <- data.frame(sport = rep(attr(obj, "sport"),  ns), 
+                            utc = time, run_id = rep(seq_along(ns), ns), stringsAsFactors = FALSE)
+            dat <- cbind(d, do.call(rbind, lapply(obj, unclass)))
+            ## remove any NA coords ...
+            bad <- (is.na(dat$longitude) | is.na(dat$longitude) |  is.na(dat$utc))
+            if (sum(bad) > 0) {
+              warning(sprintf("removing %i records with missing coordinate values", sum(bad)))
+              dat <- dat[!bad, ]
+            }
+            sp::coordinates(dat) <- c("longitude", "latitude")
+            sp::proj4string(dat) <- sp::CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+            
+            trip(dat, c("utc", "run_id"))
+          })
+setMethod("trip", signature(obj="track_xyt", TORnames= "ANY"),
+          function(obj, TORnames, correct_all = TRUE) {
+            if (missing(TORnames)) TORnames <- c("t_", "id")
+            TOR <- TimeOrderedRecords(TORnames)
+            proj <- attr(obj, "crs")
+            obj <- as.data.frame(as.list(obj), stringsAsFactors = FALSE)
+            sp::coordinates(obj) <- c("x_", "y_")
+            sp::proj4string(obj) <- proj
+            trip(obj, TOR, correct_all = correct_all)
+          })
 setMethod("trip", signature(obj="grouped_df", TORnames= "ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             trip.grouped_df(obj, correct_all = correct_all)

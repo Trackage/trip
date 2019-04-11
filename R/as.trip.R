@@ -5,7 +5,7 @@
 #'
 #' @name as.trip
 #' @aliases as.trip-methods as.trip as.trip,ltraj-method ltraj2trip
-#' coerce,trip,ltraj-method
+#' coerce,trip,ltraj-method as.trip,track_xyt-method 
 #' @docType methods
 #' @param x, ltr ltraj object
 #' @param \dots Arguments passed to other methods. Ignored for \code{ltraj}
@@ -58,6 +58,7 @@ ltraj2trip <- function (ltr)
 
 setMethod("as.trip", signature(x="ltraj"),
           function(x, ...) ltraj2trip(x))
-
+setMethod("as.trip", signature(x = "track_xyt"), 
+          function(x, ...) trip(x))
 setAs("ltraj", "trip", function(from) as.trip(from))
 
