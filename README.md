@@ -59,14 +59,6 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(trip)
-#> in method for 'trip' with signature 'obj="sf",TORnames="ANY"': no definition for class "sf"
-#> in method for 'trip' with signature 'obj="mousetrap"': no definition for class "mousetrap"
-#> in method for 'trip' with signature 'obj="trackeRdata"': no definition for class "trackeRdata"
-#> in method for 'trip' with signature 'obj="track_xyt",TORnames="ANY"': no definition for class "track_xyt"
-#> in method for 'as.trip' with signature 'x="track_xyt"': no definition for class "track_xyt"
-#> in method for 'coerce' with signature '"trip","sf"': no definition for class "sf"
-#> in method for 'coerce' with signature '"track_xyt","trip"': no definition for class "track_xyt"
-#> in method for 'coerce' with signature '"trip","track_xyt"': no definition for class "track_xyt"
 tr <- d %>% arrange(tag_ID, gmt) %>% group_by(tag_ID) %>%  select(lon, lat, gmt, everything()) %>% trip()
 #> Warning in assume_if_longlat(out): input looks like longitude/latitude
 #> data, assuming +proj=longlat +datum=WGS84

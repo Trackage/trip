@@ -1,6 +1,6 @@
-# trip dev
+# trip 1.5.0.9005
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
 * BREAKING change: the sp package is now imported rather than full Depends. This means that calls to its 
  functions like `coordinates<-`, `CRS<-`, `proj4string<-`, `spTransform` will need to be prefixed with 
@@ -19,7 +19,7 @@ MAJOR CHANGES
 * `summary(trip)` now does not calcuate the rolling RMS speed for performance reasons, this might be reviewed 
  in future. 
  
-MINOR CHANGES
+## MINOR CHANGES
 
 * `readArgos` gains a new argument `read_alt` which is set to NULL by default and maintains existing behaviour. 
  If set to  1 or 2 the corresponding "alternative" location is returned. 1 is a standardized location corresponding 
