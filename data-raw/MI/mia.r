@@ -2,12 +2,15 @@
 
 library(readr)
 library(dplyr)
+
+d <- read.csv("data-raw/MI/MI_albatross_final.csv", stringsAsFactors = FALSE)
+write.csv(d[seq(1, nrow(d), by = 10), ], "inst/extdata/MI_albatross_sub10.csv", row.names = FALSE)
 cl <- readr::cols(band = "c", breeding_status = "c", gmt = "T",  
                   lon = "d", lat = "d", 
                   species  = "c", sex = "c", deployment_status = "c", device = "c", 
                   tag_ID =  "i")
 
-mia <- readr::read_csv("data-raw/MI_albatross_final.csv", 
+mia <- readr::read_csv("data-raw/MI_albatross_final.zip", 
                        col_types = cl)   %>% 
   mutate(sp_id = sprintf("%s%s_%s_%s", species, substr(breeding_status, 1, 1), band, tag_ID)) %>%  
   distinct(gmt, sp_id, .keep_all = TRUE)
