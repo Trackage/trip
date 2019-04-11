@@ -29,7 +29,7 @@ pasted together}
 
 \item{verbose}{if TRUE, details on date-time adjustment is reported}
 
-\item{read_alt}{is `NULL` by default, with longitude and latitude read from the PRV message, if `1` or `2` 
+\item{read_alt}{is \code{NULL} by default, with longitude and latitude read from the PRV message, if \code{1} or \code{2}
 then attempt is made to read the alternative locations (but these are not always present)}
 }
 \value{
@@ -73,8 +73,8 @@ any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
 \code{readDiag} simply builds a \code{data.frame}.
 
 With \code{read_alt} the default value \code{NULL} returns the PRV location as-is. Some files may have
-a standardized location, and a dummy. If \code{read_alt} is set to 1 or 2 the corresponding "alternative" 
-location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a 
+a standardized location, and a dummy. If \code{read_alt} is set to 1 or 2 the corresponding "alternative"
+location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a
 "dummy" location.
 }
 \section{Warning }{
@@ -87,7 +87,7 @@ and is in no way linked officially to Argos.
 \references{
 The Argos data documentation was (ca. 2003) at
 http://www.argos-system.org/manual.  Specific details on the PRV
-("provide data") format were found in Chapter 4_4_8, originally at 
+("provide data") format were found in Chapter 4_4_8, originally at
 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 }
 \seealso{

@@ -5,20 +5,32 @@
 #' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
 #'
+#' The original form of `trip()` required very strict input as a 'SpatialPointsDataFrame' and 
+#' specifying which were the time and ID columns, but the input can be more flexible. If the object is a 
+#' grouped data frame ('dplyr-style') then the (first) grouping is assumed to define individual trips and that 
+#' columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a \code{trip} object for
+#' redefining \code{TORnames}.  
+#' 
 #' Track data often contains problems, with missing values in location or time, 
 #' times out of order or with duplicated times. The `correct_all` argument is 
 #' set to `TRUE` by default and will report any inconsistencies. Data really should
-#' be checked first rather than relying on this auto-cleanup. 
+#' be checked first rather than relying on this auto-cleanup. The following problems are common: 
+#' * duplicated records (every column with the same value in another row)
+#' * duplicated date-time values
+#' * missing date-time values, or missing x or y coordinates
+#' * records out of order within trip ID
+#' 
+#' See [Chapter 2 of the trip thesis](https://eprints.utas.edu.au/12273/) for more details. 
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
+#' trip,grouped_df,ANY-method trip,data.frame,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
-#' @param obj A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
-#' be coerced to one, containing at least two columns with the DateTime and ID
-#' data as per \code{TORnames}.  It can also be a \code{trip} object for
-#' redefining \code{TORnames}.
+#' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
+#' containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See 
+#' Details. 
 #' @param TORnames Either a \code{TimeOrderedRecords} object, or a 2-element
 #' character vector specifying the DateTime and ID column of \code{obj}
 #' @param value A 4-element character vector specifying the X, Y, DateTime coordinates 
@@ -61,6 +73,16 @@
 #'
 #'
 #' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' 
+#' ## the simplest way to create a trip is by order of columns
+#' 
+#' trip(d)
+#' 
+#' ## or a grouped data frame can be used, the grouping is used as the trip ID
+#' ## library(dplyr)
+#' ## # use everything() to keep all other columns
+#' ## d %>% group_by(id) %>% select(x, y, tms, everything())
+#' 
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
@@ -225,6 +247,38 @@ assume_if_longlat <- function(x) {
   }
   x
 }
+trip.grouped_df <- function(obj, ..., crs = NULL) {
+  group_var <- setdiff(names(attr(obj, "groups")), ".rows")
+  if (length(group_var) > 1) {
+    group_var <- group_var[1]
+    warning(sprintf("data is grouped by more than one variable, assuming '%s' as the correct one", group_var))
+  }
+  tor <- c(names(obj)[3], group_var)
+  if (!inherits(obj[[tor[1]]], "POSIXct")) stop(sprintf("3rd column [%s] must be date-time", tor[1]))
+  obj <- as.data.frame(as.list(obj), stringsAsFactors = FALSE) ## remove grouping
+  sp::coordinates(obj) <- names(obj)[1:2]
+  if (!is.null(crs)) sp::proj4string(obj)
+  trip(obj, tor, ...)
+}
+setMethod("trip", signature(obj="grouped_df", TORnames= "ANY"),
+          function(obj, TORnames, correct_all = TRUE) {
+            trip.grouped_df(obj, correct_all = correct_all)
+          })
+setMethod("trip", signature(obj="data.frame",  TORnames= "ANY"),
+          function(obj, TORnames, correct_all = TRUE) {
+            ## asumme input is x, y, time, ID
+            TORnames <- TimeOrderedRecords(names(obj)[3:4])
+            if (!is.numeric(obj[[1]]) || !is.numeric(obj[[2]])) stop("first two columns must be numeric, x,y or longitude,latitude")
+            sp::coordinates(obj) <- 1:2
+            
+            if (correct_all) {
+              
+              obj <- force_internal(obj, TORnames@TOR.columns)
+            }
+            
+            out <- new("trip", obj, TORnames)
+            assume_if_longlat(out)
+          })
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords"),
           function(obj, TORnames, correct_all = TRUE) {
   

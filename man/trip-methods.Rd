@@ -8,6 +8,8 @@
 \alias{trip,SpatialPointsDataFrame,TimeOrderedRecords-method}
 \alias{trip,ANY,TimeOrderedRecords-method}
 \alias{trip,trip,ANY-method}
+\alias{trip,grouped_df,ANY-method}
+\alias{trip,data.frame,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
 \alias{[,trip-method}
 \alias{[,trip,ANY,ANY,ANY-method}
@@ -23,17 +25,16 @@ trip(obj) <- value
 \S4method{[}{trip,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 }
 \arguments{
-\item{obj}{A \code{\link[sp]{SpatialPointsDataFrame}}, or an object that can
-be coerced to one, containing at least two columns with the DateTime and ID
-data as per \code{TORnames}.  It can also be a \code{trip} object for
-redefining \code{TORnames}.}
+\item{obj}{A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
+containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See
+Details.}
 
 \item{TORnames}{Either a \code{TimeOrderedRecords} object, or a 2-element
 character vector specifying the DateTime and ID column of \code{obj}}
 
-\item{correct_all}{logical value, if `TRUE` the input data is corrected for common problems}
+\item{correct_all}{logical value, if \code{TRUE} the input data is corrected for common problems}
 
-\item{value}{A 4-element character vector specifying the X, Y, DateTime coordinates 
+\item{value}{A 4-element character vector specifying the X, Y, DateTime coordinates
 and ID of \code{obj}.}
 
 \item{x}{trip object}
@@ -54,10 +55,24 @@ of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 that define the "TimeOrdered" quality of the records.
 }
 \details{
-Track data often contains problems, with missing values in location or time, 
-times out of order or with duplicated times. The `correct_all` argument is 
-set to `TRUE` by default and will report any inconsistencies. Data really should
-be checked first rather than relying on this auto-cleanup.
+The original form of \code{trip()} required very strict input as a 'SpatialPointsDataFrame' and
+specifying which were the time and ID columns, but the input can be more flexible. If the object is a
+grouped data frame ('dplyr-style') then the (first) grouping is assumed to define individual trips and that
+columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a \code{trip} object for
+redefining \code{TORnames}.
+
+Track data often contains problems, with missing values in location or time,
+times out of order or with duplicated times. The \code{correct_all} argument is
+set to \code{TRUE} by default and will report any inconsistencies. Data really should
+be checked first rather than relying on this auto-cleanup. The following problems are common:
+\itemize{
+\item duplicated records (every column with the same value in another row)
+\item duplicated date-time values
+\item missing date-time values, or missing x or y coordinates
+\item records out of order within trip ID
+}
+
+See \href{https://eprints.utas.edu.au/12273/}{Chapter 2 of the trip thesis} for more details.
 }
 \section{Methods}{
 
@@ -88,6 +103,16 @@ create a \code{trip} object from a data frame.}
 
 
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+
+## the simplest way to create a trip is by order of columns
+
+trip(d)
+
+## or a grouped data frame can be used, the grouping is used as the trip ID
+## library(dplyr)
+## # use everything() to keep all other columns
+## d \%>\% group_by(id) \%>\% select(x, y, tms, everything())
+
 sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
 sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")

@@ -20,7 +20,7 @@ countPoints(x, dur = 1, grid = NULL)
 
 \item{method}{name of method for quantifying time spent, see Details}
 
-\item{dur}{The \"dur\"ation of time used to interpolate between available
+\item{dur}{The "dur"ation of time used to interpolate between available
 locations (see Details)}
 
 \item{\dots}{other arguments passed to \code{interpequal} or \code{kdePoints}}

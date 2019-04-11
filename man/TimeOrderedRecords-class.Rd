@@ -16,9 +16,9 @@ way. Specifying TOR columns by formula would be a useful addition.
 }
 \section{Slots}{
 
- \describe{
-   \item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
- }
+\describe{
+\item{\code{TOR.columns}:}{2-element vector of class \code{"character"}}
+}
 }
 
 \examples{

@@ -9,8 +9,8 @@ speedfilter(x, max.speed = NULL, test = FALSE)
 \arguments{
 \item{x}{trip object}
 
-\item{max.speed}{speed in kilometres (or other unit) per hour, the unit is kilometres 
-if the trip is in longitude latitude coordinates, or in the unit of the 
+\item{max.speed}{speed in kilometres (or other unit) per hour, the unit is kilometres
+if the trip is in longitude latitude coordinates, or in the unit of the
 projection projection (usually metres per hour)}
 
 \item{test}{cut the algorithm short and just return first pass}
@@ -46,7 +46,7 @@ the development of this version.
 
 This algorithm is destructive, and provides little information about
 location uncertainty.  It is provided because it's commonly used
-and provides an illustrative benchmark for further work. 
+and provides an illustrative benchmark for further work.
 
 It is possible for the filter to become stuck in an infinite loop, depending
 on the function passed to the filter.  Several minutes is probably too long

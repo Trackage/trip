@@ -7,6 +7,10 @@ MAJOR CHANGES
  `sp::`, or with the package explicitly attached with `library(sp)`. This may cause some pain but should 
  be offset by improvements in helpful ways to create trip objects. 
  
+* The `trip()` function now accepts raw data frames or grouped data frames, with the first four columns 
+ assumed to be the x, y, time coordinates and the ID column. If the data frame is grouped the first grouping
+ column is used as the ID. 
+ 
 * When trip objects are created they are by default forced into basic data sense, and so will 
  usually succeed on creation as long as the nominated coordinates, trip group ID and date-times 
  are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated 

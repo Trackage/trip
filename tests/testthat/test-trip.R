@@ -93,3 +93,11 @@ test_that("compliance works", {
 })
 
 
+
+test_that("raw data input works", {
+  rawd <- as.data.frame(walrus818)
+  expect_error(trip(rawd), "first two columns must be numeric, x,y or longitude,latitude")
+  expect_that(trip(dplyr::select(rawd, X_AED170_70, Y_AED170_70, DataDT, Deployment, dplyr::everything()), correct_all = TRUE), is_a("trip"))
+
+  expect_that(trip(dplyr::select(rawd, X_AED170_70, Y_AED170_70, DataDT, dplyr::everything()) %>% dplyr::group_by(Deployment), correct_all = TRUE), is_a("trip"))
+})

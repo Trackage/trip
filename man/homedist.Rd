@@ -15,7 +15,7 @@ homedist(x, home = NULL)
 numeric vector of distances in km (for longlat), or in the units of the trip's projection
 }
 \description{
-This function returns a distance from a given 'home' coordinate for each individual trip. 
+This function returns a distance from a given 'home' coordinate for each individual trip.
 Use the \code{home} argument to provide a single, common 2-element (x,y or lon,lat) coordinate. If \code{home}
 is \code{NULL} (the default), then each individual trip's first location is used.
 }
