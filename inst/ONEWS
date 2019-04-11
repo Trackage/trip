@@ -1,5 +1,8 @@
 See NEWS.md for newer updates. 2019-04-03
 
+See ChangeLog for older logs from R-Forge. 
+
+--------------------------------------------------------------------
 
    CHANGES IN trip VERSION 1.5.0
 
@@ -276,3 +279,18 @@ BUG FIXES
 	CHANGES IN trip VERSION 1.1-4
 
 	o trip.R: removed setReplaceMethod required by r50609 in R-devel.
+	
+--------------------------------
+
+See inst/ChangeLog for the full Subversion record prior to this NEWS form. 
+
+trip was moved to GitHub from R-Forge in May 2013 at https://github.com/Trackage/trip/commit/6b7f1c7fe6ab7364be07c356a51a6b7f757b9737
+
+Old R-Forge project: 
+https://r-forge.r-project.org/projects/trip/
+
+
+Prior to R-Forge, there was a longer history on Subversion at UTAS. trip was first
+released to CRAN in 2006. 
+
+

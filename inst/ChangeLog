@@ -1,983 +1,638 @@
-commit 8e25a99aefff08852077157af22b1aae6efecdf4
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue May 19 05:04:29 2015 -1000
+------------------------------------------------------------------------
+r132 | sluque | 2013-05-15 15:37:26 +0000 (Wed, 15 May 2013) | 2 lines
 
-    vignette update
+Aesthetic.
 
-commit 55b34b6d524ec616e513a43c2994e4b0db9a1049
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue May 19 01:20:16 2015 -1000
+------------------------------------------------------------------------
+r131 | sluque | 2013-05-14 22:16:41 +0000 (Tue, 14 May 2013) | 2 lines
 
-    bump new version
+Changelog update.
 
-commit 2b9d41972b24983b9549af1a63646aa4748f6025
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue May 19 01:10:11 2015 -1000
+------------------------------------------------------------------------
+r130 | sluque | 2013-05-14 22:15:40 +0000 (Tue, 14 May 2013) | 2 lines
 
-    update for PROJ.4 new version
+Deprecated tripTransform() should just use the new method.
 
-commit 179d8cdbf371315f6c178b1ebabf9c48bca37efd
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 23:38:22 2015 +1000
+------------------------------------------------------------------------
+r129 | sluque | 2013-05-14 21:41:16 +0000 (Tue, 14 May 2013) | 2 lines
 
-    no longer valid url, dontrun rasterize
+Changelog/TODO update/fix.
 
-commit ac513b6a3272bf8968a763f7f7a77aa4d9148635
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 21:49:46 2015 +1000
+------------------------------------------------------------------------
+r128 | sluque | 2013-05-14 21:14:20 +0000 (Tue, 14 May 2013) | 3 lines
 
-    methods doc
+Make spTransform not attach rgdal (if available), just check if the
+namespace can be loaded.  Hacked from lattice/R/panel.smoothscatter.R.
 
-commit 0e84791118f9bea5991439cd76c43bba22dc60f1
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 18:34:03 2015 +1000
+------------------------------------------------------------------------
+r127 | mdsumner | 2013-05-14 10:54:47 +0000 (Tue, 14 May 2013) | 1 line
 
-    No period.
+another fix for authors
+------------------------------------------------------------------------
+r126 | mdsumner | 2013-05-09 14:39:18 +0000 (Thu, 09 May 2013) | 1 line
 
-commit 3f73bc9f9a9747a9f8ee2f3240316e804c96976c
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 18:33:54 2015 +1000
+clean up, removed tripEstimation project from r-forge to https://github.com/mdsumner/tripEstimation
+------------------------------------------------------------------------
+r125 | mdsumner | 2013-05-05 21:47:13 +0000 (Sun, 05 May 2013) | 1 line
 
-    missing aliases
 
-commit bc48eb81e83e5eaa385fd32301e0cf9f7b7936ad
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 16:20:10 2015 +1000
+------------------------------------------------------------------------
+r124 | mdsumner | 2013-05-04 03:49:09 +0000 (Sat, 04 May 2013) | 1 line
 
-    roxygenify
+new version, removed tripTransform.Rd
+------------------------------------------------------------------------
+r123 | mdsumner | 2013-05-04 03:48:39 +0000 (Sat, 04 May 2013) | 1 line
 
-commit 239fa5f83d218154d773789e3db8945447dcc2b4
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 16:19:50 2015 +1000
+deprecated tripTransform, new method for spTransform
+------------------------------------------------------------------------
+r122 | mdsumner | 2013-05-04 03:48:23 +0000 (Sat, 04 May 2013) | 1 line
 
-    dontrun for raster::aggregate example
+removed tripTransform
+------------------------------------------------------------------------
+r121 | mdsumner | 2013-05-02 13:18:21 +0000 (Thu, 02 May 2013) | 1 line
 
-commit 8b3e133d0fcd8fa402dba81ded23fb80e6bb59db
-Author: Michael Sumner <mdsumner@gmail.com.com>
-Date:   Tue Apr 28 16:19:37 2015 +1000
+hmm, currently broken have to explore how sp::spTransform can work 
+------------------------------------------------------------------------
+r120 | mdsumner | 2013-05-02 13:04:27 +0000 (Thu, 02 May 2013) | 1 line
 
-    news
+replaced dontrun around examples, or too slow for CRAN
+------------------------------------------------------------------------
+r119 | mdsumner | 2013-05-02 12:58:34 +0000 (Thu, 02 May 2013) | 1 line
 
-commit c1ef573cd2bcedd0167bce8e773671f1860903b7
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 19:51:49 2015 -1000
+more fixes, hidden project() uses
+------------------------------------------------------------------------
+r118 | mdsumner | 2013-05-02 12:54:19 +0000 (Thu, 02 May 2013) | 1 line
 
-    roxygentrify
+removed rgdal dependency
+------------------------------------------------------------------------
+r117 | mdsumner | 2013-05-02 12:52:33 +0000 (Thu, 02 May 2013) | 1 line
 
-commit 2f97dd48817d0f1270716b417264f12d5358bc93
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 19:51:19 2015 -1000
+typo
+------------------------------------------------------------------------
+r116 | mdsumner | 2013-05-02 12:50:20 +0000 (Thu, 02 May 2013) | 1 line
 
-    rasterize method to eventually replace tripGrid
+removed dependency on rgdal
+------------------------------------------------------------------------
+r115 | sluque | 2013-04-25 17:26:50 +0000 (Thu, 25 Apr 2013) | 2 lines
 
-commit 5ab473d89fd13592f1dec345503d0168624e3fd3
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:38:51 2015 -1000
+Reverting previous botched draft of spTransform() implementation.
 
-    log
+------------------------------------------------------------------------
+r114 | sluque | 2013-04-25 16:43:28 +0000 (Thu, 25 Apr 2013) | 2 lines
 
-commit 33a6e6389f538544c565d1a4e5edd0b3a0c45602
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:38:25 2015 -1000
+Implementing spTransform() method.
 
-    warm happy places
+------------------------------------------------------------------------
+r113 | sluque | 2013-04-07 02:36:27 +0000 (Sun, 07 Apr 2013) | 2 lines
 
-commit 79006544c409f174e98d68acbaddc4ad2287696d
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:30:29 2015 -1000
+Emacs local variables.
 
-    update NEWS
+------------------------------------------------------------------------
+r112 | sluque | 2013-04-02 00:53:11 +0000 (Tue, 02 Apr 2013) | 3 lines
 
-commit 78a07c94e6f41e279fbd06913ea7b9229092c8d4
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:30:10 2015 -1000
+There seems to be no reason to not run cut.trip example, so removed dontrun
+environment.  Aesthetics in tripTransform.Rd.
 
-    explicit ellps argument
+------------------------------------------------------------------------
+r111 | sluque | 2013-03-28 03:14:32 +0000 (Thu, 28 Mar 2013) | 2 lines
 
-commit f6ab4ee26ed1f0e29d8fae6b7e02bea948abb67c
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:29:52 2015 -1000
+Update ChangeLog.
 
-    new trip_raster hidden function
+------------------------------------------------------------------------
+r110 | sluque | 2013-03-28 03:13:38 +0000 (Thu, 28 Mar 2013) | 2 lines
 
-commit 84b7d909bf1ac076bb46f221a4123b2b8a963f4c
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Apr 27 05:29:37 2015 -1000
+Remove commented code to avoid confusion.
 
-    breaks for new cut.trip
+------------------------------------------------------------------------
+r109 | sluque | 2013-03-28 03:09:51 +0000 (Thu, 28 Mar 2013) | 2 lines
 
-commit 6e1bd5acfb283ee8032cf12a8a362e8d9dd3ecac
-Merge: c071cc5 7538d0a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:56:08 2015 -1000
+Double quote argument to .Deprecated().
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+------------------------------------------------------------------------
+r108 | sluque | 2013-03-27 23:59:46 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit c071cc525c737ecd072ab955b7084f53c88ac6a6
-Merge: 3664b0d 6e31d3a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:55:07 2015 -1000
+Update ChangeLog.
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+------------------------------------------------------------------------
+r107 | sluque | 2013-03-27 23:55:42 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit 7538d0a96901a24cbcb61a6558117f0cd29953fc
-Merge: 3664b0d 6e31d3a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:55:07 2015 -1000
+No need to require() spatstat, since the package depends on it.
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+------------------------------------------------------------------------
+r106 | sluque | 2013-03-27 23:30:03 +0000 (Wed, 27 Mar 2013) | 3 lines
 
-commit 3664b0de0de72502114543e4ee44499e5910c58a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:50:31 2015 -1000
+Fix argument descriptions and consolidate documentation of functions for
+reading Argos data files.
 
-    require fix
+------------------------------------------------------------------------
+r105 | sluque | 2013-03-27 22:58:20 +0000 (Wed, 27 Mar 2013) | 3 lines
 
-commit 6e31d3a4c5228fcbd246236b41a96174cf9b9a08
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:50:31 2015 -1000
+Consolidate documentation of methods, functions and coercions to/from other
+classes.
 
-    require fix
+------------------------------------------------------------------------
+r104 | sluque | 2013-03-27 22:20:20 +0000 (Wed, 27 Mar 2013) | 4 lines
 
-commit 46f1a76a6725c57256c440b4ec624c5bd990197c
-Merge: 75c4ccd 11c9c69
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:28:00 2015 -1000
+Implementing 'as.trip' generic, with 'ltraj2trip' as definition for first
+method.  Deprecating 'as.trip.SpatialLinesDataFrame', replacing it with
+'as.SpatialLinesDataFrame'.trip'.
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+------------------------------------------------------------------------
+r103 | sluque | 2013-03-27 18:34:50 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit 75c4ccd4177c60bd097274f5b2f41c7a37e2fc6b
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:24:22 2015 -1000
+virtuals.Rd no longer needed.
 
-    remove require call
+------------------------------------------------------------------------
+r102 | sluque | 2013-03-27 18:28:26 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit 11c9c69c91276c1ce5d47a0169a2ff4a5a4c14df
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:24:22 2015 -1000
+execute examples requiring suggested packages only if available.
 
-    remove require call
+------------------------------------------------------------------------
+r101 | sluque | 2013-03-27 17:22:24 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit 7ded857d7152f30f775e9dad5e506afde9011e87
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Sun Feb 1 14:20:16 2015 -1000
+Enable example using adehabitatLT, conditional on its availability.
 
-    Description
+------------------------------------------------------------------------
+r100 | sluque | 2013-03-27 14:29:56 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit af180f03dba6150f58014fa6623bd9a17716bb22
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Jan 28 15:09:16 2015 -1000
+Implementing some examples, fixing \alias'es and moving where appropriate.
 
-    new function homedist
+------------------------------------------------------------------------
+r99 | sluque | 2013-03-27 14:13:27 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit e97bc4945b3ef7aa1440e60327c0026749c0f162
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Dec 4 07:46:55 2014 +1100
+Use getTORnames() and getTimeID() where appropriate.
 
-    Update DESCRIPTION
-    
-    policy
+------------------------------------------------------------------------
+r98 | sluque | 2013-03-27 14:12:50 +0000 (Wed, 27 Mar 2013) | 2 lines
 
-commit c63acd758d160f14c3c311ee7c51ee239afdea84
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sat Nov 22 10:14:11 2014 +1100
+Remove TimeOrderedRecords from Collate field.
 
-    Update trip.R
-    
-    Bug reported here: http://stackoverflow.com/questions/27063884/coordinates-interpolation-at-exact-time-boundaries-using-cut-trip-from-trip
+------------------------------------------------------------------------
+r97 | sluque | 2013-03-27 14:11:59 +0000 (Wed, 27 Mar 2013) | 7 lines
 
-commit 270c217f9a890c8c08c1b0c7fc016b6c1e785c07
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Nov 5 01:31:57 2014 -1000
+Move the few lines of code in TimeOrderedRecords.R to AllMethod.R.
 
-    fix issue with distance calcs
+Use getTORnames() and getTimeID() where appropriate.
 
-commit dde2859a17ee28ce260b329485aa0a57d036f4be
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Oct 21 01:30:35 2014 -1000
+Minor refactoring to improve legibility, and use signature() to build
+signatures.
 
-    dummy test
+------------------------------------------------------------------------
+r96 | sluque | 2013-03-26 13:33:36 +0000 (Tue, 26 Mar 2013) | 3 lines
 
-commit 00b86188f716e7598c3f312dc34cb53140ef1573
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 14:20:25 2014 +1000
+More minor formatting of documentation, in preparation for more examples
+and testing.
 
-    Update DESCRIPTION
-    
-    Title Case
+------------------------------------------------------------------------
+r95 | sluque | 2013-03-26 00:38:46 +0000 (Tue, 26 Mar 2013) | 2 lines
 
-commit 04bda945216006775d085bb0ab399467be9f7206
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 12:47:11 2014 +1000
+ChangeLog entries.
 
-    change log
+------------------------------------------------------------------------
+r94 | sluque | 2013-03-26 00:37:48 +0000 (Tue, 26 Mar 2013) | 2 lines
 
-commit aee0b24e8f7c1a8eb75f179b646fefc27eee42af
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 12:45:47 2014 +1000
+Moving doc pieces where they belong.
 
-    tidy
+------------------------------------------------------------------------
+r93 | sluque | 2013-03-25 22:28:45 +0000 (Mon, 25 Mar 2013) | 4 lines
 
-commit 6356f92a3b40ae993d2bb0735159a3d281f63f1a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 12:45:36 2014 +1000
+Make the SpatialPointsDataFrame the default method, and separate
+documentation for trip methods.  Remove unnecessary \alias, and methods for
+removed stand-alone function.
 
-    Authors template
+------------------------------------------------------------------------
+r92 | sluque | 2013-03-25 21:19:22 +0000 (Mon, 25 Mar 2013) | 2 lines
 
-commit 5508e1b7d9a7a26c0ffc68767fab2fc5fdafc176
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 12:10:09 2014 +1000
+Separate documentation for accessors, and remove unnecessary \alias'es.
 
-    doc problems from check
+------------------------------------------------------------------------
+r91 | sluque | 2013-03-25 21:14:53 +0000 (Mon, 25 Mar 2013) | 2 lines
 
-commit 82c42a7bdc5b2051f511db3c429a3e0dddd26f14
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Sep 23 11:57:01 2014 +1000
+Consolidate TimeOrderedRecords documentation.
 
-    news, changelog
+------------------------------------------------------------------------
+r90 | sluque | 2013-03-24 23:03:39 +0000 (Sun, 24 Mar 2013) | 2 lines
 
-commit 0a985b37e6a37417dbb00108ce9e543d06a9ae5a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Sep 17 21:20:56 2014 +1000
+Link to sp documentation where appropriate.
 
-    merge fix
+------------------------------------------------------------------------
+r89 | sluque | 2013-03-24 16:34:38 +0000 (Sun, 24 Mar 2013) | 2 lines
 
-commit 965a25024405579d71d8eec854e09e59642e94b1
-Merge: ef9b23a 0aca79f
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Sep 17 21:18:56 2014 +1000
+Use identical() instead of all.equal() for testing.
 
-    tidy
-    
-    Merge branch 'master' of https://github.com/mdsumner/trip
-    
-    Conflicts:
-    	R/AllMethod.R
-    	R/coerce.R
-    	R/trip.R
+------------------------------------------------------------------------
+r88 | sluque | 2013-03-23 17:54:40 +0000 (Sat, 23 Mar 2013) | 2 lines
 
-commit ef9b23a2786e48bf84bb8a4fa8afc345701d01d3
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Sep 17 21:16:18 2014 +1000
+Minor global formatting changes, and added Id SVN keyword.
 
-    fixes for doc problems
+------------------------------------------------------------------------
+r87 | sluque | 2013-03-22 22:20:22 +0000 (Fri, 22 Mar 2013) | 2 lines
 
-commit f98feff0e132337d8426a6f9c2c0f58c5315b80b
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Sep 17 19:05:57 2014 +1000
+ChangeLog entries.
 
-    suggests rgdal
+------------------------------------------------------------------------
+r86 | sluque | 2013-03-22 22:18:58 +0000 (Fri, 22 Mar 2013) | 2 lines
 
-commit 95e2dacfb14b635ac32b37eebcefe5c1cc1464a1
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Sep 17 19:05:42 2014 +1000
+Rename file, following deprecation of trip.split.exact().
 
-    remove old
+------------------------------------------------------------------------
+r85 | sluque | 2013-03-22 22:16:14 +0000 (Fri, 22 Mar 2013) | 2 lines
 
-commit 0aca79f6031fcf118200fa3416781891e920e442
-Merge: 3961a21 a1304e6
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Sep 15 18:14:09 2014 +1000
+Implemented cut() method, deprecating trip.split.exact().
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
-    
-    cleanup
+------------------------------------------------------------------------
+r84 | sluque | 2013-03-21 18:06:23 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit 3961a215c78fd04a5f0fb15aa02102ad6f06d499
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Sep 15 18:13:51 2014 +1000
+Replace equal assignment operator.
 
-    method tidy
+------------------------------------------------------------------------
+r83 | sluque | 2013-03-21 17:28:38 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit a1304e6b0ce81dd69b01b5db2b4251aac3a0bc2b
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Aug 26 09:29:20 2014 +1000
+ChangeLog entries.
 
-    working sda filter
+------------------------------------------------------------------------
+r82 | sluque | 2013-03-21 17:27:38 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit 8e9655d622ba73564796294fbdbe1c2138e2f44a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Aug 25 12:17:46 2014 +1000
+Restrict the classes that are exported.
 
-    tidy, weird fix on new branch"
+------------------------------------------------------------------------
+r81 | sluque | 2013-03-21 17:26:50 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit a0877b61af6e13bd08bd3ec1b6e8858300cbc4de
-Merge: ce0f952 bf6982a
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Aug 25 11:19:25 2014 +1000
+Use summary.TORdata for consistency.
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+------------------------------------------------------------------------
+r80 | sluque | 2013-03-21 15:51:53 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit ce0f95212f67cfa93eb25862ae58099c33c82e74
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Mon Aug 25 11:18:31 2014 +1000
+ChangeLog entries.
 
-    speed distance angle filter
+------------------------------------------------------------------------
+r79 | sluque | 2013-03-21 15:50:40 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit bf6982a33c1808936f8609eb387eb74d51210537
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Wed Aug 20 10:56:33 2014 +1000
+Add \alias for 'summary.tordata' show() method.
 
-    roll version
+------------------------------------------------------------------------
+r78 | sluque | 2013-03-21 15:41:56 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit aaa51ba280b2c93ef42e5fe6a178d47fa8e1ab2b
-Author: Michael Sumner <mdsumner@gmail.com>
-Date:   Tue Aug 19 06:29:12 2014 +1000
+Update documentation for internals.
 
-    missing suggests for rgdal
+------------------------------------------------------------------------
+r77 | sluque | 2013-03-21 15:40:04 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-commit 2c22eb29ed2e6db48cadec9b77cefea468af47c6
-Author: Michael Sumner <Michael.Sumner@aad.gov.au>
-Date:   Tue May 13 10:22:29 2014 +1000
+Use fully qualified reference to adehabitatLT and spatstat functions.
 
-    cut.trip example
+------------------------------------------------------------------------
+r76 | sluque | 2013-03-21 15:38:54 +0000 (Thu, 21 Mar 2013) | 11 lines
 
-commit 07fec49346593b3c86879820c5f66e947e854612
-Author: Michael Sumner <Michael.Sumner@aad.gov.au>
-Date:   Tue May 13 10:16:08 2014 +1000
+Remove subset.trip() function; just make it the definition for the trip
+method.
 
-    cut.trip improvment
+Remove summary.tordata() function; just make it the definition for the trip
+method.
 
-commit 1191b2fec08214444857616884623976ceed52aa
-Author: Michael Damien Sumner <mdsumner@acecompute.antcrc.utas.edu.au>
-Date:   Wed Sep 11 11:48:58 2013 +1000
+Remove recenter.trip() function; just make it the definition for the trip
+method.
 
-    removed unfinished function
+Show methods for 'summary.tordata' and 'trip'.
 
-commit fbf53361a2b63db642b04fafc92fffae8eb050a9
-Author: Michael Damien Sumner <mdsumner@acecompute.antcrc.utas.edu.au>
-Date:   Wed Sep 11 11:43:11 2013 +1000
+------------------------------------------------------------------------
+r75 | sluque | 2013-03-21 15:30:30 +0000 (Thu, 21 Mar 2013) | 2 lines
 
-    stray testing code removed from interpequal.R
+Do not export validTORdata(), as it is internal.
 
-commit ce85981570d94e70e8c8dc5bb630f55888be8f86
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Fri Aug 30 08:19:01 2013 +1000
+------------------------------------------------------------------------
+r74 | sluque | 2013-03-21 15:28:34 +0000 (Thu, 21 Mar 2013) | 5 lines
 
-    something
+Do not export internal objects.  Prefix them with a dot, and use
+exportPattern() and exportMethods() in NAMESPACE.
 
-commit 036666f82b88091da183fc3f8ec8bd51c9283e2e
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Fri Aug 30 08:18:45 2013 +1000
+Declare S3 methods.
 
-    tidy
+------------------------------------------------------------------------
+r73 | sluque | 2013-03-20 10:20:48 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-commit 578c32249587329ee60033be8af8dd5b06402025
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Tue Aug 27 16:29:33 2013 +1000
+Developed some entries.
 
-    tidy
+------------------------------------------------------------------------
+r72 | sluque | 2013-03-20 05:39:25 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-commit bc1b83113aadc6c3cd86306ab08f83ca1e2f53d4
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Mon Aug 26 21:18:17 2013 +1000
+ChangeLog entries.
 
-    unfinished update of interpequal, to rely on geosphere methods
+------------------------------------------------------------------------
+r71 | sluque | 2013-03-20 05:37:12 +0000 (Wed, 20 Mar 2013) | 4 lines
 
-commit 8f57e58f8911c079c917de716f46f400d3b203cb
-Merge: 6d24cc8 7f61fb5
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 26 11:59:05 2013 +1000
+Add Collate: field for better control of loading order.
 
-    Merge branch 'master' of https://github.com/mdsumner/trip
+Perhaps code in TimeOrderedRecords.R should be moved to AllMethod.R...
 
-commit 6d24cc84ad050313614cbc3f16f14c578eeb41d4
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 26 11:51:11 2013 +1000
+------------------------------------------------------------------------
+r70 | sluque | 2013-03-20 05:34:59 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    applied list collection for newPts in interpequal, with a do.call
-    rather than cumulative rbind, should be faster
-    
-    this could be done in readArgos, but needs checks for empty elements
+Move trip() to AllMethod.R for loading sequence logic.
 
-commit 7f61fb5b2fb1d495ea6f99807ab5709c515104d1
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 26 11:51:11 2013 +1000
+------------------------------------------------------------------------
+r69 | sluque | 2013-03-20 05:32:14 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    applied list collection for newPts, with a do.call rather than cumulative rbind, should be faster
+Rename to validTORdata for consistency.
 
-commit dbfba0c9ca62e82ac6b465116db968172aa1f3ea
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 26 11:21:31 2013 +1000
+------------------------------------------------------------------------
+r68 | sluque | 2013-03-20 03:11:06 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    test commit
+Adding local Emacs variables.
 
-commit c0566465b76c46bfe6f7302be77290b0a396f504
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 25 17:53:35 2013 +1000
+------------------------------------------------------------------------
+r67 | sluque | 2013-03-20 03:10:32 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    update
+Move S3 methods to AllMethod.R
 
-commit f0db100f118483b9c1ad4e95ccdd530a2b9c3ecb
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 25 17:45:13 2013 +1000
+------------------------------------------------------------------------
+r66 | sluque | 2013-03-20 01:39:31 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    fixed NAMESPACE issues brought up by R-dev
+Adding Id keyword property.
 
-commit 12a8ba87874ee49cccc662c8e92e6a2204f3fd22
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 25 17:44:09 2013 +1000
+------------------------------------------------------------------------
+r65 | sluque | 2013-03-20 01:26:12 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    properly import methods, not depends
-    
-    removed bogus ::: usages
+Removing commented code.
 
-commit 083b7dc0bf5d74aa597fcbdc6455bc507af0267a
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 25 10:33:26 2013 +1000
+------------------------------------------------------------------------
+r64 | sluque | 2013-03-20 01:25:00 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    trackAngle now generic, with fixes to the method documentation
+Removed.
 
-commit 0fc6055f626c02efed4690dc2e777c4f254a98a8
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 25 09:44:55 2013 +1000
+------------------------------------------------------------------------
+r63 | sluque | 2013-03-20 01:15:59 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-    cleanup source code files
+Removing unnecessary commented code.
 
-commit c70b18851d75b654045cc7e8f2bb4f7c6fe8081d
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Aug 23 23:20:01 2013 +1000
+------------------------------------------------------------------------
+r62 | sluque | 2013-03-20 01:00:21 +0000 (Wed, 20 Mar 2013) | 6 lines
 
-    Revert "first insertion of GIT ChangeLog, with git log --pretty=%ci%h'     '%cn%n%n'      '*%B > ChangeLog"
-    
-    This reverts commit 6bc0a56d62f1c846db2760ea7a7f75f1a0750390.
+Moving class definitions and validity checks to AllClass.R, methods to
+AllMethod.R, and generics to AllGenerics.R.
 
-commit 6bc0a56d62f1c846db2760ea7a7f75f1a0750390
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Aug 23 22:54:35 2013 +1000
+Restore validtordata() as validity check for trip.  It was accidentally
+commented and removed in r57 and r59, respectively.
 
-    first insertion of GIT ChangeLog, with git log --pretty=%ci%h'     '%cn%n%n'      '*%B > ChangeLog
+------------------------------------------------------------------------
+r61 | sluque | 2013-03-20 00:55:50 +0000 (Wed, 20 Mar 2013) | 2 lines
 
-commit 0c99b095fc7deab32c53dd1d2cc34c5d80526104
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 12 15:42:36 2013 +1000
+Moving all this code to trip.R
 
-    roxygen
+------------------------------------------------------------------------
+r60 | sluque | 2013-03-19 21:39:37 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-commit a26dd955dfae8776efa0f3f5c85a6b0f9d94b306
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Aug 12 15:41:01 2013 +1000
+Consolidating; there was a duplicate oc.theme().
 
-    readArgos is now significantly faster
-    
-    readArgos was rbinding as it went, but now it makes a list and rbinds in
-    one go with do.call - this has the added benefit of not accumulating
-    memory to hold the many lines of non-location data
+------------------------------------------------------------------------
+r59 | sluque | 2013-03-19 19:38:01 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-commit 106dc61e93d60e43d56f13d10d6b66148955f38b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Aug 7 23:34:22 2013 +1000
+Removing old commented code.
 
-    roll version, add line width check from CRAN
+------------------------------------------------------------------------
+r58 | sluque | 2013-03-19 18:16:04 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-commit 2f17c7dbf3eed6ce9466375fd6173d52ac07a0c1
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Aug 7 22:56:28 2013 +1000
+ChangeLog.
 
-    updates to fix CRAN problems
-    
-    (spatstat classes were imported from maptools after being imported from
-    sp, which was causing INSTALL problems, reported by Prof. Ripley)
+------------------------------------------------------------------------
+r57 | sluque | 2013-03-19 18:14:17 +0000 (Tue, 19 Mar 2013) | 4 lines
 
-commit 181469c58b21e3dace21d08811f69b2e67d941b6
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Aug 6 06:06:36 2013 +1000
+Minor global source formatting for improving readability, maintenance.
 
-    example data from other packages
+Adding Id for svn:keywords property.
 
-commit 49fb8be82d56d9385cd2f03836c62c905c274d2d
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 4 10:40:05 2013 +1000
+------------------------------------------------------------------------
+r56 | sluque | 2013-03-19 17:13:03 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-    undo test
+Adding ChangeLog.
 
-commit 1cf738f21c0c6952f742432a0dfec6f33541d415
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sun Aug 4 10:39:18 2013 +1000
+------------------------------------------------------------------------
+r55 | sluque | 2013-03-19 17:12:47 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-    test data
+Formatting of commented function (unnecessary, but helps keep sanity).
 
-commit 732f6ffe85932b79342b715da53544be81141ecf
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 10 23:40:06 2013 +1000
+------------------------------------------------------------------------
+r54 | sluque | 2013-03-19 16:32:35 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-    Update README.md
+Minor global source formatting for improving readability, maintenance.
 
-commit 23a3b53a16c264bcfb201271ce7c77e48016fc72
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 10 22:33:23 2013 +1000
+------------------------------------------------------------------------
+r53 | sluque | 2013-03-19 15:21:13 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-    Update todos
+Removing newlines inside object definitions.
 
-commit eb9366966333784851194b42e3858de2224c4119
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 10 00:15:45 2013 +1000
+------------------------------------------------------------------------
+r52 | sluque | 2013-03-19 05:28:07 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-    dontrun, need to reconsider the laea proj.4 example
+Fixed Id keyword (SVN).
 
-commit 8d3078d62f428418389e902c2279f3757157d002
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 10 00:11:42 2013 +1000
+------------------------------------------------------------------------
+r51 | sluque | 2013-03-19 05:26:17 +0000 (Tue, 19 Mar 2013) | 4 lines
 
-    small fixes
+Minor global source formatting for improving readability, maintenance.
 
-commit fa11a5c15f3475529ab9d793958e0155c69d4264
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 23:49:56 2013 +1000
+Adding Id for svn:keywords property.
 
-    test revert
+------------------------------------------------------------------------
+r50 | sluque | 2013-03-19 05:17:55 +0000 (Tue, 19 Mar 2013) | 2 lines
 
-commit 216caaf73832aa86d2358616efae42f85c2ecfae
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 23:49:06 2013 +1000
+Minor global source formatting for improving readability, maintenance.
 
-    test change
+------------------------------------------------------------------------
+r49 | mdsumner | 2013-03-13 12:55:44 +0000 (Wed, 13 Mar 2013) | 1 line
 
-commit 93f93afcd7c6ff8eb3fb11fa25edd99eef9bfd0f
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 23:33:55 2013 +1000
+version increment
+------------------------------------------------------------------------
+r48 | mdsumner | 2013-03-13 12:53:02 +0000 (Wed, 13 Mar 2013) | 1 line
 
-    export as.trip
+removed dependency on locfit/akima for get.sst etc. 
+------------------------------------------------------------------------
+r47 | mdsumner | 2013-03-11 10:44:52 +0000 (Mon, 11 Mar 2013) | 1 line
 
-commit 8cd96098b7770c7f323a66af6de01721f7b1e176
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 23:33:43 2013 +1000
+zap some old junk
+------------------------------------------------------------------------
+r46 | mdsumner | 2013-03-08 23:00:05 +0000 (Fri, 08 Mar 2013) | 1 line
 
-    exports and doc examples
+Fixed new author mechanism. 
+------------------------------------------------------------------------
+r45 | mdsumner | 2013-03-08 22:22:35 +0000 (Fri, 08 Mar 2013) | 1 line
 
-commit 98dffbe3dfc533b7d4557865a205003735a72d9f
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Tue Jul 9 14:33:25 2013 +1000
+fix for ltraj2trip from Sebastian
+------------------------------------------------------------------------
+r44 | mdsumner | 2012-10-31 10:48:37 +0000 (Wed, 31 Oct 2012) | 1 line
 
-    tried again to make as.ltraj a generic, but it won't work
+add dontrun to trip.split.exact example, was taking too long for CRAN policy
+------------------------------------------------------------------------
+r43 | mdsumner | 2012-10-25 00:16:09 +0000 (Thu, 25 Oct 2012) | 1 line
 
-commit 8e775fd61d92e4f940ecb8ec3a28bfed44788765
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 00:20:13 2013 +1000
+updates ready for build and submit to CRAN
+------------------------------------------------------------------------
+r42 | mdsumner | 2012-10-24 23:50:10 +0000 (Wed, 24 Oct 2012) | 1 line
 
-    tidy, removed non-generics to deprecated
+sanity check for n vs. winoffset
+------------------------------------------------------------------------
+r41 | mdsumner | 2012-10-24 23:28:48 +0000 (Wed, 24 Oct 2012) | 1 line
 
-commit b6443a64e9dc30d560572cfab6e6a7c6f3e067ef
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 00:19:37 2013 +1000
+NEWS update
+------------------------------------------------------------------------
+r40 | mdsumner | 2012-10-09 10:09:21 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    ignore NAMESPACE
+commit to new non-CRAN version
+------------------------------------------------------------------------
+r39 | mdsumner | 2012-10-09 10:07:28 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 2608ceaa0b9b62d0b63a33898b27e681ff3fff4d
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jul 9 00:16:00 2013 +1000
+update TODO
+------------------------------------------------------------------------
+r38 | mdsumner | 2012-10-09 10:07:03 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    deprecations properly done
+update news and todo 
+------------------------------------------------------------------------
+r37 | mdsumner | 2012-10-09 09:58:01 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 9fd6f3f573cdfcbdb029de1db67b4d74dc1a833b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Mon Jul 8 23:18:18 2013 +1000
+cleanup
+------------------------------------------------------------------------
+r36 | mdsumner | 2012-10-09 09:56:20 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    ugh, as.ltraj is not an S3 generic, so as.ltraj.trip is a non-starter
+stray require(adehabitat)
+------------------------------------------------------------------------
+r35 | mdsumner | 2012-10-09 09:28:34 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit d94e7d43e04ddd98397120dd8e711aed191d9142
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Mon Jul 8 23:13:39 2013 +1000
+spRbind from maptools
+------------------------------------------------------------------------
+r34 | mdsumner | 2012-10-09 09:20:37 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    fixed bug in setAs("trip", "ltraj",
+Put penalized in filter.penSS() to avoid scoping notes 'no visible binding for global variable ...'
+------------------------------------------------------------------------
+r33 | mdsumner | 2012-10-09 09:13:14 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit e06434cfdef578fe71f5482a976c2eedabd19dea
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 15:19:44 2013 +1000
+small namespace fixes from maptools/spatstat
+------------------------------------------------------------------------
+r32 | mdsumner | 2012-10-09 07:59:57 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    ignore updates, and vignette
+temporarily internal functions
+------------------------------------------------------------------------
+r31 | mdsumner | 2012-10-09 07:55:48 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit f806c3d215e9ee7641e3bc5979a92a16b7523359
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 15:10:20 2013 +1000
+documentation links to adehabitat changed to adehabitatLT
+------------------------------------------------------------------------
+r30 | mdsumner | 2012-10-09 07:53:10 +0000 (Tue, 09 Oct 2012) | 3 lines
 
-    simple first vignette
+Removed require calls to maptools, now done in NAMESPACE. 
 
-commit 7c9874420721223a2fb60335b5b1df3de729107f
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 15:10:10 2013 +1000
+Modified require() from old adehabitat to adehabitatLT
+------------------------------------------------------------------------
+r29 | mdsumner | 2012-10-09 07:40:54 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    namespace updates
+no more tests!
+------------------------------------------------------------------------
+r28 | mdsumner | 2012-10-09 07:31:03 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 79d9b9c834b27ab65f571da71842b55832985477
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 15:09:48 2013 +1000
+sdfasd
+------------------------------------------------------------------------
+r27 | mdsumner | 2012-10-09 07:30:26 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    tripGrid also needed extract methods from spatstat
-    
-    (need tests!)
+dsf
+------------------------------------------------------------------------
+r26 | mdsumner | 2012-10-09 07:25:46 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 0bf46b5ce3bdb8b9eca3648a156647cb0ac81a85
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 11:37:50 2013 +1000
+dasfads
+------------------------------------------------------------------------
+r25 | mdsumner | 2012-10-09 07:23:33 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    extract method was not documented
+ddd
+------------------------------------------------------------------------
+r24 | mdsumner | 2012-10-09 07:22:59 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 0aff68a2e6e7a81fd0cd9f4dfdeec4a06c64b3a2
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 11:29:04 2013 +1000
+ddd
+------------------------------------------------------------------------
+r23 | mdsumner | 2012-10-09 03:07:34 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    import from spatstat rather than depend
+test
+------------------------------------------------------------------------
+r22 | mdsumner | 2012-10-09 03:06:41 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit 247310af7d35273f51499ae6d05362c0ed4f93b9
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 11:11:22 2013 +1000
+dfas
+------------------------------------------------------------------------
+r21 | mdsumner | 2012-10-09 03:03:53 +0000 (Tue, 09 Oct 2012) | 1 line
 
-    seealso refererence to MASS::bandwidth.nrd
+test commit
+------------------------------------------------------------------------
+r20 | mdsumner | 2012-10-09 00:09:14 +0000 (Tue, 09 Oct 2012) | 1 line
 
-commit c83183f056a36c783fcf60ee79f776389905b4cd
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 11:04:27 2013 +1000
+deleted
+------------------------------------------------------------------------
+r19 | mdsumner | 2012-10-08 23:58:13 +0000 (Mon, 08 Oct 2012) | 1 line
 
-    removed suggests for lattice
-    
-    the only use for lattice was in example with oc.theme, made that a
-    dontrun
-    - also example was broken as it did not actually run oc.theme
+tripEstimation source committed, some unknown changes exist since this was las put on CRAN
+------------------------------------------------------------------------
+r18 | mdsumner | 2012-10-08 23:55:26 +0000 (Mon, 08 Oct 2012) | 1 line
 
-commit 492a2eb735c4939dfaaaad972a449ba15ba3a588
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 10:10:47 2013 +1000
+updates, now working on R CMD check . . .
+------------------------------------------------------------------------
+r17 | mdsumner | 2012-10-08 23:21:38 +0000 (Mon, 08 Oct 2012) | 1 line
 
-    correct S3 method doc
+updates to namespace, now to check / build
+------------------------------------------------------------------------
+r16 | mdsumner | 2012-10-08 23:09:03 +0000 (Mon, 08 Oct 2012) | 1 line
 
-commit 0eeec4123711d00cbea74e6a59a5327640ed42dc
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 09:53:33 2013 +1000
+updates to functions
+------------------------------------------------------------------------
+r15 | mdsumner | 2012-10-08 23:06:55 +0000 (Mon, 08 Oct 2012) | 1 line
 
-    cap
+r-forge is working, some .R files to finish
+------------------------------------------------------------------------
+r14 | mdsumner | 2012-10-08 23:05:45 +0000 (Mon, 08 Oct 2012) | 1 line
 
-commit 6d077bc26c85c0046e0995bc862e2ad5fbf8c168
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Mon Jul 8 09:41:07 2013 +1000
+update to NAMESPACE.not, still working on r-forge authentication
+------------------------------------------------------------------------
+r13 | mdsumner | 2012-10-08 23:04:12 +0000 (Mon, 08 Oct 2012) | 1 line
 
-    exports
+dummy change for r-forgery
+------------------------------------------------------------------------
+r12 | mdsumner | 2011-09-01 11:38:26 +0000 (Thu, 01 Sep 2011) | 1 line
 
-commit 6260da38ba7bd54db8db8014b5efa49efbd8379c
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Sat Jul 6 18:01:58 2013 +1000
+adf
+------------------------------------------------------------------------
+r11 | mdsumner | 2011-09-01 08:48:41 +0000 (Thu, 01 Sep 2011) | 1 line
 
-    typo
+turn off namespace
+------------------------------------------------------------------------
+r10 | mdsumner | 2011-09-01 08:44:22 +0000 (Thu, 01 Sep 2011) | 1 line
 
-commit 6bc09c857c8e915bfd76a2a08b9cbe69fc419697
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Fri Jul 5 17:48:58 2013 +1000
+Test commit
+------------------------------------------------------------------------
+r9 | mdsumner | 2011-07-26 08:59:41 +0000 (Tue, 26 Jul 2011) | 1 line
 
-    another mega reworking, but passing check now, with all roxygen2 doc completed for doc, methods, namespace and collate
-    
-    one casualty was as.ltraj.trip  which is now an S4 as coercion directly
-    
-    need to write tests for all the features
-    
-    more to do to get the methods documented correctly
+revert junk edits
+------------------------------------------------------------------------
+r8 | mdsumner | 2011-07-26 08:56:18 +0000 (Tue, 26 Jul 2011) | 1 line
 
-commit a6d50414772c55c1c0be17d87cc8dc8593e5cbf8
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Fri Jul 5 12:06:11 2013 +1000
+junk edits to test process
+------------------------------------------------------------------------
+r7 | mdsumner | 2010-06-24 15:14:35 +0000 (Thu, 24 Jun 2010) | 1 line
 
-    still cleaning up namespace directives, most things are visible as before
+man/ Rd files
+------------------------------------------------------------------------
+r6 | mdsumner | 2010-06-24 15:13:44 +0000 (Thu, 24 Jun 2010) | 1 line
 
-commit d8471b3cf33feb40ecba31dc23419736ad040923
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Fri Jul 5 11:35:06 2013 +1000
+man/ folder
+------------------------------------------------------------------------
+r5 | mdsumner | 2010-06-24 15:10:47 +0000 (Thu, 24 Jun 2010) | 1 line
 
-    mammoth reorg of roxygen doc
+R/ files
+------------------------------------------------------------------------
+r4 | mdsumner | 2010-06-24 15:10:08 +0000 (Thu, 24 Jun 2010) | 1 line
 
-commit a6bb5a26dd283d0b013e06c199afdeff981b04f4
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jul 5 07:19:50 2013 +1000
+R/ folder
+------------------------------------------------------------------------
+r3 | mdsumner | 2010-06-24 15:06:58 +0000 (Thu, 24 Jun 2010) | 1 line
 
-    not sure why trip() not found when roxygenizing after setGeneric . . .
+bare bones trip package
+------------------------------------------------------------------------
+r2 | mdsumner | 2010-06-24 14:58:27 +0000 (Thu, 24 Jun 2010) | 1 line
 
-commit e09347a0e89a246356ee9fcd5ee069ecd5356c1b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 22:19:18 2013 +1000
 
-    all Rd converted to roxygen, builds and loads, does not pass check
-    
-    -
+------------------------------------------------------------------------
+r1 | stefan7th | 2009-05-28 12:17:51 +0000 (Thu, 28 May 2009) | 1 line
 
-commit cfc102437951a87661302ec8d2cf75aeb555dd3f
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 21:41:12 2013 +1000
-
-    moved source to trip.R
-
-commit efb0492221a9f4f0d2826eb8ee5e0929f53951b9
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 18:54:43 2013 +1000
-
-    Rd2roxygen applied
-    
-    need to:
-    flesh out the class/method documentation
-    tidy up missing parts, where aliases/rdname do not work (any?)
-    move out trip-package.R stuff that isn't "trip-package"
-
-commit 647d13fa0d66feeb1b2f03b564548aad820a99b9
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 18:41:57 2013 +1000
-
-    delete and ignore .Rd now with roxygenize
-    
-    all old doc is in (ignored) tmp/ for transferring to roxygen format
-
-commit 7e71553e5744d847473a0a44f623802962c80ba6
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 18:39:37 2013 +1000
-
-    roxygenation ofTimeOrderedRecords-class
-    
-    first pass at roxygen2 version of trip doc, it's working
-
-commit 7cae53de886a7665a89260722d8f61cc453bb4dc
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 17:49:02 2013 +1000
-
-    dontrun to avoid loading adehabitat* dependencies
-
-commit 4ce171140b40001685109c27d913560ab2571c3b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 17:48:38 2013 +1000
-
-    bandwidth.nrd has been missing for some time, now importFrom MASS
-
-commit 8c1505723050239f5ebb5db4d1afb0bc47676006
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 07:22:11 2013 +1000
-
-    extended example for UTM
-
-commit a8f6788e291cce9c435683c4a856c63bbb09126e
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 07:22:02 2013 +1000
-
-    updates
-
-commit 6ad4d63da839f6f59088a4f3ff82b1a589886c2b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 07:21:57 2013 +1000
-
-    renamed
-
-commit 45a59307d294fb79451c4b72f91332541372871f
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jul 4 07:21:43 2013 +1000
-
-    need to import MASS, though not sure how it's done currently for bandwidth.nrd
-
-commit f5940e4cb0a087f8d47948e36e21ce97a5919bbd
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 17:34:43 2013 +1000
-
-    stray apos
-
-commit 074a11bc95b7e8832b245c698d3b6ae770e9f351
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 17:30:38 2013 +1000
-
-    fix
-
-commit 6b1ede3244e2e4243007037821bb9055a349e163
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 17:28:51 2013 +1000
-
-    new explode function
-
-commit a97c37a9d93cb5d18b72b8cd7376592f4bc6e0f0
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 16:31:11 2013 +1000
-
-    no summary use
-
-commit d81e77a6fb79230317ed57a6b915f86b1552d878
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 15:59:15 2013 +1000
-
-    Rstudio begins
-
-commit d528cb6b4d00cf5fea052034330f5dfe73cfda36
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 15:58:15 2013 +1000
-
-    tidy
-
-commit a69f46204ca760e1c9d000f61e8b36934024c7ea
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 15:55:32 2013 +1000
-
-    ignore
-
-commit 6c35a4c0303c625a04128116607fdba9de95dd74
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 15:54:36 2013 +1000
-
-    really ignore
-
-commit 3fba98e8e44f3ff73202edde193388d592095970
-Author: Michael Sumner <michael.sumner@aad.gov.au>
-Date:   Wed Jul 3 15:52:52 2013 +1000
-
-    readme
-
-commit 77baa064f7e6a14d217f4df07887ea6ed67e82fc
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 3 15:02:47 2013 +1000
-
-    prev
-
-commit a23b4b2e3eede5f7032f3e6712a1ea5da6354c70
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 3 15:01:51 2013 +1000
-
-    fixes from broken branch, addition of prev argument
-
-commit db69e49e221ab3bf316305b470b13ceec2dd3313
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 3 15:00:09 2013 +1000
-
-    fixes from broken branch
-
-commit ae5ab2b77d5a5e6e8ef5a87463795496f5bb4205
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed Jul 3 14:59:16 2013 +1000
-
-    fixes from broken branch
-
-commit 4934fe346f09a393198d9f8aba9c044e84655db1
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 16:34:56 2013 +1000
-
-    tidy up
-
-commit 4589bfe7a1364c3b937817babbe6a77b84d76139
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 15:52:48 2013 +1000
-
-    ignore
-
-commit 5bf7ddd23afdac0ab7d063fbcf716c494e7c96ef
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 15:46:35 2013 +1000
-
-    Create README.md
-
-commit f70d2f414d6e8c28a9010899a23f7645a2213d2d
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 15:40:58 2013 +1000
-
-    fixes from running R CMD check, 1.1-15 now committed to CRAN
-
-commit af95f4bc15e899fc6858e27e180fa481b2cfad9f
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 15:16:54 2013 +1000
-
-    added RMS speed summary to summary, as.data.frame.summary.TORdata to avoid awkward names
-
-commit c330ca38845bfe57fb1499bd7782bdbac8dfacc1
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue Jun 18 14:36:14 2013 +1000
-
-    small changes to angle calcs
-
-commit 8ea087eece66fcb987934345d361bdf39a18ed0b
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 19:57:57 2013 +1000
-
-    NEWs updates
-
-commit f1d2e92524941faee2b94208372343149054f3f5
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 14:45:35 2013 +1000
-
-    optimized trackAngle, now a hybrid of bearing() and gzAzimuth(abdali) with unneeded code removed
-
-commit 8f18bce1343788163b9e3bc3b33c74e883eb847a
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 14:44:58 2013 +1000
-
-    removed import of gzAzimuth
-
-commit bbfa48c41e8170e50d2c02f70d97c3c4b5fb4ac9
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 11:01:41 2013 +1000
-
-    new ignores
-
-commit b9eaf40c161cdf374e85b6c76ea251647e3b146f
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 11:01:03 2013 +1000
-
-    trackAngle function, imports gzAzimuth from maptools
-
-commit 21378eedae13963f69871c5a7fe3df68373dd310
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Fri Jun 14 11:00:26 2013 +1000
-
-    doc for spTransform character method
-
-commit 7fdb2746318b39cb1d9198ff9ece67c369699368
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 22:42:19 2013 +1000
-
-    spTransform method for "Spatial", "character"
-
-commit b1b51f4c40d36b9f63da52fd8de576cf2baba7d6
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 17:38:29 2013 +1000
-
-    trip distance for summary
-
-commit 9f31456e841ecc7c9e26144a2f47f4008f147280
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 17:38:18 2013 +1000
-
-    NEWS for new version
-
-commit 2cc05f691072960af8285a5aeaed026a937d5b62
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 16:22:08 2013 +1000
-
-    summary method includes mean/max speed
-
-commit 47a418530ead93bdc8e012a34353a2ab4ff9e734
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 16:21:54 2013 +1000
-
-    new hidden function .distances for split trip
-
-commit 53a23c3e643b69199cbabbb2e0344dc2de8f9ae3
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 15:55:41 2013 +1000
-
-    ignore files
-
-commit 8ef5caaa53710d1d8881e9dc1d192f8b84b7066a
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 15:54:12 2013 +1000
-
-    new ignore
-
-commit 3fb30033965bf00be0b94c7fcc5038d7357ac144
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 15:53:22 2013 +1000
-
-    new version
-
-commit 958689d8c265015539360c47cf9617c8466c2ef6
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Thu Jun 13 15:53:15 2013 +1000
-
-    replaced file, broken in transfer (used r-forge)
-
-commit 008d22952e98f3a8cf4e8a11a98510006b5e2f0c
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Wed May 15 11:26:03 2013 +1000
-
-    Seb's updates after moving to Git
-
-commit 6b7f1c7fe6ab7364be07c356a51a6b7f757b9737
-Author: mdsumner <mdsumner@gmail.com>
-Date:   Tue May 14 23:29:47 2013 +1000
-
-    initial commit (with original Rd) of trip 1.1-14
+R-Forge: updated repository structure
+------------------------------------------------------------------------
