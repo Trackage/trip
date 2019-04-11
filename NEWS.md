@@ -37,8 +37,10 @@
 * Add `trip()` support for `trackeRdata` objects from the `trackeR` package, `mousetrap` objects from the `mousetrap` 
  package. Conversion to these types from trip is not practical. 
 
-* Add `trip)` support for `sf` objects with POINT geometry. The column names for date-time and id must
+* Add `trip())` support for `sf` objects with POINT geometry. The column names for date-time and id must
  be supplied. Z or M values from XYZ, and XYZM, and XYM are currently ignored. 
+
+* Add partial `trip()` support for `telemetry` objects from the `ctmm` package, see #33. 
 
 # trip 1.5.0 and prior
 

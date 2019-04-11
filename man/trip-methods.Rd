@@ -14,6 +14,8 @@
 \alias{trip,trackeRdata,ANY-method}
 \alias{trip,mousetrap,ANY-method}
 \alias{trip,sf,ANY-method}
+\alias{trip,telemetry,ANY-method}
+\alias{trip,list,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
 \alias{[,trip-method}
 \alias{[,trip,ANY,ANY,ANY-method}
@@ -65,6 +67,10 @@ grouped data frame ('dplyr-style') then the (first) grouping is assumed to defin
 columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a \code{trip} object for
 redefining \code{TORnames}.
 
+The \code{\link[=trip]{trip()}} function can ingest \code{track_xyt}, \code{telemetry}, \code{SpatialPointsDataFrame}, \code{sf},
+\code{trackeRdata}, \code{grouped_df}, \code{data.frame}, \code{tbl_df}, \code{mousetrap}, and in some cases
+lists of those objects. Please get in touch if you think something that should work does not.
+
 Track data often contains problems, with missing values in location or time,
 times out of order or with duplicated times. The \code{correct_all} argument is
 set to \code{TRUE} by default and will report any inconsistencies. Data really should
@@ -75,6 +81,12 @@ be checked first rather than relying on this auto-cleanup. The following problem
 \item missing date-time values, or missing x or y coordinates
 \item records out of order within trip ID
 }
+
+For some data types there's no formal structure, but a simple convention such as
+a set of names in a data frame. For example, the VTrack package has \code{AATAMS1} which may be
+turned into a trip with
+\code{trip(AATAMS1 \%>\% dplyr::select(longitude, latitude, timestamp, tag.ID, everything())}
+In time we can add support for all kinds of variants, detected by the names and contents.
 
 See \href{https://eprints.utas.edu.au/12273/}{Chapter 2 of the trip thesis} for more details.
 }

@@ -62,3 +62,18 @@ setMethod("as.trip", signature(x = "track_xyt"),
           function(x, ...) trip(x))
 setAs("ltraj", "trip", function(from) as.trip(from))
 
+
+telemetry2trip <- function(x) {
+  dat <- as.data.frame(setNames(x@.Data, x@names), stringsAsFactors = FALSE)
+  
+  if (!is.null(x@info$timezone) && !x@info$timezone == "UTC") warning("non-UTC timezone in telemetry (ctmm) object")
+  dat[["identity"]] <- x@info$identity
+  if (is.null(x@info$projection)) stop("variant of telemetry object not yet understood (gazelle)")
+  if (!is.null(x@info$projection)) print(sprintf("nominal projection?? %s in telemetry (ctmm) object", x@info$projection))
+  sp::coordinates(dat) <- c("longitude", "latitude")  ## gazelle is x,y buffalo is longitude,latitude
+  ## if there's no crs, then it's projected ... (needs deeper investigation)
+  sp::proj4string(dat) <- sp::CRS(.llproj())
+  tname <- "timestamps"
+  if (!inherits(dat[[tname]], "POSIXt")) dat[[tname]] <- dat[[tname]] + ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC")
+  trip(dat, c(tname,"identity"))
+}

@@ -11,6 +11,10 @@
 #' columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a \code{trip} object for
 #' redefining \code{TORnames}.  
 #' 
+#' The [trip()] function can ingest `track_xyt`, `telemetry`, `SpatialPointsDataFrame`, `sf`, 
+#' `trackeRdata`, `grouped_df`, `data.frame`, `tbl_df`, `mousetrap`, and in some cases
+#' lists of those objects. Please get in touch if you think something that should work does not. 
+#'  
 #' Track data often contains problems, with missing values in location or time, 
 #' times out of order or with duplicated times. The `correct_all` argument is 
 #' set to `TRUE` by default and will report any inconsistencies. Data really should
@@ -20,6 +24,13 @@
 #' * missing date-time values, or missing x or y coordinates
 #' * records out of order within trip ID
 #' 
+#' For some data types there's no formal structure, but a simple convention such as
+#' a set of names in a data frame. For example, the VTrack package has `AATAMS1` which may be
+#' turned into a trip with 
+#' `trip(AATAMS1 %>% dplyr::select(longitude, latitude, timestamp, tag.ID, everything())`
+#' In time we can add support for all kinds of variants, detected by the names and contents. 
+#' 
+#' 
 #' See [Chapter 2 of the trip thesis](https://eprints.utas.edu.au/12273/) for more details. 
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
@@ -27,6 +38,7 @@
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
 #' trip,grouped_df,ANY-method trip,data.frame,ANY-method trip,track_xyt,ANY-method
 #' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method trip,sf,ANY-method
+#' trip,telemetry,ANY-method trip,list,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
@@ -261,6 +273,26 @@ trip.grouped_df <- function(obj, ..., crs = NULL) {
   if (!is.null(crs)) sp::proj4string(obj)
   trip(obj, tor, ...)
 }
+
+setMethod("trip", signature(obj = "list", TORnames = "ANY"), 
+          function(obj, TORnames, correct_all = TRUE) {
+            ## a dirty trick but will work for some stuffs
+            chk <- try(trip(obj[[1]]), silent = TRUE)
+            ## this a bit slow because trips get created, need rbind for trip
+            if (!inherits(chk, "try-error")) {
+              out <- do.call(rbind, lapply(obj, trip))
+              tor <- getTORnames(chk)
+              
+            } else {
+              print("problem with list of this type")
+              stop(chk) ##sprintf("cannot interpret (list of) type %s", paste(class(obj[[1]]), collapse = ", ")))
+            }
+            trip(out, tor)
+          })
+setMethod("trip", signature(obj = "telemetry", TORnames = "ANY"), 
+          function(obj, TORnames, correct_all = TRUE) {
+            telemetry2trip(obj)
+          })
 setMethod("trip", signature(obj="sf", TORnames="ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             
@@ -325,7 +357,7 @@ setMethod("trip", signature(obj = "trackeRdata"),
               dat <- dat[!bad, ]
             }
             sp::coordinates(dat) <- c("longitude", "latitude")
-            sp::proj4string(dat) <- sp::CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+            sp::proj4string(dat) <- sp::CRS(.llproj())
             
             trip(dat, c("utc", "run_id"))
           })
@@ -346,7 +378,16 @@ setMethod("trip", signature(obj="grouped_df", TORnames= "ANY"),
 setMethod("trip", signature(obj="data.frame",  TORnames= "ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             ## asumme input is x, y, time, ID
-            TORnames <- TimeOrderedRecords(names(obj)[3:4])
+            
+            tor <- names(obj)[3:4]
+            if (is.factor(obj[[tor[1]]])) {
+              obj[[tor[1]]] <- levels(obj[[tor[1]]])[obj[[tor[1]]]]
+            }
+            if (is.character(obj[[tor[1]]])) {
+              obj[[tor[1]]] <- as.POSIXct(obj[[tor[1]]], tz = "UTC") 
+            }
+            TORnames <- TimeOrderedRecords(tor)
+            
             if (!is.numeric(obj[[1]]) || !is.numeric(obj[[2]])) stop("first two columns must be numeric, x,y or longitude,latitude")
             sp::coordinates(obj) <- 1:2
             
