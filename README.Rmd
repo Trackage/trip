@@ -53,16 +53,18 @@ Currently working on tidying up old daggy ends, see [next release milestones](ht
 
 I want it to be very easy to create trip objects from other forms, either by reading known formats (Argos), coercion from other packages (sp, sf, adehabitatLT, move, etc.), or from raw data with a dplyr/gg aesthetic e.g. this kind of construct from a data frame: 
 
-```R
-## NOTE: this is pseudocode, neither works yet
-d %>% arrange(id, time) %>% group_by(id) %>%  select(x, y, time, everything()) %>% trip(crs = "+proj=longlat")
+```{r raw-dataframe}
+d <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"), stringsAsFactors = FALSE)
+d$gmt <- as.POSIXct(d$gmt, tz = "UTC")
+library(dplyr)
+library(trip)
+tr <- d %>% arrange(tag_ID, gmt) %>% group_by(tag_ID) %>%  select(lon, lat, gmt, everything()) %>% trip()
 
 ## OR this for the same outcome
-trip(d, x, y, time, id, crs = "+proj=longlat")
+tr <- trip(dplyr::select(d, lon, lat, gmt, tag_ID, everything()))
 ```
 
-We could assume longlat is input if it has sane ranges, much like raster does. 
-
+Longitude latitude is assumed if the values have sane ranges. 
 
 
 There is some ongoing integration with the `sf` package, mostly to provide outputs in its
@@ -80,9 +82,8 @@ or atomic LINESTRING with time on the MEASURE:
 ```{r coerce-sf-2}
 as(walrus818, "sf")
 ```
-Trip itself would be better implemented on top of the ideas in [the silicate package](https://github.com/hypertidy/silicate/), rather than the twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
 
-
+But, trip itself would be better implemented on top of the ideas in [the silicate package](https://github.com/hypertidy/silicate/), rather than the twilight zone between MULTIPOINTs and LINESTRINGs as it is now. 
 
 # Development
 

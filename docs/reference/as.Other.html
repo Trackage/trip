@@ -66,7 +66,7 @@ the start and end times, duration and the ID of the segment." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
       </span>
     </div>
 
@@ -170,32 +170,32 @@ the start and end times, duration and the ID of the segment.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
  <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='fu'>coordinates</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='fu'>proj4string</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='fu'>CRS</span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/is.projected'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/CRS-class'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
 <span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
  <span class='fu'>as</span>(<span class='no'>tr</span>, <span class='st'>"ppp"</span>)
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
  <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='fu'>coordinates</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='fu'>proj4string</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='fu'>CRS</span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/is.projected'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/CRS-class'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
 <span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
  <span class='fu'>as.psp.trip</span>(<span class='no'>tr</span>)
 <span class='co'># }</span><div class='input'> <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='fu'>coordinates</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='fu'>proj4string</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='fu'>CRS</span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/is.projected'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/CRS-class'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
 <span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
 <span class='no'>spldf</span> <span class='kw'>&lt;-</span> <span class='fu'>explode</span>(<span class='no'>tr</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2019-04-04 02:33:06 2019-04-04 02:33:10       4 secs
-#&gt; 2             2          5 2019-04-04 02:33:11 2019-04-04 02:33:15       4 secs
+#&gt; 1             1          5 2019-04-11 02:41:25 2019-04-11 02:41:29       4 secs
+#&gt; 2             2          5 2019-04-11 02:41:30 2019-04-11 02:41:34       4 secs
 #&gt;   tripDistance meanSpeed maxSpeed
 #&gt; 1     5.708647  5137.783 6361.983
 #&gt; 2     6.748403  6073.563 8186.395
@@ -214,12 +214,12 @@ the start and end times, duration and the ID of the segment.</p>
 #&gt; Number of points: 10
 #&gt; Data attributes:
 #&gt;       tms                      id   
-#&gt;  Min.   :2019-04-04 02:33:06   1:5  
-#&gt;  1st Qu.:2019-04-04 02:33:08   2:5  
-#&gt;  Median :2019-04-04 02:33:11        
-#&gt;  Mean   :2019-04-04 02:33:11        
-#&gt;  3rd Qu.:2019-04-04 02:33:13        
-#&gt;  Max.   :2019-04-04 02:33:15        
+#&gt;  Min.   :2019-04-11 02:41:25   1:5  
+#&gt;  1st Qu.:2019-04-11 02:41:27   2:5  
+#&gt;  Median :2019-04-11 02:41:29        
+#&gt;  Mean   :2019-04-11 02:41:29        
+#&gt;  3rd Qu.:2019-04-11 02:41:32        
+#&gt;  Max.   :2019-04-11 02:41:34        
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

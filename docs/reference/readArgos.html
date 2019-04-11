@@ -65,7 +65,7 @@ frame in turn.  Basic validation of the data is enforced by default." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
       </span>
     </div>
 
@@ -122,7 +122,8 @@ frame in turn.  Basic validation of the data is enforced by default.</p>
 
     <pre class="usage"><span class='fu'>readArgos</span>(<span class='no'>x</span>, <span class='kw'>correct.all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dtFormat</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
   <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>, <span class='kw'>duplicateTimes.eps</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-  <span class='kw'>p4</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>p4</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>read_alt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>readDiag</span>(<span class='no'>x</span>)</pre>
     
@@ -159,6 +160,11 @@ pasted together</p></td>
       <th>verbose</th>
       <td><p>if TRUE, details on date-time adjustment is reported</p></td>
     </tr>
+    <tr>
+      <th>read_alt</th>
+      <td><p>is <code>NULL</code> by default, with longitude and latitude read from the PRV message, if <code>1</code> or <code>2</code>
+then attempt is made to read the alternative locations (but these are not always present)</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -191,6 +197,10 @@ levels is <code>levels=c("Z", "B", "A", "0", "1", "2", "3")</code>.</p>
 <p>A projection string is added to the data, assuming the PROJ.4 longlat - if
 any longitudes are greater than 360 the PROJ.4 argument "+over" is added.</p>
 <p><code>readDiag</code> simply builds a <code>data.frame</code>.</p>
+<p>With <code>read_alt</code> the default value <code>NULL</code> returns the PRV location as-is. Some files may have
+a standardized location, and a dummy. If <code>read_alt</code> is set to 1 or 2 the corresponding "alternative"
+location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a
+"dummy" location.</p>
     
     <h2 class="hasAnchor" id="warning-"><a class="anchor" href="#warning-"></a>Warning </h2>
 
@@ -202,7 +212,7 @@ and is in no way linked officially to Argos.</p>
 
     <p>The Argos data documentation was (ca. 2003) at
 http://www.argos-system.org/manual.  Specific details on the PRV
-("provide data") format were found in Chapter 4_4_8, originally at 
+("provide data") format were found in Chapter 4_4_8, originally at
 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

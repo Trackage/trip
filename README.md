@@ -43,18 +43,109 @@ milestones](https://github.com/Trackage/trip/milestone/2).
 I want it to be very easy to create trip objects from other forms,
 either by reading known formats (Argos), coercion from other packages
 (sp, sf, adehabitatLT, move, etc.), or from raw data with a dplyr/gg
-aesthetic e.g. this kind of construct from a data frame:
+aesthetic e.g. this kind of construct from a data
+frame:
 
 ``` r
-## NOTE: this is pseudocode, neither works yet
-d %>% arrange(id, time) %>% group_by(id) %>%  select(x, y, time, everything()) %>% trip(crs = "+proj=longlat")
+d <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"), stringsAsFactors = FALSE)
+d$gmt <- as.POSIXct(d$gmt, tz = "UTC")
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(trip)
+d %>% arrange(tag_ID, gmt) %>% group_by(tag_ID) %>%  select(lon, lat, gmt, everything()) %>% trip()
+#> Warning in assume_if_longlat(out): input looks like longitude/latitude
+#> data, assuming +proj=longlat +datum=WGS84
+#> 
+#> Object of class trip
+#>    tripID ("tag_ID") No.Records   startTime ("gmt")     endTime ("gmt")
+#> 1               1186         90 2005-12-14 15:27:39 2007-03-03 19:53:49
+#> 2               1187         71 2005-12-22 10:27:43 2006-12-06 10:16:23
+#> 3               1190        109 2006-01-11 12:00:00 2009-06-01 12:00:00
+#> 4               1191         25 2005-12-05 12:00:00 2006-08-01 12:00:00
+#> 5               1192         74 2005-12-09 17:20:09 2006-12-07 16:53:54
+#> 6               1194         72 2006-01-09 10:34:58 2006-12-27 10:36:06
+#> 7               1195         22 2005-12-15 16:22:30 2006-03-30 19:29:15
+#> 8               1198         76 2005-12-06 12:00:00 2007-12-23 12:00:00
+#> 9               1200        149 2005-12-02 12:00:00 2009-12-06 12:00:00
+#> 10              1203         35 2005-12-02 12:00:00 2006-12-10 12:00:00
+#> 11              2123          6 1998-12-16 12:00:00 1999-02-02 12:00:00
+#> 12             12604         28 1992-11-13 18:23:00 1992-12-07 11:16:00
+#> 13             12606         25 1992-11-13 18:22:00 1992-12-10 04:04:00
+#> 14             12609         17 1992-11-14 04:11:00 1992-12-04 00:17:00
+#> 15             14257        169 2001-12-06 06:29:19 2006-04-22 15:35:34
+#> 16             14403         48 2001-12-02 09:00:48 2001-12-18 19:23:05
+#> 17             14418        242 2001-12-02 13:58:52 2006-06-26 01:38:46
+#> 18             20874         43 1999-12-20 20:48:45 2000-12-24 20:46:29
+#> 19             20875        103 1999-12-20 17:32:46 2001-12-21 15:43:17
+#> 20             20876         68 1999-12-20 09:17:04 2000-12-15 10:58:48
+#> 21             20877        345 1999-12-20 10:57:51 2006-07-04 18:19:19
+#> 22             37388        120 2006-01-03 01:36:57 2006-03-14 04:54:22
+#> 23             37389        100 2006-01-05 19:43:22 2006-03-11 11:28:12
+#> 24             37467        225 2002-12-09 07:31:00 2006-07-06 18:00:50
+#> 25             37468         87 2002-12-09 11:36:47 2003-01-13 06:52:43
+#> 26             37629        100 2006-02-15 08:24:31 2006-06-01 12:52:08
+#> 27             37631        127 2006-02-21 08:03:41 2006-07-05 21:47:57
+#> 28             43921        108 2003-12-29 01:20:42 2004-02-07 20:01:02
+#> 29             43922        170 2004-01-01 06:00:23 2004-02-25 19:40:44
+#> 30             55166         22 2004-12-15 23:15:17 2005-03-17 22:50:00
+#> 31             55167         15 2004-12-14 00:00:03 2005-02-08 22:13:35
+#>     tripDuration
+#> 1  444.1848 days
+#> 2  348.9921 days
+#> 3      1237 days
+#> 4       239 days
+#> 5  362.9818 days
+#> 6  352.0008 days
+#> 7  105.1297 days
+#> 8       747 days
+#> 9      1465 days
+#> 10      373 days
+#> 11       48 days
+#> 12 23.70347 days
+#> 13 26.40417 days
+#> 14  19.8375 days
+#> 15 1598.379 days
+#> 16 16.43214 days
+#> 17 1666.486 days
+#> 18 369.9984 days
+#> 19  731.924 days
+#> 20 361.0706 days
+#> 21 2388.307 days
+#> 22 70.13709 days
+#> 23 64.65613 days
+#> 24 1305.437 days
+#> 25 34.80273 days
+#> 26 106.1858 days
+#> 27 134.5724 days
+#> 28 40.77801 days
+#> 29 55.56969 days
+#> 30 91.98244 days
+#> 31 56.92606 days
+#> 
+#>        data.columns data.class                  
+#> 1               gmt    POSIXct **trip DateTime**
+#> 2              band     factor                  
+#> 3   breeding_status     factor                  
+#> 4           species     factor                  
+#> 5               sex     factor                  
+#> 6 deployment_status     factor                  
+#> 7            device     factor                  
+#> 8            tag_ID    integer **trip ID**
 
 ## OR this for the same outcome
-trip(d, x, y, time, id, crs = "+proj=longlat")
+tr <- trip(dplyr::select(d, lon, lat, gmt, tag_ID, everything()))
+#> Warning in assume_if_longlat(out): input looks like longitude/latitude
+#> data, assuming +proj=longlat +datum=WGS84
 ```
 
-We could assume longlat is input if it has sane ranges, much like raster
-does.
+Longitude latitude is assumed if the values have sane ranges.
 
 There is some ongoing integration with the `sf` package, mostly to
 provide outputs in its formats.
@@ -63,7 +154,6 @@ We can already convert to POINT:
 
 ``` r
 library(trip)
-#> Loading required package: sp
 sf::st_as_sf(walrus818)
 #> Simple feature collection with 10558 features and 4 fields
 #> geometry type:  POINT
@@ -120,7 +210,7 @@ as(walrus818, "sf")
 #> 366 LINESTRING M (208779 -53699...
 ```
 
-Trip itself would be better implemented on top of the ideas in [the
+But, trip itself would be better implemented on top of the ideas in [the
 silicate package](https://github.com/hypertidy/silicate/), rather than
 the twilight zone between MULTIPOINTs and LINESTRINGs as it is now.
 

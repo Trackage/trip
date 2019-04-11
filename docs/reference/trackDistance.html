@@ -64,7 +64,7 @@ or Great Circle distance (WGS84 ellipsoid) methods." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@ of x start coordinates</p></td>
     <tr>
       <th>prev</th>
       <td><p>if TRUE and x1 is a trip, the return value has a padded end
-value (\"prev\"ious), rather than start (\"next\")</p></td>
+value ("prev"ious), rather than start ("next")</p></td>
     </tr>
     </table>
     
@@ -173,9 +173,9 @@ is FALSE, and in kilometres when longlat is TRUE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='fu'>coordinates</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='fu'>proj4string</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='fu'>CRS</span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/is.projected'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/CRS-class'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
 <span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
  <span class='co'>## the method knows this is a trip, so there is a distance for every</span>

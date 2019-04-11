@@ -65,7 +65,7 @@ explicitly ordered by DateTime data within IDs." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
       </span>
     </div>
 
@@ -154,16 +154,16 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; Class "Spatial", by class "SpatialPointsDataFrame", distance 3
 #&gt; Class "SpatialVector", by class "SpatialPointsDataFrame", distance 3</div><div class='input'>
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='fu'>coordinates</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='fu'>proj4string</span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='fu'>CRS</span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/is.projected'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/CRS-class'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>)
 <span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2019-04-04 02:33:23 2019-04-04 02:33:27       4 secs
-#&gt; 2             2          5 2019-04-04 02:33:28 2019-04-04 02:33:32       4 secs
+#&gt; 1             1          5 2019-04-11 02:41:44 2019-04-11 02:41:48       4 secs
+#&gt; 2             2          5 2019-04-11 02:41:49 2019-04-11 02:41:53       4 secs
 #&gt;   tripDistance meanSpeed maxSpeed
 #&gt; 1     7.101930  6391.738 7346.988
 #&gt; 2     7.108215  6397.393 8660.743
@@ -182,36 +182,36 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; Number of points: 10
 #&gt; Data attributes:
 #&gt;       tms                      id   
-#&gt;  Min.   :2019-04-04 02:33:23   1:5  
-#&gt;  1st Qu.:2019-04-04 02:33:25   2:5  
-#&gt;  Median :2019-04-04 02:33:27        
-#&gt;  Mean   :2019-04-04 02:33:27        
-#&gt;  3rd Qu.:2019-04-04 02:33:30        
-#&gt;  Max.   :2019-04-04 02:33:32        
+#&gt;  Min.   :2019-04-11 02:41:44   1:5  
+#&gt;  1st Qu.:2019-04-11 02:41:46   2:5  
+#&gt;  Median :2019-04-11 02:41:48        
+#&gt;  Mean   :2019-04-11 02:41:48        
+#&gt;  3rd Qu.:2019-04-11 02:41:50        
+#&gt;  Max.   :2019-04-11 02:41:53        
 #&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tr</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>tr</span>)</div><div class='img'><img src='trip-class-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] 10  2</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] "tms" "id" </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/subset'>subset</a></span>(<span class='no'>tr</span>, <span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"2"</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             2          5 2019-04-04 02:33:28 2019-04-04 02:33:32       4 secs
+#&gt; 1             2          5 2019-04-11 02:41:49 2019-04-11 02:41:53       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
 #&gt; 2           id     factor **trip ID**      
 #&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;     x          y                 tms id
-#&gt; 1   1  1.0743459 2019-04-04 02:33:23  1
-#&gt; 2   2 -0.6650882 2019-04-04 02:33:24  1
-#&gt; 3   3  1.1139524 2019-04-04 02:33:25  1
-#&gt; 4   4 -0.2458964 2019-04-04 02:33:26  1
-#&gt; 5   5 -1.1775633 2019-04-04 02:33:27  1
-#&gt; 6   6 -0.9758506 2019-04-04 02:33:28  2
-#&gt; 7   7  1.0650573 2019-04-04 02:33:29  2
-#&gt; 8   8  0.1316706 2019-04-04 02:33:30  2
-#&gt; 9   9  0.4886288 2019-04-04 02:33:31  2
-#&gt; 10 10 -1.6994506 2019-04-04 02:33:32  2</div><div class='input'>
+#&gt; 1   1  1.0743459 2019-04-11 02:41:44  1
+#&gt; 2   2 -0.6650882 2019-04-11 02:41:45  1
+#&gt; 3   3  1.1139524 2019-04-11 02:41:46  1
+#&gt; 4   4 -0.2458964 2019-04-11 02:41:47  1
+#&gt; 5   5 -1.1775633 2019-04-11 02:41:48  1
+#&gt; 6   6 -0.9758506 2019-04-11 02:41:49  2
+#&gt; 7   7  1.0650573 2019-04-11 02:41:50  2
+#&gt; 8   8  0.1316706 2019-04-11 02:41:51  2
+#&gt; 9   9  0.4886288 2019-04-11 02:41:52  2
+#&gt; 10 10 -1.6994506 2019-04-11 02:41:53  2</div><div class='input'>
 <span class='no'>tr</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          3 2019-04-04 02:33:23 2019-04-04 02:33:25       2 secs
+#&gt; 1             1          3 2019-04-11 02:41:44 2019-04-11 02:41:46       2 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -223,12 +223,12 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; coord. ref. : +proj=laea +ellps=sphere 
 #&gt; variables   : 1
 #&gt; names       :                 tms 
-#&gt; min values  : 2019-04-04 02:33:23 
-#&gt; max values  : 2019-04-04 02:33:32 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2019-04-04 02:33:23 UTC" "2019-04-04 02:33:24 UTC"
-#&gt;  [3] "2019-04-04 02:33:25 UTC" "2019-04-04 02:33:26 UTC"
-#&gt;  [5] "2019-04-04 02:33:27 UTC" "2019-04-04 02:33:28 UTC"
-#&gt;  [7] "2019-04-04 02:33:29 UTC" "2019-04-04 02:33:30 UTC"
-#&gt;  [9] "2019-04-04 02:33:31 UTC" "2019-04-04 02:33:32 UTC"</div><div class='input'>
+#&gt; min values  : 2019-04-11 02:41:44 
+#&gt; max values  : 2019-04-11 02:41:53 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2019-04-11 02:41:44 UTC" "2019-04-11 02:41:45 UTC"
+#&gt;  [3] "2019-04-11 02:41:46 UTC" "2019-04-11 02:41:47 UTC"
+#&gt;  [5] "2019-04-11 02:41:48 UTC" "2019-04-11 02:41:49 UTC"
+#&gt;  [7] "2019-04-11 02:41:50 UTC" "2019-04-11 02:41:51 UTC"
+#&gt;  [9] "2019-04-11 02:41:52 UTC" "2019-04-11 02:41:53 UTC"</div><div class='input'>
 
 
 </div></pre>
