@@ -24,3 +24,4 @@ data-raw/nform.r
 data-raw/mia.r
 inst/doc
 .httr-oauth
+sample_data_trip.txt

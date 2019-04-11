@@ -7,7 +7,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "spluque@gmail.com"), 
     person("Anthony", "Fischbach", role = "ctb",
     email = "afischbach@usgs.gov"))
-Version: 1.5.0.9003
+Version: 1.5.0.9004
 Depends:
     R (>= 3.2.5),
     methods,

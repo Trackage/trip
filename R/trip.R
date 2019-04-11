@@ -69,7 +69,7 @@ force_internal <- function(x, tor) {
   }
   if (isSpatial) {
     coordinates(x) <- crdnames
-    sp::proj4string(x) <- sp::CRS(proj)
+    x@proj4string@projargs <- proj
   }
 
   x

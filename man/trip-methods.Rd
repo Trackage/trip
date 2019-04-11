@@ -94,15 +94,16 @@ proj4string(d) <- CRS("+proj=laea +ellps=sphere")
 (tr <- trip(d, c("tms", "id")))
 
  ## real world data in CSV
-mi_dat <- read.csv(system.file("extdata/MI_albatross_final.csv", package = "trip"), 
+mi_dat <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"), 
             stringsAsFactors = FALSE)
-## subset because the data is quite dense
-mi_dat <- mi_dat[seq(1, nrow(mi_dat), by = 10), ]
+## installed subset because the data is quite dense
+## mi_dat <- mi_dat[seq(1, nrow(mi_dat), by = 10), ]
 mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
 mi_dat$sp_id <-  sprintf("\%s\%s_\%s_\%s", mi_dat$species, 
          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)
 coordinates(mi_dat) <- c("lon", "lat")
-## there are many warnings, but the outcome is fine (sp_id == 'WAi_14030938_2123' has < 3 locations)
+## there are many warnings, but the outcome is fine 
+## (sp_id == 'WAi_14030938_2123' has < 3 locations as does LMi_12143650_14257)
 mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 plot(mi_dat, pch = ".")
 #lines(mi_dat)  ## ugly

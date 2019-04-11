@@ -7,7 +7,8 @@
 \usage{
 readArgos(x, correct.all = TRUE, dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",
   tz = "GMT", duplicateTimes.eps = 0.01,
-  p4 = "+proj=longlat +ellps=WGS84", verbose = FALSE)
+  p4 = "+proj=longlat +ellps=WGS84", verbose = FALSE,
+  read_alt = NULL)
 
 readDiag(x)
 }
@@ -27,6 +28,9 @@ pasted together}
 \item{p4}{PROJ.4 projection string, "+proj=longlat +ellps=WGS84" is assumed}
 
 \item{verbose}{if TRUE, details on date-time adjustment is reported}
+
+\item{read_alt}{is `NULL` by default, with longitude and latitude read from the PRV message, if `1` or `2` 
+then attempt is made to read the alternative locations (but these are not always present)}
 }
 \value{
 \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
@@ -67,6 +71,11 @@ A projection string is added to the data, assuming the PROJ.4 longlat - if
 any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
 
 \code{readDiag} simply builds a \code{data.frame}.
+
+With \code{read_alt} the default value \code{NULL} returns the PRV location as-is. Some files may have
+a standardized location, and a dummy. If \code{read_alt} is set to 1 or 2 the corresponding "alternative" 
+location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a 
+"dummy" location.
 }
 \section{Warning }{
 
