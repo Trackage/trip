@@ -59,6 +59,14 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 library(trip)
+#> in method for 'trip' with signature 'obj="sf",TORnames="ANY"': no definition for class "sf"
+#> in method for 'trip' with signature 'obj="mousetrap"': no definition for class "mousetrap"
+#> in method for 'trip' with signature 'obj="trackeRdata"': no definition for class "trackeRdata"
+#> in method for 'trip' with signature 'obj="track_xyt",TORnames="ANY"': no definition for class "track_xyt"
+#> in method for 'as.trip' with signature 'x="track_xyt"': no definition for class "track_xyt"
+#> in method for 'coerce' with signature '"trip","sf"': no definition for class "sf"
+#> in method for 'coerce' with signature '"track_xyt","trip"': no definition for class "track_xyt"
+#> in method for 'coerce' with signature '"trip","track_xyt"': no definition for class "track_xyt"
 tr <- d %>% arrange(tag_ID, gmt) %>% group_by(tag_ID) %>%  select(lon, lat, gmt, everything()) %>% trip()
 #> Warning in assume_if_longlat(out): input looks like longitude/latitude
 #> data, assuming +proj=longlat +datum=WGS84
@@ -73,6 +81,18 @@ Longitude latitude is assumed if the values have sane ranges.
 
 There is some ongoing integration with the `sf` package, mostly to
 provide outputs in its formats.
+
+We can nominate the date-time and trip ID column of an sf POINT data
+frame.
+
+``` r
+trip(sf, c("time", "id"))
+```
+
+It’s unclear what do do with MULTIPOINT, unless `XYZ[,3]` is the times
+and `$time` is the *offset*? Or we just assume constant time interval
+from the `time`. But otherwise, MULTIPOINT or LINESTRING is a kind of
+neat grouping.
 
 We can already convert to POINT:
 
@@ -140,8 +160,8 @@ the twilight zone between MULTIPOINTs and LINESTRINGs as it is now.
 
 # Development
 
-  - trip should work with sf or sp, there’s really no need to
-    distinguish these
+  - **partly done** trip should work with sf or sp, there’s really no
+    need to distinguish these
   - ability to treat all line segments as continuous, as `cut.trip` can
     for rasterizing, possibly needs a second-level ID grouping
   - separate out reading functionality to

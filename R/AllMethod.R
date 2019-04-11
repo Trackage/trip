@@ -26,7 +26,7 @@
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method
 #' trip,ANY,TimeOrderedRecords-method trip,trip,ANY-method
 #' trip,grouped_df,ANY-method trip,data.frame,ANY-method trip,track_xyt,ANY-method
-#' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method
+#' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method trip,sf,ANY-method
 #' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
@@ -261,6 +261,37 @@ trip.grouped_df <- function(obj, ..., crs = NULL) {
   if (!is.null(crs)) sp::proj4string(obj)
   trip(obj, tor, ...)
 }
+setMethod("trip", signature(obj="sf", TORnames="ANY"),
+          function(obj, TORnames, correct_all = TRUE) {
+            
+            gcol <- attr(obj, "sf_column")
+            cls <- class(obj[[gcol]])[1]
+            stopifnot(cls %in% c("sfc_POINT", "sfc_MULTIPOINT"))
+            xy <- do.call(rbind, unclass(obj[[gcol]]))
+            p4 <- attr(obj[[gcol]], "crs")$proj4string
+            idx <- NULL
+            if (cls == "sfc_MULTIPOINT") {
+              stop("MULTIPOINT not yet supported")  ## unclear what to do, unless tor[1] is the *offset* for XYZ[,3]?
+              ni <- unlist(lapply(obj[[gcol]], function(a) dim(a)[1]))
+              idx <- rep(seq_len(nrow(obj)), ni)
+            } 
+            obj[[gcol]] <- NULL
+            obj <- as.data.frame(as.list(unclass(obj)), stringsAsFactors = FALSE)
+            if (!is.null(idx)) obj <- obj[idx, ]
+            if (correct_all) {
+              
+              obj <- force_internal(obj, TORnames)
+            }
+            coordnames <- utils::tail(make.names(c(names(obj), c("X", "Y")), unique = TRUE), 2)
+            obj[[coordnames[1L]]] <- xy[,1L]
+            obj[[coordnames[2L]]] <- xy[,2L]
+            
+            sp::coordinates(obj) <- coordnames
+            sp::proj4string(obj) <- sp::CRS(p4)
+            out <- new("trip", obj, TimeOrderedRecords(TORnames))
+            assume_if_longlat(out)
+          })
+
 setMethod("trip", signature(obj = "mousetrap"), 
           function(obj, TORnames, correct_all = TRUE) {
             dat <- data.frame(xpos = as.vector(t(obj$trajectories[,,2L])), 

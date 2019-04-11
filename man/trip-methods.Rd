@@ -13,6 +13,7 @@
 \alias{trip,track_xyt,ANY-method}
 \alias{trip,trackeRdata,ANY-method}
 \alias{trip,mousetrap,ANY-method}
+\alias{trip,sf,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
 \alias{[,trip-method}
 \alias{[,trip,ANY,ANY,ANY-method}
