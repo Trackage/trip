@@ -12,11 +12,79 @@ status](https://ci.appveyor.com/api/projects/status/github/Trackage/trip?branch=
 
 # Tools for animal track data
 
-The trip package provides functions for accessing and manipulating
-spatial data for animal tracking. Filter for speed and create time spent
-plots from animal track data.
+The trip package provides facilities to access and manipulate
+spatial-temporal data organized for tracking movements. Data with
+locations, date-times, and grouping IDs for trips are formally declared
+using the `trip()` function and enables easy calculation of step
+distance and angle and grouped summaries of trip duration and length.
 
-Let me know what you think via
+Conversion from and to many disparate formats is a key focus, and data
+may be treated as points-in-time or as line segments with a start/end
+time property. There are functions for simple speed-distance-angle
+filtering determining time-spent in area and creating line or point
+plots with standard R spatial tools and graphics.
+
+## Reading data
+
+Track data may be read from various Argos formats with `readArgos()` or
+`readDiag()`, from generic data frame or spatial- data frames, and many
+types of objects from other tracking packages are supported.
+
+## Converting data
+
+Trip objects can be imported directly from types defined in packages
+`adehabitatLT`, `amt`, `eyetrackeRdata`, `mousetrap`, `sf`, and `sp`.
+When these formats do not have time or trip-grouping values they may be
+declared by name. A generic data frame may be converted to trip by
+organizing the x, y, time, ID columns in order, or by a combination of
+row grouping with x, y, time columns. All other data are retained in the
+obvious way.
+
+Trip objects can be used to create other data types defined by
+`adehabitatLT`, `amt`, `sf`, `sp`, `spatstat`, and this is possible for
+conversion to point types or line types. For example, `as(trip,
+"SpatialLinesDataFrame")` creates a single multi-line for each trip,
+with start and end time properties. The `explode(trip)` function breaks
+a trip into individual line segments for every pair of coordinates, and
+`as(trip, "SpatialPointsDataFrame")` will create a standard sp points
+data frame. There are similar facilities for `sf` types, and for the
+`spatstat` types point pattern `as.ppp(trip)` or line segments
+`as.psp(trip)`.
+
+## Validating data
+
+The `trip()` function performs a significant series of data validation,
+to ensure that basic sense prevails. The function will always proceed to
+give a valid trip object, and simply warn about which problems had to be
+overcome. These validation checks can be used to discover what is wrong
+with a particular set of data, and in time we hope this to become much
+more powerful and transparent.
+
+## Transforming and merging data
+
+Trip objects can be reproject directly with the `spTransform` function
+in the usual way, and functions that are coordinate system aware such as
+`raster::extract` will automatically reproject the coordinates behind
+the scenes. We are developing more sophisticated [point-in-time data
+extraction](https://github.com/AustralianAntarcticDivision/raadtools)
+routines and [auto-reprojecting map
+plotting](https://github.com/AustralianAntarcticDivision/SOmap)
+functions in related projects.
+
+## Simple data filtering and time-spent gridding
+
+Decades of fancy modern statistical techniques have obscured many simple
+data summary methods from days of yore. Trip retains some of these
+long-forgottent techniques and allows direct aceess to the
+`speedfilter()`, `sdafilter()` and `rasterize()` functions for
+straightforward data filtering on maximum speed, minimum angle/distance,
+and time-spent-in-area gridding.
+
+There is a `homedist()` function to calculate the maximum distance from
+each trip’s starting point, and various old-schooly functions. Some of
+these will be improved and better exposed in time.
+
+Let us know what you think via
 [Issues](https://github.com/Trackage/trip/issues).
 
 ## Installing

@@ -117,7 +117,7 @@
 <li><p>BREAKING change: the sp package is now imported rather than full Depends. This means that calls to its functions like <code>coordinates&lt;-</code>, <code>CRS&lt;-</code>, <code>proj4string&lt;-</code>, <code>spTransform</code> will need to be prefixed with <code>sp::</code>, or with the package explicitly attached with <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(sp)</a></code>. This may cause some pain but should be offset by improvements in helpful ways to create trip objects.</p></li>
 <li><p>The <code><a href="../reference/trip-methods.html">trip()</a></code> function now accepts raw data frames or grouped data frames, with the first four columns assumed to be the x, y, time coordinates and the ID column. If the data frame is grouped the first grouping column is used as the ID.</p></li>
 <li><p>When trip objects are created they are by default forced into basic data sense, and so will usually succeed on creation as long as the nominated coordinates, trip group ID and date-times are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated date-times 3) records out of order.</p></li>
-<li><p><code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary(trip)</a></code> now does not calcuate the rolling RMS speed for performance reasons, this might be reviewed in future.</p></li>
+<li><p><code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary(trip)</a></code> now does not calculate the rolling RMS speed for performance reasons, this might be reviewed in future.</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">

@@ -16,7 +16,7 @@
  are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated 
  date-times 3) records out of order. 
 
-* `summary(trip)` now does not calcuate the rolling RMS speed for performance reasons, this might be reviewed 
+* `summary(trip)` now does not calculate the rolling RMS speed for performance reasons, this might be reviewed 
  in future. 
  
 ## MINOR CHANGES
