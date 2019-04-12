@@ -46,7 +46,11 @@ write_track_kml <- function(id, lon, lat, utc, z = NULL,
   time_begin <- format(xsegs[["starttime"]], "%Y-%m-%dT%H:%M:%S+00:00")
   time_end <- format(xsegs[["endtime"]], "%Y-%m-%dT%H:%M:%S+00:00")
   aaggbbrr <- function(x) {
-    unlist(lapply(strsplit(x, ""), function(x) paste(x[7], x[8], x[5], x[6], x[3], x[4], x[1], x[2], collapse = "", sep = "")))
+    unlist(lapply(strsplit(x, ""), function(x) paste(x[1L], 
+                                                     x[8L], x[9L], 
+                                                     x[6L], x[7L], 
+                                                     x[4L], x[5L], 
+                                                     x[2L], x[3L], collapse = "", sep = "")))
   }
 
 
