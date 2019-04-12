@@ -32,7 +32,8 @@ write_track_kml <- function(id, lon, lat, utc, z = NULL,
     obj <- id 
   } else {
     ## from here on is standard, as long as "obj" is a trip object
-    d <- data.frame(lon = lon, lat = lat, utc = utc, id = id, z = z)
+    d <- data.frame(lon = lon, lat = lat, utc = utc, id = id)
+    if (!is.null(z)) d[["z"]] <- z
     obj <- trip(d)
   }
   if (!raster::isLonLat(obj)) obj <- sp::spTransform(obj, "+init=epsg:4326")
