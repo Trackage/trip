@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9010</span>
       </span>
     </div>
 
@@ -93,8 +93,9 @@
 <div id="converting-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#converting-data" class="anchor"></a>Converting data</h2>
-<p>Trip objects can be imported directly from types defined in packages <code>adehabitatLT</code>, <code>amt</code>, <code>eyetrackeRdata</code>, <code>mousetrap</code>, <code>sf</code>, and <code>sp</code>. When these formats do not have time or trip-grouping values they may be declared by name. A generic data frame may be converted to trip by organizing the x, y, time, ID columns in order, or by a combination of row grouping with x, y, time columns. All other data are retained in the obvious way.</p>
+<p>Trip objects can be imported directly from types defined in packages <code>adehabitatLT</code>, <code>amt</code>, <code>ctmm</code>, <code>eyetrackeRdata</code>, <code>mousetrap</code>, <code>sf</code>, and <code>sp</code>. When these formats do not have time or trip-grouping values they may be declared by name. A generic data frame may be converted to trip by organizing the x, y, time, ID columns in order, or by a combination of row grouping with x, y, time columns. All other data are retained in the obvious way.</p>
 <p>Trip objects can be used to create other data types defined by <code>adehabitatLT</code>, <code>amt</code>, <code>sf</code>, <code>sp</code>, <code>spatstat</code>, and this is possible for conversion to point types or line types. For example, <code>as(trip, "SpatialLinesDataFrame")</code> creates a single multi-line for each trip, with start and end time properties. The <code><a href="reference/as.Other.html">explode(trip)</a></code> function breaks a trip into individual line segments for every pair of coordinates, and <code>as(trip, "SpatialPointsDataFrame")</code> will create a standard sp points data frame. There are similar facilities for <code>sf</code> types, and for the <code>spatstat</code> types point pattern <code>as.ppp(trip)</code> or line segments <code>as.psp(trip)</code>.</p>
+<p>Trips can be exported to Google Earth and explored using the continuous time slider with the <code><a href="reference/write_track_kml.html">write_track_kml()</a></code> function.</p>
 </div>
 <div id="validating-data" class="section level2">
 <h2 class="hasAnchor">

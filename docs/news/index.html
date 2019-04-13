@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9010</span>
       </span>
     </div>
 
@@ -118,6 +118,7 @@
 <li><p>The <code><a href="../reference/trip-methods.html">trip()</a></code> function now accepts raw data frames or grouped data frames, with the first four columns assumed to be the x, y, time coordinates and the ID column. If the data frame is grouped the first grouping column is used as the ID.</p></li>
 <li><p>When trip objects are created they are by default forced into basic data sense, and so will usually succeed on creation as long as the nominated coordinates, trip group ID and date-times are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated date-times 3) records out of order.</p></li>
 <li><p><code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary(trip)</a></code> now does not calculate the rolling RMS speed for performance reasons, this might be reviewed in future.</p></li>
+<li><p>New function <code>write_track_kml</code> to produce a compressed Keyhole Markup Language (‘KML’) file in ‘KMZ’ form, for use in Google Earth.</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -129,7 +130,8 @@
 <li><p>New support to coerce to sf with <code>as(x, "sf")</code> which creates every segment as a LINESTRING. If <code><a href="https://www.rdocumentation.org/packages/sf/topics/st_as_sf">sf::st_as_sf()</a></code> is used standard coercion from sp -&gt; sf is used and results in POINT.</p></li>
 <li><p>Add <code><a href="../reference/trip-methods.html">trip()</a></code> support including coercion from and to the <code>amt</code> package type <code>track_xyt</code>.</p></li>
 <li><p>Add <code><a href="../reference/trip-methods.html">trip()</a></code> support for <code>trackeRdata</code> objects from the <code>trackeR</code> package, <code>mousetrap</code> objects from the <code>mousetrap</code> package. Conversion to these types from trip is not practical.</p></li>
-<li><p>Add <code>trip)</code> support for <code>sf</code> objects with POINT geometry. The column names for date-time and id must be supplied. Z or M values from XYZ, and XYZM, and XYM are currently ignored.</p></li>
+<li><p>Add <code>trip())</code> support for <code>sf</code> objects with POINT geometry. The column names for date-time and id must be supplied. Z or M values from XYZ, and XYZM, and XYM are currently ignored.</p></li>
+<li><p>Add partial <code><a href="../reference/trip-methods.html">trip()</a></code> support for <code>telemetry</code> objects from the <code>ctmm</code> package, see <a href='https://github.com/mdsumner/trip/issues/33'>#33</a>.</p></li>
 </ul>
 </div>
 </div>

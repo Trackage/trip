@@ -19,6 +19,9 @@
 * `summary(trip)` now does not calculate the rolling RMS speed for performance reasons, this might be reviewed 
  in future. 
  
+* New function `write_track_kml` to produce a compressed Keyhole Markup Language ('KML') file in 'KMZ' form, 
+for use in Google Earth. 
+
 ## MINOR CHANGES
 
 * `readArgos` gains a new argument `read_alt` which is set to NULL by default and maintains existing behaviour. 

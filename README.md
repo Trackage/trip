@@ -33,12 +33,12 @@ types of objects from other tracking packages are supported.
 ## Converting data
 
 Trip objects can be imported directly from types defined in packages
-`adehabitatLT`, `amt`, `eyetrackeRdata`, `mousetrap`, `sf`, and `sp`.
-When these formats do not have time or trip-grouping values they may be
-declared by name. A generic data frame may be converted to trip by
-organizing the x, y, time, ID columns in order, or by a combination of
-row grouping with x, y, time columns. All other data are retained in the
-obvious way.
+`adehabitatLT`, `amt`, `ctmm`, `eyetrackeRdata`, `mousetrap`, `sf`, and
+`sp`. When these formats do not have time or trip-grouping values they
+may be declared by name. A generic data frame may be converted to trip
+by organizing the x, y, time, ID columns in order, or by a combination
+of row grouping with x, y, time columns. All other data are retained in
+the obvious way.
 
 Trip objects can be used to create other data types defined by
 `adehabitatLT`, `amt`, `sf`, `sp`, `spatstat`, and this is possible for
@@ -50,6 +50,9 @@ a trip into individual line segments for every pair of coordinates, and
 data frame. There are similar facilities for `sf` types, and for the
 `spatstat` types point pattern `as.ppp(trip)` or line segments
 `as.psp(trip)`.
+
+Trips can be exported to Google Earth and explored using the continuous
+time slider with the `write_track_kml()` function.
 
 ## Validating data
 

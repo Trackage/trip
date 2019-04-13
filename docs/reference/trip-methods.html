@@ -65,7 +65,7 @@ that define the &quot;TimeOrdered&quot; quality of the records." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0.9010</span>
       </span>
     </div>
 
@@ -178,6 +178,9 @@ specifying which were the time and ID columns, but the input can be more flexibl
 grouped data frame ('dplyr-style') then the (first) grouping is assumed to define individual trips and that
 columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a <code>trip</code> object for
 redefining <code>TORnames</code>.</p>
+<p>The <code>trip()</code> function can ingest <code>track_xyt</code>, <code>telemetry</code>, <code>SpatialPointsDataFrame</code>, <code>sf</code>,
+<code>trackeRdata</code>, <code>grouped_df</code>, <code>data.frame</code>, <code>tbl_df</code>, <code>mousetrap</code>, and in some cases
+lists of those objects. Please get in touch if you think something that should work does not.</p>
 <p>Track data often contains problems, with missing values in location or time,
 times out of order or with duplicated times. The <code>correct_all</code> argument is
 set to <code>TRUE</code> by default and will report any inconsistencies. Data really should
@@ -187,7 +190,12 @@ be checked first rather than relying on this auto-cleanup. The following problem
 <li><p>missing date-time values, or missing x or y coordinates</p></li>
 <li><p>records out of order within trip ID</p></li>
 </ul>
-    <p>See <a href='https://eprints.utas.edu.au/12273/'>Chapter 2 of the trip thesis</a> for more details.</p>
+    <p>For some data types there's no formal structure, but a simple convention such as
+a set of names in a data frame. For example, the VTrack package has <code>AATAMS1</code> which may be
+turned into a trip with
+<code>trip(AATAMS1 %&gt;% dplyr::select(longitude, latitude, timestamp, tag.ID, everything())</code>
+In time we can add support for all kinds of variants, detected by the names and contents.</p>
+<p>See <a href='https://eprints.utas.edu.au/12273/'>Chapter 2 of the trip thesis</a> for more details.</p>
     
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -224,8 +232,8 @@ speed filtering and spatial time spent gridding.</p></div>
 <span class='fu'>trip</span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2019-04-11 10:05:19 2019-04-11 10:05:23       4 secs
-#&gt; 2             2          5 2019-04-11 10:05:24 2019-04-11 10:05:28       4 secs
+#&gt; 1             1          5 2019-04-13 00:25:03 2019-04-13 00:25:07       4 secs
+#&gt; 2             2          5 2019-04-13 00:25:08 2019-04-13 00:25:12       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -242,8 +250,8 @@ speed filtering and spatial time spent gridding.</p></div>
 (<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2019-04-11 10:05:19 2019-04-11 10:05:23       4 secs
-#&gt; 2             2          5 2019-04-11 10:05:24 2019-04-11 10:05:28       4 secs
+#&gt; 1             1          5 2019-04-13 00:25:03 2019-04-13 00:25:07       4 secs
+#&gt; 2             2          5 2019-04-13 00:25:08 2019-04-13 00:25:12       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**

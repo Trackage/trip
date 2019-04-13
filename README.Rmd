@@ -41,6 +41,9 @@ or trip-grouping values they may be declared by name. A generic data frame may b
 
 Trip objects can be used to create other data types defined by `adehabitatLT`, `amt`, `sf`, `sp`, `spatstat`, and this is possible for conversion to point types or line types. For example, `as(trip, "SpatialLinesDataFrame")` creates a single multi-line for each trip, with start and end time properties. The `explode(trip)` function breaks a trip into individual line segments for every pair of coordinates, and `as(trip, "SpatialPointsDataFrame")` will create a standard sp points data frame. There are similar facilities for `sf` types, and for the `spatstat` types point pattern `as.ppp(trip)` or line segments `as.psp(trip)`. 
 
+Trips can be exported to Google Earth and explored using the continuous time slider with the `write_track_kml()` function. 
+
+
 ## Validating data
 
 The `trip()` function performs a significant series of data validation, to ensure that basic sense prevails. The function will always proceed to give a valid trip object, and simply warn about which problems had to be overcome. These validation checks can be used to discover what is wrong with a particular set of data, and in time we hope this to become much more powerful and transparent. 
