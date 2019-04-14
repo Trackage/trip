@@ -39,7 +39,7 @@
 #' trip,grouped_df,ANY-method trip,data.frame,ANY-method trip,track_xyt,ANY-method
 #' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method trip,sf,ANY-method
 #' trip,telemetry,ANY-method trip,list,ANY-method
-#' trip,trip,TimeOrderedRecords-method [,trip-method [,trip,ANY,ANY,ANY-method 
+#' trip,trip,TimeOrderedRecords-method split,trip,ANY-method [,trip-method [,trip,ANY,ANY,ANY-method 
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
 #' containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See 
@@ -500,8 +500,15 @@ setMethod("points", signature(x="trip"),
 setMethod("text", signature(x="trip"),
           function(x, ...) text(as(x, "SpatialPointsDataFrame"), ...))
 
-#setMethod("split", "SpatialPointsDataFrame", split.data.frame)
 
+split.trip <-  function(x, f, drop = FALSE, ...) {
+  lapply(split(x = seq_len(nrow(x)), f = f, drop = drop, ...), 
+         function(ind) x[ind, , drop = FALSE])
+}
+  
+setMethod("split", signature(x = "trip", f = "ANY"), 
+         split.trip
+          )
 ## setMethod("spTransform", signature=signature(x="trip", CRSobj="CRS"),
 ##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
 

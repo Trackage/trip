@@ -17,6 +17,7 @@
 \alias{trip,telemetry,ANY-method}
 \alias{trip,list,ANY-method}
 \alias{trip,trip,TimeOrderedRecords-method}
+\alias{split,trip,ANY-method}
 \alias{[,trip-method}
 \alias{[,trip,ANY,ANY,ANY-method}
 \alias{[[<-,trip,ANY,missing-method}
