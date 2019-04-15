@@ -56,13 +56,6 @@ ltraj2trip <- function (ltr)
   trip(res, c("date", "id"))
 }
 
-setMethod("as.trip", signature(x="ltraj"),
-          function(x, ...) ltraj2trip(x))
-setMethod("as.trip", signature(x = "track_xyt"), 
-          function(x, ...) trip(x))
-setAs("ltraj", "trip", function(from) as.trip(from))
-
-
 telemetry2trip <- function(x) {
   dat <- as.data.frame(setNames(x@.Data, x@names), stringsAsFactors = FALSE)
   
@@ -77,3 +70,16 @@ telemetry2trip <- function(x) {
   if (!inherits(dat[[tname]], "POSIXt")) dat[[tname]] <- dat[[tname]] + ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC")
   trip(dat, c(tname,"identity"))
 }
+
+
+
+
+setMethod("as.trip", signature(x="ltraj"),
+          function(x, ...) ltraj2trip(x))
+setMethod("as.trip", signature(x = "track_xyt"), 
+          function(x, ...) trip(x))
+setAs("ltraj", "trip", function(from) as.trip(from))
+
+setAs("track_xyt", "trip", 
+      function(from) trip(from))
+

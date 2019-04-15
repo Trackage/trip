@@ -63,10 +63,6 @@ setAs("trip", "ltraj", function(from) {
 })
 
 
-setAs("track_xyt", "trip", 
-      function(from) trip(from))
-
-
 
 ## @importClassesFrom maptools owin ppp psp
 #' @importFrom spatstat as.ppp
