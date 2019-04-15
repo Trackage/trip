@@ -82,7 +82,7 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 #' @param x A trip object.
 #' @param breaks A character string such as the \code{breaks} argument
 #' for \code{\link{cut.POSIXt}}, or alternatively a vector of
-#' date-time boundaries. (If the latter ghese must encompass all the time range of
+#' date-time boundaries. (If the latter these must encompass all the time range of
 #' the entire trip object.)
 #' @param \dots Unused arguments.
 #' @return

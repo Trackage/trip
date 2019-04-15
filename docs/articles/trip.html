@@ -104,11 +104,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms")
-## 1             1          5 2019-04-15 12:42:58 2019-04-15 12:43:02
-## 2             2          5 2019-04-15 12:43:03 2019-04-15 12:43:07
-##   tripDuration tripDistance meanSpeed maxSpeed
-## 1       4 secs     556.4908  500841.7 653087.8
-## 2       4 secs     519.6661  467699.5 568389.9
+## 1             1          5 2019-04-15 13:03:16 2019-04-15 13:03:20
+## 2             2          5 2019-04-15 13:03:21 2019-04-15 13:03:25
+##   tripDuration tripDistance meanSpeed  maxSpeed
+## 1       4 secs     578.4000  520560.0  714977.2
+## 2       4 secs     886.5621  797905.9 1164555.1
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -116,21 +116,21 @@
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##         min        max
-## x  1.000000 10.0000000
-## y -1.292458  0.7800888
+##         min       max
+## x  1.000000 10.000000
+## y -1.372094  1.554266
 ## Is projected: FALSE 
 ## proj4string :
 ## [+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2019-04-15 12:42:58   1:5  
-##  1st Qu.:2019-04-15 12:43:01   2:5  
-##  Median :2019-04-15 12:43:03        
-##  Mean   :2019-04-15 12:43:03        
-##  3rd Qu.:2019-04-15 12:43:05        
-##  Max.   :2019-04-15 12:43:07</code></pre>
+##  Min.   :2019-04-15 13:03:16   1:5  
+##  1st Qu.:2019-04-15 13:03:19   2:5  
+##  Median :2019-04-15 13:03:21        
+##  Mean   :2019-04-15 13:03:21        
+##  3rd Qu.:2019-04-15 13:03:23        
+##  Max.   :2019-04-15 13:03:25</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
@@ -154,8 +154,8 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">tg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rasterize.html">rasterize</a></span>(tr)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tg, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"transparent"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/palettes">heat.colors</a></span>(<span class="dv">25</span>)))</a></code></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>As with <code><a href="https://www.rdocumentation.org/packages/raster/topics/rasterize">raster::rasterize()</a></code> the <code>field</code> used may be chosen, by defaul the time difference between each point in a trip is used, and the final grid contains the sum of these durations.</p>
-<p>There is an older version of this in the <code>tripGrid.interp</code> function that uses approrimate methods by allowing interpolation to an ‘equal time’ step.</p>
+<p>As with <code><a href="https://www.rdocumentation.org/packages/raster/topics/rasterize">raster::rasterize()</a></code> the <code>field</code> used may be chosen, by default the time difference between each point in a trip is used, and the final grid contains the sum of these durations.</p>
+<p>There is an older version of this in the <code>tripGrid.interp</code> function that uses approximate methods by allowing interpolation to an ‘equal time’ step.</p>
 </div>
 <div id="reading-from-argos-files" class="section level1">
 <h1 class="hasAnchor">
