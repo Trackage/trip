@@ -5,5 +5,11 @@
 \alias{trip-package}
 \title{trip.}
 \description{
-trip.
+Functions for accessing and manipulating spatial data for animal
+tracking, with straightforward coercion from and to other formats. Filter
+for speed and create time spent maps from animal track data. There are
+coercion methods to convert between 'trip' and 'ltraj' from 'adehabitatLT',
+and between 'trip' and 'psp' and 'ppp' from 'spatstat'. Trip objects
+can be created from raw or grouped data frames, and from types in the 'sp',
+'sf', 'amt', 'trackeR', and other packages.
 }
