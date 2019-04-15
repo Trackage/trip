@@ -11,7 +11,7 @@
 
 \item{breaks}{A character string such as the \code{breaks} argument
 for \code{\link{cut.POSIXt}}, or alternatively a vector of
-date-time boundaries. (If the latter hese must encompass all the time range of
+date-time boundaries. (If the latter ghese must encompass all the time range of
 the entire trip object.)}
 
 \item{\dots}{Unused arguments.}

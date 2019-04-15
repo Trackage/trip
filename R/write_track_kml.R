@@ -4,7 +4,7 @@
 #' Export track data to a KML file, for use in Google Earth the continuous
 #' time slider. 
 #' 
-#' To include altitude set every argument explicitly, by input of seperate 
+#' To include altitude set every argument explicitly, by input of separate 
 #' 'id', 'lon', 'lat', 'utc' and 'z' arguments. If the first argument 'id' is 
 #' a trip object there is no facility to include the 'z' altitude values. 
 #' 

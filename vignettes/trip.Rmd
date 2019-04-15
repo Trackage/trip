@@ -77,9 +77,9 @@ tg <- rasterize(tr)
 plot(tg, col = c("transparent", heat.colors(25)))
 ```
 
-As with `raster::rasterize()` the `field` used may be chosen, by defaul the time difference between each point in a trip is used, and the final grid contains the sum of these durations. 
+As with `raster::rasterize()` the `field` used may be chosen, by default the time difference between each point in a trip is used, and the final grid contains the sum of these durations. 
 
-There is an older version of this in the `tripGrid.interp` function that uses approrimate methods by allowing interpolation to an 'equal time' step. 
+There is an older version of this in the `tripGrid.interp` function that uses approximate methods by allowing interpolation to an 'equal time' step. 
 
 # Reading from Argos files
 
