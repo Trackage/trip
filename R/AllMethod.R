@@ -295,7 +295,7 @@ setMethod("trip", signature(obj = "telemetry", TORnames = "ANY"),
           })
 setMethod("trip", signature(obj="sf", TORnames="ANY"),
           function(obj, TORnames, correct_all = TRUE) {
-            
+            if (missing(TORnames)) TORnames <- names(obj)[1:2]
             gcol <- attr(obj, "sf_column")
             cls <- class(obj[[gcol]])[1]
             stopifnot(cls %in% c("sfc_POINT", "sfc_MULTIPOINT"))
