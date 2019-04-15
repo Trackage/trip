@@ -77,10 +77,9 @@ functions in related projects.
 ## Simple data filtering and time-spent gridding
 
 Some simple data summary methods have gone out of favour or been
-ignored, and trip provides direct acesss to the `speedfilter()`,
-`sdafilter()` and `rasterize()` functions for straightforward data
-filtering on maximum speed, minimum angle/distance, and
-time-spent-in-area gridding.
+ignored, and trip provides direct acesss to the `speedfilter()`, `sda()`
+and `rasterize()` functions for straightforward data filtering on
+maximum speed, minimum angle/distance, and time-spent-in-area gridding.
 
 There is a `homedist()` function to calculate the maximum distance from
 each trip’s starting point, and various old-school functions. Some of
