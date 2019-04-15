@@ -54,12 +54,12 @@ Trip objects can be reproject directly with the `spTransform` function in the us
 
 ## Simple data filtering and time-spent gridding
 
-Decades of fancy modern statistical techniques have obscured many simple data
-summary methods from days of yore. Trip retains some of these long-forgottent techniques and allows direct aceess to the `speedfilter()`, `sdafilter()` and `rasterize()` functions for straightforward data filtering on maximum speed, minimum angle/distance, and time-spent-in-area gridding. 
+Some simple data summary methods have gone out of favour or been ignore, and trip provides direct aceess to the `speedfilter()`, `sdafilter()` and `rasterize()` functions for straightforward data filtering on maximum speed, minimum angle/distance, and time-spent-in-area gridding. 
 
 There is a `homedist()` function to calculate the maximum distance from each trip's starting point, and various old-schooly functions. Some of these will be improved and better exposed in time. 
 
 
+See `vignette("trip")` for more. 
 
 Let us know what you think via [Issues](https://github.com/Trackage/trip/issues). 
 

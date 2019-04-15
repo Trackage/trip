@@ -98,23 +98,49 @@ summary(argos)
 Note that the form of the coordinates is native to the PRV file, and in this case contains longitude values that are greater than 180. Some forms of these files provide wrapped forms, but in general the data are
 read as-is. 
 
+(We need "world2" because we are at 40W, but +360). 
+
 ```{r plot-argos-anti-meridian}
-plot(argos, pch = "l", asp = f)
+plot(argos, pch = ".")
 lines(argos)
 maps::map("world2", add = TRUE)
-sp::degAxis(1)
+axis(1)
 sp::degAxis(2)
 ```
 
-# Walrus tracks
+# Destructive filtering
 
-Plot the walrus tracks on a map. 
+There are some classic data filters based on speed and angle, and we may chain
+these together for some cheap improvements to track data, or use them separately. 
+
+```{r destructive-filters}
+argos$spd <- speedfilter(argos, max.speed = 4)  ## km/h
+mean(argos$spd)  ## more than 5% are too fast
+
+plot(argos)
+lines(argos[argos$spd & argos$class > "A", ])
+
+
+argos$sda <- sda(argos, smax = 12)  ## defaults based on argosfilter, Freitas et al. (2008) 
+mean(argos$sda)
+plot(argos)
+lines(argos[argos$sda, ])
+
+```
+
+# Map projections
+
+Data may be stored in longitude latitude or using a map projection, an in-built data set uses the Azimuthal Equidistant family near the anti-meridian in the Bering Strait.  
 
 ```{r}
+raster::projection(walrus818)
 data("walrus818")
 
 plot(walrus818, pch = ".")
 lines(walrus818)
+
+axis(1)
+axis(2)
 ```
 
 
@@ -123,15 +149,53 @@ library(maptools)
 library(rgdal)
 data(wrld_simpl)
 world <- sp::spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
-p <- par(xpd = NA, mar = rep(0.5, 4))
-plot(walrus818, pch = ".")
+p <- par(mar = rep(0.5, 4))
+plot(raster::extent(walrus818) + 600000)
+plot(walrus818, pch = ".", add = TRUE)
 plot(world, add = TRUE, col = "grey")
 lines(walrus818)
 llgridlines(walrus818); par(p)
 ```
 
 
+# Data conversions
 
+There are various conversions from other tracking data types, the `trip()` function
+aims to be a helpful function like `raster::raster()`, simply understanding many formats. 
+
+It's possible to export trips to Google Earth, for interacting with the time slider
+in continuous time. Use `write_track_kml()` to produce a 'KML/KMZ' file. 
+
+When converting to spatial forms we may choose multi-lines, points, or segments. 
+
+
+Conversion to points, in 'sp' or 'spatstat'. 
+
+```{r conversions-points}
+## as points
+as(walrus818, "SpatialPointsDataFrame")
+as(walrus818, "ppp")
+
+```
+
+Conversion to lines, in 'sp', 'sf', or 'adehabitatLT'. 
+
+```{r conversions-lines}
+## as lines
+as(walrus818, "SpatialLinesDataFrame")
+as(walrus818, "sf")
+as(walrus818, "ltraj")
+```
+
+Conversions to segments, in 'sp', 'spatstat'. 
+
+
+```{r conversions-segments}
+## as segments
+explode(walrus818)
+as(walrus818, "psp")
+
+```
 
 [^1]: *One-dimensional, are you crazy?* Yes, the measurement process is one-dimensional and that is how we
 can arrange the primary data we collect. We collect location (x, y, z), time, and many other variables such as temperature, air pressure, happiness and colour, these are the geometry of our measurements, but the collection itself is very much a one-dimensional topology.

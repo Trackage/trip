@@ -1,0 +1,40 @@
+Package: trip
+Type: Package
+Title: Tools for the Analysis of Animal Track Data
+Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
+    email = "mdsumner@gmail.com"),
+    person("Sebastian", "Luque", role = "ctb"), 
+    person("Anthony", "Fischbach", role = "ctb"),
+    person("Tomislav", "Hengl", role = "ctb"))
+Version: 1.6.0
+Depends: R (>= 3.3.0)
+Imports: geodist, maptools, MASS, methods, raster, sp, spatstat, glue,
+        viridis
+Suggests: adehabitatLT, knitr, rgdal, testthat, covr, rmarkdown,
+        lubridate, dplyr, maps
+Description: Functions for accessing and manipulating spatial data for animal
+    tracking, with straightforward coercion from and to other formats. Filter
+    for speed and create time spent maps from animal track data. There are
+    coercion methods to convert between 'trip' and 'ltraj' from 'adehabitatLT', 
+    and between 'trip' and 'psp' and 'ppp' from 'spatstat'. Trip objects
+    can be created from raw or grouped data frames, and from types in the 'sp', 
+    'sf', 'amt', 'trackeR', 'mousetrap', and other packages. 
+URL: https://github.com/mdsumner/trip
+BugReports: https://github.com/mdsumner/trip/issues
+NeedsCompilation: no
+ByteCompile: yes
+License: GPL-3
+LazyData: yes
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
+RemoteType: local
+RemoteUrl: /perm_storage/home/mdsumner/Git/trip
+Packaged: 2019-04-15 12:07:18 UTC; mdsumner
+Author: Michael D. Sumner [aut, cre],
+  Sebastian Luque [ctb],
+  Anthony Fischbach [ctb],
+  Tomislav Hengl [ctb]
+Maintainer: Michael D. Sumner <mdsumner@gmail.com>
+Built: R 3.5.3; ; 2019-04-15 12:07:19 UTC; unix

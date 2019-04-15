@@ -1,0 +1,296 @@
+See NEWS.md for newer updates. 2019-04-03
+
+See ChangeLog for older logs from R-Forge. 
+
+--------------------------------------------------------------------
+
+   CHANGES IN trip VERSION 1.5.0
+
+o removed a problematic warning
+
+o new data set walrus818, courtesy of Anthony Fischbach
+
+o new function homedist
+
+o added imports for recommended package functions
+
+o new trip<- replace method for one-step trip creation
+
+o removed character method for spTransform, now standard in rgdal/sp
+
+   BUG FIXES 
+   
+o fix for last namespace clash with dplyr in cut.trip
+
+o argos.sigma was not vectorized on adjust for argment x, fixed
+
+  CHANGES IN trip VERSION 1.1-21
+  
+o modified PROJ.4 string in vignette for CRAN
+
+o moved vignette stub to knitr markdown
+  
+  CHANGES IN trip VERSION 1.1-20
+
+o rasterize for trip can now accept a 'field' argument to replace the default
+ time-spent calculation
+ 
+o trip now Imports raster, for use of rasterize to replace tripGrid
+
+o new function homedist
+
+o bug fix via complete rewrite of cut.trip, including modification of argument name "dates" to "breaks"
+
+o modified example with missing +ellps to satisfy new PROJ.4 (thanks to Roger Bivand)
+
+  CHANGES IN trip VERSION 1.1-19
+
+o urgent bug fix release for trackDistance
+
+o Package Title Gets Title Case
+
+CHANGES IN trip VERSION 1.1-18
+
+OVERVIEW
+
+ o fixed missing Suggest for rgdal for CRAN (thanks to Prof. Ripley)
+
+ o new function sda, and efficient and flexible implementation of argosfilter
+
+SIGNIFICANT USER-VISIBLE CHANGES 
+
+ o cut can now accept a character
+  string like "2 hours" as per cut.POSIXt, rather than all explicit
+  interval boundaries
+
+  CHANGES IN trip VERSION 1.1-17
+
+OVERVIEW
+
+ o This release provides some overdue cleanup and improvements. 
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+ o readArgos is now significantly faster and more reliable
+
+ o new function explode to convert to a SpatialLinesDataFrame with
+   line segments for every individual time step
+
+ o trackAngle is now generic with methods for trip objects and matrix/es
+
+BUG FIXES
+
+ o fixed line width in vignette
+
+
+  CHANGES IN trip VERSION 1.1-16
+
+ o trackDistance is now generic, with a new argument "prev"
+
+ o new function trackAngle to calculate internal angles between segments
+
+ o fixed install problem with imports from maptools/sp, and 
+   other problems with the namespace, all doc is now done with roxygen2
+ 
+
+	CHANGES IN trip VERSION 1.1-15
+
+OVERVIEW
+	
+   o modification to to summary.trip to give summaries of distance, speed
+   
+   o implemented trackAngle() to provide turning angles along trips
+	
+   o method for spTransform("trip", "character")
+
+     	  
+	CHANGES IN trip VERSION 1.1-14
+
+   o much of the source was overhauled and tidied up
+
+   o cut.trip added to replace old function trip.split.exact which is deprecated
+
+   o tripTransform deprecated, replaced by method for spTransform
+   (generic from sp)
+
+
+        CHANGES IN trip VERSION 1.1-12
+
+   o fix for ltraj2trip
+
+
+ACKNOWLEDGEMENTS
+	
+   o Thanks to Sebastian Luque for ltraj2trip patch
+
+
+        CHANGES IN trip VERSION 1.1-12
+
+   o reduced time taken by examples by removal with dontrun, thanks
+	to CRAN maintainers
+
+
+        CHANGES IN trip VERSION 1.1-11
+
+ACKNOWLEDGEMENTS
+
+   o Thanks to Sebastian Luque for advice on NAMESPACE fixes
+
+   o thanks to Andrew Irwin for update on trackDistance documentation
+
+
+OVERVIEW
+
+   o added a NAMESPACE file and package updates to make everything
+   work, maptools is now Imports, rgdal, adehabitatLT and lattice are
+   Suggests
+	
+   o modified dependency on adehabitat to adehabitatLT
+
+   o removed class definitions for ppp, psp and owin, now imported
+   from maptools
+
+   o update to trackDistance documentation
+
+
+        CHANGES IN trip VERSION 1.1-10
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+        o Suppressed warnings from owin for duplicate points used in
+        pixellate/tripGrid.
+
+	o spatstat is now required, not just suggested.
+
+BUG FIXES
+
+	o superimpose used rather than deprecated superimposePSP
+
+        o consistency for S3 generic / method arguments in as.ppp.trip
+        and as.psp.trip
+
+        o fixed incomplete "[" method documentation for trip
+
+
+	CHANGES IN trip VERSION 1.1-9
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+	o speed improvement in speedfilter, 6x or more
+
+
+	CHANGES IN trip VERSION 1.1-8
+
+ACKNOWLEDGEMENTS
+
+	 o Thanks to Sebastian Luque for pointing out a problem with
+	 zero-length lines.
+
+	 o Thanks to Francois Rousseu for bug report in readDiag.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+ 	o new function filter.penSS to provide non-destructive filter
+	for track data.
+
+	o colours for plotting lines(trip) has been updated, with
+	smarter defaults and leveraging new capacity in sp for passing
+	in lwd/lty/col etc.
+
+	o trackDistance has been completely replaced as a wrapper to
+	an R-level gcdist. This can provide a roughly 3x speed-up for
+	running trackDistance and speedfilter.
+
+	o Removed "push" argument from trackDistance.
+
+	o New as.ppp and as.psp methods to convert from trip to
+	spatstat's point and line classes.
+
+	o New as(trip, "SpatialLinesDataFrame") method to convert to
+	sp lines.
+
+        o spTransform method for trip objects.
+
+	o trip now Suggests rgdal for spTransform use.
+
+	o new as.ltraj.trip methods for ltraj class in adehabitat
+
+	o trip now Suggests adehabitat for coercion to ltraj
+
+ BUG FIXES
+
+	o readDiag would fail when no invalid records were present.
+
+	o Zero-length lines would propagate NaNs to the entire
+	tripGrid for method "density" (fixed by spatstat > 1.19-1).
+
+
+	CHANGES IN trip VERSION 1.1-6
+
+ACKNOWLEDGEMENTS
+
+
+	 o Thanks to Adrian Baddeley for updates to pixellate.psp in
+	 spatstat 1.18-3 and 1.18-4.
+
+	 o Thanks to Edzer Pebesma for updates to the CVS development
+	 version of sp, methods for split and SpatialPixelsDataFrame.
+
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+
+
+	o New function trip.split.exact to cut trip events at specific
+	time-based boundaries.
+
+	o Added method argument, including density and pixellate to
+	 tripGrid, using density.psp and pixellate.psp.
+
+
+	 o trip.R: updated tripGrid, replaced old interpolation
+	approximation with spatstat exact line/cross/cell logic
+	(pixellate.psp). Zero length line segments are supported by
+	trip, and their contribution is recorded by point in cell
+	measurement.  tripGrid.interp still exists for the old
+	approach, and kde method.
+
+	o added verbose argument to readArgos to suppress reporting of
+	duplicate time modifications.
+
+	o added summary of trip duration total to print.summary.tordata.
+
+BUG FIXES
+	o improvements to makeGridTopology which would sometimes give a silly result
+
+	o removed boilerplate tags in many Rd files
+
+	o removed unused \dots argument in speedfilter
+
+	o trip.R: validtordata required the ID component of a trip to
+	be numeric or factor. This now allows character.
+
+	o trip.R: updated setMethod("[", "trip" to use same argument
+	handling as SpatialPointsDataFrame
+
+	o Fixed harmless warning error in readArgos for longitudes > 180.
+
+
+	CHANGES IN trip VERSION 1.1-4
+
+	o trip.R: removed setReplaceMethod required by r50609 in R-devel.
+	
+--------------------------------
+
+See inst/ChangeLog for the full Subversion record prior to this NEWS form. 
+
+trip was moved to GitHub from R-Forge in May 2013 at https://github.com/Trackage/trip/commit/6b7f1c7fe6ab7364be07c356a51a6b7f757b9737
+
+Old R-Forge project: 
+https://r-forge.r-project.org/projects/trip/
+
+
+Prior to R-Forge, there was a longer history on Subversion at UTAS. trip was first
+released to CRAN in 2006. 
+
+

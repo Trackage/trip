@@ -12,6 +12,7 @@
 ^revdep$
 ^prepare-package.r$
 ^\.httr-oauth$
+^inst/extdata/JM-2009-11-04-000.PRV$
 ^inst/extdata/argos/98apr.dat$
 ^inst/extdata/argos/98apr.dia$
 #^inst/extdata/argos/98feb_a.dia$

@@ -29,12 +29,7 @@ test_that("speedfilter and sdafilter works", {
 })
 
 
-test_that("non destructive filter works", {
-  trll <- sp::spTransform(walrus818[c(1, 2, 3, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 35), ], 
-                      "+proj=longlat +datum=WGS84")
-  expect_s4_class(aa <- filter.penSS(trll, 0.1), "trip")
-  expect_true(sum(trackDistance(trll)) > sum(trackDistance(aa)))
-})
+
 test_that("angle calculation works", {
    tra <- walrus818[1:12, ]
   expect_equal(sum(is.na(trackAngle(tra))), 2)
