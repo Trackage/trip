@@ -132,6 +132,10 @@ readPRV0 <- function(x) {
 #' 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 #' @keywords IO manip
 #' @export readArgos
+#' @examples 
+#' argosfile <- 
+#'   system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
+#' argos <- readArgos(argosfile)   
 readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        tz="GMT", duplicateTimes.eps=1e-2,
                        p4="+proj=longlat +ellps=WGS84", verbose=FALSE, read_alt = NULL) {
@@ -160,6 +164,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
       for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
       for (i in 5:6) df[[i]] <- factor(dfm[, i])
       for (i in 7:8) df[[i]] <- dfm[, i]
+  
       df <- as.data.frame(df)
       df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
                                     dtFormat), tz)
@@ -209,10 +214,13 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
     }
     dout$class <- ordered(dout$class,
                           levels=c("Z", "B", "A", "0", "1", "2", "3"))
+  
     coordinates(dout) <- c("longitude", "latitude")
+    
     proj4string(dout) <- CRS(p4)
     ##tor <- TimeOrderedRecords(c("gmt", "ptt"))
     test <- try(dout <- trip(dout, c("gmt", "ptt")))
+    
     if (!is(test, "trip")) {
       cat("\n\n\n Data not validated: returning object of class ",
           class(dout), "\n")
@@ -221,6 +229,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
     ## for now, only return spdftor if correct.all is TRUE
     cat("\n\n\n Data fully validated: returning object of class ",
         class(dout), "\n")
+    
     return(dout)
   }
   cat("\n\n\n Data not validated: returning object of class ",

@@ -415,11 +415,12 @@ setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="ANY"),
               if (is.factor(obj[[TORnames[2]]]))
                   obj[[TORnames[2]]] <- factor(obj[[TORnames[2]]])
               if (correct_all) {
-
+                print(bbox(obj))
                 obj <- force_internal(obj, TORnames)
               }
-
+              #print(bbox(obj))
               out <- new("trip", obj, TimeOrderedRecords(TORnames))
+              #print(bbox(out))
               assume_if_longlat(out)
           })
 

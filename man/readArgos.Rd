@@ -84,6 +84,11 @@ This works on some Argos files I have seen, it is not a guaranteed method
 and is in no way linked officially to Argos.
 }
 
+\examples{
+argosfile <- 
+  system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
+argos <- readArgos(argosfile)   
+}
 \references{
 The Argos data documentation was (ca. 2003) at
 http://www.argos-system.org/manual.  Specific details on the PRV

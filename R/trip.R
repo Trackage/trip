@@ -32,9 +32,10 @@ force_internal <- function(x, tor) {
   if (isSpatial) {
     prenames <- names(x)
     proj <- sp::proj4string(x)
-    x <- as.data.frame(x)
-    crdnames <- setdiff(names(x), prenames)
- 
+    crdnames <- rownames(bbox(x))
+    x <- as.data.frame(x, stringsAsFactors = FALSE)
+    #crdnames <- setdiff(names(x), prenames)
+    
   }
  
   
