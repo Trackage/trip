@@ -5,6 +5,7 @@
 #*NAMESPACE
 #man/*.Rd
 *~
+*coter*.txt
 auto/
 *.tex
 *.aux

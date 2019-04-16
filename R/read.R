@@ -1,6 +1,6 @@
 
 readPRVa <- function(x, altloc = 1) {
-  prv <- readPRV0(x)
+  prv <- readPRV0(readLines(x))
   alt <- readAlt(x)
   if (!nrow(prv) == length(alt)) {
     warning('mismatch between PRV data and coordinate data, assuming they are aligned from start')
@@ -27,16 +27,28 @@ readAlt <- function(x) {
 }
 
 
-
 readPRV0 <- function(x) {
+             #"01155 18862  73 32 P 3 2009-11-04 16:43:32 -68.575   77.952  0.000 401650567"
+  widths<- c(5, 1, 5, 1, 3, 1, 2, 1, 1, 1,1,1, 10, 1, 8, 1, 7, 2, 7,2, 5, 1, 9)
+  x <- gsub("^\\s+", "", x)
+  x <- gsub("\\s+$", "", x)
+  ok <- nchar(x)== sum(widths)
+  if (!any(ok)) return(NULL)
+  con <- textConnection(x[ok], open = "r")
+  d <- read.fwf(con, widths = widths)
+  close(con)
+  as.matrix(d[, -seq(2, 22, by = 2)])
+}
+.readPRV0_old <- function(x) {
   old.opt <- options(warn=-1)
   on.exit(options(old.opt), add = TRUE)
-  
-  dlines <- strsplit(readLines(x), "\\s+", perl=TRUE)
+  ## x is the text
+  dlines <- strsplit(x, "\\s+", perl=TRUE)
+  loclines <- unlist(lapply(dlines, length)) == 12
+  print(sum(loclines))
 
-  loclines <- sapply(dlines, length) == 12
   if (any(loclines)) {
-    dfm <- matrix(unlist(dlines[sapply(dlines, length) == 12]),
+    dfm <- matrix(unlist(dlines[loclines]),
                   ncol=12, byrow=TRUE)
     if (dfm[1,7] == "LC") {
       msg <- paste(" appears to be a diag file, skipping.",
@@ -154,13 +166,14 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
         stopifnot(read_alt == 1 || read_alt == 2)
         dfm <- readPRVa(x[icon], altloc = read_alt)
       } else {
-        dfm <- readPRV0(x[icon])
+        dfm <- readPRV0(readLines(x[icon]))
       }
       if (is.null(dfm)) next; ## skip this read
       df <- vector("list", 12)
       names(df) <- c("prognum", "ptt", "nlines", "nsensor",
                      "satname", "class", "date", "time", "latitude",
                      "longitude", "altitude", "transfreq")
+      
       for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
       for (i in 5:6) df[[i]] <- factor(dfm[, i])
       for (i in 7:8) df[[i]] <- dfm[, i]
