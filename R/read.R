@@ -6,6 +6,7 @@ readPRVa <- function(x, altloc = 1) {
     warning('mismatch between PRV data and coordinate data, assuming they are aligned from start')
     prv <- prv[1:length(alt), , drop = FALSE]
   }
+ if (length(alt) < 1) stop("no alternative locations found")
   tab <- utils::read.table(text = gsub("\\s+", " ", alt), sep = " ", stringsAsFactors = FALSE)
   cols <- c(5, 3)
   if (altloc == 2) cols <- c(9, 7)
