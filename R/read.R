@@ -251,16 +251,14 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
 ##' @rdname readArgos
 ##' @export
 readDiag <- function (x) {
-  data <- NULL
-  for (fl in x) {
-    d <- readLines(fl)
+    d <- unlist(lapply(x, readLines))
     locs <- d[grep("LON1", d, ignore.case=TRUE)]
+    if (length(locs) < 1L) stop("no valid Diag records found")
     tms <- d[grep("DATE", d, ignore.case=TRUE)]
     bad <- (grep("\\?", locs))
     if (length(bad) > 0) {
       if (length(locs[-bad]) == 0) {
-        warning(paste("no valid locations in:", fl, "\n ...ignoring"))
-        next
+        stop(paste("no valid locations in:", paste(x, collapse = "\n"), "\n ...ignoring"))
       }
       locs <- locs[-bad]
       tms <- tms[-(bad)]
@@ -270,7 +268,7 @@ readDiag <- function (x) {
     reclen <- length(dlines[[1]])
     dfm <- matrix(unlist(dlines[sapply(dlines, length) ==
                                   reclen]), ncol=reclen, byrow=TRUE)
-    if (ncol(dfm) < 24) {warning(sprintf("does not look like a Diag file: %s", fl)); next}
+
     lonlat <- dfm[, c(4, 7, 10, 13)]
     dic <- dfm[, c(14, 17, 18, 21, 24), drop=FALSE]
     id <- dic[, 1]
@@ -292,11 +290,10 @@ readDiag <- function (x) {
     lon2 <- ll[, 4]
     lq <- factor(lq, ordered=TRUE,
                  levels=c("Z", "B", "A", "0", "1", "2", "3"))
-    data <- rbind(data,
-                  data.frame(lon1=lon, lat1=ll[, 1],
+    data <- data.frame(lon1=lon, lat1=ll[, 1],
                              lon2=lon2, lat2=ll[, 3],
-                             gmt=gmt, id=id, lq=lq, iq=iq))
-  }
-  if (is.null(data)) stop("no valid Diag records found")
+                             gmt=gmt, id=id, lq=lq, iq=iq, stringsAsFactors = FALSE)
+  
+  
   data
 }
