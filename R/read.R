@@ -230,7 +230,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
   
     coordinates(dout) <- c("longitude", "latitude")
     
-    proj4string(dout) <- CRS(p4)
+    dout@proj4string <- CRS(p4)
     ##tor <- TimeOrderedRecords(c("gmt", "ptt"))
     test <- try(dout <- trip(dout, c("gmt", "ptt")))
     
