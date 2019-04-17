@@ -104,6 +104,8 @@ readPRV0 <- function(x) {
 #' @param verbose if TRUE, details on date-time adjustment is reported
 #' @param read_alt is `NULL` by default, with longitude and latitude read from the PRV message, if `1` or `2` 
 #' then attempt is made to read the alternative locations (but these are not always present)
+#' @param return_trip for [readDiag()] if `TRUE` will return a trip object, use `read_alt` to control the location
+#' @param ... reserved for future use
 #' @return
 #'
 #' \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
@@ -120,8 +122,7 @@ readPRV0 <- function(x) {
 #' }
 #' @section Warning :
 #'
-#' This works on some Argos files I have seen, it is not a guaranteed method
-#' and is in no way linked officially to Argos.
+#' This works on some Argos files I have seen. 
 #' @seealso
 #'
 #' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
@@ -148,7 +149,7 @@ readPRV0 <- function(x) {
 #' argos <- readArgos(argosfile)   
 readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        tz="GMT", duplicateTimes.eps=1e-2,
-                       p4="+proj=longlat +ellps=WGS84", verbose=FALSE, read_alt = NULL) {
+                       p4="+proj=longlat +ellps=WGS84", verbose=FALSE, read_alt = NULL, ...) {
   ## add "correct.all" argument - just return data frame if it fails, with
   ## suggestions of how to sort/fix it
   li <- length(x)
@@ -169,7 +170,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
   }
   
   
-  if (nrow(dfm) < 1)
+  if (is.null(dfm) || nrow(dfm) < 1)
     stop("No data to return: check the files")
   
     df <- vector("list", 12)
@@ -248,9 +249,11 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
   dout
 }
 
+
 ##' @rdname readArgos
 ##' @export
-readDiag <- function (x) {
+readDiag <- function (x, return_trip = FALSE, read_alt = 1L, ...) {
+  
     d <- unlist(lapply(x, readLines))
     locs <- d[grep("LON1", d, ignore.case=TRUE)]
     if (length(locs) < 1L) stop("no valid Diag records found")
@@ -294,6 +297,15 @@ readDiag <- function (x) {
                              lon2=lon2, lat2=ll[, 3],
                              gmt=gmt, id=id, lq=lq, iq=iq, stringsAsFactors = FALSE)
   
+    if (return_trip) {
+      if (!read_alt %in% c(1, 2)) stop("read_alt must be either 1 or 2")
+      if (read_alt == 1L) {
+        data <- trip(data[c("lon1", "lat1", "gmt", "id", "lq", "iq", "lon2", "lat2")])
+      }
+      if (read_alt == 2L) {
+        data <- trip(data[c("lon2", "lat2", "gmt", "id", "lq", "iq", "lon1", "lat1")])
+      }
+    }
   
   data
 }

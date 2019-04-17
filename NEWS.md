@@ -3,7 +3,8 @@
 * `readDiag()` and `readArgos()` now read all records from a single text vector after reading
 all raw lines. This means they can be used to read data from mixed text streams.  
 
-* `readDiag()`  no longer converts columns id and iq to factor. 
+* `readDiag()`  no longer converts columns id and iq to factor, and gains arguments `return_trip` and 
+ `read_alt` to control output format. 
 
 
 # trip 1.6.0

@@ -8,9 +8,9 @@
 readArgos(x, correct.all = TRUE, dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",
   tz = "GMT", duplicateTimes.eps = 0.01,
   p4 = "+proj=longlat +ellps=WGS84", verbose = FALSE,
-  read_alt = NULL)
+  read_alt = NULL, ...)
 
-readDiag(x)
+readDiag(x, return_trip = FALSE, read_alt = 1L, ...)
 }
 \arguments{
 \item{x}{vector of file names of Argos "DAT" or "DIAG" files.}
@@ -31,6 +31,10 @@ pasted together}
 
 \item{read_alt}{is \code{NULL} by default, with longitude and latitude read from the PRV message, if \code{1} or \code{2}
 then attempt is made to read the alternative locations (but these are not always present)}
+
+\item{...}{reserved for future use}
+
+\item{return_trip}{for \code{\link[=readDiag]{readDiag()}} if \code{TRUE} will return a trip object, use \code{read_alt} to control the location}
 }
 \value{
 \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
@@ -80,8 +84,7 @@ location is returned. 1 is a standardized location corresponding to the original
 \section{Warning }{
 
 
-This works on some Argos files I have seen, it is not a guaranteed method
-and is in no way linked officially to Argos.
+This works on some Argos files I have seen.
 }
 
 \examples{
