@@ -1,6 +1,6 @@
 
 readPRVa <- function(x, altloc = 1) {
-  prv <- readPRV0(readLines(x))
+  prv <- readPRV0(x)
   alt <- readAlt(x)
   if (!nrow(prv) == length(alt)) {
     warning('mismatch between PRV data and coordinate data, assuming they are aligned from start')
@@ -22,7 +22,7 @@ readAlt <- function(x) {
   old.opt <- options(warn=-1)
   on.exit(options(old.opt), add = TRUE)
   
-  altlines <- grep("      Lat1:", readLines(x), value = TRUE)
+  altlines <- grep("      Lat1:", x, value = TRUE)
   altlines
 }
 
