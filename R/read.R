@@ -34,10 +34,8 @@ readPRV0 <- function(x) {
   x <- gsub("\\s+$", "", x)
   ok <- nchar(x)== sum(widths)
   if (!any(ok)) return(NULL)
-  con <- textConnection(x[ok], open = "r")
-  d <- read.fwf(con, widths = widths)
-  close(con)
-  as.matrix(d[, -seq(2, 22, by = 2)])
+  do.call(rbind, strsplit(x[ok], "\\s+", perl = TRUE))
+  
 }
 .readPRV0_old <- function(x) {
   old.opt <- options(warn=-1)
@@ -160,35 +158,35 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
     if (length(x) < li) warning("some input files don't exist")
   }
   dout <- vector("list", length(x))
-  for (icon in seq_along(x)) {
+  
+  
+  if (is.null(read_alt)) {
+    dfm <- readPRV0(unlist(lapply(x, readLines)))
     
-      if (!is.null(read_alt)) {
-        stopifnot(read_alt == 1 || read_alt == 2)
-        dfm <- readPRVa(x[icon], altloc = read_alt)
-      } else {
-        dfm <- readPRV0(readLines(x[icon]))
-      }
-      if (is.null(dfm)) next; ## skip this read
-      df <- vector("list", 12)
-      names(df) <- c("prognum", "ptt", "nlines", "nsensor",
-                     "satname", "class", "date", "time", "latitude",
-                     "longitude", "altitude", "transfreq")
-      
-      for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
-      for (i in 5:6) df[[i]] <- factor(dfm[, i])
-      for (i in 7:8) df[[i]] <- dfm[, i]
-  
-      df <- as.data.frame(df)
-      df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
-                                    dtFormat), tz)
-      dout[[icon]] <- df
-   
-  
+  } else {
+    stopifnot(read_alt == 1 || read_alt == 2)
+    dfm <- readPRVa(unlist(lapply(x, readLines)), altloc = read_alt)
   }
-  if (all(sapply(dout, is.null)))
+  
+  
+  if (nrow(dfm) < 1)
     stop("No data to return: check the files")
   
-  dout <- do.call(rbind, dout)
+    df <- vector("list", 12)
+    names(df) <- c("prognum", "ptt", "nlines", "nsensor",
+                   "satname", "class", "date", "time", "latitude",
+                   "longitude", "altitude", "transfreq")
+    
+    for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
+    for (i in 5:6) df[[i]] <- factor(dfm[, i])
+    for (i in 7:8) df[[i]] <- dfm[, i]
+    
+    df <- as.data.frame(df)
+    df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
+                                  dtFormat), tz)
+
+
+  dout <- df
   if (correct.all) {
     ## should add a reporting mechanism for these as well
     ##  and return a data.frame if any of the tests fail
