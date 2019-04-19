@@ -37,8 +37,8 @@ Description: Functions for accessing and manipulating spatial data for animal
     and between 'trip' and 'psp' and 'ppp' from 'spatstat'. Trip objects
     can be created from raw or grouped data frames, and from types in the 'sp', 
     'sf', 'amt', 'trackeR', 'mousetrap', and other packages. 
-URL: https://github.com/mdsumner/trip
-BugReports: https://github.com/mdsumner/trip/issues
+URL: https://github.com/Trackage/trip
+BugReports: https://github.com/Trackage/trip/issues
 NeedsCompilation: no
 ByteCompile: yes
 License: GPL-3
