@@ -6,7 +6,7 @@ Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD
 [![OSX Build
 Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/Trackage/trip)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/Trackage/trip?branch=master&svg=true)](https://ci.appveyor.com/project/Trackage/trip)[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
+status](https://ci.appveyor.com/api/projects/status/github/mdsumner/trip?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/trip)[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 
@@ -130,6 +130,8 @@ twilight zone between MULTIPOINTs and LINESTRINGs as it is now.
 
 Please me know what you think via
 [Issues](https://github.com/Trackage/trip/issues).
+
+---
 
 Please note that this project is released with a [Contributor Code of
 Conduct](CONDUCT.md). By participating in this project you agree to
