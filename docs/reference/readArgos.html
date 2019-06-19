@@ -90,7 +90,7 @@ frame in turn.  Basic validation of the data is enforced by default." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mdsumner/trip">
+  <a href="https://github.com/Trackage/trip">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -108,7 +108,7 @@ frame in turn.  Basic validation of the data is enforced by default." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Read Argos "DAT" or "DIAG" files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mdsumner/trip/blob/master/R/read.R'><code>R/read.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Trackage/trip/blob/master/R/read.R'><code>R/read.R</code></a></small>
     <div class="hidden name"><code>readArgos.Rd</code></div>
     </div>
 
@@ -123,9 +123,9 @@ frame in turn.  Basic validation of the data is enforced by default.</p>
     <pre class="usage"><span class='fu'>readArgos</span>(<span class='no'>x</span>, <span class='kw'>correct.all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dtFormat</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
   <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>, <span class='kw'>duplicateTimes.eps</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
   <span class='kw'>p4</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>read_alt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>read_alt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='fu'>readDiag</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>readDiag</span>(<span class='no'>x</span>, <span class='kw'>return_trip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>read_alt</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,6 +164,14 @@ pasted together</p></td>
       <th>read_alt</th>
       <td><p>is <code>NULL</code> by default, with longitude and latitude read from the PRV message, if <code>1</code> or <code>2</code>
 then attempt is made to read the alternative locations (but these are not always present)</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>reserved for future use</p></td>
+    </tr>
+    <tr>
+      <th>return_trip</th>
+      <td><p>for <code>readDiag()</code> if <code>TRUE</code> will return a trip object, use <code>read_alt</code> to control the location</p></td>
     </tr>
     </table>
     
@@ -205,8 +213,7 @@ location is returned. 1 is a standardized location corresponding to the original
     <h2 class="hasAnchor" id="warning-"><a class="anchor" href="#warning-"></a>Warning </h2>
 
     
-    <p>This works on some Argos files I have seen, it is not a guaranteed method
-and is in no way linked officially to Argos.</p>
+    <p>This works on some Argos files I have seen.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

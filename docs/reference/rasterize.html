@@ -88,7 +88,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mdsumner/trip">
+  <a href="https://github.com/Trackage/trip">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -106,7 +106,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Rasterize trip objects based on line-segment attributes.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mdsumner/trip/blob/master/R/grid.R'><code>R/grid.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Trackage/trip/blob/master/R/grid.R'><code>R/grid.R</code></a></small>
     <div class="hidden name"><code>rasterize.Rd</code></div>
     </div>
 
@@ -149,22 +149,22 @@
 <span class='no'>tr</span>$<span class='no'>temp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sort'>sort</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>tr</span>)))
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>rasterize</span>(<span class='no'>tr</span>)
 
-<span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='no'>r</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 0.09090909, 0.0300747  (x, y)
-#&gt; extent      : 0.9545455, 10.04545, -1.925125, 1.082345  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : +proj=laea +ellps=sphere 
-#&gt; data source : in memory
-#&gt; names       : z 
-#&gt; values      : 0, 0.09090909  (min, max)
-#&gt; </div><div class='input'><span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='no'>r</span>, <span class='kw'>field</span> <span class='kw'>=</span> <span class='st'>"temp"</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 0.09090909, 0.0300747  (x, y)
-#&gt; extent      : 0.9545455, 10.04545, -1.925125, 1.082345  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : +proj=laea +ellps=sphere 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0.01131824, 0.3203488  (min, max)
+<span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='no'>r</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
+#&gt; dimensions : 100, 100, 10000  (nrow, ncol, ncell)
+#&gt; resolution : 0.09090909, 0.03492437  (x, y)
+#&gt; extent     : 0.9545455, 10.04545, -2.069866, 1.422571  (xmin, xmax, ymin, ymax)
+#&gt; crs        : +proj=laea +ellps=sphere 
+#&gt; source     : memory
+#&gt; names      : z 
+#&gt; values     : 0, 0.09090909  (min, max)
+#&gt; </div><div class='input'><span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='no'>r</span>, <span class='kw'>field</span> <span class='kw'>=</span> <span class='st'>"temp"</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
+#&gt; dimensions : 100, 100, 10000  (nrow, ncol, ncell)
+#&gt; resolution : 0.09090909, 0.03492437  (x, y)
+#&gt; extent     : 0.9545455, 10.04545, -2.069866, 1.422571  (xmin, xmax, ymin, ymax)
+#&gt; crs        : +proj=laea +ellps=sphere 
+#&gt; source     : memory
+#&gt; names      : layer 
+#&gt; values     : 0.01131824, 0.3203488  (min, max)
 #&gt; </div><span class='co'># NOT RUN {</span>
 <span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"density"</span>)
 <span class='fu'>rasterize</span>(<span class='no'>tr</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"density"</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='no'>r</span>)

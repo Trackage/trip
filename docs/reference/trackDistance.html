@@ -89,7 +89,7 @@ or Great Circle distance (WGS84 ellipsoid) methods." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mdsumner/trip">
+  <a href="https://github.com/Trackage/trip">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -107,7 +107,7 @@ or Great Circle distance (WGS84 ellipsoid) methods." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Determine distances along a track</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mdsumner/trip/blob/master/R/distance.R'><code>R/distance.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Trackage/trip/blob/master/R/distance.R'><code>R/distance.R</code></a></small>
     <div class="hidden name"><code>trackDistance.Rd</code></div>
     </div>
 
@@ -182,9 +182,9 @@ is FALSE, and in kilometres when longlat is TRUE.</p>
  <span class='co'>## point, including 0s as the start and at transitions between</span>
  <span class='co'>## individual trips</span>
 <span class='fu'>trackDistance</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;       11      1.2      1.3      1.4      1.5       21      2.7      2.8 
-#&gt; 0.000000 1.490550 1.000690 1.025058 1.000054 0.000000 2.995772 5.056540 
+#&gt; 0.000000 1.946877 1.573062 1.000273 1.147543 0.000000 1.002501 1.574986 
 #&gt;      2.9     2.10 
-#&gt; 3.203839 1.153316 </div><div class='input'>
+#&gt; 1.252793 1.081822 </div><div class='input'>
 ## the default method does not know about the trips, so this is
 ##(n-1) distances between all points
 ## trackDistance(coordinates(tr), longlat = FALSE)
