@@ -6,7 +6,8 @@ Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD
 [![OSX Build
 Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/Trackage/trip)
 [![Build
-status](https://ci.appveyor.com/api/projects/status/e2r8t15huw9yopbq?svg=true)](https://ci.appveyor.com/project/mdsumner/trip)[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
+status](https://ci.appveyor.com/api/projects/status/e2r8t15huw9yopbq?svg=true)](https://ci.appveyor.com/project/mdsumner/trip)
+[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 
