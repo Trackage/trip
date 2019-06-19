@@ -33,8 +33,8 @@
 #' Distance values are in the units of the input coordinate system when longlat
 #' is FALSE, and in kilometres when longlat is TRUE.
 #'
-#' This originally used \code{\link[sp]{spDistsN1}} but now implements the sp
-#' \code{gcdist} source directly in R.
+#' This originally used \code{\link[sp]{spDistsN1}}, then implemented the sp
+#' \code{gcdist} source directly in R, and now uses \code{\link[geodist]{geodist}}.
 #'
 #' @aliases trackDistance trackDistance.default trackDistance.trip
 #' @param x1 trip object, matrix of 2-columns, with x/y coordinates OR a vector
@@ -46,8 +46,8 @@
 #' @param prev if TRUE and x1 is a trip, the return value has a padded end
 #' value (\"prev\"ious), rather than start (\"next\")
 #' @return Vector of distances between coordinates.
-#' @references Original source taken from sp package.
-#' @author Roger Bivand and Michael Sumner
+#' @references Original source taken from sp package, but now using Helmert from Karney (2013)
+#' see the geodist package.
 #' @examples
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
@@ -94,7 +94,7 @@ trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
     #                        geodist::geodist(cbind(x1, y1), cbind(x2, y2), paired = TRUE, sequential = TRUE, measure = "vincenty")/1000)
     # 
     ##.gcdist.c(x1, y1, x2, y2)  ## this is faster than geodist for small data
-    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), sequential = TRUE, paired = FALSE, measure = "vincenty")/1000
+    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), sequential = TRUE, paired = FALSE, measure = "geodesic")/1000
   } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
 
