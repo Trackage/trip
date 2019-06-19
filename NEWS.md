@@ -1,4 +1,4 @@
-# trip dev
+# trip (development version)
 
 * `readDiag()` and `readArgos()` now read all records from a single text vector after reading
 all raw lines. This means they can be used to read data from mixed text streams.  
