@@ -1,0 +1,135 @@
+---
+title: "trip-rationale"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{trip-rationale}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Why is trip the way it is? 
+
+The trip package was born as an extension to the [sp](https://CRAN.r-rproject.org/package=sp) package. We could leverage many features from the `Spatial` classes. 
+
+* plotting
+* input/output to file formats
+* map projection transformations
+* formal validation as object types
+* a core stack of software tools for geometry, distance and look-up calculations
+
+These were extremely valuable features and allowed a relatively easy extension to the `SpatialPointsDataFrame` to act like a grouped and ordered data frame. The main benefit at the time was automated checks on data validity, for missing values in coordinates, date-times and identifiers, for zero-length spatial steps, zero-duration temporal steps, and for basic assumptions about the order of records within a tag identifier. 
+
+Sadly it's the last item in the last that is in the worst shape, we don't have a core set of packages that just do their one job, a package for distances, for areas, for projections, for point-in-polygon - what we have is competing monolithic packages with their own ways of going about things, none of which ever fully fit the need when you are trying to build something. 
+
+I hope that trip can get tidied up in a sensible way, be based on the tidyverse more fully and abandon some of these messier bogeys. It's definitely possible to hide these details and change things in S4, but it's probably more sensible to start a `trip2` with tidyr bundling, and probably `vctrs` types. 
+
+At the time I thought that the [Argos Service](http://www.argos-system.org/) might become more transparent and that the tracking community would forever value a shared resource of global tracking data. But, to this day I think nobody knows why Argos would give records with a different location at the same date-time stamp, and we certainly haven't been careful to store and preserve all the biologging data that has been collected. 
+
+It might seem like a modern approach in R spatial is the way to go, but I want to share my thoughts about why I don't think this is looking particularly good. 
+
+
+¯\_(ツ)_/¯ 
+
+## New frameworks
+
+It's bugged me for years that there's no coherent powerful way to deal with
+tracking data. It's such a fundamental and simple concept, it matches the vast
+majority of all data we collect, one-dimensional records of values streaming
+in the door grouped by identifiers, ordered by time, possibly including other
+variables measured along with location and time.
+
+Tracking data is location measured over time for an object. Trajectories. GPS
+data. Argos satellite tracking. Locations from light level geo-location.
+Inferred movement from sensor arrays. Mostly, we mean GPS data but the animal
+movement fields have established these kinds of data long ago. The human
+sciences are catching up as we deal with endless streams of these data from
+endless new sources in our economies and environment.
+
+The Simple Features standard (SF) precludes straightforward representation of
+track data. It's as simple as that. The R sf package aligns very closely to
+SF. If you are intending to extend sf for trajectories you should be aware of
+these limitations. There are many packages that extended sp for track data
+that hit these problems. The sf package does not add anything new to this
+problem. If you can extend sf for these data, you are no longer aligned to SF.
+
+The candidates are: lines, multilines, multipoints, points. Lines are an
+ordered sequence of locations, multilines are sets of those. The sequence can
+store only its location (and optional Z, and optional M), it otherwise has
+only a single row of data that can be stored with it. That's what "one line"
+means, or "one multiline": this is a complex geometry object linked to a
+single row of data.  Ok ok, what about multipoint? A multipoint is an
+*unordered* set of locations, with no higher grouping. Again we can store
+optionally Z and or M in SF, but we cannot store a real date-time and an
+elevation. We cannot include temperature or size or visibility or salinity or
+any other of many continuous properties measured in the real world. We can
+store a single discrete property against the row that links to this group of
+locations.
+
+So points then. What is a point? An pair of X,Y coordinates, a pair of
+long,lat coordinates (or both, explicitly or implicitly). This can sit in a
+row with other data, with any other data, the exact time, elevation,
+temperature, salinity, cloud cover, humidity, absolutely anything we want.  So
+what should we do? Rewrite sf from the ground up? (Maybe).
+
+These *geometric* parts of the data are coordinates, they are x, y, z, time.
+There are many ways of expressing these positional values but pretty commonly
+we stick to relative locations to the surface of the earth, or some local
+coordinate system either formal or informal.  What tools do we have for these data?
+
+> one-dimensional records of values streaming in the door grouped by
+> identifiers, ordered by time, possibly including other variables measured
+> along with location and time.
+
+A table of data, grouped-by identifiers,
+arranged by date-time, with other variables as required. I often use dplyr and
+ggplot2 for these kinds of data.  Read table, group by ID, arrange by time,
+nominate aes-thetics x, y, colour, lwd and add a geometry to link the records
+together.
+
+> But dplyr/ggplot2 is not coordinate system aware!  
+
+Well it is date-time aware,and factor aware, and all we need to add is a coordinate reference system for our locations (it's not hard to keep track, trust me). My personal
+forward-looking idea at the moment is to leverage data frame bundling, so that the special columns are simply bundled together and everything else is tidyverse-ready. 
+
+## What I actually recommend to folks learning R
+
+1. Learn to use dplyr and ggplot2 to full effect to tidy, manage, and
+visualize your tracking data.
+
+2. Investigate the dozens of existing tracking packages on CRAN and elsewhere,
+they likely include the filtering, smoothing, augmenting, modelling,
+remapping, gridding, re-summarizing algorithms that you will need. You can
+convert tidy data into these formats. There are many converters between
+formats, and between sf, sp, adehabitat, move, trip and other types. They just
+aren't collected all together.
+
+3. Write your own analytical technique in this ecosystem.
+
+Still want to extend sf in an entirely new way for tracking data? Check out
+trip, move, adehabitat, trajectories, and many others. What's missing from them? Can they be
+consolidated?  What is common to them? Can it be simpler? Why are there so many movement
+packages? 
+
+
+# Other things to check out
+
+* geodist          - package based on Mapbox and Karney distance calculations, very fast
+* terra            - replacement for the raster package, based on the spat library
+* stars            - generalization of the raster package, based on the sf "library"
+* geosphere        - general geo toolkit, includes GeographicLib at least in part
+* silicate         - a topological primitives approach to geometry-data-structures in R
+* GeographicLib    - a modern distance and area lib, based on Karney 2013
+* Apache Arrow     - a modern take on data science, this is where true consolidation will come from
+* Geolocation book - https://geolocationmanual.vogelwarte.ch/
+
+
+The SpatiaTemporal Task View is in need a massive update for the Moving objects, trajectories section see this list here: https://gist.github.com/mdsumner/0a3cb0e58bf9d37b782943ac269e1eff. 
+
+

@@ -40,8 +40,8 @@ The \code{prev} argument is ignore unless x1 is a trip.
 Distance values are in the units of the input coordinate system when longlat
 is FALSE, and in kilometres when longlat is TRUE.
 
-This originally used \code{\link[sp]{spDistsN1}} but now implements the sp
-\code{gcdist} source directly in R.
+This originally used \code{\link[sp]{spDistsN1}}, then implemented the sp
+\code{gcdist} source directly in R, and now uses \code{\link[geodist]{geodist}}.
 }
 \examples{
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
@@ -67,8 +67,6 @@ trackDistance(tr)
  }
 }
 \references{
-Original source taken from sp package.
-}
-\author{
-Roger Bivand and Michael Sumner
+Original source taken from sp package, but now using Helmert from Karney (2013)
+see the geodist package.
 }
