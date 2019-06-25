@@ -66,6 +66,7 @@ setAs("trip", "ltraj", function(from) {
 
 ## @importClassesFrom maptools owin ppp psp
 #' @importFrom spatstat as.ppp
+#' @export as.ppp
 #' @importFrom maptools as.ppp.SpatialPointsDataFrame
 #' @param X \code{trip} object.
 #' @param fatal Logical value, see Details of \code{\link[spatstat]{as.ppp}}
@@ -89,6 +90,7 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 
 #' @export
 #' @importFrom spatstat as.psp owin psp superimpose
+#' @export as.psp
 #' @param x \code{trip} object
 #' @param from see \code{\link[spatstat]{as.psp}} for that method.
 #' @param to See \code{\link[spatstat]{as.psp}}.
@@ -106,19 +108,21 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #'  as.psp.trip(tr)
 #' }
 as.psp.trip <- function(x, ..., from, to) {
-  split.X <- split(x, x[[getTORnames(x)[2]]])
-  ow <- owin(bbox(x)[1,], bbox(x)[2,])
-  as.psp.trip1 <- function(this, ow=NULL) {
-    if (is.null(ow)) ow <- owin(bbox(this)[1,], bbox(this)[2,])
-    tor <- getTORnames(this)
+  tor <- getTORnames(x)
+  split.X <- split(x, x[[tor[2L]]])
+  bb <- bbox(x)
+  ow <- owin(bb[1L,], bb[2L,])
+  as.psp.trip1 <- function(this) {
+    #if (is.null(ow)) ow <- owin(bbox(this)[1,], bbox(this)[2,])
+    #tor <- getTORnames(this)
     cc <- coordinates(this)
-    xs <- coordinates(this)[, 1]
-    ys <- coordinates(this)[, 2]
-    dt <- diff(unclass(this[[tor[1]]]))
+    xs <- cc[, 1L]
+    ys <- cc[, 2L]
+    dt <- diff(unclass(this[[tor[1L]]]))
     psp(xs[-length(xs)], ys[-length(ys)],
-        xs[-1], ys[-1], window=ow, marks=dt)
+        xs[-1L], ys[-1L], window=ow, marks=dt)
   }
-  do.call("superimpose", lapply(split.X, as.psp.trip1, ow=ow))
+  do.call("superimpose", lapply(split.X, as.psp.trip1))
 }
 setAs("trip", "psp", function(from) as.psp.trip(from))
 

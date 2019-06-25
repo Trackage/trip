@@ -134,7 +134,6 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
    trip.list <- split.data.frame(x[, tor], x[[tor[2]]])
     ow <- .g2ow(grid)
     sm <- 0
-    zero.lengths <- FALSE
     sz <- 0
 
     for (this in trip.list) {
@@ -144,11 +143,10 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         sm <- sm + sum(dt)
         x.psp <- psp(xs[-length(xs)], ys[-length(ys)], xs[-1],
                                ys[-1], window=ow)
-      
+    
         lngths <- lengths.psp(x.psp)
         if (any(!lngths > 0)) {
             ## trim psp objects (0-lines give NaNs)
-            zero.lengths <- TRUE
             zeros <- which(!lngths > 0)
             cc <- coordinates(this)[zeros, , drop=FALSE]
             suppressWarnings(x.ppp <- ppp(cc[, 1], cc[, 2], window=ow))
@@ -181,19 +179,6 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         }
         res$z <- res$z + t(v)
     }
-#    if (zero.lengths) {
-#        msg <- paste("zero length lines present, time durations binned",
-#                     "into zero length lines present, time durations",
-#                     "binned into cells assuming point-presence of",
-#                     "degenerate line segment")
-#        warning(msg)
-#        cat("\n")
-#        if (method == "pixellate") {
-#            cat(paste("Total time of trips:", sm, "\n"))
-#            cat(paste("Total time without zero length lines:",
-#                      sm - sz, "\n"))
-#        }
-#    }
     image2Grid(res, p4=proj4string(x))
 }
 
