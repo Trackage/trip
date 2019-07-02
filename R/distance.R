@@ -1,9 +1,3 @@
-# track_distance <- function(lon, lat, group = NULL) {
-#   if (is.null(group)) group <- "1"
-#   x <- tibble::tibble(lon = lon, lat = lat, group = as.character(group))
-#   unlist(lapply(split(x[c("lon", "lat")], x[["group"]])[unique(x[["group"]])], 
-#                 function(atrip) geodist::geodist(atrip, sequential = TRUE, pad = TRUE, measure = "haversine")))
-# }
 
 ##' @rdname trip-internal
 .distances <- function(x) {
@@ -14,7 +8,6 @@
 }
 
 
-##trackDistance <- function(x) UseMethod("trackDistance")
 
 
 #' Determine distances along a track
@@ -89,12 +82,8 @@ trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
   if (nx != length(y1) | nx != length(x2) | nx != length(y2))
     stop("arguments must have equal lengths")
   if (longlat) {
-    # browser()
-    # rbenchmark:::benchmark(geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), paired = FALSE, sequential = TRUE, measure = "vincenty")/1000, 
-    #                        geodist::geodist(cbind(x1, y1), cbind(x2, y2), paired = TRUE, sequential = TRUE, measure = "vincenty")/1000)
-    # 
-    ##.gcdist.c(x1, y1, x2, y2)  ## this is faster than geodist for small data
-    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), sequential = TRUE, paired = FALSE, measure = "geodesic")/1000
+    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), 
+                     sequential = TRUE, paired = FALSE, measure = "geodesic")/1000
   } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
 
@@ -138,11 +127,10 @@ homedist <- function(x, home = NULL) {
     x0 <- coordinates(x[x[[tor[2L]]] == ids[i], ])
     if (is.null(home)) home <- x0[1, , drop = FALSE]
     if (longlat) {
-      dists[i] <- max(geodist::geodist(x0, home, measure = "haversine"))/1000
+      dists[i] <- max(geodist::geodist(x0, home, measure = "geodesic"))/1000
     } else {
       dists[i] <- max(sqrt((x0[,1] - home[1])^2 + (x0[,2] - home[2])^2))
     }
-    #dists[i] <- max(spDistsN1(x0, home, longlat = longlat))
   }
   dists
 }

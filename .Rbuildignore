@@ -29,3 +29,4 @@
 ^sample_data_trip.txt$
 ^CRAN-RELEASE$
 ^.*\.txt$
+^trip\.Rproj$
