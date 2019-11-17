@@ -3,7 +3,7 @@
 #' Coercing \code{trip} objects to other classes.
 #'
 #' @name as.Other
-#' @aliases  as.psp.trip as.track_xyt.trip
+#' @aliases  as.psp.trip as.track_xyt.trip as.ppp as.psp
 # section Methods:
 #
 # ##\describe{

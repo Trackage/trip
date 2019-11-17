@@ -30,9 +30,8 @@ trackAngle.trip <- function(x) {
     warning("object CRS is NA, assuming longlat")
   } else {
     if (isproj) {
-    x <- sp::spTransform(x, sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"))
-    #x@coords <- reproj::reproj(x@coords, target = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0", 
-    #                                     source = x@proj4string@projargs)[, 1:2]
+      lonlat <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+      x <- reproj(x, lonlat)
     }
   }
   st <- split(x, x[[getTORnames(x)[2]]])

@@ -150,7 +150,7 @@ mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 plot(mi_dat, pch = ".")
 #lines(mi_dat)  ## ugly
 
-mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
 plot(mi_dat_polar, pch = ".") 
 lines(mi_dat_polar)
 \dontrun{
@@ -200,13 +200,10 @@ tr <- trip(dat, c("gmt", "seal"))
    library(raster)
 
    ## 3 degrees either side (for half a zone . . .)
-   ext <- as(extent(sp::spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
-   proj4string(ext) <- CRS(proj4string(wrld_simpl))
+   ext <- as(extent(reproj(porpoise, proj4string(wrld_simpl))) + 3, "SpatialPolygons")
+   sp::proj4string(ext) <- sp::CRS(proj4string(wrld_simpl), doCheckCRSArgs = FALSE)
    ## crop to the buffered tracks, and project to its native CRS
-   w <- sp::spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
-    CRS(proj4string(porpoise)))
-
-   plot(w)
+   plot(ext)
    lines(porpoise)
 }
 }

@@ -127,7 +127,9 @@ homedist <- function(x, home = NULL) {
     x0 <- coordinates(x[x[[tor[2L]]] == ids[i], ])
     if (is.null(home)) home <- x0[1, , drop = FALSE]
     if (longlat) {
-      dists[i] <- max(geodist::geodist(x0, home, measure = "geodesic"))/1000
+      #colnames(x0) <- c("x", "y")
+      
+      dists[i] <- suppressMessages(max(geodist::geodist(x0, home, measure = "geodesic"))/1000)
     } else {
       dists[i] <- max(sqrt((x0[,1] - home[1])^2 + (x0[,2] - home[2])^2))
     }

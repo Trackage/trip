@@ -116,7 +116,7 @@
 #' plot(mi_dat, pch = ".")
 #' #lines(mi_dat)  ## ugly
 #' 
-#' mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+#' mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
 #' plot(mi_dat_polar, pch = ".") 
 #' lines(mi_dat_polar)
 #' \dontrun{
@@ -166,13 +166,10 @@
 #'    library(raster)
 #'
 #'    ## 3 degrees either side (for half a zone . . .)
-#'    ext <- as(extent(sp::spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
-#'    proj4string(ext) <- CRS(proj4string(wrld_simpl))
+#'    ext <- as(extent(reproj(porpoise, proj4string(wrld_simpl))) + 3, "SpatialPolygons")
+#'    sp::proj4string(ext) <- sp::CRS(proj4string(wrld_simpl), doCheckCRSArgs = FALSE)
 #'    ## crop to the buffered tracks, and project to its native CRS
-#'    w <- sp::spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
-#'     CRS(proj4string(porpoise)))
-#'
-#'    plot(w)
+#'    plot(ext)
 #'    lines(porpoise)
 #' }
 setGeneric("trip",
@@ -510,11 +507,6 @@ split.trip <-  function(x, f, drop = FALSE, ...) {
 setMethod("split", signature(x = "trip", f = "ANY"), 
          split.trip
           )
-## setMethod("spTransform", signature=signature(x="trip", CRSobj="CRS"),
-##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
-
-## setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
 
 #' @exportMethod lines
 setMethod("lines", signature(x="trip"),
@@ -644,8 +636,7 @@ setMethod("summary", signature(object="trip"),
                   tripDistance <- sapply(dists, sum)
                   meanSpeed <- sapply(speeds, mean)
                   maxSpeed <- sapply(speeds, max)
-                 # meanRMSspeed <- sapply(rmsspeed, mean, na.rm = TRUE)
-                 #  maxRMSspeed <- sapply(rmsspeed, max, na.rm = TRUE)
+             
               })
               class(obj) <- "summary.TORdata"
               ## invisible(obj)
@@ -774,24 +765,15 @@ setMethod("recenter", signature(obj="trip"),
 
 #' @importFrom sp spTransform
 setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-         function(x, CRSobj, ...) spTransform(x, sp::CRS(CRSobj), ...))
+         function(x, CRSobj, ...) {
+           .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
+           reproj(x, CRSobj)
+         })
+
 
 setMethod("spTransform", signature("trip", "CRS"),
           function(x, CRSobj, ...) {
-            if (!("rgdal" %in% loadedNamespaces())) {
-              ns <- try(loadNamespace("rgdal"))
-              if (isNamespace(ns)) {
-                message("[loaded the rgdal namespace]")
-              } else {
-                msg <- paste("This method requires the rgdal package",
-                             "but is unable to load rgdal namespace",
-                             sep=",")
-                stop(msg)
-              }
-            }
-  
-            pts <- spTransform(as(x, "SpatialPointsDataFrame"),
-                               CRSobj, ...)
-            trip(pts, getTORnames(x))
+            .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
+           reproj(x, CRSobj@proj4string)
           })
 

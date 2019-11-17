@@ -58,7 +58,7 @@ test_that("equal-time interpolation works", {
 test_that("home distance works", {
   expect_length(homedist(walrus818), length(unique(walrus818$Deployment)))
   
-  expect_length(homedist(sp::spTransform(walrus818, "+proj=longlat +datum=WGS84")),length(unique(walrus818$Deployment)))
+  expect_length(homedist(reproj(walrus818, "+proj=longlat +datum=WGS84")),length(unique(walrus818$Deployment)))
   
   expect_length(homedist(walrus818, home = cbind(0, 0)), 
                     length(unique(walrus818$Deployment)))

@@ -19,7 +19,7 @@ test_that("trip works", {
   xx <- walrus818[1:1000, ]
   expect_error(recenter(xx), "cannot recenter projected coordinate reference system")
 
-  xxx <- sp::spTransform(xx, "+proj=longlat +datum=WGS84")
+  xxx <- reproj(xx, "+proj=longlat +datum=WGS84")
   expect_s4_class(recenter(xxx), "trip")
 
   expect_that(dim(xx), equals(c(1000, 4)))
@@ -37,7 +37,7 @@ test_that("trip works", {
   expect_silent(subset(tr, d < 4))
   expect_warning(subset(tr, d < 3))
   
-  expect_silent(sp::spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
+  expect_silent(reproj(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
   
   
   expect_s4_class(trip(tr, c("tms", "id")), "trip")

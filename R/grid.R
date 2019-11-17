@@ -63,7 +63,7 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
           function(x, y, field, fun = 'pixellate', ...)
           {
             if (!is.na(raster::projection(x)) && !is.na(raster::projection(y))) {
-              x <- spTransform(x, raster::projection(y))
+              x <- reproj(x, raster::projection(y))
             }
             if (missing(field)) {
               if (!is.null(y)) y <- as(y, "GridTopology")
