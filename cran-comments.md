@@ -11,5 +11,5 @@
 
 ---
 
-* I have run R CMD check on the 2 downstream dependencies spbabel and SDLfilter, producing no errors, warnings or notes. 
+* I have run R CMD check on the 3 downstream dependencies spbabel silicate, and SDLfilter, producing no errors, warnings or notes. 
   

@@ -166,7 +166,7 @@ in continuous time. Use `write_track_kml()` to produce a 'KML/KMZ' file.
 When converting to spatial forms we may choose multi-lines, points, or segments. 
 
 
-Conversion to points, in 'sp' or 'spatstat'. 
+Conversion to points, in sp or spatstat. 
 
 ```{r conversions-points}
 ## as points
@@ -175,16 +175,17 @@ as(walrus818, "ppp")
 
 ```
 
-Conversion to lines, in 'sp', 'sf', or 'adehabitatLT'. 
+Conversion to lines, in sp, sf, or adehabitatLT. 
 
 ```{r conversions-lines}
 ## as lines
 as(walrus818, "SpatialLinesDataFrame")
-as(walrus818, "sf")
+class(as(walrus818, "sf"))
+class(as(walrus818, "sf")$geom)
 as(walrus818, "ltraj")
 ```
 
-Conversions to segments, in 'sp', 'spatstat'. 
+Conversions to segments, in sp, spatstat. 
 
 
 ```{r conversions-segments}
@@ -193,6 +194,25 @@ explode(walrus818)
 as(walrus818, "psp")
 
 ```
+
+
+# Why not sf?
+
+The trip package cops a bit of dismissive criticism because it's based on sp which is somehow seen as hopelessly legacy. Trip uses sp in powerful ways, but the greatest power is 
+
+* no dependence on unnecessary libs (no GDAL, no GEOS)
+* efficient storage of points
+
+There's some excitement about the new sf package, and some moves to write yet another trajectory formalism based on sf. I would never use it, sf is a non starter for track data. If these things change I would
+reconsider, but I don't see that happening as sf is extremely brittle now, also these suggestions were made early and ignored. 
+
+* simple features (the standard) is not capable of storing tracking data
+* sf splits up sets of points *in a list*
+* sf brings GDAL and GEOS along with it with no opt-out. 
+
+Trip has a lot of problems, but these basic things are just no-go. It's been said trip is only point-based, but the time-spent gridding, the speed filtering, and the conversion to line segments is all clearly line-based. I'm still looking for sensible collaboration for a better system in R, but to me it's as simple as a grouped data frame with dplyr/ggplot2 semantics. Anything more requires a multi-table system and shoe-horning into the sf straitjacket is not going to work. 
+
+See vignette 'trip-rationale' for a longer version. 
 
 [^1]: *One-dimensional, are you crazy?* Yes, the measurement process is one-dimensional and that is how we
 can arrange the primary data we collect. We collect location (x, y, z), time, and many other variables such as temperature, air pressure, happiness and colour, these are the geometry of our measurements, but the collection itself is very much a one-dimensional topology.

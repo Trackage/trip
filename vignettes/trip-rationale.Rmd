@@ -35,7 +35,6 @@ At the time I thought that the [Argos Service](http://www.argos-system.org/) mig
 It might seem like a modern approach in R spatial is the way to go, but I want to share my thoughts about why I don't think this is looking particularly good. 
 
 
-¯\_(ツ)_/¯ 
 
 ## New frameworks
 
@@ -130,6 +129,6 @@ packages?
 * Geolocation book - https://geolocationmanual.vogelwarte.ch/
 
 
-The SpatiaTemporal Task View is in need a massive update for the Moving objects, trajectories section see this list here: https://gist.github.com/mdsumner/0a3cb0e58bf9d37b782943ac269e1eff. 
+The SpatiaTemporal Task View is in need a massive update for the Moving objects, trajectories section see this list here: https://gist.github.com/mdsumner/0a3cb0e58bf9d37b782943ac269e1eff and this new task view in-progress https://github.com/rociojoo/CranTaskView-Track. 
 
 

@@ -3,7 +3,7 @@
 #' A reproj method for trip objects. 
 #'
 #' @param x trip object
-#' @param target target projectoin
+#' @param target target projection
 #' @param ... ignored
 #' @param source projection of source data, usually ignore this for trips
 #'
