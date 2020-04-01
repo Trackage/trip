@@ -4,8 +4,15 @@
 \alias{makeGridTopology}
 \title{Generate a GridTopology from a Spatial object}
 \usage{
-makeGridTopology(obj, cells.dim = c(100, 100), xlim = NULL,
-  ylim = NULL, buffer = 0, cellsize = NULL, adjust2longlat = FALSE)
+makeGridTopology(
+  obj,
+  cells.dim = c(100, 100),
+  xlim = NULL,
+  ylim = NULL,
+  buffer = 0,
+  cellsize = NULL,
+  adjust2longlat = FALSE
+)
 }
 \arguments{
 \item{obj}{any Spatial object, or other object for which \code{bbox} will

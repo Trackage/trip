@@ -21,7 +21,7 @@ of x start coordinates}
 \item{longlat}{if FALSE, Euclidean distance, if TRUE Great Circle distance}
 
 \item{prev}{if TRUE and x1 is a trip, the return value has a padded end
-value ("prev"ious), rather than start ("next")}
+value (\"prev\"ious), rather than start (\"next\")}
 }
 \value{
 Vector of distances between coordinates.

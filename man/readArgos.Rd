@@ -5,10 +5,17 @@
 \alias{readDiag}
 \title{Read Argos "DAT" or "DIAG" files}
 \usage{
-readArgos(x, correct.all = TRUE, dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",
-  tz = "GMT", duplicateTimes.eps = 0.01,
-  p4 = "+proj=longlat +ellps=WGS84", verbose = FALSE,
-  read_alt = NULL, ...)
+readArgos(
+  x,
+  correct.all = TRUE,
+  dtFormat = "\%Y-\%m-\%d \%H:\%M:\%S",
+  tz = "GMT",
+  duplicateTimes.eps = 0.01,
+  p4 = "+proj=longlat +ellps=WGS84",
+  verbose = FALSE,
+  read_alt = NULL,
+  ...
+)
 
 readDiag(x, return_trip = FALSE, read_alt = 1L, ...)
 }

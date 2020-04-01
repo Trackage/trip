@@ -14,7 +14,9 @@
 \alias{.distances}
 \alias{.abdali}
 \title{Internal trip Functions}
-\format{An object of class \code{character} of length 256.}
+\format{
+An object of class \code{character} of length 256.
+}
 \usage{
 .validTORdata(object)
 
