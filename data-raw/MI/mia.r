@@ -67,8 +67,8 @@ mia <- mia %>% mutate(sp_id = sprintf("%s%s_%s_%s", species, substr(breeding_sta
        gmt = gmt + ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "GMT")) %>% distinct(gmt, sp_id)
 
 trip(mia) <- c("lon", "lat", "gmt", "sp_id")
-proj4string(mia) <- CRS("+proj=longlat +ellps=WGS84")
-mia <- spTransform(mia, "+proj=laea +lon_0=52 +lat_0=-55 +ellps=WGS84")
+proj4string(mia) <- CRS("+proj=longlat +datum=WGS84")
+mia <- spTransform(mia, "+proj=laea +lon_0=52 +lat_0=-55 +datum=WGS84")
 spdplyr:::.print_Spatial(mia)
 
 gr <- raster(bufext(extent(mia), 5e4) , res = 5e4, crs = projection(mia))

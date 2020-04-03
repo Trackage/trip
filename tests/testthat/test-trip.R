@@ -17,10 +17,10 @@ test_that("trip works", {
   expect_equal(sum(filt), 8)
   ## metres per hour
   xx <- walrus818[1:1000, ]
-  expect_error(recenter(xx), "cannot recenter projected coordinate reference system")
+  expect_error(sp::recenter(xx), "cannot recenter projected coordinate reference system")
 
   xxx <- sp::spTransform(xx, "+proj=longlat +datum=WGS84")
-  expect_s4_class(recenter(xxx), "trip")
+  expect_s4_class(sp::recenter(xxx), "trip")
 
   expect_that(dim(xx), equals(c(1000, 4)))
   filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")

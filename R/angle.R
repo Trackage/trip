@@ -14,7 +14,6 @@
 #' @rdname trackAngle
 #' @param x trip object, or matrix of 2-columns, with x/y coordinates
 #' @return Vector of angles (degrees) between coordinates.
-#' @rdname trackAngle
 #' @export trackAngle
 trackAngle <- function(x) {
   UseMethod("trackAngle")

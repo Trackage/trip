@@ -20,7 +20,7 @@ test_that("speedfilter and sdafilter works", {
   filt2 <- speedfilter(tr, max.speed = 100)
   expect_true(sum(filt1) > sum(filt2))
   
-  expect_silent(sda(tr, smax = 1000, pre = filt1))
+  #expect_silent(sda(tr, smax = 1000, pre = filt1))
   expect_error(speedfilter(data.frame(1)), "only trip objects supported")
   tr@proj4string@projargs <- NA_character_
   expect_warning(speedfilter(tr, 20))

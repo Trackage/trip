@@ -84,7 +84,7 @@ fname <- system.file(file.path("data", "sealLocs.csv"),
 
 locs <- subset(dat, !is.na(dat$lon))
 trip(locs) <- c("lon", "lat", "time", "id")
-proj4string(locs) <- " +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+proj4string(locs) <- " +proj=longlat +datum=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
 
 ## merge with data from argosfilter
 library(argosfilter)
@@ -108,11 +108,11 @@ seal <- seal[!duplicated(seal$time), ]
 ## drop missing data and combine
 dat <- rbind(dat[!is.na(dat$lon), ], seal[,names(dat)])
 ##coordinates(dat) <- c("lon", "lat")
-##proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
+##proj4string(dat) <- CRS("+proj=longlat +datum=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 
 tr <- dat
 trip(dat) <- c("lon", "lat", "time", "id")
-proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
+proj4string(dat) <- CRS("+proj=longlat +datum=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 
 library(raster)
 d2 <- spTransform(dat, projection(walrus818))
