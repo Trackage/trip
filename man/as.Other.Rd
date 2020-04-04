@@ -4,6 +4,8 @@
 \alias{as.Other}
 \alias{as.psp.trip}
 \alias{as.track_xyt.trip}
+\alias{as.ppp}
+\alias{as.psp}
 \alias{as.ppp.trip}
 \alias{explode}
 \title{As ("trip", other-classes)}
