@@ -1,4 +1,6 @@
-# trip (development version)
+# trip 1.6.5
+
+* Removed problematic PROJ strings, thanks to Roger Bivand. 
 
 * `readDiag()` and `readArgos()` now read all records from a single text vector after reading
 all raw lines. This means they can be used to read data from mixed text streams.  

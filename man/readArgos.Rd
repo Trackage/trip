@@ -95,9 +95,9 @@ This works on some Argos files I have seen.
 }
 
 \examples{
-argosfile <- 
+argosfile <-
   system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
-argos <- readArgos(argosfile)   
+argos <- readArgos(argosfile)
 }
 \references{
 The Argos data documentation was (ca. 2003) at
