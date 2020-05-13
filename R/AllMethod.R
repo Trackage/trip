@@ -5,33 +5,33 @@
 #' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
 #'
-#' The original form of `trip()` required very strict input as a 'SpatialPointsDataFrame' and 
-#' specifying which were the time and ID columns, but the input can be more flexible. If the object is a 
-#' grouped data frame ('dplyr-style') then the (first) grouping is assumed to define individual trips and that 
+#' The original form of `trip()` required very strict input as a 'SpatialPointsDataFrame' and
+#' specifying which were the time and ID columns, but the input can be more flexible. If the object is a
+#' grouped data frame ('dplyr-style') then the (first) grouping is assumed to define individual trips and that
 #' columns 1, 2, 3 are the x-, y-, time-coordinates in that order. It can also be a \code{trip} object for
-#' redefining \code{TORnames}.  
-#' 
-#' The [trip()] function can ingest `track_xyt`, `telemetry`, `SpatialPointsDataFrame`, `sf`, 
+#' redefining \code{TORnames}.
+#'
+#' The [trip()] function can ingest `track_xyt`, `telemetry`, `SpatialPointsDataFrame`, `sf`,
 #' `trackeRdata`, `grouped_df`, `data.frame`, `tbl_df`, `mousetrap`, and in some cases
-#' lists of those objects. Please get in touch if you think something that should work does not. 
-#'  
-#' Track data often contains problems, with missing values in location or time, 
-#' times out of order or with duplicated times. The `correct_all` argument is 
+#' lists of those objects. Please get in touch if you think something that should work does not.
+#'
+#' Track data often contains problems, with missing values in location or time,
+#' times out of order or with duplicated times. The `correct_all` argument is
 #' set to `TRUE` by default and will report any inconsistencies. Data really should
-#' be checked first rather than relying on this auto-cleanup. The following problems are common: 
+#' be checked first rather than relying on this auto-cleanup. The following problems are common:
 #' * duplicated records (every column with the same value in another row)
 #' * duplicated date-time values
 #' * missing date-time values, or missing x or y coordinates
 #' * records out of order within trip ID
-#' 
+#'
 #' For some data types there's no formal structure, but a simple convention such as
 #' a set of names in a data frame. For example, the VTrack package has `AATAMS1` which may be
-#' turned into a trip with 
+#' turned into a trip with
 #' `trip(AATAMS1 %>% dplyr::select(longitude, latitude, timestamp, tag.ID, everything())`
-#' In time we can add support for all kinds of variants, detected by the names and contents. 
-#' 
-#' 
-#' See [Chapter 2 of the trip thesis](https://eprints.utas.edu.au/12273/) for more details. 
+#' In time we can add support for all kinds of variants, detected by the names and contents.
+#'
+#'
+#' See [Chapter 2 of the trip thesis](https://eprints.utas.edu.au/12273/) for more details.
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method
@@ -39,15 +39,15 @@
 #' trip,grouped_df,ANY-method trip,data.frame,ANY-method trip,track_xyt,ANY-method
 #' trip,trackeRdata,ANY-method trip,mousetrap,ANY-method trip,sf,ANY-method
 #' trip,telemetry,ANY-method trip,list,ANY-method
-#' trip,trip,TimeOrderedRecords-method split,trip,ANY-method [,trip-method [,trip,ANY,ANY,ANY-method 
+#' trip,trip,TimeOrderedRecords-method split,trip,ANY-method [,trip-method [,trip,ANY,ANY,ANY-method
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
 #' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
-#' containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See 
-#' Details. 
+#' containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See
+#' Details.
 #' @param TORnames Either a \code{TimeOrderedRecords} object, or a 2-element
 #' character vector specifying the DateTime and ID column of \code{obj}
-#' @param value A 4-element character vector specifying the X, Y, DateTime coordinates 
-#' and ID of \code{obj}. 
+#' @param value A 4-element character vector specifying the X, Y, DateTime coordinates
+#' and ID of \code{obj}.
 #' @param correct_all logical value, if `TRUE` the input data is corrected for common problems
 #' @return
 #'
@@ -86,38 +86,38 @@
 #'
 #'
 #' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' 
+#'
 #' ## the simplest way to create a trip is by order of columns
-#' 
+#'
 #' trip(d)
-#' 
+#'
 #' ## or a grouped data frame can be used, the grouping is used as the trip ID
 #' ## library(dplyr)
 #' ## # use everything() to keep all other columns
 #' ## d %>% group_by(id) %>% select(x, y, tms, everything())
-#' 
+#'
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
 #' (tr <- trip(d, c("tms", "id")))
 #'
 #'  ## real world data in CSV
-#' mi_dat <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"), 
+#' mi_dat <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"),
 #'             stringsAsFactors = FALSE)
 #' ## installed subset because the data is quite dense
 #' ## mi_dat <- mi_dat[seq(1, nrow(mi_dat), by = 10), ]
 #' mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
-#' mi_dat$sp_id <-  sprintf("%s%s_%s_%s", mi_dat$species, 
+#' mi_dat$sp_id <-  sprintf("%s%s_%s_%s", mi_dat$species,
 #'          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)
 #' sp::coordinates(mi_dat) <- c("lon", "lat")
-#' ## there are many warnings, but the outcome is fine 
+#' ## there are many warnings, but the outcome is fine
 #' ## (sp_id == 'WAi_14030938_2123' has < 3 locations as does LMi_12143650_14257)
 #' mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 #' plot(mi_dat, pch = ".")
 #' #lines(mi_dat)  ## ugly
-#' 
+#'
 #' mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
-#' plot(mi_dat_polar, pch = ".") 
+#' plot(mi_dat_polar, pch = ".")
 #' lines(mi_dat_polar)
 #' \dontrun{
 #' ## a simple example with the common fixes required for basic track data
@@ -256,7 +256,7 @@ getTimeID <- function(obj) as.data.frame(obj)[, getTORnames(obj)]
 assume_if_longlat <- function(x) {
   if (is.na(x@proj4string@projargs) && raster::couldBeLonLat(x, warnings = FALSE)) {
     warning("input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84")
-    x@proj4string@projargs <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+    x@proj4string@projargs <- .llproj()
   }
   x
 }
@@ -274,7 +274,7 @@ trip.grouped_df <- function(obj, ..., crs = NULL) {
   trip(obj, tor, ...)
 }
 
-setMethod("trip", signature(obj = "list", TORnames = "ANY"), 
+setMethod("trip", signature(obj = "list", TORnames = "ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             ## a dirty trick but will work for some stuffs
             chk <- try(trip(obj[[1]]), silent = TRUE)
@@ -282,14 +282,14 @@ setMethod("trip", signature(obj = "list", TORnames = "ANY"),
             if (!inherits(chk, "try-error")) {
               out <- do.call(rbind, lapply(obj, trip))
               tor <- getTORnames(chk)
-              
+
             } else {
               print("problem with list of this type")
               stop(chk) ##sprintf("cannot interpret (list of) type %s", paste(class(obj[[1]]), collapse = ", ")))
             }
             trip(out, tor)
           })
-setMethod("trip", signature(obj = "telemetry", TORnames = "ANY"), 
+setMethod("trip", signature(obj = "telemetry", TORnames = "ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             telemetry2trip(obj)
           })
@@ -306,32 +306,32 @@ setMethod("trip", signature(obj="sf", TORnames="ANY"),
               stop("MULTIPOINT not yet supported")  ## unclear what to do, unless tor[1] is the *offset* for XYZ[,3]?
               ni <- unlist(lapply(obj[[gcol]], function(a) dim(a)[1]))
               idx <- rep(seq_len(nrow(obj)), ni)
-            } 
+            }
             obj[[gcol]] <- NULL
             obj <- as.data.frame(as.list(unclass(obj)), stringsAsFactors = FALSE)
             if (!is.null(idx)) obj <- obj[idx, ]
             if (correct_all) {
-              
+
               obj <- force_internal(obj, TORnames)
             }
             coordnames <- utils::tail(make.names(c(names(obj), c("X", "Y")), unique = TRUE), 2)
             obj[[coordnames[1L]]] <- xy[,1L]
             obj[[coordnames[2L]]] <- xy[,2L]
-            
+
             sp::coordinates(obj) <- coordnames
             sp::proj4string(obj) <- sp::CRS(p4)
             out <- new("trip", obj, TimeOrderedRecords(TORnames))
             assume_if_longlat(out)
           })
 
-setMethod("trip", signature(obj = "mousetrap"), 
+setMethod("trip", signature(obj = "mousetrap"),
           function(obj, TORnames, correct_all = TRUE) {
-            dat <- data.frame(xpos = as.vector(t(obj$trajectories[,,2L])), 
-                              ypos = as.vector(t(obj$trajectories[,,3L])), 
+            dat <- data.frame(xpos = as.vector(t(obj$trajectories[,,2L])),
+                              ypos = as.vector(t(obj$trajectories[,,3L])),
                         timestamps = as.vector(t(obj$trajectories[,,1L])))
             dat$timestamps <- ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC") + dat$timestamps
             idx <- rep(seq_len(nrow(obj$data)), ncol(obj$trajectories))
-            dat$id <- rownames(obj$data)[idx] 
+            dat$id <- rownames(obj$data)[idx]
             warning("assuming UNIX epoch for timestamp, where zero is 1970-01-01 00:00:00 UTC")
             dat <- cbind(dat, obj$data[idx, ])
             bad <- is.na(dat$xpos) | is.na(dat$ypos) | is.na(dat$timestamps) | is.na(dat$id)
@@ -342,12 +342,12 @@ setMethod("trip", signature(obj = "mousetrap"),
             sp::coordinates(dat) <- c("xpos", "ypos")
             trip(dat, c("timestamps", "id"))
           })
-setMethod("trip", signature(obj = "trackeRdata"), 
+setMethod("trip", signature(obj = "trackeRdata"),
           function(obj, TORnames, correct_all = TRUE) {
             ns <- unlist(lapply(obj, function(df) dim(df)[1]))
-            
+
             time <- do.call(c, lapply(obj, function(a) attr(a, "index")))
-            d <- data.frame(sport = rep(attr(obj, "sport"),  ns), 
+            d <- data.frame(sport = rep(attr(obj, "sport"),  ns),
                             utc = time, run_id = rep(seq_along(ns), ns), stringsAsFactors = FALSE)
             dat <- cbind(d, do.call(rbind, lapply(obj, unclass)))
             ## remove any NA coords ...
@@ -358,7 +358,7 @@ setMethod("trip", signature(obj = "trackeRdata"),
             }
             sp::coordinates(dat) <- c("longitude", "latitude")
             sp::proj4string(dat) <- sp::CRS(.llproj())
-            
+
             trip(dat, c("utc", "run_id"))
           })
 setMethod("trip", signature(obj="track_xyt", TORnames= "ANY"),
@@ -378,35 +378,35 @@ setMethod("trip", signature(obj="grouped_df", TORnames= "ANY"),
 setMethod("trip", signature(obj="data.frame",  TORnames= "ANY"),
           function(obj, TORnames, correct_all = TRUE) {
             ## asumme input is x, y, time, ID
-            
+
             tor <- names(obj)[3:4]
             if (is.factor(obj[[tor[1]]])) {
               obj[[tor[1]]] <- levels(obj[[tor[1]]])[obj[[tor[1]]]]
             }
             if (is.character(obj[[tor[1]]])) {
-              obj[[tor[1]]] <- as.POSIXct(obj[[tor[1]]], tz = "UTC") 
+              obj[[tor[1]]] <- as.POSIXct(obj[[tor[1]]], tz = "UTC")
             }
             TORnames <- TimeOrderedRecords(tor)
-            
+
             if (!is.numeric(obj[[1]]) || !is.numeric(obj[[2]])) stop("first two columns must be numeric, x,y or longitude,latitude")
             sp::coordinates(obj) <- 1:2
-            
+
             if (correct_all) {
-              
+
               obj <- force_internal(obj, TORnames@TOR.columns)
             }
-            
+
             out <- new("trip", obj, TORnames)
             assume_if_longlat(out)
           })
 setMethod("trip", signature(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords"),
           function(obj, TORnames, correct_all = TRUE) {
-  
+
             if (correct_all) {
-              
+
               obj <- force_internal(obj, TORnames@TOR.columns)
             }
-            
+
             out <- new("trip", obj, TORnames)
             assume_if_longlat(out)
           })
@@ -464,8 +464,8 @@ setGeneric("trip<-",
            function(obj, value) standardGeneric("trip<-"))
 
 
-setReplaceMethod("trip", 
-                 signature(obj = "data.frame", value = "character"), 
+setReplaceMethod("trip",
+                 signature(obj = "data.frame", value = "character"),
                  triprepmethod
                )
 
@@ -503,11 +503,11 @@ setMethod("text", signature(x="trip"),
 
 
 split.trip <-  function(x, f, drop = FALSE, ...) {
-  lapply(split(x = seq_len(nrow(x)), f = f, drop = drop, ...), 
+  lapply(split(x = seq_len(nrow(x)), f = f, drop = drop, ...),
          function(ind) x[ind, , drop = FALSE])
 }
-  
-setMethod("split", signature(x = "trip", f = "ANY"), 
+
+setMethod("split", signature(x = "trip", f = "ANY"),
          split.trip
           )
 ## setMethod("spTransform", signature=signature(x="trip", CRSobj="CRS"),
@@ -559,7 +559,7 @@ setMethod("subset", signature(x="trip"),
           })
 
 ##' @param x trip object
-##' @param i,j,\dots indices specifying elements to extract 
+##' @param i,j,\dots indices specifying elements to extract
 ##' @param drop unused but necessary for method consistency
 ##' @rdname trip-methods
 setMethod("[", signature(x="trip"),
@@ -582,7 +582,7 @@ setMethod("[", signature(x="trip"),
               if (any(is.na(i)))
                   stop("NAs not permitted in row index")
               spdf <- as(x, "SpatialPointsDataFrame")[i, j, ..., drop=drop]
-          
+
               tor <- getTORnames(x)
               if (is.factor(spdf[[tor[2]]]))
                   spdf[[tor[2]]] <- factor(spdf[[tor[2]]])
@@ -789,7 +789,7 @@ setMethod("spTransform", signature("trip", "CRS"),
                 stop(msg)
               }
             }
-  
+
             pts <- spTransform(as(x, "SpatialPointsDataFrame"),
                                CRSobj, ...)
             trip(pts, getTORnames(x))

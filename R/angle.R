@@ -29,14 +29,12 @@ trackAngle.trip <- function(x) {
     warning("object CRS is NA, assuming longlat")
   } else {
     if (isproj) {
-    x <- sp::spTransform(x, sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"))
-    #x@coords <- reproj::reproj(x@coords, target = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0", 
-    #                                     source = x@proj4string@projargs)[, 1:2]
+    x <- sp::spTransform(x, sp::CRS(.llproj()))
     }
   }
   st <- split(x, x[[getTORnames(x)[2]]])
   unlist(lapply(st, function(x1) c(NA, trackAngle(coordinates(x1)), NA)))
-  
+
 }
 
 #' @rdname trackAngle
@@ -51,7 +49,7 @@ trackAngle.default <- function(x) {
   ##} else {
   ##  if(!type == "abdali") stop(sprintf("type '%s' not implemented", type))
   angle <- .abdali(x[2:(n-1),],x[3:n,]) - .abdali(x[2:(n-1),],x[1:(n-2),])
-  
+
   ##}
   angle <- (angle+180)%%360-180
   abs(angle)
@@ -63,7 +61,7 @@ trackAngle.default <- function(x) {
 .abdali <- function (p1, p2)
 {
   stopifnot(nrow(p1) == nrow(p2))
-  
+
   toRad <- pi/180
   p1 <- p1 * toRad
   p2 <- p2 * toRad
