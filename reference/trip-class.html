@@ -182,11 +182,11 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-04 07:44:05 2020-06-04 07:44:09       4 secs
-#&gt; 2             2          5 2020-06-04 07:44:10 2020-06-04 07:44:14       4 secs
+#&gt; 1             1          5 2020-06-04 08:05:30 2020-06-04 08:05:34       4 secs
+#&gt; 2             2          5 2020-06-04 08:05:35 2020-06-04 08:05:39       4 secs
 #&gt;   tripDistance meanSpeed maxSpeed
 #&gt; 1     9.039498  8135.548 11136.84
-#&gt; 2     7.197242  6477.517 10840.37
+#&gt; 2     7.197242  6477.518 10840.37
 #&gt; 
 #&gt; Total trip duration: 8 seconds (0 hours, 8 seconds)
 #&gt; 
@@ -202,36 +202,36 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; Number of points: 10
 #&gt; Data attributes:
 #&gt;       tms                      id   
-#&gt;  Min.   :2020-06-04 07:44:05   1:5  
-#&gt;  1st Qu.:2020-06-04 07:44:08   2:5  
-#&gt;  Median :2020-06-04 07:44:10        
-#&gt;  Mean   :2020-06-04 07:44:10        
-#&gt;  3rd Qu.:2020-06-04 07:44:12        
-#&gt;  Max.   :2020-06-04 07:44:14        
+#&gt;  Min.   :2020-06-04 08:05:30   1:5  
+#&gt;  1st Qu.:2020-06-04 08:05:33   2:5  
+#&gt;  Median :2020-06-04 08:05:35        
+#&gt;  Mean   :2020-06-04 08:05:35        
+#&gt;  3rd Qu.:2020-06-04 08:05:37        
+#&gt;  Max.   :2020-06-04 08:05:39        
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>tr</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>tr</span>)</div><div class='img'><img src='trip-class-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] 10  2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] "tms" "id" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>tr</span>, <span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"2"</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             2          5 2020-06-04 07:44:10 2020-06-04 07:44:14       4 secs
+#&gt; 1             2          5 2020-06-04 08:05:35 2020-06-04 08:05:39       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
 #&gt; 2           id     factor **trip ID**      
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;     x          y                 tms id
-#&gt; 1   1 -0.9627164 2020-06-04 07:44:05  1
-#&gt; 2   2 -2.6343717 2020-06-04 07:44:06  1
-#&gt; 3   3  0.2931122 2020-06-04 07:44:07  1
-#&gt; 4   4 -2.2314015 2020-06-04 07:44:08  1
-#&gt; 5   5 -1.4281767 2020-06-04 07:44:09  1
-#&gt; 6   6  1.5429442 2020-06-04 07:44:10  2
-#&gt; 7   7  1.1408577 2020-06-04 07:44:11  2
-#&gt; 8   8  0.5898365 2020-06-04 07:44:12  2
-#&gt; 9   9 -2.2504806 2020-06-04 07:44:13  2
-#&gt; 10 10 -0.5572741 2020-06-04 07:44:14  2</div><div class='input'>
+#&gt; 1   1 -0.9627164 2020-06-04 08:05:30  1
+#&gt; 2   2 -2.6343717 2020-06-04 08:05:31  1
+#&gt; 3   3  0.2931122 2020-06-04 08:05:32  1
+#&gt; 4   4 -2.2314015 2020-06-04 08:05:33  1
+#&gt; 5   5 -1.4281767 2020-06-04 08:05:34  1
+#&gt; 6   6  1.5429442 2020-06-04 08:05:35  2
+#&gt; 7   7  1.1408577 2020-06-04 08:05:36  2
+#&gt; 8   8  0.5898365 2020-06-04 08:05:37  2
+#&gt; 9   9 -2.2504806 2020-06-04 08:05:38  2
+#&gt; 10 10 -0.5572741 2020-06-04 08:05:39  2</div><div class='input'>
 <span class='no'>tr</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          3 2020-06-04 07:44:05 2020-06-04 07:44:07       2 secs
+#&gt; 1             1          3 2020-06-04 08:05:30 2020-06-04 08:05:32       2 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -243,12 +243,12 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; crs         : +proj=laea +ellps=sphere 
 #&gt; variables   : 1
 #&gt; names       :              tms 
-#&gt; min values  : 1591256645.81695 
-#&gt; max values  : 1591256654.81695 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2020-06-04 07:44:05 UTC" "2020-06-04 07:44:06 UTC"
-#&gt;  [3] "2020-06-04 07:44:07 UTC" "2020-06-04 07:44:08 UTC"
-#&gt;  [5] "2020-06-04 07:44:09 UTC" "2020-06-04 07:44:10 UTC"
-#&gt;  [7] "2020-06-04 07:44:11 UTC" "2020-06-04 07:44:12 UTC"
-#&gt;  [9] "2020-06-04 07:44:13 UTC" "2020-06-04 07:44:14 UTC"</div><div class='input'>
+#&gt; min values  : 1591257930.92641 
+#&gt; max values  : 1591257939.92641 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2020-06-04 08:05:30 UTC" "2020-06-04 08:05:31 UTC"
+#&gt;  [3] "2020-06-04 08:05:32 UTC" "2020-06-04 08:05:33 UTC"
+#&gt;  [5] "2020-06-04 08:05:34 UTC" "2020-06-04 08:05:35 UTC"
+#&gt;  [7] "2020-06-04 08:05:36 UTC" "2020-06-04 08:05:37 UTC"
+#&gt;  [9] "2020-06-04 08:05:38 UTC" "2020-06-04 08:05:39 UTC"</div><div class='input'>
 
 
 </div></pre>
