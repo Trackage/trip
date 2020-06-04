@@ -68,4 +68,4 @@ all raw lines. This means they can be used to read data from mixed text streams.
 
 # trip 1.5.0 and prior
 
-* See file ONEWS. 
+* See file [ONEWS](https://github.com/Trackage/trip/blob/master/inst/ONEWS). 

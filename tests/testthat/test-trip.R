@@ -21,8 +21,7 @@ test_that("trip works", {
   expect_error(sp::recenter(xx), "cannot recenter projected coordinate reference system")
 
   xxx <- reproj(xx, "+proj=longlat +datum=WGS84")
-  expect_s4_class(recenter(xxx), "trip")
-
+  
   expect_that(dim(xx), equals(c(1000, 4)))
   filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")
   expect_true(sum(filt2) > 900)

@@ -11,7 +11,13 @@
 
 trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
   if (!is.null(grid) & !is(grid, "GridTopology")) grid <- as(grid, "GridTopology")
-  raster(tripGrid(x, grid = grid, method = method, ...))
+
+  if (method == "pixellate") {
+    out <- traipse_time_spent(x, grid)
+  } else {
+   out <-     raster(tripGrid(x, grid = grid, method = method, ...))
+  }
+  out
 }
 
 #' Rasterize trip objects based on line-segment attributes. 
@@ -67,16 +73,65 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
             }
             if (missing(field)) {
               if (!is.null(y)) y <- as(y, "GridTopology")
-               raster(tripGrid(x, grid = y,  method = fun, ...))
+          
+              if (fun == "density") {
+               out <- raster(tripGrid(x, grid = y,  method = fun, ...))
+              } else {
+               out <-   traipse_time_spent(x, grid = y)
+              }
             } else {
               ll <- explode(x)
               diffvals <- unlist(lapply(split(x[[field]], x[[getTORnames(x)[2]]]), diff))
               ##ll[[field]] <- diffvals
-              rasterize(ll, y, field = diffvals, fun = 'sum', ..., na.rm = TRUE)
+              out <- rasterize(ll, y, field = diffvals, fun = 'sum', ..., na.rm = TRUE)
             }
+            out
           }
             )
 
+
+#' @importFrom crsmeta crs_proj
+#' @importFrom traipse track_time
+#' @importFrom rlant .data
+#' @importFrom dplyr ungroup group_by summarise  mutate
+traipse_time_spent <- function(xx, grid = NULL) {
+  if (is.null(grid)) {
+    grid <- makeGridTopology(xx)
+  } 
+  x.psp <- spatstat::as.psp(xx)
+  xy <- coordinates(xx)
+  dd <- data.frame(x = xy[,1], y = xy[,2], 
+                   time = xx[[getTORnames(xx)[1]]], 
+                   id = xx[[getTORnames(xx)[2]]], stringsAsFactors = FALSE) 
+  
+  dt <- dplyr::ungroup(dplyr::mutate(dplyr::group_by(dd, .data$id), 
+                                         dt = traipse::track_time(.data$time)))[["dt"]]
+  dt_na <- dt[!is.na(dt)]
+  lngths <- spatstat::lengths.psp(x.psp)
+  zeros <- which(!lngths > 0)
+  ow <- .g2ow(grid)
+  if (length(zeros) > 1) {
+    grd <- spatstat::pixellate(x.psp[-zeros], W= ow, 
+                               weights=(dt_na/lngths)[-zeros])
+  } else {
+    grd <- spatstat::pixellate(x.psp, W=ow, 
+                               weights=dt_na/lngths)
+  }
+  
+  r0 <- raster(grd,
+               crs = crsmeta::crs_proj(xx))
+  ## zero points
+  if (length(zeros) > 0) {
+    zp <- data.frame(x = x.psp$ends$x1[zeros], y = x.psp$ends$y1[zeros])
+    zp$cell <- raster::cellFromXY(r0, cbind(zp$x, zp$y))
+    zp$val <- dt_na[zeros]
+    z <- dplyr::summarise(dplyr::group_by(zp, .data$cell), s = sum(.data$val))
+    r1 <- raster::setValues(r0, 0)
+    r1[z$cell] <- z$s
+    r0 <- r0 + r1
+  }
+  r0
+}
 #' Generate a grid of time spent by line-to-cell gridding
 #' 
 #' 
@@ -125,7 +180,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         stop(msg)
     }
     if (is.null(grid))
-        grid <- makeGridTopology(x)
+    grid <- makeGridTopology(x)
     spgdf <- SpatialGridDataFrame(grid,
                                   data.frame(z=rep(0, prod(grid@cells.dim))))
     res <- as.image.SpatialGridDataFrame(spgdf)
@@ -151,6 +206,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
             cc <- coordinates(this)[zeros, , drop=FALSE]
             suppressWarnings(x.ppp <- ppp(cc[, 1], cc[, 2], window=ow))
             if (method == "pixellate") {
+              ## this should never happen
                 v <- pixellate(x.ppp, W=ow, weights=dt[zeros])$v
             }
             if (method == "density") {

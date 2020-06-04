@@ -244,7 +244,8 @@ sda0 <- function(x, smax, ang, distlim, pre = NULL) {
 #' When lambda=0 the smoothed track reproduces the raw track exactly.
 #' Increasing lambda favours tracks requiring less extreme velocities, at the
 #' expense of reproducing the original locations.
-#' @name filter.penSS
+#' @name filter_penSS
+#' @aliases filter.penSS
 #' @param tr A \code{trip} object.
 #' @param lambda Smoothing parameter, see Details.
 #' @param first Fix the first location and prevent it from being updated by the
@@ -313,8 +314,8 @@ sda0 <- function(x, smax, ang, distlim, pre = NULL) {
 #' }
 #' 
 #' 
-#' @export filter.penSS
-filter.penSS <- function(tr, lambda, first=TRUE, last=TRUE,...) {
+#' @export filter_penSS
+filter_penSS <- function(tr, lambda, first=TRUE, last=TRUE,...) {
 
     penalized <- function(x) {
         ## Form smoothed track

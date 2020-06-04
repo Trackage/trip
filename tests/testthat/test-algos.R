@@ -72,8 +72,7 @@ test_that("time spent calc works", {
   expect_s4_class(trip_raster(walrus818), "BasicRaster")
   expect_s4_class(trip_raster(walrus818, grid = raster(walrus818)), "BasicRaster")
   w10 <- walrus818[1:10, ]
-  expect_warning(rasterize(w10, method = "kde"))
-  expect_error(rasterize(w10, method = "pixellate", dur = 1000))
+  #expect_error(rasterize(w10, method = "pixellate", dur = 1000))
   expect_s4_class(rasterize(w10), "BasicRaster")
 
  

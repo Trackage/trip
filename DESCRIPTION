@@ -19,7 +19,11 @@ Imports:
     sp,
     spatstat,
     glue,
-    viridis
+    viridis,
+    dplyr,
+    rlang,
+    traipse,
+    crsmeta
 Suggests:
     adehabitatLT,
     knitr,
