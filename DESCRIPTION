@@ -31,7 +31,6 @@ Suggests:
     covr,
     rmarkdown,
     lubridate,
-    dplyr,
     maps,
     spelling
 Description: Functions for accessing and manipulating spatial data for animal

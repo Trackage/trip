@@ -92,7 +92,7 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
 
 #' @importFrom crsmeta crs_proj
 #' @importFrom traipse track_time
-#' @importFrom rlant .data
+#' @importFrom rlang .data
 #' @importFrom dplyr ungroup group_by summarise  mutate
 traipse_time_spent <- function(xx, grid = NULL) {
   if (is.null(grid)) {
