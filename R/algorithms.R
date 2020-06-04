@@ -186,7 +186,7 @@ cut.trip <-
       for (i in seq_along(l)) l[[i]] <- cut.one.trip(x[x[[tor[2]]] == uid[i], ], breaks)
       l2 <- vector("list", length(l[[1]]))
       for (j in seq_along(l2)) l2[[j]] <- do.call(rbind, lapply(l, function(x) x[[j]]) )
-      lapply(l2[!sapply(l2, is.null)], function(xx) trip(SpatialPointsDataFrame(SpatialPoints(as.matrix(xx[,1:2]), proj4string = CRS(proj4string(x))), xx[,-c(1, 2)]), c("time", "id")))
+      lapply(l2[!sapply(l2, is.null)], function(xx) trip(SpatialPointsDataFrame(SpatialPoints(as.matrix(xx[,1:2]), proj4string = CRS(x@proj4string@projargs, doCheckCRSArgs = FALSE)), xx[,-c(1, 2)]), c("time", "id")))
       
    }
 

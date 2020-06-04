@@ -37,7 +37,7 @@ Coercing objects to \code{trip} class
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 tr <- trip(d, c("tms", "id"))
 
 if (require(adehabitatLT)) {

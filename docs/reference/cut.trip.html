@@ -8,21 +8,25 @@
 
 <title>Split trip events into exact time-based boundaries. — cut.trip • trip</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +34,12 @@
 
 
 
-<meta property="og:title" content="Split trip events into exact time-based boundaries. — cut.trip" />
 
+<meta property="og:title" content="Split trip events into exact time-based boundaries. — cut.trip" />
 <meta property="og:description" content="Split trip events within a single object into exact time boundaries, adding
 interpolated coordinates as required." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -46,6 +51,7 @@ interpolated coordinates as required." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -64,7 +70,7 @@ interpolated coordinates as required." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0.9000</span>
       </span>
     </div>
 
@@ -72,7 +78,7 @@ interpolated coordinates as required." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,15 +88,26 @@ interpolated coordinates as required." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/trip-rationale.html">trip-rationale</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Trackage/trip">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,6 +118,7 @@ interpolated coordinates as required." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -112,15 +130,13 @@ interpolated coordinates as required." />
     </div>
 
     <div class="ref-description">
-    
     <p>Split trip events within a single object into exact time boundaries, adding
 interpolated coordinates as required.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for trip</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cut'>cut</a></span>(<span class='no'>x</span>, <span class='no'>breaks</span>, <span class='no'>...</span>)</pre>
-    
+<span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='no'>x</span>, <span class='no'>breaks</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -131,118 +147,112 @@ interpolated coordinates as required.</p>
     <tr>
       <th>breaks</th>
       <td><p>A character string such as the <code>breaks</code> argument
-for <code><a href='https://www.rdocumentation.org/packages/base/topics/cut.POSIXt'>cut.POSIXt</a></code>, or alternatively a vector of
+for <code><a href='https://rdrr.io/r/base/cut.POSIXt.html'>cut.POSIXt</a></code>, or alternatively a vector of
 date-time boundaries. (If the latter these must encompass all the time range of
 the entire trip object.)</p></td>
     </tr>
     <tr>
-      <th>&#8230;</th>
+      <th>...</th>
       <td><p>Unused arguments.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of trip objects, named by the time boundary in which they lie.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Motion between boundaries is assumed linear and extra coordinates are added
 at the cut points.</p>
 <p>This function was completely rewritten in version 1.1-20.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>See also <code><a href='tripGrid.html'>tripGrid</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>66</span>)
-<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>100</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>1</span>, <span class='fl'>10</span>),
-                <span class='kw'>tms</span><span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.POSIXlt'>as.POSIXct</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>as.character</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.time</a></span>()), <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>50</span>),
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>100</span>, <span class='fl'>1500</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>50</span>)), <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/gl'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
-<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>66</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>100</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>1</span>, <span class='fl'>10</span>),
+                <span class='kw'>tms</span><span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>()), <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>) + <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>10</span>, <span class='fl'>1000</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>50</span>),
+                <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>100</span>, <span class='fl'>1500</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>50</span>)), <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
+<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cut'>cut</a></span>(<span class='no'>tr</span>, <span class='st'>"200 sec"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='no'>tr</span>, <span class='st'>"200 sec"</span>)
 
-<span class='no'>bound.dates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>tr</span>$<span class='no'>tms</span>) - <span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span>(<span class='no'>tr</span>$<span class='no'>tms</span>) + <span class='fl'>1</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>trip.list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cut'>cut</a></span>(<span class='no'>tr</span>, <span class='no'>bound.dates</span>)
+<span class='no'>bound.dates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>tr</span>$<span class='no'>tms</span>) - <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>tr</span>$<span class='no'>tms</span>) + <span class='fl'>1</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>5</span>)
+<span class='no'>trip.list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='no'>tr</span>, <span class='no'>bound.dates</span>)
 <span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='fu'>bbox</span>(<span class='no'>tr</span>)
-<span class='no'>cn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>8</span>)
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/SpatialGrid'>GridTopology</a></span>(<span class='no'>bb</span>[, <span class='fl'>1</span>], <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>bb</span>, <span class='fl'>1</span>, <span class='no'>diff</span>) / (<span class='no'>cn</span> - <span class='fl'>1</span>), <span class='no'>cn</span>)
+<span class='no'>cn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>8</span>)
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/SpatialGrid.html'>GridTopology</a></span>(<span class='no'>bb</span>[, <span class='fl'>1</span>], <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>bb</span>, <span class='fl'>1</span>, <span class='no'>diff</span>) / (<span class='no'>cn</span> - <span class='fl'>1</span>), <span class='no'>cn</span>)
 
 <span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>tr</span>, <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>)
-<span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/image'>as.image.SpatialGridDataFrame</a></span>(<span class='no'>tg</span>)
-<span class='no'>tg</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>x</span> - <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
-<span class='no'>tg</span>$<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>y</span> - <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>y</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
+<span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/image.html'>as.image.SpatialGridDataFrame</a></span>(<span class='no'>tg</span>)
+<span class='no'>tg</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>x</span> - <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
+<span class='no'>tg</span>$<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>y</span> - <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>y</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
 
-<span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='kw'>mfcol</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
-<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>trip.list</span>)) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>tr</span>), <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/title'>title</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>trip.list</span>)[<span class='no'>i</span>], <span class='kw'>cex.main</span><span class='kw'>=</span><span class='fl'>0.9</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/abline'>abline</a></span>(<span class='kw'>h</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>y</span>, <span class='kw'>v</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>x</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey"</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/image'>image</a></span>(<span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>), <span class='kw'>interpolate</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-  <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"white"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/gray'>grey</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>,  <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>256</span>))),<span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/abline'>abline</a></span>(<span class='kw'>h</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>y</span>, <span class='kw'>v</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>x</span>,  <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey"</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/points'>points</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
+<span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfcol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
+<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>trip.list</span>)) {
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>tr</span>), <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>trip.list</span>)[<span class='no'>i</span>], <span class='kw'>cex.main</span><span class='kw'>=</span><span class='fl'>0.9</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
+  <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>h</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>y</span>, <span class='kw'>v</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>x</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span>(<span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>), <span class='kw'>interpolate</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
+  <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>grey</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>,  <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>256</span>))),<span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>h</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>y</span>, <span class='kw'>v</span><span class='kw'>=</span><span class='no'>tg</span>$<span class='no'>x</span>,  <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"grey"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
+  <span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
 }
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='no'>op</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>"you may need to resize the window to see the grid data"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='no'>op</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"you may need to resize the window to see the grid data"</span>)
 
-<span class='no'>cn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>200</span>, <span class='fl'>80</span>)
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/SpatialGrid'>GridTopology</a></span>(<span class='no'>bb</span>[, <span class='fl'>1</span>], <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/apply'>apply</a></span>(<span class='no'>bb</span>, <span class='fl'>1</span>, <span class='no'>diff</span>) / (<span class='no'>cn</span> - <span class='fl'>1</span>), <span class='no'>cn</span>)
+<span class='no'>cn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>200</span>, <span class='fl'>80</span>)
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/SpatialGrid.html'>GridTopology</a></span>(<span class='no'>bb</span>[, <span class='fl'>1</span>], <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>bb</span>, <span class='fl'>1</span>, <span class='no'>diff</span>) / (<span class='no'>cn</span> - <span class='fl'>1</span>), <span class='no'>cn</span>)
 
 <span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>tr</span>, <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>)
-<span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/image'>as.image.SpatialGridDataFrame</a></span>(<span class='no'>tg</span>)
-<span class='no'>tg</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>x</span> - <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
-<span class='no'>tg</span>$<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>y</span> - <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>y</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
+<span class='no'>tg</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/image.html'>as.image.SpatialGridDataFrame</a></span>(<span class='no'>tg</span>)
+<span class='no'>tg</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>x</span> - <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
+<span class='no'>tg</span>$<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>tg</span>$<span class='no'>y</span> - <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='no'>tg</span>$<span class='no'>y</span>[<span class='fl'>1</span>:<span class='fl'>2</span>]) / <span class='fl'>2</span>
 
-<span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='kw'>mfcol</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
-<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>trip.list</span>)) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span>(<span class='no'>tr</span>), <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/title'>title</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>trip.list</span>)[<span class='no'>i</span>], <span class='kw'>cex.main</span><span class='kw'>=</span><span class='fl'>0.9</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/image'>image</a></span>(<span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"density"</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>1</span>),
+<span class='no'>op</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>mfcol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
+<span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>trip.list</span>)) {
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>tr</span>), <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>trip.list</span>)[<span class='no'>i</span>], <span class='kw'>cex.main</span><span class='kw'>=</span><span class='fl'>0.9</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span>(<span class='fu'><a href='tripGrid.html'>tripGrid</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>grid</span><span class='kw'>=</span><span class='no'>g</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"density"</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>1</span>),
         <span class='kw'>interpolate</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-        <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"white"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/gray'>grey</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>256</span>))),
+        <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>grey</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0.2</span>, <span class='fl'>0.7</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>256</span>))),
         <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/lines'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/points'>points</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]])
+  <span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>trip.list</span><span class='kw'>[[</span><span class='no'>i</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.7</span>)
 }
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/par'>par</a></span>(<span class='no'>op</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='st'>"you may need to resize the window to see the grid data"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='no'>op</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='st'>"you may need to resize the window to see the grid data"</span>)
 
-<span class='co'># }</span><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"walrus818"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"trip"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>lubridate</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+}
+
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"walrus818"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"trip"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>lubridate</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘lubridate’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    date</span></div><div class='input'><span class='no'>walrus_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cut'>cut</a></span>(<span class='no'>walrus818</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fu'><a href='http://lubridate.tidyverse.org/reference/round_date.html'>floor_date</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>walrus818</span>$<span class='no'>DataDT</span>), <span class='st'>"month"</span>),
-<span class='fu'><a href='http://lubridate.tidyverse.org/reference/round_date.html'>ceiling_date</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span>(<span class='no'>walrus818</span>$<span class='no'>DataDT</span>), <span class='st'>"month"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"1 month"</span>))
+#&gt; <span class='message'>    date</span></div><div class='input'><span class='no'>walrus_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='no'>walrus818</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fu'><a href='http://lubridate.tidyverse.org/reference/round_date.html'>floor_date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>walrus818</span>$<span class='no'>DataDT</span>), <span class='st'>"month"</span>),
+<span class='fu'><a href='http://lubridate.tidyverse.org/reference/round_date.html'>ceiling_date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>walrus818</span>$<span class='no'>DataDT</span>), <span class='st'>"month"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"1 month"</span>))
 <span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rasterize.html'>rasterize</a></span>(<span class='no'>walrus818</span>) * <span class='fl'>NA_real_</span>
-<span class='no'>stk</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/stack'>stack</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>walrus_list</span>, <span class='no'>rasterize</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='no'>g</span>))
-<span class='no'>st</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/aggregate'>aggregate</a></span>(<span class='no'>stk</span>, <span class='kw'>fact</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>sum</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>stk</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/stack.html'>stack</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>walrus_list</span>, <span class='no'>rasterize</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='no'>g</span>))
+<span class='no'>st</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/aggregate.html'>aggregate</a></span>(<span class='no'>stk</span>, <span class='kw'>fact</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>sum</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>st</span>[!<span class='no'>st</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>] <span class='kw'>&lt;-</span> <span class='fl'>NA_real_</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>st</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='oc.theme.html'>oc.colors</a></span>(<span class='fl'>52</span>))</div><div class='img'><img src='cut.trip-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>st</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='oc.theme.html'>oc.colors</a></span>(<span class='fl'>52</span>))</div><div class='img'><img src='cut.trip-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -251,19 +261,23 @@ at the cut points.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Michael D. Sumner.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

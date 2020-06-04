@@ -22,7 +22,7 @@ readPRVa <- function(x, altloc = 1) {
 readAlt <- function(x) {
   old.opt <- options(warn=-1)
   on.exit(options(old.opt), add = TRUE)
-  
+
   altlines <- grep("      Lat1:", x, value = TRUE)
   altlines
 }
@@ -36,7 +36,7 @@ readPRV0 <- function(x) {
   ok <- nchar(x)== sum(widths)
   if (!any(ok)) return(NULL)
   do.call(rbind, strsplit(x[ok], "\\s+", perl = TRUE))
-  
+
 }
 .readPRV0_old <- function(x) {
   old.opt <- options(warn=-1)
@@ -52,7 +52,7 @@ readPRV0 <- function(x) {
     if (dfm[1,7] == "LC") {
       msg <- paste(" appears to be a diag file, skipping.",
                    "Use readDiag to obtain a dataframe. \n\n")
-      
+
     }
   } else {
     cat("Problem with file: ", x, " skipping\n")
@@ -88,10 +88,10 @@ readPRV0 <- function(x) {
 #' any longitudes are greater than 360 the PROJ.4 argument "+over" is added.
 #'
 #' \code{readDiag} simply builds a \code{data.frame}.
-#' 
+#'
 #' With \code{read_alt} the default value \code{NULL} returns the PRV location as-is. Some files may have
-#' a standardized location, and a dummy. If \code{read_alt} is set to 1 or 2 the corresponding "alternative" 
-#' location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a 
+#' a standardized location, and a dummy. If \code{read_alt} is set to 1 or 2 the corresponding "alternative"
+#' location is returned. 1 is a standardized location corresponding to the original PRV message, and 2 is a
 #' "dummy" location.
 #' @aliases readArgos readDiag
 #' @param x vector of file names of Argos "DAT" or "DIAG" files.
@@ -103,7 +103,7 @@ readPRV0 <- function(x) {
 #' @param duplicateTimes.eps what is the tolerance for times being duplicate?
 #' @param p4 PROJ.4 projection string, "+proj=longlat +ellps=WGS84" is assumed
 #' @param verbose if TRUE, details on date-time adjustment is reported
-#' @param read_alt is `NULL` by default, with longitude and latitude read from the PRV message, if `1` or `2` 
+#' @param read_alt is `NULL` by default, with longitude and latitude read from the PRV message, if `1` or `2`
 #' then attempt is made to read the alternative locations (but these are not always present)
 #' @param return_trip for [readDiag()] if `TRUE` will return a trip object, use `read_alt` to control the location
 #' @param ... reserved for future use
@@ -123,7 +123,7 @@ readPRV0 <- function(x) {
 #' }
 #' @section Warning :
 #'
-#' This works on some Argos files I have seen. 
+#' This works on some Argos files I have seen.
 #' @seealso
 #'
 #' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
@@ -140,14 +140,14 @@ readPRV0 <- function(x) {
 #'
 #' The Argos data documentation was (ca. 2003) at
 #' http://www.argos-system.org/manual.  Specific details on the PRV
-#' ("provide data") format were found in Chapter 4_4_8, originally at 
+#' ("provide data") format were found in Chapter 4_4_8, originally at
 #' 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 #' @keywords IO manip
 #' @export readArgos
-#' @examples 
-#' argosfile <- 
+#' @examples
+#' argosfile <-
 #'   system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
-#' argos <- readArgos(argosfile)   
+#' argos <- readArgos(argosfile)
 readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
                        tz="GMT", duplicateTimes.eps=1e-2,
                        p4="+proj=longlat +ellps=WGS84", verbose=FALSE, read_alt = NULL, ...) {
@@ -160,29 +160,29 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
     if (length(x) < li) warning("some input files don't exist")
   }
   dout <- vector("list", length(x))
-  
-  
+
+
   if (is.null(read_alt)) {
     dfm <- readPRV0(unlist(lapply(x, readLines)))
-    
+
   } else {
     stopifnot(read_alt == 1 || read_alt == 2)
     dfm <- readPRVa(unlist(lapply(x, readLines)), altloc = read_alt)
   }
-  
-  
+
+
   if (is.null(dfm) || nrow(dfm) < 1)
     stop("No data to return: check the files")
-  
+
     df <- vector("list", 12)
     names(df) <- c("prognum", "ptt", "nlines", "nsensor",
                    "satname", "class", "date", "time", "latitude",
                    "longitude", "altitude", "transfreq")
-    
+
     for (i in c(1:4, 9:12)) df[[i]] <- as.numeric(dfm[, i])
     for (i in 5:6) df[[i]] <- factor(dfm[, i])
     for (i in 7:8) df[[i]] <- dfm[, i]
-    
+
     df <- as.data.frame(df)
     df$gmt <- as.POSIXct(strptime(paste(df$date, df$time),
                                   dtFormat), tz)
@@ -219,21 +219,22 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
         }
       }
     }
-    if(any(dout$longitude > 180)) {
-      msg <- paste("\nLongitudes contain values greater than 180,",
-                   "assuming proj.4 +over\n\n")
-      cat(msg)
-      p4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 +over"
-    }
+    # no point in this despite good intentions
+    # if(any(dout$longitude > 180)) {
+    #   msg <- paste("\nLongitudes contain values greater than 180,",
+    #                "assuming proj.4 +over\n\n")
+    #   cat(msg)
+    #   p4 <- "+proj=longlat +over"
+    # }
     dout$class <- ordered(dout$class,
                           levels=c("Z", "B", "A", "0", "1", "2", "3"))
-  
+
     coordinates(dout) <- c("longitude", "latitude")
-    
-    dout@proj4string <- CRS(p4)
+
+    dout@proj4string <- CRS(p4, doCheckCRSArgs = FALSE)
     ##tor <- TimeOrderedRecords(c("gmt", "ptt"))
     test <- try(dout <- trip(dout, c("gmt", "ptt")))
-    
+
     if (!is(test, "trip")) {
       cat("\n\n\n Data not validated: returning object of class ",
           class(dout), "\n")
@@ -242,7 +243,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
     ## for now, only return spdftor if correct.all is TRUE
     cat("\n\n\n Data fully validated: returning object of class ",
         class(dout), "\n")
-    
+
     return(dout)
   }
   cat("\n\n\n Data not validated: returning object of class ",
@@ -254,7 +255,7 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
 ##' @rdname readArgos
 ##' @export
 readDiag <- function (x, return_trip = FALSE, read_alt = 1L, ...) {
-  
+
     d <- unlist(lapply(x, readLines))
     locs <- d[grep("LON1", d, ignore.case=TRUE)]
     if (length(locs) < 1L) stop("no valid Diag records found")
@@ -297,7 +298,7 @@ readDiag <- function (x, return_trip = FALSE, read_alt = 1L, ...) {
     data <- data.frame(lon1=lon, lat1=ll[, 1],
                              lon2=lon2, lat2=ll[, 3],
                              gmt=gmt, id=id, lq=lq, iq=iq, stringsAsFactors = FALSE)
-  
+
     if (return_trip) {
       if (!read_alt %in% c(1, 2)) stop("read_alt must be either 1 or 2")
       if (read_alt == 1L) {
@@ -307,6 +308,6 @@ readDiag <- function (x, return_trip = FALSE, read_alt = 1L, ...) {
         data <- trip(data[c("lon2", "lat2", "gmt", "id", "lq", "iq", "lon1", "lat1")])
       }
     }
-  
+
   data
 }

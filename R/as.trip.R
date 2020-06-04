@@ -23,7 +23,7 @@
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #' if (require(adehabitatLT)) {
@@ -65,7 +65,7 @@ telemetry2trip <- function(x) {
   if (!is.null(x@info$projection)) print(sprintf("nominal projection?? %s in telemetry (ctmm) object", x@info$projection))
   sp::coordinates(dat) <- c("longitude", "latitude")  ## gazelle is x,y buffalo is longitude,latitude
   ## if there's no crs, then it's projected ... (needs deeper investigation)
-  sp::proj4string(dat) <- sp::CRS(.llproj())
+  sp::proj4string(dat) <- sp::CRS(.llproj(), doCheckCRSArgs = FALSE)
   tname <- "timestamps"
   if (!inherits(dat[[tname]], "POSIXt")) dat[[tname]] <- dat[[tname]] + ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC")
   trip(dat, c(tname,"identity"))

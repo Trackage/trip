@@ -1,6 +1,9 @@
 # trip 1.7.0
 
-* Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and spTransform methods are now defunct and suggest use of `reproj()`. Ultimately we want a pure PROJ package or equivalent for these basic transformations, and proj4 is the best for now.  
+* Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and spTransform methods are now 
+defunct and suggest use of `reproj()`. 
+
+* Removed problematic PROJ strings, thanks to Roger Bivand. 
 
 * `readDiag()` and `readArgos()` now read all records from a single text vector after reading
 all raw lines. This means they can be used to read data from mixed text streams.  

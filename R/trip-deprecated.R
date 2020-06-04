@@ -8,7 +8,6 @@
 #' @param x see \code{\link{cut.trip}}
 #' @param dates see \code{\link{cut.trip}}
 #' @param from trip object
-#' @param \dots Further arguments 
 #' @seealso
 #' 
 #' \code{\link{cut.trip}}, \code{\link{as.Other}}

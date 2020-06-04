@@ -14,7 +14,6 @@
 #' @rdname trackAngle
 #' @param x trip object, or matrix of 2-columns, with x/y coordinates
 #' @return Vector of angles (degrees) between coordinates.
-#' @rdname trackAngle
 #' @export trackAngle
 trackAngle <- function(x) {
   UseMethod("trackAngle")
@@ -30,13 +29,12 @@ trackAngle.trip <- function(x) {
     warning("object CRS is NA, assuming longlat")
   } else {
     if (isproj) {
-      lonlat <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
-      x <- reproj(x, lonlat)
+      x <- reproj(x, .llproj())
     }
   }
   st <- split(x, x[[getTORnames(x)[2]]])
   unlist(lapply(st, function(x1) c(NA, trackAngle(coordinates(x1)), NA)))
-  
+
 }
 
 #' @rdname trackAngle
@@ -51,7 +49,7 @@ trackAngle.default <- function(x) {
   ##} else {
   ##  if(!type == "abdali") stop(sprintf("type '%s' not implemented", type))
   angle <- .abdali(x[2:(n-1),],x[3:n,]) - .abdali(x[2:(n-1),],x[1:(n-2),])
-  
+
   ##}
   angle <- (angle+180)%%360-180
   abs(angle)
@@ -63,7 +61,7 @@ trackAngle.default <- function(x) {
 .abdali <- function (p1, p2)
 {
   stopifnot(nrow(p1) == nrow(p2))
-  
+
   toRad <- pi/180
   p1 <- p1 * toRad
   p2 <- p2 * toRad

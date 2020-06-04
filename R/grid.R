@@ -29,7 +29,7 @@ trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #' tr$temp <- sort(runif(nrow(tr)))
@@ -242,7 +242,7 @@ tripGrid.interp <- function(x, grid=NULL, method="count", dur=NULL, ...) {
   if (is.null(grid)) grid <- makeGridTopology(x)
   res <- SpatialGridDataFrame(grid,
                               data.frame(z=rep(0, prod(grid@cells.dim))),
-                              CRS(proj4string(x)))
+                              CRS(proj4string(x), doCheckCRSArgs = FALSE))
   tor <- getTORnames(x)
   trip.list <- split(x[, tor], x[[tor[2]]])
   cnt <- 0
@@ -287,7 +287,7 @@ kdePoints <- function (x, h=NULL, grid=NULL, resetTime=TRUE, ...) {
   z <- (matrix(dnorm(ax), dimXY[1], nx) %*%
           t(matrix(dnorm(ay), dimXY[2], nx))) / (nx * h[1] * h[2])
   if (resetTime) z <- (z * timesum/sum(z)) / 3600
-  SpatialGridDataFrame(grid, data.frame(z=as.vector(z)), CRS(proj4string(x)))
+  SpatialGridDataFrame(grid, data.frame(z=as.vector(z)), CRS(proj4string(x), doCheckCRSArgs = FALSE))
 }
 
 #' @rdname tripGrid.interp
@@ -317,7 +317,7 @@ countPoints <- function (x, dur=1, grid=NULL)
   mps <- matrix(tps, ydim, xdim)
   z <- t(mps)
   SpatialGridDataFrame(grid, data.frame(z=as.vector(z[, ncol(z):1])),
-                       CRS(proj4string(x)))
+                       CRS(proj4string(x), doCheckCRSArgs = FALSE))
 }
 
 

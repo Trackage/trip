@@ -4,10 +4,17 @@
 \alias{write_track_kml}
 \title{Create a time-continuous KML file}
 \usage{
-write_track_kml(id, lon, lat, utc, z = NULL,
-  kml_file = tempfile(fileext = ".kmz"), name = NULL,
-  altitude_mode = c("absolute", "clampToGround", "clampToSeaFloor",
-  "relativeToGround", "relativeToSeaFloor"))
+write_track_kml(
+  id,
+  lon,
+  lat,
+  utc,
+  z = NULL,
+  kml_file = tempfile(fileext = ".kmz"),
+  name = NULL,
+  altitude_mode = c("absolute", "clampToGround", "clampToSeaFloor", "relativeToGround",
+    "relativeToSeaFloor")
+)
 }
 \arguments{
 \item{id}{vector of grouping IDs (or a trip object)}

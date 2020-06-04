@@ -26,7 +26,6 @@ as.trip.SpatialLinesDataFrame(from)
 
 \item{xy}{\code{trip} object}
 
-\item{\dots}{Further arguments}
 }
 \description{
 These functions will be declared defunct in a future release.

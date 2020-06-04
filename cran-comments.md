@@ -1,6 +1,6 @@
 ## Test environments
 
-* local Ubuntu 18.04 (on travis-ci), R 3.5.3
+* local Windows R 4.0.0
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -9,7 +9,5 @@
 
 ## Reverse dependencies
 
----
-
 * I have run R CMD check on the 3 downstream dependencies spbabel silicate, and SDLfilter, producing no errors, warnings or notes. 
-  
+

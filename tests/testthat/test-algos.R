@@ -1,3 +1,4 @@
+
 context("test-algos")
 
 test_that("separate IDs works", { 
@@ -110,4 +111,3 @@ test_that("exact cut works", {
 expect_error(  cut(tr1, c("arble", "2 min")), "if breaks is character, length\\(breaks\\) should be 1L")
 }
 )
-
