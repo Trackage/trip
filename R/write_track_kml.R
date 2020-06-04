@@ -65,7 +65,7 @@ write_track_kml <- function(id, lon, lat, utc, z = NULL,
     }
     obj <- trip(d)
   }
-  if (!raster::isLonLat(obj)) obj <- sp::spTransform(obj, "+init=epsg:4326")
+  if (!raster::isLonLat(obj)) obj <- sp::spTransform(obj, "+proj=longlat +datum=WGS84")
   
   xsegs <- trip::explode(obj)
   

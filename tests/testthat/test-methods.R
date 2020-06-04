@@ -13,5 +13,5 @@ test_that("print and show", {
   expect_output(print(tr))
   expect_silent(summary(tr))
   
-  expect_silent({plot(tr[seq(1, 1000, by = 5), ]); lines(tr); text(tr, tr$Deployment)})
+  expect_silent({plot(tr[seq(1, 1000, by = 5), ]); lines(tr); text(tr, lab = tr$Deployment)})
 })

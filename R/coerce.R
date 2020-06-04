@@ -23,7 +23,7 @@ setAs("trip", "SpatialLinesDataFrame", function(from) {
                       ID=sdf$tripID[i])
   }
   SpatialLinesDataFrame(SpatialLines(lns,
-                                     proj4string=CRS(proj4string(from))),
+                                     proj4string=CRS(from@proj4string@projargs, doCheckCRSArgs=FALSE)),
                         df)
 })
 
@@ -78,7 +78,7 @@ setAs("trip", "ltraj", function(from) {
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere",  doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #'  as(tr, "ppp")
@@ -102,7 +102,7 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #'  as.psp.trip(tr)
@@ -154,7 +154,7 @@ setAs("trip", "track_xyt", function(from) as.track_xyt.trip(from))
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #' 
 #' spldf <- explode(tr)
@@ -185,7 +185,7 @@ explode <- function(x, ...) {
     }
 
   }
-  splines <- SpatialLines(Linelist, proj4string = CRS(proj4string(x)))
+  splines <- SpatialLines(Linelist, proj4string = CRS(x@proj4string@projargs, doCheckCRSArgs = FALSE))
   SpatialLinesDataFrame(splines, df)
 }
 

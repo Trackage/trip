@@ -40,7 +40,7 @@ simulate_tracks <- function(n = 1, npoints = 200,
     d <- do.call(rbind, l)
     if (returntrip) {
       coordinates(d) <- c("lon", "lat")
-      proj4string(d) <- CRS("+init=epsg:4326")
+      proj4string(d) <- CRS("+proj=longlat +datum=WGS84 +no_defs", doCheckCRSArgs = FALSE)
       d <- trip(d, c("utc", "id"))
     }
     d

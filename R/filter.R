@@ -353,7 +353,7 @@ filter.penSS <- function(tr, lambda, first=TRUE, last=TRUE,...) {
     res[sub, 2] <- mn$estimate[1:m]
     res[sub, 1] <- mn$estimate[m + 1:m]
     res <- SpatialPointsDataFrame(res, as.data.frame(tr),
-                                  proj4string=CRS(proj4string(tr)))
+                                  proj4string=CRS(tr@proj4string@projargs, doCheckCRSArgs = FALSE))
     trip(res, getTORnames(tr))
 }
 

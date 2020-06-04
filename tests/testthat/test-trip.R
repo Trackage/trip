@@ -38,7 +38,7 @@ test_that("trip works", {
   expect_silent(subset(tr, d < 4))
   expect_warning(subset(tr, d < 3))
 
-  expect_silent(sp::spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
+  expect_s4_class(sp::spTransform(walrus818[1:100, ], "+proj=laea +datum=WGS84"), "trip")
 
 
   expect_s4_class(trip(tr, c("tms", "id")), "trip")

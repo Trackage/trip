@@ -8,8 +8,6 @@
 #' @param x see \code{\link{cut.trip}}
 #' @param dates see \code{\link{cut.trip}}
 #' @param from trip object
-#' @param crs CRS object, or PROJ.4 string accepted by \code{\link[sp]{CRS}}
-#' @param \dots Further arguments to \code{\link[rgdal]{spTransform}}
 #' @seealso
 #' 
 #' \code{\link{cut.trip}}, \code{\link{as.Other}}
@@ -51,10 +49,4 @@ as.trip.SpatialLinesDataFrame <- function(from) {
 ## removed depends sp, suggests rgdal deprecate this, replace with
 ## spTransform method below
 
-##' @rdname trip.split.exact
-##' @export
-tripTransform <- function(x, crs, ...) {
-  .Deprecated("spTransform")
-  if (! inherits(crs, "CRS")) crs <- CRS(crs)
-  spTransform(x, crs, ...)
-}
+

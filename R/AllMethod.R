@@ -49,6 +49,7 @@
 #' @param value A 4-element character vector specifying the X, Y, DateTime coordinates
 #' and ID of \code{obj}.
 #' @param correct_all logical value, if `TRUE` the input data is corrected for common problems
+#' @param f grouping vector as per [split()]
 #' @return
 #'
 #' A trip object, with the usual slots of a
@@ -82,6 +83,8 @@
 #' \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simplistic
 #' speed filtering and spatial time spent gridding.
 #' @export
+#' @importFrom sp coordinates
+#' @export coordinates
 #' @examples
 #'
 #'
@@ -98,7 +101,7 @@
 #'
 #' sp::coordinates(d) <- ~x+y
 #' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' (tr <- trip(d, c("tms", "id")))
 #'
 #'  ## real world data in CSV
@@ -149,32 +152,6 @@
 #' }
 #'
 #'
-#' \dontrun{
-#'    if (require(adehabitatLT)) {
-#'      data(porpoise)
-#'      porpoise <- as.trip(porpoise)
-#'      proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
-#'      summary(porpoise)
-#'
-#'    }
-#'
-#'
-#'    ## extended example to check that our projection metadata is correct
-#'    library(maptools)
-#'    data(wrld_simpl)
-#'    library(rgeos)
-#'    library(raster)
-#'
-#'    ## 3 degrees either side (for half a zone . . .)
-#'    ext <- as(extent(sp::spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
-#'    proj4string(ext) <- CRS(proj4string(wrld_simpl))
-#'    ## crop to the buffered tracks, and project to its native CRS
-#'    w <- sp::spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
-#'     CRS(proj4string(porpoise)))
-#'
-#'    plot(w)
-#'    lines(porpoise)
-#' }
 setGeneric("trip",
              function(obj, TORnames, correct_all = TRUE) standardGeneric("trip"))
 
@@ -319,7 +296,7 @@ setMethod("trip", signature(obj="sf", TORnames="ANY"),
             obj[[coordnames[2L]]] <- xy[,2L]
 
             sp::coordinates(obj) <- coordnames
-            sp::proj4string(obj) <- sp::CRS(p4)
+            sp::proj4string(obj) <- sp::CRS(p4, doCheckCRSArgs = FALSE)
             out <- new("trip", obj, TimeOrderedRecords(TORnames))
             assume_if_longlat(out)
           })
@@ -357,7 +334,7 @@ setMethod("trip", signature(obj = "trackeRdata"),
               dat <- dat[!bad, ]
             }
             sp::coordinates(dat) <- c("longitude", "latitude")
-            sp::proj4string(dat) <- sp::CRS(.llproj())
+            sp::proj4string(dat) <- sp::CRS(.llproj(), doCheckCRSArgs = FALSE)
 
             trip(dat, c("utc", "run_id"))
           })
@@ -502,11 +479,13 @@ setMethod("text", signature(x="trip"),
           function(x, ...) text(as(x, "SpatialPointsDataFrame"), ...))
 
 
+
 split.trip <-  function(x, f, drop = FALSE, ...) {
   lapply(split(x = seq_len(nrow(x)), f = f, drop = drop, ...),
          function(ind) x[ind, , drop = FALSE])
 }
-
+#' @rdname trip-methods
+#' @exportMethod split
 setMethod("split", signature(x = "trip", f = "ANY"),
          split.trip
           )
@@ -750,19 +729,18 @@ setMethod("recenter", signature(obj="trip"),
                                "reference system")
                   stop(msg)
               }
-              projargs <- CRS(proj4string(obj))
+              projargs <- CRS(proj4string(obj), doCheckCRSArgs = FALSE)
               crds <- coordinates(obj)
               inout <- (crds[, 1] < 0)
               if (all(inout)) {
                   crds[, 1] <- crds[, 1] + 360
-                  if (!is.na(proj)) projargs <- CRS(paste(proj4string(obj),
-                                                          "+over"))
+                  if (!is.na(proj)) projargs <- CRS(proj4string(obj), doCheckCRSArgs = FALSE)
               } else {
                   if (any(inout)) {
                       crds[, 1] <- ifelse(inout, crds[, 1] + 360,
                                           crds[, 1])
                       if (!is.na(proj))
-                          projargs <- CRS(paste(proj4string(obj), "+over"))
+                          projargs <- CRS(proj4string(obj), doCheckCRSArgs = FALSE)
                   }
               }
               trip(new("SpatialPointsDataFrame",
@@ -774,7 +752,7 @@ setMethod("recenter", signature(obj="trip"),
 
 #' @importFrom sp spTransform
 setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-         function(x, CRSobj, ...) spTransform(x, sp::CRS(CRSobj), ...))
+         function(x, CRSobj, ...) spTransform(x, sp::CRS(CRSobj, doCheckCRSArgs = FALSE), ...))
 
 setMethod("spTransform", signature("trip", "CRS"),
           function(x, CRSobj, ...) {

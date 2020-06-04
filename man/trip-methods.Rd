@@ -22,11 +22,14 @@
 \alias{[[<-,trip,ANY,missing-method}
 \alias{trip<-,data.frame,character-method}
 \alias{trip<-}
+\alias{split,trip-method}
 \title{Function to handle animal track data, organized as \code{trip} objects}
 \usage{
 trip(obj, TORnames, correct_all = TRUE)
 
 trip(obj) <- value
+
+\S4method{split}{trip}(x, f, drop = FALSE, ...)
 
 \S4method{[}{trip,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 }
@@ -45,9 +48,11 @@ and ID of \code{obj}.}
 
 \item{x}{trip object}
 
-\item{i, j, \dots}{indices specifying elements to extract}
+\item{f}{grouping vector as per \code{\link[=split]{split()}}}
 
 \item{drop}{unused but necessary for method consistency}
+
+\item{i, j, \dots}{indices specifying elements to extract}
 }
 \value{
 A trip object, with the usual slots of a
@@ -131,7 +136,7 @@ trip(d)
 
 sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere")
+sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 (tr <- trip(d, c("tms", "id")))
 
  ## real world data in CSV
@@ -182,32 +187,6 @@ tr <- trip(dat, c("gmt", "seal"))
 }
 
 
-\dontrun{
-   if (require(adehabitatLT)) {
-     data(porpoise)
-     porpoise <- as.trip(porpoise)
-     proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
-     summary(porpoise)
-
-   }
-
-
-   ## extended example to check that our projection metadata is correct
-   library(maptools)
-   data(wrld_simpl)
-   library(rgeos)
-   library(raster)
-
-   ## 3 degrees either side (for half a zone . . .)
-   ext <- as(extent(sp::spTransform(porpoise, CRS(proj4string(wrld_simpl)))) + 3, "SpatialPolygons")
-   proj4string(ext) <- CRS(proj4string(wrld_simpl))
-   ## crop to the buffered tracks, and project to its native CRS
-   w <- sp::spTransform(gIntersection(wrld_simpl[grep("United States", wrld_simpl$NAME), ], ext),
-    CRS(proj4string(porpoise)))
-
-   plot(w)
-   lines(porpoise)
-}
 }
 \seealso{
 \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simplistic

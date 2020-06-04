@@ -1,129 +1,86 @@
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(trip)
-<<<<<<< HEAD
 d <- data.frame(x=1:10,y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-=======
-d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
->>>>>>> 224562bf4028e68570c9d5e8f7b60f75bf7f238d
-coordinates(d) <- ~x+y
-## a projection should always be set, is it WGS84 or NAD83 . . .
-proj4string(d) <- CRS("+proj=laea +ellps=sphere")
-tr <- trip(d, c("tms", "id"))
+tr <- trip(d)
 summary(tr)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 plot(tr)
 lines(tr)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
+plot(tr,pch = ".", col = rainbow(nrow(tr)))
+lines(tr, col = c("dodgerblue", "firebrick"))
+
+## -----------------------------------------------------------------------------
 tg <- rasterize(tr)
 plot(tg, col = c("transparent", heat.colors(25)))
 
-## ------------------------------------------------------------------------
+## ----read-argos---------------------------------------------------------------
+argosfile <- 
+ system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
+argos <- readArgos(argosfile) 
+
+summary(argos)
+
+## ----plot-argos-anti-meridian-------------------------------------------------
+plot(argos, pch = ".")
+lines(argos)
+maps::map("world2", add = TRUE)
+axis(1)
+sp::degAxis(2)
+
+## ----destructive-filters------------------------------------------------------
+argos$spd <- speedfilter(argos, max.speed = 4)  ## km/h
+mean(argos$spd)  ## more than 5% are too fast
+
+plot(argos)
+lines(argos[argos$spd & argos$class > "A", ])
+
+
+argos$sda <- sda(argos, smax = 12)  ## defaults based on argosfilter, Freitas et al. (2008) 
+mean(argos$sda)
+plot(argos)
+lines(argos[argos$sda, ])
+
+
+## -----------------------------------------------------------------------------
+raster::projection(walrus818)
 data("walrus818")
 
 plot(walrus818, pch = ".")
 lines(walrus818)
 
-## ------------------------------------------------------------------------
+axis(1)
+axis(2)
+
+## -----------------------------------------------------------------------------
 library(maptools)
 library(rgdal)
 data(wrld_simpl)
-world <- spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
-p <- par(xpd = NA, mar = rep(0.5, 4))
-plot(walrus818, pch = ".")
+world <- sp::spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
+p <- par(mar = rep(0.5, 4))
+plot(raster::extent(walrus818) + 600000)
+plot(walrus818, pch = ".", add = TRUE)
 plot(world, add = TRUE, col = "grey")
 lines(walrus818)
 llgridlines(walrus818); par(p)
 
-<<<<<<< HEAD
-## ----eval=TRUE-----------------------------------------------------------
-library(diveMove)
-fname <- system.file(file.path("data", "sealLocs.csv"),
-                       package="diveMove")
-    dat <- read.table(fname, sep=";", header = TRUE, stringsAsFactors = FALSE)
-    dat$class <- ordered(dat$class, c("Z", "B", "A", "0", "1", "2", "3"))
-    dat$time <- as.POSIXct(strptime(dat$time, "%Y-%m-%d %H:%M:%S"), tz = "GMT")
-
-locs <- subset(dat, !is.na(dat$lon))
-trip(locs) <- c("lon", "lat", "time", "id")
-proj4string(locs) <- " +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
-
-## merge with data from argosfilter
-library(argosfilter)
-data(seal)
-seal$id <- "ringy2"
-seal[["time"]] <- seal$dtime
-seal$dtime <- NULL
-## reconstruct the Argos labels
-seal[["class"]] <- ordered(levels(dat$class)[factor(seal$lc, sort(unique(seal$lc)))], levels(dat$class))
-seal$lc <- NULL
+## ----conversions-points-------------------------------------------------------
+## as points
+as(walrus818, "SpatialPointsDataFrame")
+as(walrus818, "ppp")
 
 
-## what are we supposed to do with duplicated times?
-##  which(!diff(seal$time) > 0)
-##[1]   17  116  122 1008 1158 1231 1293 1300
-##plot(seal[which(!diff(seal$time) > 0),c("lon", "lat") ])
-##points(seal[1 + which(!diff(seal$time) > 0),c("lon", "lat") ], col = "red")
+## ----conversions-lines--------------------------------------------------------
+## as lines
+as(walrus818, "SpatialLinesDataFrame")
+as(walrus818, "sf")
+as(walrus818, "ltraj")
 
-seal <- seal[!duplicated(seal$time), ]
+## ----conversions-segments-----------------------------------------------------
+## as segments
+explode(walrus818)
+as(walrus818, "psp")
 
-## drop missing data and combine
-dat <- rbind(dat[!is.na(dat$lon), ], seal[,names(dat)])
-##coordinates(dat) <- c("lon", "lat")
-##proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
-
-tr <- dat
-trip(dat) <- c("lon", "lat", "time", "id")
-proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
-
-library(raster)
-d2 <- spTransform(dat, projection(walrus818))
-plot(union(extent(d2), extent(walrus818)))
-lines(d2)
-lines(walrus818)
-plot(spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), projection(walrus818)), add = T, col = "grey")
-
-=======
-## ----eval=FALSE----------------------------------------------------------
-#  library(diveMove)
-#  fname <- system.file(file.path("data", "sealLocs.csv"),
-#                         package="diveMove")
-#  if (file.exists(fname)) {
-#      dat <- read.table(fname, sep=";", header = TRUE, stringsAsFactors = FALSE)
-#      dat$class <- ordered(dat$class, c("Z", "B", "A", "0", "1", "2", "3"))
-#      dat$time <- as.POSIXct(strptime(dat$time, "%Y-%m-%d %H:%M:%S"), tz = "GMT")
-#  }
-#  
-#  locs <- subset(dat, !is.na(dat$lon))
-#  trip(locs) <- c("lon", "lat", "time", "id")
-#  proj4string(locs) <- " +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
-#  
-#  ## merge with data from argosfilter
-#  library(argosfilter)
-#  data(seal)
-#  seal$id <- "ringy2"
-#  seal[["time"]] <- seal$dtime
-#  seal$dtime <- NULL
-#  ## reconstruct the Argos labels
-#  seal[["class"]] <- ordered(levels(dat$class)[factor(seal$lc, sort(unique(seal$lc)))], levels(dat$class))
-#  seal$lc <- NULL
-#  
-#  
-#  ## what are we supposed to do with duplicated times?
-#  ##  which(!diff(seal$time) > 0)
-#  ##[1]   17  116  122 1008 1158 1231 1293 1300
-#  ##plot(seal[which(!diff(seal$time) > 0),c("lon", "lat") ])
-#  ##points(seal[1 + which(!diff(seal$time) > 0),c("lon", "lat") ], col = "red")
-#  
-#  seal <- seal[!duplicated(seal$time), ]
-#  
-#  ## drop missing data and combine
-#  ##dat <- rbind(dat[!is.na(dat$lon), ], seal[,names(dat)])
-#  ##coordinates(dat) <- c("lon", "lat")
-#  ##proj4string(dat) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
-#  
-#  ##tr <- trip(dat, c("time", "id"))
-#  
->>>>>>> 224562bf4028e68570c9d5e8f7b60f75bf7f238d
 

@@ -16,8 +16,6 @@ trip.split.exact(x, dates)
 as.ltraj.trip(xy)
 
 as.trip.SpatialLinesDataFrame(from)
-
-tripTransform(x, crs, ...)
 }
 \arguments{
 \item{from}{trip object}
@@ -27,10 +25,6 @@ tripTransform(x, crs, ...)
 \item{dates}{see \code{\link{cut.trip}}}
 
 \item{xy}{\code{trip} object}
-
-\item{crs}{CRS object, or PROJ.4 string accepted by \code{\link[sp]{CRS}}}
-
-\item{\dots}{Further arguments to \code{\link[rgdal]{spTransform}}}
 }
 \description{
 These functions will be declared defunct in a future release.
