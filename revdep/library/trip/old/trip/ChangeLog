@@ -1,0 +1,638 @@
+------------------------------------------------------------------------
+r132 | sluque | 2013-05-15 15:37:26 +0000 (Wed, 15 May 2013) | 2 lines
+
+Aesthetic.
+
+------------------------------------------------------------------------
+r131 | sluque | 2013-05-14 22:16:41 +0000 (Tue, 14 May 2013) | 2 lines
+
+Changelog update.
+
+------------------------------------------------------------------------
+r130 | sluque | 2013-05-14 22:15:40 +0000 (Tue, 14 May 2013) | 2 lines
+
+Deprecated tripTransform() should just use the new method.
+
+------------------------------------------------------------------------
+r129 | sluque | 2013-05-14 21:41:16 +0000 (Tue, 14 May 2013) | 2 lines
+
+Changelog/TODO update/fix.
+
+------------------------------------------------------------------------
+r128 | sluque | 2013-05-14 21:14:20 +0000 (Tue, 14 May 2013) | 3 lines
+
+Make spTransform not attach rgdal (if available), just check if the
+namespace can be loaded.  Hacked from lattice/R/panel.smoothscatter.R.
+
+------------------------------------------------------------------------
+r127 | mdsumner | 2013-05-14 10:54:47 +0000 (Tue, 14 May 2013) | 1 line
+
+another fix for authors
+------------------------------------------------------------------------
+r126 | mdsumner | 2013-05-09 14:39:18 +0000 (Thu, 09 May 2013) | 1 line
+
+clean up, removed tripEstimation project from r-forge to https://github.com/mdsumner/tripEstimation
+------------------------------------------------------------------------
+r125 | mdsumner | 2013-05-05 21:47:13 +0000 (Sun, 05 May 2013) | 1 line
+
+
+------------------------------------------------------------------------
+r124 | mdsumner | 2013-05-04 03:49:09 +0000 (Sat, 04 May 2013) | 1 line
+
+new version, removed tripTransform.Rd
+------------------------------------------------------------------------
+r123 | mdsumner | 2013-05-04 03:48:39 +0000 (Sat, 04 May 2013) | 1 line
+
+deprecated tripTransform, new method for spTransform
+------------------------------------------------------------------------
+r122 | mdsumner | 2013-05-04 03:48:23 +0000 (Sat, 04 May 2013) | 1 line
+
+removed tripTransform
+------------------------------------------------------------------------
+r121 | mdsumner | 2013-05-02 13:18:21 +0000 (Thu, 02 May 2013) | 1 line
+
+hmm, currently broken have to explore how sp::spTransform can work 
+------------------------------------------------------------------------
+r120 | mdsumner | 2013-05-02 13:04:27 +0000 (Thu, 02 May 2013) | 1 line
+
+replaced dontrun around examples, or too slow for CRAN
+------------------------------------------------------------------------
+r119 | mdsumner | 2013-05-02 12:58:34 +0000 (Thu, 02 May 2013) | 1 line
+
+more fixes, hidden project() uses
+------------------------------------------------------------------------
+r118 | mdsumner | 2013-05-02 12:54:19 +0000 (Thu, 02 May 2013) | 1 line
+
+removed rgdal dependency
+------------------------------------------------------------------------
+r117 | mdsumner | 2013-05-02 12:52:33 +0000 (Thu, 02 May 2013) | 1 line
+
+typo
+------------------------------------------------------------------------
+r116 | mdsumner | 2013-05-02 12:50:20 +0000 (Thu, 02 May 2013) | 1 line
+
+removed dependency on rgdal
+------------------------------------------------------------------------
+r115 | sluque | 2013-04-25 17:26:50 +0000 (Thu, 25 Apr 2013) | 2 lines
+
+Reverting previous botched draft of spTransform() implementation.
+
+------------------------------------------------------------------------
+r114 | sluque | 2013-04-25 16:43:28 +0000 (Thu, 25 Apr 2013) | 2 lines
+
+Implementing spTransform() method.
+
+------------------------------------------------------------------------
+r113 | sluque | 2013-04-07 02:36:27 +0000 (Sun, 07 Apr 2013) | 2 lines
+
+Emacs local variables.
+
+------------------------------------------------------------------------
+r112 | sluque | 2013-04-02 00:53:11 +0000 (Tue, 02 Apr 2013) | 3 lines
+
+There seems to be no reason to not run cut.trip example, so removed dontrun
+environment.  Aesthetics in tripTransform.Rd.
+
+------------------------------------------------------------------------
+r111 | sluque | 2013-03-28 03:14:32 +0000 (Thu, 28 Mar 2013) | 2 lines
+
+Update ChangeLog.
+
+------------------------------------------------------------------------
+r110 | sluque | 2013-03-28 03:13:38 +0000 (Thu, 28 Mar 2013) | 2 lines
+
+Remove commented code to avoid confusion.
+
+------------------------------------------------------------------------
+r109 | sluque | 2013-03-28 03:09:51 +0000 (Thu, 28 Mar 2013) | 2 lines
+
+Double quote argument to .Deprecated().
+
+------------------------------------------------------------------------
+r108 | sluque | 2013-03-27 23:59:46 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+Update ChangeLog.
+
+------------------------------------------------------------------------
+r107 | sluque | 2013-03-27 23:55:42 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+No need to require() spatstat, since the package depends on it.
+
+------------------------------------------------------------------------
+r106 | sluque | 2013-03-27 23:30:03 +0000 (Wed, 27 Mar 2013) | 3 lines
+
+Fix argument descriptions and consolidate documentation of functions for
+reading Argos data files.
+
+------------------------------------------------------------------------
+r105 | sluque | 2013-03-27 22:58:20 +0000 (Wed, 27 Mar 2013) | 3 lines
+
+Consolidate documentation of methods, functions and coercions to/from other
+classes.
+
+------------------------------------------------------------------------
+r104 | sluque | 2013-03-27 22:20:20 +0000 (Wed, 27 Mar 2013) | 4 lines
+
+Implementing 'as.trip' generic, with 'ltraj2trip' as definition for first
+method.  Deprecating 'as.trip.SpatialLinesDataFrame', replacing it with
+'as.SpatialLinesDataFrame'.trip'.
+
+------------------------------------------------------------------------
+r103 | sluque | 2013-03-27 18:34:50 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+virtuals.Rd no longer needed.
+
+------------------------------------------------------------------------
+r102 | sluque | 2013-03-27 18:28:26 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+execute examples requiring suggested packages only if available.
+
+------------------------------------------------------------------------
+r101 | sluque | 2013-03-27 17:22:24 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+Enable example using adehabitatLT, conditional on its availability.
+
+------------------------------------------------------------------------
+r100 | sluque | 2013-03-27 14:29:56 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+Implementing some examples, fixing \alias'es and moving where appropriate.
+
+------------------------------------------------------------------------
+r99 | sluque | 2013-03-27 14:13:27 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+Use getTORnames() and getTimeID() where appropriate.
+
+------------------------------------------------------------------------
+r98 | sluque | 2013-03-27 14:12:50 +0000 (Wed, 27 Mar 2013) | 2 lines
+
+Remove TimeOrderedRecords from Collate field.
+
+------------------------------------------------------------------------
+r97 | sluque | 2013-03-27 14:11:59 +0000 (Wed, 27 Mar 2013) | 7 lines
+
+Move the few lines of code in TimeOrderedRecords.R to AllMethod.R.
+
+Use getTORnames() and getTimeID() where appropriate.
+
+Minor refactoring to improve legibility, and use signature() to build
+signatures.
+
+------------------------------------------------------------------------
+r96 | sluque | 2013-03-26 13:33:36 +0000 (Tue, 26 Mar 2013) | 3 lines
+
+More minor formatting of documentation, in preparation for more examples
+and testing.
+
+------------------------------------------------------------------------
+r95 | sluque | 2013-03-26 00:38:46 +0000 (Tue, 26 Mar 2013) | 2 lines
+
+ChangeLog entries.
+
+------------------------------------------------------------------------
+r94 | sluque | 2013-03-26 00:37:48 +0000 (Tue, 26 Mar 2013) | 2 lines
+
+Moving doc pieces where they belong.
+
+------------------------------------------------------------------------
+r93 | sluque | 2013-03-25 22:28:45 +0000 (Mon, 25 Mar 2013) | 4 lines
+
+Make the SpatialPointsDataFrame the default method, and separate
+documentation for trip methods.  Remove unnecessary \alias, and methods for
+removed stand-alone function.
+
+------------------------------------------------------------------------
+r92 | sluque | 2013-03-25 21:19:22 +0000 (Mon, 25 Mar 2013) | 2 lines
+
+Separate documentation for accessors, and remove unnecessary \alias'es.
+
+------------------------------------------------------------------------
+r91 | sluque | 2013-03-25 21:14:53 +0000 (Mon, 25 Mar 2013) | 2 lines
+
+Consolidate TimeOrderedRecords documentation.
+
+------------------------------------------------------------------------
+r90 | sluque | 2013-03-24 23:03:39 +0000 (Sun, 24 Mar 2013) | 2 lines
+
+Link to sp documentation where appropriate.
+
+------------------------------------------------------------------------
+r89 | sluque | 2013-03-24 16:34:38 +0000 (Sun, 24 Mar 2013) | 2 lines
+
+Use identical() instead of all.equal() for testing.
+
+------------------------------------------------------------------------
+r88 | sluque | 2013-03-23 17:54:40 +0000 (Sat, 23 Mar 2013) | 2 lines
+
+Minor global formatting changes, and added Id SVN keyword.
+
+------------------------------------------------------------------------
+r87 | sluque | 2013-03-22 22:20:22 +0000 (Fri, 22 Mar 2013) | 2 lines
+
+ChangeLog entries.
+
+------------------------------------------------------------------------
+r86 | sluque | 2013-03-22 22:18:58 +0000 (Fri, 22 Mar 2013) | 2 lines
+
+Rename file, following deprecation of trip.split.exact().
+
+------------------------------------------------------------------------
+r85 | sluque | 2013-03-22 22:16:14 +0000 (Fri, 22 Mar 2013) | 2 lines
+
+Implemented cut() method, deprecating trip.split.exact().
+
+------------------------------------------------------------------------
+r84 | sluque | 2013-03-21 18:06:23 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Replace equal assignment operator.
+
+------------------------------------------------------------------------
+r83 | sluque | 2013-03-21 17:28:38 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+ChangeLog entries.
+
+------------------------------------------------------------------------
+r82 | sluque | 2013-03-21 17:27:38 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Restrict the classes that are exported.
+
+------------------------------------------------------------------------
+r81 | sluque | 2013-03-21 17:26:50 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Use summary.TORdata for consistency.
+
+------------------------------------------------------------------------
+r80 | sluque | 2013-03-21 15:51:53 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+ChangeLog entries.
+
+------------------------------------------------------------------------
+r79 | sluque | 2013-03-21 15:50:40 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Add \alias for 'summary.tordata' show() method.
+
+------------------------------------------------------------------------
+r78 | sluque | 2013-03-21 15:41:56 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Update documentation for internals.
+
+------------------------------------------------------------------------
+r77 | sluque | 2013-03-21 15:40:04 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Use fully qualified reference to adehabitatLT and spatstat functions.
+
+------------------------------------------------------------------------
+r76 | sluque | 2013-03-21 15:38:54 +0000 (Thu, 21 Mar 2013) | 11 lines
+
+Remove subset.trip() function; just make it the definition for the trip
+method.
+
+Remove summary.tordata() function; just make it the definition for the trip
+method.
+
+Remove recenter.trip() function; just make it the definition for the trip
+method.
+
+Show methods for 'summary.tordata' and 'trip'.
+
+------------------------------------------------------------------------
+r75 | sluque | 2013-03-21 15:30:30 +0000 (Thu, 21 Mar 2013) | 2 lines
+
+Do not export validTORdata(), as it is internal.
+
+------------------------------------------------------------------------
+r74 | sluque | 2013-03-21 15:28:34 +0000 (Thu, 21 Mar 2013) | 5 lines
+
+Do not export internal objects.  Prefix them with a dot, and use
+exportPattern() and exportMethods() in NAMESPACE.
+
+Declare S3 methods.
+
+------------------------------------------------------------------------
+r73 | sluque | 2013-03-20 10:20:48 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Developed some entries.
+
+------------------------------------------------------------------------
+r72 | sluque | 2013-03-20 05:39:25 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+ChangeLog entries.
+
+------------------------------------------------------------------------
+r71 | sluque | 2013-03-20 05:37:12 +0000 (Wed, 20 Mar 2013) | 4 lines
+
+Add Collate: field for better control of loading order.
+
+Perhaps code in TimeOrderedRecords.R should be moved to AllMethod.R...
+
+------------------------------------------------------------------------
+r70 | sluque | 2013-03-20 05:34:59 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Move trip() to AllMethod.R for loading sequence logic.
+
+------------------------------------------------------------------------
+r69 | sluque | 2013-03-20 05:32:14 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Rename to validTORdata for consistency.
+
+------------------------------------------------------------------------
+r68 | sluque | 2013-03-20 03:11:06 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Adding local Emacs variables.
+
+------------------------------------------------------------------------
+r67 | sluque | 2013-03-20 03:10:32 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Move S3 methods to AllMethod.R
+
+------------------------------------------------------------------------
+r66 | sluque | 2013-03-20 01:39:31 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Adding Id keyword property.
+
+------------------------------------------------------------------------
+r65 | sluque | 2013-03-20 01:26:12 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Removing commented code.
+
+------------------------------------------------------------------------
+r64 | sluque | 2013-03-20 01:25:00 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Removed.
+
+------------------------------------------------------------------------
+r63 | sluque | 2013-03-20 01:15:59 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Removing unnecessary commented code.
+
+------------------------------------------------------------------------
+r62 | sluque | 2013-03-20 01:00:21 +0000 (Wed, 20 Mar 2013) | 6 lines
+
+Moving class definitions and validity checks to AllClass.R, methods to
+AllMethod.R, and generics to AllGenerics.R.
+
+Restore validtordata() as validity check for trip.  It was accidentally
+commented and removed in r57 and r59, respectively.
+
+------------------------------------------------------------------------
+r61 | sluque | 2013-03-20 00:55:50 +0000 (Wed, 20 Mar 2013) | 2 lines
+
+Moving all this code to trip.R
+
+------------------------------------------------------------------------
+r60 | sluque | 2013-03-19 21:39:37 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Consolidating; there was a duplicate oc.theme().
+
+------------------------------------------------------------------------
+r59 | sluque | 2013-03-19 19:38:01 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Removing old commented code.
+
+------------------------------------------------------------------------
+r58 | sluque | 2013-03-19 18:16:04 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+ChangeLog.
+
+------------------------------------------------------------------------
+r57 | sluque | 2013-03-19 18:14:17 +0000 (Tue, 19 Mar 2013) | 4 lines
+
+Minor global source formatting for improving readability, maintenance.
+
+Adding Id for svn:keywords property.
+
+------------------------------------------------------------------------
+r56 | sluque | 2013-03-19 17:13:03 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Adding ChangeLog.
+
+------------------------------------------------------------------------
+r55 | sluque | 2013-03-19 17:12:47 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Formatting of commented function (unnecessary, but helps keep sanity).
+
+------------------------------------------------------------------------
+r54 | sluque | 2013-03-19 16:32:35 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Minor global source formatting for improving readability, maintenance.
+
+------------------------------------------------------------------------
+r53 | sluque | 2013-03-19 15:21:13 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Removing newlines inside object definitions.
+
+------------------------------------------------------------------------
+r52 | sluque | 2013-03-19 05:28:07 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Fixed Id keyword (SVN).
+
+------------------------------------------------------------------------
+r51 | sluque | 2013-03-19 05:26:17 +0000 (Tue, 19 Mar 2013) | 4 lines
+
+Minor global source formatting for improving readability, maintenance.
+
+Adding Id for svn:keywords property.
+
+------------------------------------------------------------------------
+r50 | sluque | 2013-03-19 05:17:55 +0000 (Tue, 19 Mar 2013) | 2 lines
+
+Minor global source formatting for improving readability, maintenance.
+
+------------------------------------------------------------------------
+r49 | mdsumner | 2013-03-13 12:55:44 +0000 (Wed, 13 Mar 2013) | 1 line
+
+version increment
+------------------------------------------------------------------------
+r48 | mdsumner | 2013-03-13 12:53:02 +0000 (Wed, 13 Mar 2013) | 1 line
+
+removed dependency on locfit/akima for get.sst etc. 
+------------------------------------------------------------------------
+r47 | mdsumner | 2013-03-11 10:44:52 +0000 (Mon, 11 Mar 2013) | 1 line
+
+zap some old junk
+------------------------------------------------------------------------
+r46 | mdsumner | 2013-03-08 23:00:05 +0000 (Fri, 08 Mar 2013) | 1 line
+
+Fixed new author mechanism. 
+------------------------------------------------------------------------
+r45 | mdsumner | 2013-03-08 22:22:35 +0000 (Fri, 08 Mar 2013) | 1 line
+
+fix for ltraj2trip from Sebastian
+------------------------------------------------------------------------
+r44 | mdsumner | 2012-10-31 10:48:37 +0000 (Wed, 31 Oct 2012) | 1 line
+
+add dontrun to trip.split.exact example, was taking too long for CRAN policy
+------------------------------------------------------------------------
+r43 | mdsumner | 2012-10-25 00:16:09 +0000 (Thu, 25 Oct 2012) | 1 line
+
+updates ready for build and submit to CRAN
+------------------------------------------------------------------------
+r42 | mdsumner | 2012-10-24 23:50:10 +0000 (Wed, 24 Oct 2012) | 1 line
+
+sanity check for n vs. winoffset
+------------------------------------------------------------------------
+r41 | mdsumner | 2012-10-24 23:28:48 +0000 (Wed, 24 Oct 2012) | 1 line
+
+NEWS update
+------------------------------------------------------------------------
+r40 | mdsumner | 2012-10-09 10:09:21 +0000 (Tue, 09 Oct 2012) | 1 line
+
+commit to new non-CRAN version
+------------------------------------------------------------------------
+r39 | mdsumner | 2012-10-09 10:07:28 +0000 (Tue, 09 Oct 2012) | 1 line
+
+update TODO
+------------------------------------------------------------------------
+r38 | mdsumner | 2012-10-09 10:07:03 +0000 (Tue, 09 Oct 2012) | 1 line
+
+update news and todo 
+------------------------------------------------------------------------
+r37 | mdsumner | 2012-10-09 09:58:01 +0000 (Tue, 09 Oct 2012) | 1 line
+
+cleanup
+------------------------------------------------------------------------
+r36 | mdsumner | 2012-10-09 09:56:20 +0000 (Tue, 09 Oct 2012) | 1 line
+
+stray require(adehabitat)
+------------------------------------------------------------------------
+r35 | mdsumner | 2012-10-09 09:28:34 +0000 (Tue, 09 Oct 2012) | 1 line
+
+spRbind from maptools
+------------------------------------------------------------------------
+r34 | mdsumner | 2012-10-09 09:20:37 +0000 (Tue, 09 Oct 2012) | 1 line
+
+Put penalized in filter.penSS() to avoid scoping notes 'no visible binding for global variable ...'
+------------------------------------------------------------------------
+r33 | mdsumner | 2012-10-09 09:13:14 +0000 (Tue, 09 Oct 2012) | 1 line
+
+small namespace fixes from maptools/spatstat
+------------------------------------------------------------------------
+r32 | mdsumner | 2012-10-09 07:59:57 +0000 (Tue, 09 Oct 2012) | 1 line
+
+temporarily internal functions
+------------------------------------------------------------------------
+r31 | mdsumner | 2012-10-09 07:55:48 +0000 (Tue, 09 Oct 2012) | 1 line
+
+documentation links to adehabitat changed to adehabitatLT
+------------------------------------------------------------------------
+r30 | mdsumner | 2012-10-09 07:53:10 +0000 (Tue, 09 Oct 2012) | 3 lines
+
+Removed require calls to maptools, now done in NAMESPACE. 
+
+Modified require() from old adehabitat to adehabitatLT
+------------------------------------------------------------------------
+r29 | mdsumner | 2012-10-09 07:40:54 +0000 (Tue, 09 Oct 2012) | 1 line
+
+no more tests!
+------------------------------------------------------------------------
+r28 | mdsumner | 2012-10-09 07:31:03 +0000 (Tue, 09 Oct 2012) | 1 line
+
+sdfasd
+------------------------------------------------------------------------
+r27 | mdsumner | 2012-10-09 07:30:26 +0000 (Tue, 09 Oct 2012) | 1 line
+
+dsf
+------------------------------------------------------------------------
+r26 | mdsumner | 2012-10-09 07:25:46 +0000 (Tue, 09 Oct 2012) | 1 line
+
+dasfads
+------------------------------------------------------------------------
+r25 | mdsumner | 2012-10-09 07:23:33 +0000 (Tue, 09 Oct 2012) | 1 line
+
+ddd
+------------------------------------------------------------------------
+r24 | mdsumner | 2012-10-09 07:22:59 +0000 (Tue, 09 Oct 2012) | 1 line
+
+ddd
+------------------------------------------------------------------------
+r23 | mdsumner | 2012-10-09 03:07:34 +0000 (Tue, 09 Oct 2012) | 1 line
+
+test
+------------------------------------------------------------------------
+r22 | mdsumner | 2012-10-09 03:06:41 +0000 (Tue, 09 Oct 2012) | 1 line
+
+dfas
+------------------------------------------------------------------------
+r21 | mdsumner | 2012-10-09 03:03:53 +0000 (Tue, 09 Oct 2012) | 1 line
+
+test commit
+------------------------------------------------------------------------
+r20 | mdsumner | 2012-10-09 00:09:14 +0000 (Tue, 09 Oct 2012) | 1 line
+
+deleted
+------------------------------------------------------------------------
+r19 | mdsumner | 2012-10-08 23:58:13 +0000 (Mon, 08 Oct 2012) | 1 line
+
+tripEstimation source committed, some unknown changes exist since this was las put on CRAN
+------------------------------------------------------------------------
+r18 | mdsumner | 2012-10-08 23:55:26 +0000 (Mon, 08 Oct 2012) | 1 line
+
+updates, now working on R CMD check . . .
+------------------------------------------------------------------------
+r17 | mdsumner | 2012-10-08 23:21:38 +0000 (Mon, 08 Oct 2012) | 1 line
+
+updates to namespace, now to check / build
+------------------------------------------------------------------------
+r16 | mdsumner | 2012-10-08 23:09:03 +0000 (Mon, 08 Oct 2012) | 1 line
+
+updates to functions
+------------------------------------------------------------------------
+r15 | mdsumner | 2012-10-08 23:06:55 +0000 (Mon, 08 Oct 2012) | 1 line
+
+r-forge is working, some .R files to finish
+------------------------------------------------------------------------
+r14 | mdsumner | 2012-10-08 23:05:45 +0000 (Mon, 08 Oct 2012) | 1 line
+
+update to NAMESPACE.not, still working on r-forge authentication
+------------------------------------------------------------------------
+r13 | mdsumner | 2012-10-08 23:04:12 +0000 (Mon, 08 Oct 2012) | 1 line
+
+dummy change for r-forgery
+------------------------------------------------------------------------
+r12 | mdsumner | 2011-09-01 11:38:26 +0000 (Thu, 01 Sep 2011) | 1 line
+
+adf
+------------------------------------------------------------------------
+r11 | mdsumner | 2011-09-01 08:48:41 +0000 (Thu, 01 Sep 2011) | 1 line
+
+turn off namespace
+------------------------------------------------------------------------
+r10 | mdsumner | 2011-09-01 08:44:22 +0000 (Thu, 01 Sep 2011) | 1 line
+
+Test commit
+------------------------------------------------------------------------
+r9 | mdsumner | 2011-07-26 08:59:41 +0000 (Tue, 26 Jul 2011) | 1 line
+
+revert junk edits
+------------------------------------------------------------------------
+r8 | mdsumner | 2011-07-26 08:56:18 +0000 (Tue, 26 Jul 2011) | 1 line
+
+junk edits to test process
+------------------------------------------------------------------------
+r7 | mdsumner | 2010-06-24 15:14:35 +0000 (Thu, 24 Jun 2010) | 1 line
+
+man/ Rd files
+------------------------------------------------------------------------
+r6 | mdsumner | 2010-06-24 15:13:44 +0000 (Thu, 24 Jun 2010) | 1 line
+
+man/ folder
+------------------------------------------------------------------------
+r5 | mdsumner | 2010-06-24 15:10:47 +0000 (Thu, 24 Jun 2010) | 1 line
+
+R/ files
+------------------------------------------------------------------------
+r4 | mdsumner | 2010-06-24 15:10:08 +0000 (Thu, 24 Jun 2010) | 1 line
+
+R/ folder
+------------------------------------------------------------------------
+r3 | mdsumner | 2010-06-24 15:06:58 +0000 (Thu, 24 Jun 2010) | 1 line
+
+bare bones trip package
+------------------------------------------------------------------------
+r2 | mdsumner | 2010-06-24 14:58:27 +0000 (Thu, 24 Jun 2010) | 1 line
+
+
+------------------------------------------------------------------------
+r1 | stefan7th | 2009-05-28 12:17:51 +0000 (Thu, 28 May 2009) | 1 line
+
+R-Forge: updated repository structure
+------------------------------------------------------------------------

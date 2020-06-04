@@ -1,0 +1,201 @@
+---
+title: "The trip package"
+author: Michael Sumner
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 7
+vignette: >
+  %\VignetteIndexEntry{trip}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Introduction
+
+Basic use of the trip package.
+
+## Data input and validation
+
+Tracking data is in essence a grouped series of one-dimensional data[^1] records. 
+
+It is *grouped* because we may track more than one object, each with its on
+independent time sequence.
+
+It is *one-dimensional* because the topology of the data is a linear stream of
+values. It makes sense that time is constantly increasing, and it is the primary
+dimension of the process. (Location is often something that we must estimate, but time
+is usually directly measured and robust). 
+
+Commonly we have records in a data frame, and the primary workflow is to provide
+the `trip()` function with information about the spatial locations, the temporal
+data, and the grouping.
+
+The data may contain any other columns, and in general they can be called anything and
+be in any order, but the simplest way to create a `trip` is to put the first four columns 
+as X, Y, date-time, grouping. 
+
+```{r}
+library(trip)
+d <- data.frame(x=1:10,y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+tr <- trip(d)
+summary(tr)
+```
+
+(There may be only one group, but we have to be explicit, with a column that identifies at least one group). 
+
+
+When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to `sf` or `sp` form as lines these summary values are recorded with each "multi"-line. 
+
+# Simple plotting
+
+
+To plot a trip we use base graphics in the usual ways. 
+
+```{r}
+plot(tr)
+lines(tr)
+```
+
+The trip object acts as a `sp` data frame of points, but with the underlying grouping as lines when that is relevant. 
+
+```{r}
+plot(tr,pch = ".", col = rainbow(nrow(tr)))
+lines(tr, col = c("dodgerblue", "firebrick"))
+```
+
+
+# Gridding for time spent
+
+There is a key functionality to determine the *time spent in area* on a grid, by leveraging the `rasterize()` generic function in the raster package. Any raster object may be used, so the specification of pixel area, extent and map projection is up to the user.  (The trip line segments must all fall within the raster). 
+
+```{r}
+tg <- rasterize(tr)
+plot(tg, col = c("transparent", heat.colors(25)))
+```
+
+As with `raster::rasterize()` the `field` used may be chosen, by default the time difference between each point in a trip is used, and the final grid contains the sum of these durations. 
+
+There is an older version of this in the `tripGrid.interp` function that uses approximate methods by allowing interpolation to an 'equal time' step. 
+
+# Reading from Argos files
+
+Service Argos has provide various message formats, and the `readArgos()` function understands some
+variants of the 'PRV' form. Multiple files can be provided, and all messages will be normalized and
+turned into a trip object with no need for the user to group or clean them in any way. 
+
+```{r read-argos}
+argosfile <- 
+ system.file("extdata/argos/98feb.dat", package = "trip", mustWork = TRUE)
+argos <- readArgos(argosfile) 
+
+summary(argos)
+```
+
+Note that the form of the coordinates is native to the PRV file, and in this case contains longitude values that are greater than 180. Some forms of these files provide wrapped forms, but in general the data are
+read as-is. 
+
+(We need "world2" because we are at 40W, but +360). 
+
+```{r plot-argos-anti-meridian}
+plot(argos, pch = ".")
+lines(argos)
+maps::map("world2", add = TRUE)
+axis(1)
+sp::degAxis(2)
+```
+
+# Destructive filtering
+
+There are some classic data filters based on speed and angle, and we may chain
+these together for some cheap improvements to track data, or use them separately. 
+
+```{r destructive-filters}
+argos$spd <- speedfilter(argos, max.speed = 4)  ## km/h
+mean(argos$spd)  ## more than 5% are too fast
+
+plot(argos)
+lines(argos[argos$spd & argos$class > "A", ])
+
+
+argos$sda <- sda(argos, smax = 12)  ## defaults based on argosfilter, Freitas et al. (2008) 
+mean(argos$sda)
+plot(argos)
+lines(argos[argos$sda, ])
+
+```
+
+# Map projections
+
+Data may be stored in longitude latitude or using a map projection, an in-built data set uses the Azimuthal Equidistant family near the anti-meridian in the Bering Strait.  
+
+```{r}
+raster::projection(walrus818)
+data("walrus818")
+
+plot(walrus818, pch = ".")
+lines(walrus818)
+
+axis(1)
+axis(2)
+```
+
+
+```{r}
+library(maptools)
+library(rgdal)
+data(wrld_simpl)
+world <- sp::spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
+p <- par(mar = rep(0.5, 4))
+plot(raster::extent(walrus818) + 600000)
+plot(walrus818, pch = ".", add = TRUE)
+plot(world, add = TRUE, col = "grey")
+lines(walrus818)
+llgridlines(walrus818); par(p)
+```
+
+
+# Data conversions
+
+There are various conversions from other tracking data types, the `trip()` function
+aims to be a helpful function like `raster::raster()`, simply understanding many formats. 
+
+It's possible to export trips to Google Earth, for interacting with the time slider
+in continuous time. Use `write_track_kml()` to produce a 'KML/KMZ' file. 
+
+When converting to spatial forms we may choose multi-lines, points, or segments. 
+
+
+Conversion to points, in 'sp' or 'spatstat'. 
+
+```{r conversions-points}
+## as points
+as(walrus818, "SpatialPointsDataFrame")
+as(walrus818, "ppp")
+
+```
+
+Conversion to lines, in 'sp', 'sf', or 'adehabitatLT'. 
+
+```{r conversions-lines}
+## as lines
+as(walrus818, "SpatialLinesDataFrame")
+as(walrus818, "sf")
+as(walrus818, "ltraj")
+```
+
+Conversions to segments, in 'sp', 'spatstat'. 
+
+
+```{r conversions-segments}
+## as segments
+explode(walrus818)
+as(walrus818, "psp")
+
+```
+
+[^1]: *One-dimensional, are you crazy?* Yes, the measurement process is one-dimensional and that is how we
+can arrange the primary data we collect. We collect location (x, y, z), time, and many other variables such as temperature, air pressure, happiness and colour, these are the geometry of our measurements, but the collection itself is very much a one-dimensional topology.

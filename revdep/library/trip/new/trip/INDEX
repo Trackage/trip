@@ -1,0 +1,40 @@
+TimeOrderedRecords      TimeOrderedRecords
+TimeOrderedRecords-class
+                        A class for the identifiers of DateTime and ID
+                        records in spatial data.
+adjust.duplicateTimes   Adjust duplicate DateTime values
+argos.sigma             Assign numeric values for Argos "class"
+as.Other                As ("trip", other-classes)
+as.trip                 Coercion from other classes to 'trip' objects
+cut.trip                Split trip events into exact time-based
+                        boundaries.
+filter.penSS            Non-destructive smoothing filter
+forceCompliance         Function to ensure dates and times are in order
+                        with trip ID
+homedist                Calculate maximum distance from 'home' for each
+                        trip
+makeGridTopology        Generate a GridTopology from a Spatial object
+oc.theme                SeaWiFS ocean colour colours
+rasterize               Rasterize trip objects based on line-segment
+                        attributes.
+readArgos               Read Argos "DAT" or "DIAG" files
+reproj                  Reprojection
+sda                     Filter track for speed, distance and angle.
+sepIdGaps               Separate a set of IDs based on gaps
+speedfilter             Filter track data for speed
+trackAngle              Determine internal angles along a track
+trackDistance           Determine distances along a track
+trip-accessors          Functions to retrieve DateTime and ID data from
+                        within (Spatial) data frames.
+trip-class              A class for sets of animal trips (track data).
+trip-methods            Function to handle animal track data, organized
+                        as 'trip' objects
+trip-package            trip.
+trip.split.exact        Deprecated functions in trip
+tripGrid                Generate a grid of time spent by line-to-cell
+                        gridding
+tripGrid.interp         Generate a grid of time spent using approximate
+                        methods
+walrus818               Walrus tracking data set.
+world_north             World north polygons
+write_track_kml         Create a time-continuous KML file

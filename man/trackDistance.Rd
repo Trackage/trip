@@ -62,8 +62,7 @@ trackDistance(tr)
 ## we get NA at the start, end and at transitions between trips
 
  \dontrun{
- require(rgdal)
- trackAngle(tr)
+ angles <- trackAngle(walrus818)
  }
 }
 \references{
