@@ -46,7 +46,3 @@ as.trip.SpatialLinesDataFrame <- function(from) {
   as(from, "SpatialLinesDataFrame")
 }
 
-## removed depends sp, suggests rgdal deprecate this, replace with
-## spTransform method below
-
-

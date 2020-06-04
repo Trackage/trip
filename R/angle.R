@@ -29,7 +29,7 @@ trackAngle.trip <- function(x) {
     warning("object CRS is NA, assuming longlat")
   } else {
     if (isproj) {
-    x <- sp::spTransform(x, sp::CRS(.llproj(), doCheckCRSArgs = FALSE))
+      x <- reproj(x, .llproj())
     }
   }
   st <- split(x, x[[getTORnames(x)[2]]])

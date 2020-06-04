@@ -39,3 +39,13 @@ NULL
 #' @docType data
 #' @rdname walrus818
 NULL
+
+#' World north polygons
+#' 
+#' A spatial polygons object with coastlines of the northern hemisphere. 
+#' 
+#' This data set exists purely to avoid requiring reprojection in the
+#' vignette, the data uses the same projection as [walrus818]. 
+#' @name world_north
+#' @docType data
+"world_north"

@@ -118,9 +118,9 @@
 #' mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 #' plot(mi_dat, pch = ".")
 #' #lines(mi_dat)  ## ugly
-#'
-#' mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
-#' plot(mi_dat_polar, pch = ".")
+#' 
+#' mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+#' plot(mi_dat_polar, pch = ".") 
 #' lines(mi_dat_polar)
 #' \dontrun{
 #' ## a simple example with the common fixes required for basic track data
@@ -489,11 +489,6 @@ split.trip <-  function(x, f, drop = FALSE, ...) {
 setMethod("split", signature(x = "trip", f = "ANY"),
          split.trip
           )
-## setMethod("spTransform", signature=signature(x="trip", CRSobj="CRS"),
-##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
-
-## setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-##           function(x, CRSobj, ...) tripTransform(x, CRSobj, ...))
 
 #' @exportMethod lines
 setMethod("lines", signature(x="trip"),
@@ -623,8 +618,7 @@ setMethod("summary", signature(object="trip"),
                   tripDistance <- sapply(dists, sum)
                   meanSpeed <- sapply(speeds, mean)
                   maxSpeed <- sapply(speeds, max)
-                 # meanRMSspeed <- sapply(rmsspeed, mean, na.rm = TRUE)
-                 #  maxRMSspeed <- sapply(rmsspeed, max, na.rm = TRUE)
+             
               })
               class(obj) <- "summary.TORdata"
               ## invisible(obj)
@@ -752,24 +746,15 @@ setMethod("recenter", signature(obj="trip"),
 
 #' @importFrom sp spTransform
 setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-         function(x, CRSobj, ...) spTransform(x, sp::CRS(CRSobj, doCheckCRSArgs = FALSE), ...))
+         function(x, CRSobj, ...) {
+           .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
+           reproj(x, CRSobj)
+         })
+
 
 setMethod("spTransform", signature("trip", "CRS"),
           function(x, CRSobj, ...) {
-            if (!("rgdal" %in% loadedNamespaces())) {
-              ns <- try(loadNamespace("rgdal"))
-              if (isNamespace(ns)) {
-                message("[loaded the rgdal namespace]")
-              } else {
-                msg <- paste("This method requires the rgdal package",
-                             "but is unable to load rgdal namespace",
-                             sep=",")
-                stop(msg)
-              }
-            }
-
-            pts <- spTransform(as(x, "SpatialPointsDataFrame"),
-                               CRSobj, ...)
-            trip(pts, getTORnames(x))
+            .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
+           reproj(x, CRSobj@proj4string@projargs)
           })
 

@@ -16,10 +16,10 @@ addons:
 
     packages:
       - libproj-dev
-      - libgeos-dev
-      - libspatialite-dev
-      - libgdal-dev
-      - gdal-bin
+#      - libgeos-dev
+#      - libspatialite-dev
+#      - libgdal-dev
+#      - gdal-bin
 
 matrix:
     include:

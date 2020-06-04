@@ -154,8 +154,8 @@ mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 plot(mi_dat, pch = ".")
 #lines(mi_dat)  ## ugly
 
-mi_dat_polar <- sp::spTransform(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
-plot(mi_dat_polar, pch = ".")
+mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
+plot(mi_dat_polar, pch = ".") 
 lines(mi_dat_polar)
 \dontrun{
 ## a simple example with the common fixes required for basic track data
@@ -186,6 +186,30 @@ coordinates(dat) <- c("long", "lat")
 tr <- trip(dat, c("gmt", "seal"))
 }
 
+
+\dontrun{
+   if (require(adehabitatLT)) {
+     data(porpoise)
+     porpoise <- as.trip(porpoise)
+     proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
+     summary(porpoise)
+
+   }
+
+
+   ## extended example to check that our projection metadata is correct
+   library(maptools)
+   data(wrld_simpl)
+   library(rgeos)
+   library(raster)
+
+   ## 3 degrees either side (for half a zone . . .)
+   ext <- as(extent(reproj(porpoise, proj4string(wrld_simpl))) + 3, "SpatialPolygons")
+   sp::proj4string(ext) <- sp::CRS(proj4string(wrld_simpl), doCheckCRSArgs = FALSE)
+   ## crop to the buffered tracks, and project to its native CRS
+   plot(ext)
+   lines(porpoise)
+}
 
 }
 \seealso{
