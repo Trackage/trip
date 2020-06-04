@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ## Why is trip the way it is? 
 
-The trip package was born as an extension to the [sp](https://CRAN.r-rproject.org/package=sp) package. We could leverage many features from the `Spatial` classes. 
+The trip package was born as an extension to the [sp](https://CRAN.r-project.org/package=sp) package. We could leverage many features from the `Spatial` classes. 
 
 * plotting
 * input/output to file formats

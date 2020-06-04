@@ -55,16 +55,13 @@ axis(1)
 axis(2)
 
 ## -----------------------------------------------------------------------------
-library(maptools)
-library(rgdal)
-data(wrld_simpl)
-world <- sp::spTransform(subset(wrld_simpl, coordinates(wrld_simpl)[,2] > 0), proj4string(walrus818))
+data("world_north", package= "trip")
 p <- par(mar = rep(0.5, 4))
 plot(raster::extent(walrus818) + 600000)
 plot(walrus818, pch = ".", add = TRUE)
-plot(world, add = TRUE, col = "grey")
+plot(world_north, add = TRUE, col = "grey")
 lines(walrus818)
-llgridlines(walrus818); par(p)
+par(p)
 
 ## ----conversions-points-------------------------------------------------------
 ## as points
@@ -75,7 +72,8 @@ as(walrus818, "ppp")
 ## ----conversions-lines--------------------------------------------------------
 ## as lines
 as(walrus818, "SpatialLinesDataFrame")
-as(walrus818, "sf")
+class(as(walrus818, "sf"))
+class(as(walrus818, "sf")$geom)
 as(walrus818, "ltraj")
 
 ## ----conversions-segments-----------------------------------------------------

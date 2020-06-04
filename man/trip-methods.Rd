@@ -187,30 +187,6 @@ tr <- trip(dat, c("gmt", "seal"))
 }
 
 
-\dontrun{
-   if (require(adehabitatLT)) {
-     data(porpoise)
-     porpoise <- as.trip(porpoise)
-     proj4string(porpoise) <- CRS("+proj=utm +zone=21 +ellps=WGS84 +units=m +no_defs")
-     summary(porpoise)
-
-   }
-
-
-   ## extended example to check that our projection metadata is correct
-   library(maptools)
-   data(wrld_simpl)
-   library(rgeos)
-   library(raster)
-
-   ## 3 degrees either side (for half a zone . . .)
-   ext <- as(extent(reproj(porpoise, proj4string(wrld_simpl))) + 3, "SpatialPolygons")
-   sp::proj4string(ext) <- sp::CRS(proj4string(wrld_simpl), doCheckCRSArgs = FALSE)
-   ## crop to the buffered tracks, and project to its native CRS
-   plot(ext)
-   lines(porpoise)
-}
-
 }
 \seealso{
 \code{\link{speedfilter}}, and \code{\link{tripGrid}} for simplistic

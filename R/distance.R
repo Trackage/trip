@@ -60,7 +60,6 @@
 #' ## we get NA at the start, end and at transitions between trips
 #'
 #'  \dontrun{
-#'  require(rgdal)
 #'  trackAngle(tr)
 #'  }
 #' @export trackDistance

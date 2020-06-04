@@ -65,8 +65,8 @@ write_track_kml <- function(id, lon, lat, utc, z = NULL,
     }
     obj <- trip(d)
   }
-  lonlat <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
-  if (!raster::isLonLat(obj)) obj <- reproj(obj, target = lonlat)
+  
+  if (!raster::isLonLat(obj)) obj <- reproj(obj, target = .llproj())
   
   xsegs <- trip::explode(obj)
   

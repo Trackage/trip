@@ -747,7 +747,7 @@ setMethod("recenter", signature(obj="trip"),
 #' @importFrom sp spTransform
 setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
          function(x, CRSobj, ...) {
-           .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
+           .Deprecated("reproj", msg = "trip doesn't use sp/rgdal spTransform now, done with 'reproj')")
            reproj(x, CRSobj)
          })
 

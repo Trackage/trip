@@ -10,7 +10,7 @@
 \arguments{
 \item{x}{trip object}
 
-\item{target}{target projectoin}
+\item{target}{target projection}
 
 \item{...}{ignored}
 

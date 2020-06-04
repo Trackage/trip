@@ -4,7 +4,9 @@
 \name{world_north}
 \alias{world_north}
 \title{World north polygons}
-\format{An object of class \code{SpatialPolygonsDataFrame} with 185 rows and 11 columns.}
+\format{
+An object of class \code{SpatialPolygonsDataFrame} with 185 rows and 11 columns.
+}
 \usage{
 world_north
 }

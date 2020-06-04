@@ -25,7 +25,6 @@ as.trip.SpatialLinesDataFrame(from)
 \item{dates}{see \code{\link{cut.trip}}}
 
 \item{xy}{\code{trip} object}
-
 }
 \description{
 These functions will be declared defunct in a future release.
