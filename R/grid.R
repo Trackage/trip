@@ -20,9 +20,9 @@ trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
   out
 }
 
-#' Rasterize trip objects based on line-segment attributes. 
-#' 
-#' Trip rasterize. 
+#' Rasterize trip objects based on line-segment attributes.
+#'
+#' Trip rasterize.
 #' @name rasterize
 #' @aliases rasterize,trip,RasterLayer-method rasterize,trip,missing-method
 #' @export
@@ -37,20 +37,20 @@ trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #' tr$temp <- sort(runif(nrow(tr)))
 #' r <- rasterize(tr)
-#' 
+#'
 #' rasterize(tr, grid = r)
 #' rasterize(tr, r, field = "temp")
 #' \dontrun{
 #' rasterize(tr, method = "density")
 #' rasterize(tr, method = "density", grid = r)
-#' 
+#'
 #' rasterize(tr, r, field = "tms")
 #' rasterize(tr, r)
-#' 
-#' 
+#'
+#'
 #' library(raster)
 #' r2 <- aggregate(r, fact = 4)
 #' rasterize(tr, grid = r2)
@@ -65,7 +65,7 @@ trip_raster <- function(x, grid = NULL, method = "pixellate",  ...) {
 NULL
 
 setMethod("rasterize", signature(x = "trip", y = "missing"), trip_raster)
-setMethod("rasterize", signature(x = "trip", y = "RasterLayer"), 
+setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
           function(x, y, field, fun = 'pixellate', ...)
           {
             if (!is.na(raster::projection(x)) && !is.na(raster::projection(y))) {
@@ -73,7 +73,7 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
             }
             if (missing(field)) {
               if (!is.null(y)) y <- as(y, "GridTopology")
-          
+
               if (fun == "density") {
                out <- raster(tripGrid(x, grid = y,  method = fun, ...))
               } else {
@@ -92,32 +92,37 @@ setMethod("rasterize", signature(x = "trip", y = "RasterLayer"),
 
 #' @importFrom crsmeta crs_proj
 #' @importFrom traipse track_time
-#' @importFrom rlang .data
-#' @importFrom dplyr ungroup group_by summarise  mutate
 traipse_time_spent <- function(xx, grid = NULL) {
   if (is.null(grid)) {
     grid <- makeGridTopology(xx)
-  } 
+  }
   x.psp <- spatstat::as.psp(xx)
   xy <- coordinates(xx)
-  dd <- data.frame(x = xy[,1], y = xy[,2], 
-                   time = xx[[getTORnames(xx)[1]]], 
-                   id = xx[[getTORnames(xx)[2]]], stringsAsFactors = FALSE) 
-  
-  dt <- dplyr::ungroup(dplyr::mutate(dplyr::group_by(dd, .data$id), 
-                                         dt = traipse::track_time(.data$time)))[["dt"]]
+  dd <- data.frame(x = xy[,1], y = xy[,2],
+                   time = xx[[getTORnames(xx)[1]]],
+                   id = xx[[getTORnames(xx)[2]]], stringsAsFactors = FALSE)
+
+#  dt <- dplyr::ungroup(dplyr::mutate(dplyr::group_by(dd, .data$id),
+#                                         dt = traipse::track_time(.data$time)))[["dt"]]
+  dd[["dt"]] <- rep(NA_real_, dim(dd)[1L])
+  split_df <- split(dd, dd[["id"]])[as.character(unique(dd[["id"]]))]
+#  browser()
+  for (i in seq_along(split_df)) {
+    split_df[[i]][["dt"]] <- traipse::track_time(split_df[[i]][["time"]])
+  }
+  dt <- do.call(rbind, split_df)[["dt"]]
   dt_na <- dt[!is.na(dt)]
   lngths <- spatstat::lengths.psp(x.psp)
   zeros <- which(!lngths > 0)
   ow <- .g2ow(grid)
   if (length(zeros) > 1) {
-    grd <- spatstat::pixellate(x.psp[-zeros], W= ow, 
+    grd <- spatstat::pixellate(x.psp[-zeros], W= ow,
                                weights=(dt_na/lngths)[-zeros])
   } else {
-    grd <- spatstat::pixellate(x.psp, W=ow, 
+    grd <- spatstat::pixellate(x.psp, W=ow,
                                weights=dt_na/lngths)
   }
-  
+
   r0 <- raster(grd,
                crs = crsmeta::crs_proj(xx))
   ## zero points
@@ -125,32 +130,34 @@ traipse_time_spent <- function(xx, grid = NULL) {
     zp <- data.frame(x = x.psp$ends$x1[zeros], y = x.psp$ends$y1[zeros])
     zp$cell <- raster::cellFromXY(r0, cbind(zp$x, zp$y))
     zp$val <- dt_na[zeros]
-    z <- dplyr::summarise(dplyr::group_by(zp, .data$cell), s = sum(.data$val))
+    #z <- dplyr::summarise(dplyr::group_by(zp, .data$cell), s = sum(.data$val))
+    z <- tapply(zp$val, zp$cell, sum)
+    #browser()
     r1 <- raster::setValues(r0, 0)
-    r1[z$cell] <- z$s
+    r1[as.integer(names(z))] <- z
     r0 <- r0 + r1
   }
   r0
 }
 #' Generate a grid of time spent by line-to-cell gridding
-#' 
-#' 
+#'
+#'
 #' Create a grid of time spent from an object of class \code{trip} by exact
 #' cell crossing methods, weighted by the time between locations for separate
 #' trip events.
-#' 
-#' 
+#'
+#'
 #' Zero-length lines cannot be summed directly, their time value is summed by
 #' assuming the line is a point. A warning used to be given, but as it achieved
 #' nothing but create confusion it has been removed. The density method returns
 #' proportionate values, not summed time durations.
-#' 
+#'
 #' See \code{pixellate.psp} and \code{pixellate.ppp} for the details on the
 #' method used. See \code{density.psp} for method="density".
-#' 
+#'
 #' Trip events are assumed to start and end as per the object passed in. To
 #' work with inferred "cutoff" positions see \code{split.trip.exact}.
-#' 
+#'
 #' @param x object of class \code{trip}
 #' @param grid GridTopology - will be generated automatically if NULL
 #' @param method pixellate or density
@@ -158,7 +165,7 @@ traipse_time_spent <- function(xx, grid = NULL) {
 #' temporary mechanism to direct users of legacy methods to
 #' \code{\link{tripGrid.interp}})
 #' @return
-#' 
+#'
 #' \code{tripGrid} returns an object of class \code{SpatialGridDataFrame}, with
 #' one column "z" containing the time spent in each cell in seconds.
 #' @keywords manip
@@ -185,7 +192,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
                                   data.frame(z=rep(0, prod(grid@cells.dim))))
     res <- as.image.SpatialGridDataFrame(spgdf)
     tor <- x@TOR.columns
-    
+
    trip.list <- split.data.frame(x[, tor], x[[tor[2]]])
     ow <- .g2ow(grid)
     sm <- 0
@@ -198,7 +205,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         sm <- sm + sum(dt)
         x.psp <- psp(xs[-length(xs)], ys[-length(ys)], xs[-1],
                                ys[-1], window=ow)
-    
+
         lngths <- lengths.psp(x.psp)
         if (any(!lngths > 0)) {
             ## trim psp objects (0-lines give NaNs)
@@ -219,7 +226,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
         weights <- dt/ifelse(lngths > 0, lngths, .Machine$double.eps)
         weights <- weights[lngths > 0]
         if (method == "pixellate") {
- 
+
             v <- pixellate.psp(x.psp, W=ow, weights=weights)$v
         }
         if (method == "density") {
@@ -251,31 +258,31 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 
 
 #' Generate a grid of time spent using approximate methods
-#' 
-#' 
+#'
+#'
 #' Create a grid of time spent from an object of class \code{trip} by
 #' approximating the time between locations for separate trip events.
-#' 
-#' 
+#'
+#'
 #' This set of functions was the the original tripGrid from prior to version
 #' 1.1-6. \code{tripGrid} should be used for more exact and fast calculations
 #' assuming linear motion between fixes.
-#' 
+#'
 #' The intention is for \code{tripGrid.interp} to be used for exploring
 #' approximate methods of line-to-cell gridding.
-#' 
+#'
 #' Trip locations are first interpolated, based on an equal-time spacing
 #' between records. These interpolated points are then "binned" to a grid of
 #' cells.  The time spacing is specified by the \code{dur} (duration) argument to
 #' \code{interpequal} in seconds (i.e. \code{dur=3600} is used for 1 hour).
 #' Shorter time periods will require longer computation with a closer
 #' approximation to the total time spent in the gridded result.
-#' 
+#'
 #' Currently there are methods "count" and "kde" for quantifying time spent,
 #' corresponding to the functions "countPoints" and "kdePoints". "kde" uses
 #' kernel density to smooth the locations, "count" simply counts the points
 #' falling in a grid cell.
-#' 
+#'
 #' @aliases tripGrid.interp interpequal countPoints kdePoints
 #' @param x object of class trip
 #' @param grid GridTopology - will be generated automatically if NULL
@@ -284,7 +291,7 @@ tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 #' locations (see Details)
 #' @param \dots other arguments passed to \code{interpequal} or \code{kdePoints}
 #' @return
-#' 
+#'
 #' \code{tripGrid} returns an object of class \code{SpatialGridDataFrame}, with
 #' one column "z" containing the time spent in each cell in seconds. If
 #' kdePoints is used the units are not related to the time values and must be
@@ -380,15 +387,15 @@ countPoints <- function (x, dur=1, grid=NULL)
 
 
 #' Generate a GridTopology from a Spatial object
-#' 
-#' 
+#'
+#'
 #' Sensible defaults are assumed, to match the extents of data to a manageable
 #' grid.
-#' 
+#'
 #' Approximations for kilometres in longlat can be made using \code{cellsize}
 #' and \code{adjust2longlat}.
-#' 
-#' 
+#'
+#'
 #' @param obj any Spatial object, or other object for which \code{bbox} will
 #' work
 #' @param cells.dim the number of cells of the grid, x then y

@@ -20,13 +20,13 @@ Imports:
     spatstat,
     glue,
     viridis,
-    dplyr,
     rlang,
     traipse,
     crsmeta
 Suggests:
     adehabitatLT,
     knitr,
+    dplyr,
     testthat,
     covr,
     rmarkdown,
