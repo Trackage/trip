@@ -10,8 +10,6 @@ test_that("read works", {
                                               p4 = "+proj=longlat +datum=WGS84 +no_defs"),
                           )
 
-  expect_equal(d1@proj4string@projargs, "+proj=longlat +datum=WGS84 +no_defs")
-
 
   expect_s3_class(readDiag(system.file("extdata/argos/98feb_a.dia", package = "trip")), "data.frame") %>%
     expect_length(8L) %>% expect_named(c("lon1", "lat1", "lon2", "lat2", "gmt", "id", "lq", "iq"))
