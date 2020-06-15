@@ -182,8 +182,8 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-15 02:45:47 2020-06-15 02:45:51       4 secs
-#&gt; 2             2          5 2020-06-15 02:45:52 2020-06-15 02:45:56       4 secs
+#&gt; 1             1          5 2020-06-15 02:51:37 2020-06-15 02:51:41       4 secs
+#&gt; 2             2          5 2020-06-15 02:51:42 2020-06-15 02:51:46       4 secs
 #&gt;   tripDistance meanSpeed maxSpeed
 #&gt; 1     9.039498  8135.548 11136.84
 #&gt; 2     7.197242  6477.517 10840.37
@@ -202,36 +202,36 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; Number of points: 10
 #&gt; Data attributes:
 #&gt;       tms                      id   
-#&gt;  Min.   :2020-06-15 02:45:47   1:5  
-#&gt;  1st Qu.:2020-06-15 02:45:49   2:5  
-#&gt;  Median :2020-06-15 02:45:51        
-#&gt;  Mean   :2020-06-15 02:45:51        
-#&gt;  3rd Qu.:2020-06-15 02:45:53        
-#&gt;  Max.   :2020-06-15 02:45:56        
+#&gt;  Min.   :2020-06-15 02:51:37   1:5  
+#&gt;  1st Qu.:2020-06-15 02:51:39   2:5  
+#&gt;  Median :2020-06-15 02:51:41        
+#&gt;  Mean   :2020-06-15 02:51:41        
+#&gt;  3rd Qu.:2020-06-15 02:51:44        
+#&gt;  Max.   :2020-06-15 02:51:46        
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>tr</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>tr</span>)</div><div class='img'><img src='trip-class-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] 10  2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; [1] "tms" "id" </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>tr</span>, <span class='no'>id</span> <span class='kw'>==</span> <span class='st'>"2"</span>)</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             2          5 2020-06-15 02:45:52 2020-06-15 02:45:56       4 secs
+#&gt; 1             2          5 2020-06-15 02:51:42 2020-06-15 02:51:46       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
 #&gt; 2           id     factor **trip ID**      
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;     x          y                 tms id
-#&gt; 1   1 -0.9627164 2020-06-15 02:45:47  1
-#&gt; 2   2 -2.6343717 2020-06-15 02:45:48  1
-#&gt; 3   3  0.2931122 2020-06-15 02:45:49  1
-#&gt; 4   4 -2.2314015 2020-06-15 02:45:50  1
-#&gt; 5   5 -1.4281767 2020-06-15 02:45:51  1
-#&gt; 6   6  1.5429442 2020-06-15 02:45:52  2
-#&gt; 7   7  1.1408577 2020-06-15 02:45:53  2
-#&gt; 8   8  0.5898365 2020-06-15 02:45:54  2
-#&gt; 9   9 -2.2504806 2020-06-15 02:45:55  2
-#&gt; 10 10 -0.5572741 2020-06-15 02:45:56  2</div><div class='input'>
+#&gt; 1   1 -0.9627164 2020-06-15 02:51:37  1
+#&gt; 2   2 -2.6343717 2020-06-15 02:51:38  1
+#&gt; 3   3  0.2931122 2020-06-15 02:51:39  1
+#&gt; 4   4 -2.2314015 2020-06-15 02:51:40  1
+#&gt; 5   5 -1.4281767 2020-06-15 02:51:41  1
+#&gt; 6   6  1.5429442 2020-06-15 02:51:42  2
+#&gt; 7   7  1.1408577 2020-06-15 02:51:43  2
+#&gt; 8   8  0.5898365 2020-06-15 02:51:44  2
+#&gt; 9   9 -2.2504806 2020-06-15 02:51:45  2
+#&gt; 10 10 -0.5572741 2020-06-15 02:51:46  2</div><div class='input'>
 <span class='no'>tr</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          3 2020-06-15 02:45:47 2020-06-15 02:45:49       2 secs
+#&gt; 1             1          3 2020-06-15 02:51:37 2020-06-15 02:51:39       2 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -243,12 +243,12 @@ contains columns of at least those specified by <code>TOR.columns</code>.</p>
 #&gt; crs         : +proj=laea +ellps=sphere 
 #&gt; variables   : 1
 #&gt; names       :              tms 
-#&gt; min values  : 1592189147.17793 
-#&gt; max values  : 1592189156.17793 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2020-06-15 02:45:47 UTC" "2020-06-15 02:45:48 UTC"
-#&gt;  [3] "2020-06-15 02:45:49 UTC" "2020-06-15 02:45:50 UTC"
-#&gt;  [5] "2020-06-15 02:45:51 UTC" "2020-06-15 02:45:52 UTC"
-#&gt;  [7] "2020-06-15 02:45:53 UTC" "2020-06-15 02:45:54 UTC"
-#&gt;  [9] "2020-06-15 02:45:55 UTC" "2020-06-15 02:45:56 UTC"</div><div class='input'>
+#&gt; min values  : 1592189497.32197 
+#&gt; max values  : 1592189506.32197 </div><div class='input'><span class='no'>tr</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;  [1] "2020-06-15 02:51:37 UTC" "2020-06-15 02:51:38 UTC"
+#&gt;  [3] "2020-06-15 02:51:39 UTC" "2020-06-15 02:51:40 UTC"
+#&gt;  [5] "2020-06-15 02:51:41 UTC" "2020-06-15 02:51:42 UTC"
+#&gt;  [7] "2020-06-15 02:51:43 UTC" "2020-06-15 02:51:44 UTC"
+#&gt;  [9] "2020-06-15 02:51:45 UTC" "2020-06-15 02:51:46 UTC"</div><div class='input'>
 
 
 </div></pre>
