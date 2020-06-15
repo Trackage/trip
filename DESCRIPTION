@@ -20,7 +20,6 @@ Imports:
     spatstat,
     glue,
     viridis,
-    rlang,
     traipse,
     crsmeta
 Suggests:
