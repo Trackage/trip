@@ -41,7 +41,7 @@
 #' trip,telemetry,ANY-method trip,list,ANY-method
 #' trip,trip,TimeOrderedRecords-method split,trip,ANY-method [,trip-method [,trip,ANY,ANY,ANY-method
 #' [[<-,trip,ANY,missing-method trip<-,data.frame,character-method
-#' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
+#' @param obj A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame-class}}
 #' containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See
 #' Details.
 #' @param TORnames Either a \code{TimeOrderedRecords} object, or a 2-element

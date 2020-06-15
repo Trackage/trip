@@ -8,7 +8,7 @@
 #'
 #'
 #' @param x \code{\link{data.frame}} or
-#' \code{\link[sp]{SpatialPointsDataFrame}}
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}
 #' @param tor character vector of names of date-times and trip ID columns
 #' @return \code{\link{data.frame}} or
 #' \code{\link[sp]{SpatialPointsDataFrame-class}}.
