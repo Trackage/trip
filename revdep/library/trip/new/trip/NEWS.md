@@ -1,7 +1,7 @@
 # trip 1.7.0
 
-* Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and spTransform methods are now 
-defunct and suggest use of `reproj()`. 
+* Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and 
+spTransform methods are now  defunct and suggest use of `reproj()`. 
 
 * Removed problematic PROJ strings, thanks to Roger Bivand. 
 
@@ -68,4 +68,4 @@ all raw lines. This means they can be used to read data from mixed text streams.
 
 # trip 1.5.0 and prior
 
-* See file ONEWS. 
+* See file [ONEWS](https://github.com/Trackage/trip/blob/master/inst/ONEWS). 

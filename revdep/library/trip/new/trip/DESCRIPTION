@@ -9,9 +9,9 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
 Version: 1.7.0
 Depends: R (>= 3.3.0)
 Imports: geodist, maptools, MASS, methods, raster, reproj, sp,
-        spatstat, glue, viridis
-Suggests: adehabitatLT, knitr, testthat, covr, rmarkdown, lubridate,
-        dplyr, maps, spelling
+        spatstat, glue, viridis, rlang, traipse, crsmeta
+Suggests: adehabitatLT, knitr, dplyr, testthat, covr, rmarkdown,
+        lubridate, maps, spelling
 Description: Functions for accessing and manipulating spatial data for animal
     tracking, with straightforward coercion from and to other formats. Filter
     for speed and create time spent maps from animal track data. There are
@@ -32,10 +32,10 @@ Encoding: UTF-8
 Language: en-US
 RemoteType: local
 RemoteUrl: /perm_storage/home/mdsumner/Git/trip
-Packaged: 2020-06-04 07:39:20 UTC; mdsumner
+Packaged: 2020-06-15 02:13:21 UTC; mdsumner
 Author: Michael D. Sumner [aut, cre],
   Sebastian Luque [ctb],
   Anthony Fischbach [ctb],
   Tomislav Hengl [ctb]
 Maintainer: Michael D. Sumner <mdsumner@gmail.com>
-Built: R 4.0.0; ; 2020-06-04 07:39:21 UTC; unix
+Built: R 4.0.0; ; 2020-06-15 02:13:23 UTC; unix

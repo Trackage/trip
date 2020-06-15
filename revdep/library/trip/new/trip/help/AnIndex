@@ -27,7 +27,8 @@ coerce,trip,ltraj-method	as.trip-methods
 countPoints	tripGrid.interp
 cut.trip	cut.trip
 explode	as.Other
-filter.penSS	filter.penSS
+filter.penSS	filter_penSS
+filter_penSS	filter_penSS
 forceCompliance	forceCompliance
 getTimeID	trip-accessors
 getTORnames	trip-accessors

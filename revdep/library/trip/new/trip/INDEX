@@ -8,7 +8,7 @@ as.Other                As ("trip", other-classes)
 as.trip                 Coercion from other classes to 'trip' objects
 cut.trip                Split trip events into exact time-based
                         boundaries.
-filter.penSS            Non-destructive smoothing filter
+filter_penSS            Non-destructive smoothing filter
 forceCompliance         Function to ensure dates and times are in order
                         with trip ID
 homedist                Calculate maximum distance from 'home' for each
