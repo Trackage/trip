@@ -88,7 +88,7 @@
       <h1 data-toc-skip>The trip package</h1>
                         <h4 class="author">Michael Sumner</h4>
             
-            <h4 class="date">2020-06-14</h4>
+            <h4 class="date">2020-06-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Trackage/trip/blob/master/vignettes/trip.Rmd"><code>vignettes/trip.Rmd</code></a></small>
       <div class="hidden name"><code>trip.Rmd</code></div>
@@ -118,11 +118,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-## 1             1          5 2020-06-14 23:22:05 2020-06-14 23:22:09       4 secs
-## 2             2          5 2020-06-14 23:22:10 2020-06-14 23:22:14       4 secs
+## 1             1          5 2020-06-15 02:14:48 2020-06-15 02:14:52       4 secs
+## 2             2          5 2020-06-15 02:14:53 2020-06-15 02:14:57       4 secs
 ##   tripDistance meanSpeed maxSpeed
-## 1     646.9255  582233.0 841116.5
-## 2     595.2021  535681.9 704265.9
+## 1     582.3532  524117.8 683510.8
+## 2     539.1399  485226.0 627364.3
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -130,20 +130,20 @@
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##          min       max
-## x  1.0000000 10.000000
-## y -0.9173145  1.840565
+##         min        max
+## x  1.000000 10.0000000
+## y -1.479653  0.5472907
 ## Is projected: FALSE 
 ## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2020-06-14 23:22:05   1:5  
-##  1st Qu.:2020-06-14 23:22:08   2:5  
-##  Median :2020-06-14 23:22:10        
-##  Mean   :2020-06-14 23:22:10        
-##  3rd Qu.:2020-06-14 23:22:12        
-##  Max.   :2020-06-14 23:22:14</code></pre>
+##  Min.   :2020-06-15 02:14:48   1:5  
+##  1st Qu.:2020-06-15 02:14:51   2:5  
+##  Median :2020-06-15 02:14:53        
+##  Mean   :2020-06-15 02:14:53        
+##  3rd Qu.:2020-06-15 02:14:55        
+##  Max.   :2020-06-15 02:14:57</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
@@ -178,6 +178,9 @@
  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/argos/98feb.dat"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"trip"</span>, <span class="kw">mustWork</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="no">argos</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/readArgos.html">readArgos</a></span>(<span class="no">argosfile</span>)</pre></body></html></div>
 <pre><code>## 
+## Longitudes contain values greater than 180, 
+## 
+## 
 ## 
 ## 
 ##  Data fully validated: returning object of class  trip</code></pre>
@@ -225,7 +228,7 @@
 ## longitude 318.281 328.453
 ## latitude  -54.689 -51.449
 ## Is projected: FALSE 
-## proj4string : [+proj=longlat +ellps=WGS84]
+## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 2004
 ## Data attributes:
 ##     prognum         ptt           nlines          nsensor      satname  class  
