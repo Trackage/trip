@@ -34,7 +34,7 @@ trip(obj) <- value
 \S4method{[}{trip,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 }
 \arguments{
-\item{obj}{A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame}}
+\item{obj}{A data frame, a grouped data frame or a \code{\link[sp]{SpatialPointsDataFrame-class}}
 containing at least two columns with the DateTime and ID data as per \code{TORnames}.  See
 Details.}
 
