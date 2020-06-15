@@ -74,7 +74,7 @@ frame in turn.  Basic validation of the data is enforced by default." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -204,7 +204,7 @@ then attempt is made to read the alternative locations (but these are not always
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>readArgos</code> returns a <code>trip</code> object, if all goes well, or simply a
-<code><a href='https://rdrr.io/pkg/sp/man/SpatialPoints.html'>SpatialPointsDataFrame</a></code>.</p>
+<code><a href='https://rdrr.io/pkg/sp/man/SpatialPointsDataFrame-class.html'>SpatialPointsDataFrame-class</a></code>.</p>
 <p><code>readDiag</code> returns a <code>data.frame</code> with 8 columns:</p><ul>
 <li><p><code>lon1</code>,<code>lat1</code> first pair of coordinates</p></li>
 <li><p><code>lon1</code>,<code>lat1</code> second pair of coordinates</p></li>
@@ -223,7 +223,7 @@ ordered by DateTime ("date", "time", "gmt") within ID ("ptt").  No duplicate
 DateTime values within ID are allowed: to enforce this the time values are
 moved forward by one second - this is done recursively and is not robust.</p>
 <p>If validation fails the function will return a
-<code><a href='https://rdrr.io/pkg/sp/man/SpatialPoints.html'>SpatialPointsDataFrame</a></code>.  Files that are not obviously of
+<code><a href='https://rdrr.io/pkg/sp/man/SpatialPointsDataFrame-class.html'>SpatialPointsDataFrame-class</a></code>.  Files that are not obviously of
 the required format are skipped.</p>
 <p>Argos location quality data "class" are ordered, assuming that the available
 levels is <code>levels=c("Z", "B", "A", "0", "1", "2", "3")</code>.</p>
@@ -248,7 +248,7 @@ http://www.argos-system.org/manual.  Specific details on the PRV
 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='trip-methods.html'>trip</a></code>, <code><a href='https://rdrr.io/pkg/sp/man/SpatialPoints.html'>SpatialPointsDataFrame</a></code>,
+    <div class='dont-index'><p><code><a href='trip-methods.html'>trip</a></code>, <code><a href='https://rdrr.io/pkg/sp/man/SpatialPointsDataFrame-class.html'>SpatialPointsDataFrame-class</a></code>,
 <code><a href='adjust.duplicateTimes.html'>adjust.duplicateTimes</a></code>, for manipulating these data, and
 <code><a href='argos.sigma.html'>argos.sigma</a></code> for relating a numeric value to Argos quality
 "classes".</p>

@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Function to handle animal track data, organized as <code>trip</code> objects — trip-methods" />
 <meta property="og:description" content="Create an object of class trip, extending the basic functionality
-of SpatialPointsDataFrame by specifying the data columns
+of SpatialPointsDataFrame-class by specifying the data columns
 that define the &quot;TimeOrdered&quot; quality of the records." />
 
 
@@ -74,7 +74,7 @@ that define the &quot;TimeOrdered&quot; quality of the records." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@ that define the &quot;TimeOrdered&quot; quality of the records." />
 
     <div class="ref-description">
     <p>Create an object of class <code>trip</code>, extending the basic functionality
-of <code><a href='https://rdrr.io/pkg/sp/man/SpatialPoints.html'>SpatialPointsDataFrame</a></code> by specifying the data columns
+of <code><a href='https://rdrr.io/pkg/sp/man/SpatialPointsDataFrame-class.html'>SpatialPointsDataFrame-class</a></code> by specifying the data columns
 that define the "TimeOrdered" quality of the records.</p>
     </div>
 
@@ -193,7 +193,7 @@ and ID of <code>obj</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A trip object, with the usual slots of a
-<code><a href='https://rdrr.io/pkg/sp/man/SpatialPoints.html'>SpatialPointsDataFrame</a></code> and the added
+<code><a href='https://rdrr.io/pkg/sp/man/SpatialPointsDataFrame-class.html'>SpatialPointsDataFrame-class</a></code> and the added
 <code>TimeOrderedRecords</code>. For the most part this can be treated as a
 <code>data.frame</code> with <code>Spatial</code> coordinates.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -263,8 +263,8 @@ speed filtering and spatial time spent gridding.</p></div>
 <span class='fu'>trip</span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-15 02:51:58 2020-06-15 02:52:02       4 secs
-#&gt; 2             2          5 2020-06-15 02:52:03 2020-06-15 02:52:07       4 secs
+#&gt; 1             1          5 2020-06-15 06:46:33 2020-06-15 06:46:37       4 secs
+#&gt; 2             2          5 2020-06-15 06:46:38 2020-06-15 06:46:42       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -281,8 +281,8 @@ speed filtering and spatial time spent gridding.</p></div>
 (<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-15 02:51:58 2020-06-15 02:52:02       4 secs
-#&gt; 2             2          5 2020-06-15 02:52:03 2020-06-15 02:52:07       4 secs
+#&gt; 1             1          5 2020-06-15 06:46:33 2020-06-15 06:46:37       4 secs
+#&gt; 2             2          5 2020-06-15 06:46:38 2020-06-15 06:46:42       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**

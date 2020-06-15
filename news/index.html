@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -129,11 +129,12 @@
       <small>Source: <a href='https://github.com/Trackage/trip/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="trip-170" class="section level1">
-<h1 class="page-header" data-toc-text="1.7.0">
-<a href="#trip-170" class="anchor"></a>trip 1.7.0<small> Unreleased </small>
+    <div id="trip-171" class="section level1">
+<h1 class="page-header" data-toc-text="1.7.1">
+<a href="#trip-171" class="anchor"></a>trip 1.7.1<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>Fixed documentation cross-references to sp topic, thanks to CRAN.</p></li>
 <li><p>Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and spTransform methods are now defunct and suggest use of <code><a href="../reference/reproj.html">reproj()</a></code>.</p></li>
 <li><p>Removed problematic PROJ strings, thanks to Roger Bivand.</p></li>
 <li><p><code><a href="../reference/readArgos.html">readDiag()</a></code> and <code><a href="../reference/readArgos.html">readArgos()</a></code> now read all records from a single text vector after reading all raw lines. This means they can be used to read data from mixed text streams.</p></li>

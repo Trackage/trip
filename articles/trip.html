@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -118,11 +118,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-## 1             1          5 2020-06-15 02:52:16 2020-06-15 02:52:20       4 secs
-## 2             2          5 2020-06-15 02:52:21 2020-06-15 02:52:25       4 secs
-##   tripDistance meanSpeed maxSpeed
-## 1     649.4665  584519.9 850825.5
-## 2     482.0258  433823.2 455255.4
+## 1             1          5 2020-06-15 06:46:52 2020-06-15 06:46:56       4 secs
+## 2             2          5 2020-06-15 06:46:57 2020-06-15 06:47:01       4 secs
+##   tripDistance meanSpeed  maxSpeed
+## 1     710.2880  639259.2  872368.7
+## 2     997.9765  898178.8 1872070.7
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -130,20 +130,20 @@
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##          min       max
-## x  1.0000000 10.000000
-## y -0.7081367  1.177338
+##         min       max
+## x  1.000000 10.000000
+## y -2.693765  1.900153
 ## Is projected: FALSE 
 ## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2020-06-15 02:52:16   1:5  
-##  1st Qu.:2020-06-15 02:52:18   2:5  
-##  Median :2020-06-15 02:52:21        
-##  Mean   :2020-06-15 02:52:21        
-##  3rd Qu.:2020-06-15 02:52:23        
-##  Max.   :2020-06-15 02:52:25</code></pre>
+##  Min.   :2020-06-15 06:46:52   1:5  
+##  1st Qu.:2020-06-15 06:46:54   2:5  
+##  Median :2020-06-15 06:46:56        
+##  Mean   :2020-06-15 06:46:56        
+##  3rd Qu.:2020-06-15 06:46:59        
+##  Max.   :2020-06-15 06:47:01</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
