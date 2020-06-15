@@ -1,4 +1,6 @@
-## trip 1.7.0
+## trip 1.7.1
+
+Second submit: Fixed cross references to non-file anchored help topic "SpatialPointsDataFrame-class"
 
 Fixes errors on CRAN and simplifies the package quite a bit. 
 

@@ -6,7 +6,7 @@
 \title{A class for the identifiers of DateTime and ID records in spatial data.}
 \description{
 The main use of this class and creator function is for
-\code{\link[sp]{SpatialPointsDataFrame}}s which are used with
+\code{\link[sp]{SpatialPointsDataFrame-class}}s which are used with
 TimeOrderedRecords for the class \code{trip}.
 }
 \note{

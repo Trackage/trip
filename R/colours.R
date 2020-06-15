@@ -17,7 +17,7 @@
 #' @return A set of colours or a theme object.
 #' @seealso
 #'
-#' Similar functions in sp \code{\link[sp]{sp.theme}},
+#' Similar functions in sp \code{\link[sp]{spplot}},
 #' \code{\link[sp]{bpy.colors}}
 #' @keywords color
 #' @examples
@@ -30,7 +30,7 @@
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #'  tg <- tripGrid(tr)
 #'  spplot(tg)
 #' }

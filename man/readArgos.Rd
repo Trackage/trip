@@ -45,7 +45,7 @@ then attempt is made to read the alternative locations (but these are not always
 }
 \value{
 \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
-\code{\link[sp]{SpatialPointsDataFrame}}.
+\code{\link[sp]{SpatialPointsDataFrame-class}}.
 
 \code{readDiag} returns a \code{data.frame} with 8 columns:
 \itemize{
@@ -72,7 +72,7 @@ DateTime values within ID are allowed: to enforce this the time values are
 moved forward by one second - this is done recursively and is not robust.
 
 If validation fails the function will return a
-\code{\link[sp]{SpatialPointsDataFrame}}.  Files that are not obviously of
+\code{\link[sp]{SpatialPointsDataFrame-class}}.  Files that are not obviously of
 the required format are skipped.
 
 Argos location quality data "class" are ordered, assuming that the available
@@ -106,7 +106,7 @@ http://www.argos-system.org/manual.  Specific details on the PRV
 'http://www.cls.fr/manuel/html/chap4/chap4_4_8.htm'.
 }
 \seealso{
-\code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
+\code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame-class}},
 \code{\link{adjust.duplicateTimes}}, for manipulating these data, and
 \code{\link{argos.sigma}} for relating a numeric value to Argos quality
 "classes".

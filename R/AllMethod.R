@@ -2,7 +2,7 @@
 #'
 #'
 #' Create an object of class \code{trip}, extending the basic functionality
-#' of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
+#' of \code{\link[sp]{SpatialPointsDataFrame-class}} by specifying the data columns
 #' that define the "TimeOrdered" quality of the records.
 #'
 #' The original form of `trip()` required very strict input as a 'SpatialPointsDataFrame' and
@@ -53,7 +53,7 @@
 #' @return
 #'
 #' A trip object, with the usual slots of a
-#' \code{\link[sp]{SpatialPointsDataFrame}} and the added
+#' \code{\link[sp]{SpatialPointsDataFrame-class}} and the added
 #' \code{TimeOrderedRecords}. For the most part this can be treated as a
 #' \code{data.frame} with \code{Spatial} coordinates.
 #' @section Methods:
@@ -118,9 +118,9 @@
 #' mi_dat <- trip(mi_dat, c("gmt", "sp_id") )
 #' plot(mi_dat, pch = ".")
 #' #lines(mi_dat)  ## ugly
-#' 
+#'
 #' mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
-#' plot(mi_dat_polar, pch = ".") 
+#' plot(mi_dat_polar, pch = ".")
 #' lines(mi_dat_polar)
 #' \dontrun{
 #' ## a simple example with the common fixes required for basic track data
@@ -209,7 +209,7 @@ TimeOrderedRecords <- function(x) {
 #' @seealso
 #'
 #' \code{\link{trip-class}}, for the use of this class with
-#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}.
 #'
 #' \code{\link{trip}}
 #' @keywords manip
@@ -618,7 +618,7 @@ setMethod("summary", signature(object="trip"),
                   tripDistance <- sapply(dists, sum)
                   meanSpeed <- sapply(speeds, mean)
                   maxSpeed <- sapply(speeds, max)
-             
+
               })
               class(obj) <- "summary.TORdata"
               ## invisible(obj)

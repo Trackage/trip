@@ -1,4 +1,6 @@
-# trip 1.7.0
+# trip 1.7.1
+
+* Fixed documentation cross-references to sp topic, thanks to CRAN. 
 
 * Migrate to reproj to avoid rgdal package. Ancient function tripTransform has been removed completely, and 
 spTransform methods are now  defunct and suggest use of `reproj()`. 

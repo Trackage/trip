@@ -40,7 +40,7 @@ tr <- trip(d, c("tms", "id"))
 }
 }
 \seealso{
-Similar functions in sp \code{\link[sp]{sp.theme}},
+Similar functions in sp \code{\link[sp]{spplot}},
 \code{\link[sp]{bpy.colors}}
 }
 \keyword{color}

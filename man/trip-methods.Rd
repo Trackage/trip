@@ -56,13 +56,13 @@ and ID of \code{obj}.}
 }
 \value{
 A trip object, with the usual slots of a
-\code{\link[sp]{SpatialPointsDataFrame}} and the added
+\code{\link[sp]{SpatialPointsDataFrame-class}} and the added
 \code{TimeOrderedRecords}. For the most part this can be treated as a
 \code{data.frame} with \code{Spatial} coordinates.
 }
 \description{
 Create an object of class \code{trip}, extending the basic functionality
-of \code{\link[sp]{SpatialPointsDataFrame}} by specifying the data columns
+of \code{\link[sp]{SpatialPointsDataFrame-class}} by specifying the data columns
 that define the "TimeOrdered" quality of the records.
 }
 \details{
@@ -155,7 +155,7 @@ plot(mi_dat, pch = ".")
 #lines(mi_dat)  ## ugly
 
 mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
-plot(mi_dat_polar, pch = ".") 
+plot(mi_dat_polar, pch = ".")
 lines(mi_dat_polar)
 \dontrun{
 ## a simple example with the common fixes required for basic track data

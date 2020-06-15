@@ -78,7 +78,7 @@ readPRV0 <- function(x) {
 #' moved forward by one second - this is done recursively and is not robust.
 #'
 #' If validation fails the function will return a
-#' \code{\link[sp]{SpatialPointsDataFrame}}.  Files that are not obviously of
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}.  Files that are not obviously of
 #' the required format are skipped.
 #'
 #' Argos location quality data "class" are ordered, assuming that the available
@@ -110,7 +110,7 @@ readPRV0 <- function(x) {
 #' @return
 #'
 #' \code{readArgos} returns a \code{trip} object, if all goes well, or simply a
-#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}.
 #'
 #' \code{readDiag} returns a \code{data.frame} with 8 columns:
 #' \itemize{
@@ -126,7 +126,7 @@ readPRV0 <- function(x) {
 #' This works on some Argos files I have seen.
 #' @seealso
 #'
-#' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame}},
+#' \code{\link{trip}}, \code{\link[sp]{SpatialPointsDataFrame-class}},
 #' \code{\link{adjust.duplicateTimes}}, for manipulating these data, and
 #' \code{\link{argos.sigma}} for relating a numeric value to Argos quality
 #' "classes".

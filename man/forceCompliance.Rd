@@ -14,7 +14,7 @@ forceCompliance(x, tor)
 }
 \value{
 \code{\link{data.frame}} or
-\code{\link[sp]{SpatialPointsDataFrame}}.
+\code{\link[sp]{SpatialPointsDataFrame-class}}.
 }
 \description{
 A convenience function, that removes duplicate rows, sorts by the date-times

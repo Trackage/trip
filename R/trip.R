@@ -11,7 +11,7 @@
 #' \code{\link[sp]{SpatialPointsDataFrame}}
 #' @param tor character vector of names of date-times and trip ID columns
 #' @return \code{\link{data.frame}} or
-#' \code{\link[sp]{SpatialPointsDataFrame}}.
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}.
 #' @note
 #'
 #' It's really important that data used are of a given quality, but this
@@ -35,10 +35,10 @@ force_internal <- function(x, tor) {
     crdnames <- rownames(bbox(x))
     x <- as.data.frame(x, stringsAsFactors = FALSE)
     #crdnames <- setdiff(names(x), prenames)
-    
+
   }
- 
-  
+
+
   duperecords <- duplicated(x)
   if (any(duperecords)) {
     warning(sprintf("removing records that are complete duplicates at rows:  \n'%s'", paste(which(duperecords), collapse = ",")))
@@ -49,14 +49,14 @@ force_internal <- function(x, tor) {
     warning("ordering input records by trip ID, then time")
     x <- x[triporder, ]
   }
-  
-  
+
+
   ## checks for tooshorts must happen AFTER duplicates are removed ...
   tooshort <- tapply(x[[tor[2]]], x[[tor[2]]], function(x) length(x) < 3)
   levs <- unique(x[[tor[2]]])
-  
+
   if (any(tooshort)) {
-    warning(sprintf("removing trip IDs that have too few elements (<3):  \n'%s'", 
+    warning(sprintf("removing trip IDs that have too few elements (<3):  \n'%s'",
                     paste(names(tooshort)[tooshort], collapse = ",")))
     x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
   }
@@ -75,7 +75,7 @@ force_internal <- function(x, tor) {
 
   x
 }
- 
+
 
 
 
@@ -162,7 +162,7 @@ adjust.duplicateTimes <- function (time, id) {
 #' @export argos.sigma
 argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
                         adjust=111.12) {
-    sigma <- sigma 
+    sigma <- sigma
     names(sigma) <- levels(x)
     sigma[x]/adjust  ## vectorize on x
 }
@@ -179,4 +179,4 @@ argos.sigma <- function(x, sigma=c(100, 80, 50, 20, 10, 4,  2),
 
 
 
-    
+

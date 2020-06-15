@@ -39,7 +39,7 @@ getTORnames(tor)
 }
 \seealso{
 \code{\link{trip-class}}, for the use of this class with
-\code{\link[sp]{SpatialPointsDataFrame}}.
+\code{\link[sp]{SpatialPointsDataFrame-class}}.
 
 \code{\link{trip}}
 }

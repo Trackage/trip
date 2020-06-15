@@ -1,7 +1,7 @@
 ##' A class for the identifiers of DateTime and ID records in spatial data.
 ##'
 ##' The main use of this class and creator function is for
-##' \code{\link[sp]{SpatialPointsDataFrame}}s which are used with
+##' \code{\link[sp]{SpatialPointsDataFrame-class}}s which are used with
 ##' TimeOrderedRecords for the class \code{trip}.
 ##'
 ##' @name TimeOrderedRecords-class
@@ -38,7 +38,7 @@ setValidity("TimeOrderedRecords", function(object) {
 #' A class for sets of animal trips (track data).
 #'
 #'
-#' An extension of \code{\link[sp]{SpatialPointsDataFrame}} by including
+#' An extension of \code{\link[sp]{SpatialPointsDataFrame-class}} by including
 #' \code{"TimeOrderedRecords"}.  The records within the data frame are
 #' explicitly ordered by DateTime data within IDs.
 #'
@@ -53,7 +53,7 @@ setValidity("TimeOrderedRecords", function(object) {
 #' Objects can be created by calls of the form
 #' \code{trip(obj="SpatialPointsDataFrame", TORnames="TimeOrderedRecords")}.
 #' The object contains all the slots present within a
-#' \code{\link[sp]{SpatialPointsDataFrame}}, particularly \code{data} which
+#' \code{\link[sp]{SpatialPointsDataFrame-class}}, particularly \code{data} which
 #' contains columns of at least those specified by \code{TOR.columns}.
 #' @seealso
 #'
