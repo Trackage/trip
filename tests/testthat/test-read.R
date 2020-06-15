@@ -7,10 +7,10 @@ test_that("read works", {
 
 
   expect_output(d1 <- readArgos(system.file("extdata/argos/98feb.dat", package = "trip"),
-                                              p4 = "+proj=longlat +datum=WGS84"),
+                                              p4 = "+proj=longlat +datum=WGS84 +no_defs"),
                           )
 
-  expect_equal(d1@proj4string@projargs, "+proj=longlat +datum=WGS84")
+  expect_equal(d1@proj4string@projargs, "+proj=longlat +datum=WGS84 +no_defs")
 
 
   expect_s3_class(readDiag(system.file("extdata/argos/98feb_a.dia", package = "trip")), "data.frame") %>%

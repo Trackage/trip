@@ -219,19 +219,18 @@ readArgos <- function (x, correct.all=TRUE, dtFormat="%Y-%m-%d %H:%M:%S",
         }
       }
     }
-    # no point in this despite good intentions
-    # if(any(dout$longitude > 180)) {
-    #   msg <- paste("\nLongitudes contain values greater than 180,",
-    #                "assuming proj.4 +over\n\n")
-    #   cat(msg)
-    #   p4 <- "+proj=longlat +over"
-    # }
+    if(any(dout$longitude > 180)) {
+      msg <- paste("\nLongitudes contain values greater than 180,",
+                   "\n\n")
+      cat(msg)
+      p4 <- "+proj=longlat +datum=WGS84"
+    }
     dout$class <- ordered(dout$class,
                           levels=c("Z", "B", "A", "0", "1", "2", "3"))
 
     coordinates(dout) <- c("longitude", "latitude")
 
-    dout@proj4string <- CRS(p4, doCheckCRSArgs = FALSE)
+    dout@proj4string <- CRS(p4)
     ##tor <- TimeOrderedRecords(c("gmt", "ptt"))
     test <- try(dout <- trip(dout, c("gmt", "ptt")))
 
