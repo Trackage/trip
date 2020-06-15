@@ -13,7 +13,5 @@ Fixes errors on CRAN and simplifies the package quite a bit.
 
 ## revdepcheck results
 
-We checked 4 reverse dependencies (4 from CRAN), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 4 reverse dependencies (4 from CRAN), no problems found. 
 
- * We saw 0 new problems
- * We failed to check 0 packages
