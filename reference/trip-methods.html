@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function to handle animal track data, organized as <code>trip</code> objects — trip-methods • trip</title>
+<title>Function to handle animal track data, organized as trip objects — trip-methods • trip</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Function to handle animal track data, organized as <code>trip</code> objects — trip-methods" />
+<meta property="og:title" content="Function to handle animal track data, organized as trip objects — trip-methods" />
 <meta property="og:description" content="Create an object of class trip, extending the basic functionality
 of SpatialPointsDataFrame-class by specifying the data columns
 that define the &quot;TimeOrdered&quot; quality of the records." />
@@ -74,7 +74,7 @@ that define the &quot;TimeOrdered&quot; quality of the records." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
       </span>
     </div>
 
@@ -256,15 +256,15 @@ speed filtering and spatial time spent gridding.</p></div>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
+<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x=<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y=<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>), tms=<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, id=<span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
 
 <span class='co'>## the simplest way to create a trip is by order of columns</span>
 
-<span class='fu'>trip</span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='output co'>#&gt; 
+<span class='fu'>trip</span>(<span class='kw'>d</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-15 12:35:11 2020-06-15 12:35:15       4 secs
-#&gt; 2             2          5 2020-06-15 12:35:16 2020-06-15 12:35:20       4 secs
+#&gt; 1             1          5 2020-08-19 07:19:33 2020-08-19 07:19:37       4 secs
+#&gt; 2             2          5 2020-08-19 07:19:38 2020-08-19 07:19:42       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
@@ -275,62 +275,64 @@ speed filtering and spatial time spent gridding.</p></div>
 <span class='co'>## # use everything() to keep all other columns</span>
 <span class='co'>## d %&gt;% group_by(id) %&gt;% select(x, y, tms, everything())</span>
 
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='op'>~</span><span class='kw'>x</span><span class='op'>+</span><span class='kw'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>, <span class='kw'>doCheckCRSArgs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-(<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
+<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>, doCheckCRSArgs = <span class='fl'>FALSE</span>)
+(<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'>trip</span>(<span class='kw'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; 
 #&gt; Object of class trip
 #&gt;   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-#&gt; 1             1          5 2020-06-15 12:35:11 2020-06-15 12:35:15       4 secs
-#&gt; 2             2          5 2020-06-15 12:35:16 2020-06-15 12:35:20       4 secs
+#&gt; 1             1          5 2020-08-19 07:19:33 2020-08-19 07:19:37       4 secs
+#&gt; 2             2          5 2020-08-19 07:19:38 2020-08-19 07:19:42       4 secs
 #&gt; 
 #&gt;   data.columns data.class                  
 #&gt; 1          tms    POSIXct **trip DateTime**
 #&gt; 2           id     factor **trip ID**      
 #&gt; </div><div class='input'>
  <span class='co'>## real world data in CSV</span>
-<span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/MI_albatross_sub10.csv"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"trip"</span>),
-            <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw'>mi_dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/MI_albatross_sub10.csv"</span>, package = <span class='st'>"trip"</span>),
+            stringsAsFactors = <span class='fl'>FALSE</span>)
 <span class='co'>## installed subset because the data is quite dense</span>
 <span class='co'>## mi_dat &lt;- mi_dat[seq(1, nrow(mi_dat), by = 10), ]</span>
-<span class='no'>mi_dat</span>$<span class='no'>gmt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='no'>mi_dat</span>$<span class='no'>gmt</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>)
-<span class='no'>mi_dat</span>$<span class='no'>sp_id</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"%s%s_%s_%s"</span>, <span class='no'>mi_dat</span>$<span class='no'>species</span>,
-         <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span>(<span class='no'>mi_dat</span>$<span class='no'>breeding_status</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='no'>mi_dat</span>$<span class='no'>band</span>, <span class='no'>mi_dat</span>$<span class='no'>tag_ID</span>)
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>mi_dat</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lon"</span>, <span class='st'>"lat"</span>)
+<span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>gmt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>gmt</span>, tz = <span class='st'>"UTC"</span>)
+<span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>sp_id</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"%s%s_%s_%s"</span>, <span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>species</span>,
+         <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span>(<span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>breeding_status</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>band</span>, <span class='kw'>mi_dat</span><span class='op'>$</span><span class='kw'>tag_ID</span>)
+<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>mi_dat</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lon"</span>, <span class='st'>"lat"</span>)
 <span class='co'>## there are many warnings, but the outcome is fine</span>
 <span class='co'>## (sp_id == 'WAi_14030938_2123' has &lt; 3 locations as does LMi_12143650_14257)</span>
-<span class='no'>mi_dat</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>mi_dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"sp_id"</span>) )</div><div class='output co'>#&gt; <span class='warning'>Warning: ordering input records by trip ID, then time</span></div><div class='output co'>#&gt; <span class='warning'>Warning: removing trip IDs that have too few elements (&lt;3):  </span>
-#&gt; <span class='warning'>'LMi_12143650_14257,WAi_14030938_2123'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mi_dat</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='img'><img src='trip-methods-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#lines(mi_dat)  ## ugly</span>
+<span class='kw'>mi_dat</span> <span class='op'>&lt;-</span> <span class='fu'>trip</span>(<span class='kw'>mi_dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"sp_id"</span>) )</div><div class='output co'>#&gt; <span class='warning'>Warning: ordering input records by trip ID, then time</span></div><div class='output co'>#&gt; <span class='warning'>Warning: removing trip IDs that have too few elements (&lt;3):  </span>
+#&gt; <span class='warning'>'LMi_12143650_14257,WAi_14030938_2123'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: input looks like longitude/latitude data, assuming +proj=longlat +datum=WGS84</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span>(<span class='kw'>mi_dat</span>, pch = <span class='st'>"."</span>)</div><div class='img'><img src='trip-methods-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#lines(mi_dat)  ## ugly</span>
 
-<span class='no'>mi_dat_polar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='reproj.html'>reproj</a></span>(<span class='no'>mi_dat</span>, <span class='st'>"+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>mi_dat_polar</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>"."</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>mi_dat_polar</span>)</div><div class='img'><img src='trip-methods-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>mi_dat_polar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='reproj.html'>reproj</a></span>(<span class='kw'>mi_dat</span>, <span class='st'>"+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span>(<span class='kw'>mi_dat_polar</span>, pch = <span class='st'>"."</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='kw'>mi_dat_polar</span>)</div><div class='img'><img src='trip-methods-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>## a simple example with the common fixes required for basic track data</span>
 
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='st'>"trackfile.csv"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>dat</span>)  <span class='co'>## e.g. [1] "long" "lat" "seal" "date" "local" "lq"</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sp</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>dat</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"long"</span>, <span class='st'>"lat"</span>)
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='st'>"trackfile.csv"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/raster/man/names.html'>names</a></span>(<span class='kw'>dat</span>)  <span class='co'>## e.g. [1] "long" "lat" "seal" "date" "local" "lq"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/edzer/sp'>sp</a></span>)
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>dat</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"long"</span>, <span class='st'>"lat"</span>)
 
 <span class='co'>## date/times may be in a particular time zone, please check</span>
-<span class='no'>dat</span>$<span class='no'>gmt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>dat</span>$<span class='no'>date</span>, <span class='no'>dat</span>$<span class='no'>local</span>),
-                      <span class='st'>"%d-%b-%y %H:%M:%S"</span>), <span class='kw'>tz</span><span class='kw'>=</span><span class='st'>"GMT"</span>)
+<span class='kw'>dat</span><span class='op'>$</span><span class='kw'>gmt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='kw'>dat</span><span class='op'>$</span><span class='kw'>date</span>, <span class='kw'>dat</span><span class='op'>$</span><span class='kw'>local</span>),
+                      <span class='st'>"%d-%b-%y %H:%M:%S"</span>), tz=<span class='st'>"GMT"</span>)
 
 <span class='co'>## if there are problems in the data, this will error</span>
-<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"seal"</span>))
+<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'>trip</span>(<span class='kw'>dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"seal"</span>))
 
 <span class='co'>## the following code tries to fix common problems</span>
 
 <span class='co'>## remove completely-duplicated rows</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>dat</span>[!<span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span>(<span class='no'>dat</span>), ]
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='kw'>dat</span>[<span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span>(<span class='kw'>dat</span>), ]
 <span class='co'>## order the rows by seal, then by time</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='no'>dat</span>[<span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span>(<span class='no'>dat</span>$<span class='no'>seal</span>, <span class='no'>dat</span>$<span class='no'>gmt</span>), ]
+<span class='kw'>dat</span> <span class='op'>&lt;-</span> <span class='kw'>dat</span>[<span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span>(<span class='kw'>dat</span><span class='op'>$</span><span class='kw'>seal</span>, <span class='kw'>dat</span><span class='op'>$</span><span class='kw'>gmt</span>), ]
 <span class='co'>## fudge duplicated times</span>
-<span class='no'>dat</span>$<span class='no'>gmt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='adjust.duplicateTimes.html'>adjust.duplicateTimes</a></span>(<span class='no'>dat</span>$<span class='no'>gmt</span>, <span class='no'>dat</span>$<span class='no'>seal</span>)
+<span class='kw'>dat</span><span class='op'>$</span><span class='kw'>gmt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='adjust.duplicateTimes.html'>adjust.duplicateTimes</a></span>(<span class='kw'>dat</span><span class='op'>$</span><span class='kw'>gmt</span>, <span class='kw'>dat</span><span class='op'>$</span><span class='kw'>seal</span>)
 
 <span class='co'>## finally, convert to Spatial and create trip object</span>
-<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>dat</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"long"</span>, <span class='st'>"lat"</span>)
-<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>trip</span>(<span class='no'>dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"seal"</span>))
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>dat</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"long"</span>, <span class='st'>"lat"</span>)
+<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'>trip</span>(<span class='kw'>dat</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"seal"</span>))
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

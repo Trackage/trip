@@ -73,7 +73,7 @@ time slider." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
       </span>
     </div>
 
@@ -138,14 +138,14 @@ time slider.</p>
     </div>
 
     <pre class="usage"><span class='fu'>write_track_kml</span>(
-  <span class='no'>id</span>,
-  <span class='no'>lon</span>,
-  <span class='no'>lat</span>,
-  <span class='no'>utc</span>,
-  <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>kml_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".kmz"</span>),
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>altitude_mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"absolute"</span>, <span class='st'>"clampToGround"</span>, <span class='st'>"clampToSeaFloor"</span>, <span class='st'>"relativeToGround"</span>,
+  <span class='kw'>id</span>,
+  <span class='kw'>lon</span>,
+  <span class='kw'>lat</span>,
+  <span class='kw'>utc</span>,
+  z = <span class='kw'>NULL</span>,
+  kml_file = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(fileext = <span class='st'>".kmz"</span>),
+  name = <span class='kw'>NULL</span>,
+  altitude_mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"absolute"</span>, <span class='st'>"clampToGround"</span>, <span class='st'>"clampToSeaFloor"</span>, <span class='st'>"relativeToGround"</span>,
     <span class='st'>"relativeToSeaFloor"</span>)
 )</pre>
 
@@ -208,10 +208,10 @@ Google Earth, the data loads into the browser version but can't be interactive.<
 adapted by M. Sumner for use in continuous-time form.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>kfile</span> <span class='kw'>&lt;-</span> <span class='fu'>write_track_kml</span>(<span class='no'>walrus818</span>[<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>5</span>), ])
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>kfile</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>kfile</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>kfile</span> <span class='op'>&lt;-</span> <span class='fu'>write_track_kml</span>(<span class='kw'>walrus818</span>[<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>, by = <span class='fl'>5</span>), ])
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>kfile</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>kfile</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

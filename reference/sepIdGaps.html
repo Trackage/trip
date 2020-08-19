@@ -74,7 +74,7 @@ instruments identified only by their ID into separate events in time." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@ minimum gap in another set of data. This is useful for separating
 instruments identified only by their ID into separate events in time.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sepIdGaps</span>(<span class='no'>id</span>, <span class='no'>gapdata</span>, <span class='kw'>minGap</span> <span class='kw'>=</span> <span class='fl'>3600</span> * <span class='fl'>24</span> * <span class='fl'>7</span>)</pre>
+    <pre class="usage"><span class='fu'>sepIdGaps</span>(<span class='kw'>id</span>, <span class='kw'>gapdata</span>, minGap = <span class='fl'>3600</span> <span class='op'>*</span> <span class='fl'>24</span> <span class='op'>*</span> <span class='fl'>7</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,12 +181,11 @@ used on ID columns within existing, validated <code>trip</code> objects.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>8</span>)
-<span class='no'>gd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>16</span>
-<span class='no'>gd</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>:<span class='fl'>6</span>, <span class='fl'>12</span>:<span class='fl'>16</span>)] <span class='kw'>&lt;-</span> <span class='no'>gd</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>:<span class='fl'>6</span>, <span class='fl'>12</span>:<span class='fl'>16</span>)] + <span class='fl'>10000</span>
-<span class='fu'>sepIdGaps</span>(<span class='no'>id</span>, <span class='no'>gd</span>, <span class='fl'>1000</span>)</div><div class='output co'>#&gt;  [1] "1"   "1"   "1"   "1_2" "1_2" "1_2" "1_2" "1_2" "2"   "2"   "2"   "2_2"
+<span class='kw'>id</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>8</span>)
+<span class='kw'>gd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>16</span>
+<span class='kw'>gd</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>12</span><span class='op'>:</span><span class='fl'>16</span>)] <span class='op'>&lt;-</span> <span class='kw'>gd</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>12</span><span class='op'>:</span><span class='fl'>16</span>)] <span class='op'>+</span> <span class='fl'>10000</span>
+<span class='fu'>sepIdGaps</span>(<span class='kw'>id</span>, <span class='kw'>gd</span>, <span class='fl'>1000</span>)</div><div class='output co'>#&gt;  [1] "1"   "1"   "1"   "1_2" "1_2" "1_2" "1_2" "1_2" "2"   "2"   "2"   "2_2"
 #&gt; [13] "2_2" "2_2" "2_2" "2_2"</div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

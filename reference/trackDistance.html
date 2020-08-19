@@ -73,7 +73,7 @@ or Great Circle distance (WGS84 ellipsoid) methods." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ or Great Circle distance (WGS84 ellipsoid) methods." />
 or Great Circle distance (WGS84 ellipsoid) methods.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>trackDistance</span>(<span class='no'>x1</span>, <span class='no'>y1</span>, <span class='no'>x2</span>, <span class='no'>y2</span>, <span class='kw'>longlat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>trackDistance</span>(<span class='kw'>x1</span>, <span class='kw'>y1</span>, <span class='kw'>x2</span>, <span class='kw'>y2</span>, longlat = <span class='fl'>TRUE</span>, prev = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,27 +189,27 @@ is FALSE, and in kilometres when longlat is TRUE.</p>
 see the geodist package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>), <span class='kw'>tms</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() + <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> ~<span class='no'>x</span>+<span class='no'>y</span>
+    <pre class="examples"><div class='input'> <span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x=<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y=<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>), tms=<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, id=<span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
+<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='op'>~</span><span class='kw'>x</span><span class='op'>+</span><span class='kw'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span>(<span class='no'>d</span>) <span class='kw'>&lt;-</span> <span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>, <span class='kw'>doCheckCRSArgs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='no'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
+<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>, doCheckCRSArgs = <span class='fl'>FALSE</span>)
+<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='kw'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
 
  <span class='co'>## the method knows this is a trip, so there is a distance for every</span>
  <span class='co'>## point, including 0s as the start and at transitions between</span>
  <span class='co'>## individual trips</span>
-<span class='fu'>trackDistance</span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt;       11      1.2      1.3      1.4      1.5       21      2.7      2.8 
-#&gt; 0.000000 3.029634 1.852694 1.140157 1.148097 0.000000 1.035426 1.000828 
+<span class='fu'>trackDistance</span>(<span class='kw'>tr</span>)</div><div class='output co'>#&gt;       11      1.2      1.3      1.4      1.5       21      2.7      2.8 
+#&gt; 0.000000 1.807158 3.199252 4.543217 2.088737 0.000000 1.062335 1.675079 
 #&gt;      2.9     2.10 
-#&gt; 1.000309 1.013384 </div><div class='input'>
+#&gt; 1.036348 1.178340 </div><div class='input'>
 <span class='co'>## the default method does not know about the trips, so this is</span>
 <span class='co'>##(n-1) distances between all points</span>
 <span class='co'>## trackDistance(coordinates(tr), longlat = FALSE)</span>
 
 <span class='co'>## we get NA at the start, end and at transitions between trips</span>
 
- <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='no'>angles</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='trackAngle.html'>trackAngle</a></span>(<span class='no'>walrus818</span>)
+ <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+ <span class='kw'>angles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trackAngle.html'>trackAngle</a></span>(<span class='kw'>walrus818</span>)
  }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

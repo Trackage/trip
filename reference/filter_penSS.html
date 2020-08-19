@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
     <p>Non-destructive filter for track data using penalty smoothing on velocity.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_penSS</span>(<span class='no'>tr</span>, <span class='no'>lambda</span>, <span class='kw'>first</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_penSS</span>(<span class='kw'>tr</span>, <span class='kw'>lambda</span>, first = <span class='fl'>TRUE</span>, last = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,44 +193,43 @@ generalized linear models: a roughness penalty approach. CRC Press.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='co'>## Example takes a few minutes</span>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='co'>## Example takes a few minutes</span>
 
 <span class='co'>## Fake some data</span>
 
 <span class='co'>## Brownian motion tethered at each end</span>
-<span class='no'>brownian.bridge</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>n</span>, <span class='no'>r</span>) {
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>))
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> - (<span class='no'>x</span>[<span class='fl'>1</span>] + <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='no'>n</span>) * (<span class='no'>x</span>[<span class='no'>n</span>] - <span class='no'>x</span>[<span class='fl'>1</span>]))
-  <span class='no'>r</span> * <span class='no'>x</span>
+<span class='kw'>brownian.bridge</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>n</span>, <span class='kw'>r</span>) {
+  <span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span>, <span class='fl'>0</span>, <span class='fl'>1</span>))
+  <span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='kw'>x</span> <span class='op'>-</span> (<span class='kw'>x</span>[<span class='fl'>1</span>] <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, length=<span class='kw'>n</span>) <span class='op'>*</span> (<span class='kw'>x</span>[<span class='kw'>n</span>] <span class='op'>-</span> <span class='kw'>x</span>[<span class='fl'>1</span>]))
+  <span class='kw'>r</span> <span class='op'>*</span> <span class='kw'>x</span>
 }
 
 <span class='co'>## Number of days and number of obs</span>
-<span class='no'>days</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>200</span>
+<span class='kw'>days</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>
+<span class='kw'>n</span> <span class='op'>&lt;-</span> <span class='fl'>200</span>
 
 <span class='co'>## Make separation between obs gamma distributed</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/GammaDist.html'>rgamma</a></span>(<span class='no'>n</span>, <span class='fl'>3</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span>(<span class='no'>x</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>/<span class='no'>x</span>[<span class='no'>n</span>]
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/GammaDist.html'>rgamma</a></span>(<span class='kw'>n</span>, <span class='fl'>3</span>)
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span>(<span class='kw'>x</span>)
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='kw'>x</span><span class='op'>/</span><span class='kw'>x</span>[<span class='kw'>n</span>]
 
 <span class='co'>## Track is lissajous + brownian bridge</span>
-<span class='no'>b.scale</span> <span class='kw'>&lt;-</span> <span class='fl'>0.6</span>
-<span class='no'>r.scale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>2</span>, <span class='fl'>10.2</span>), <span class='no'>n</span>, <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
-                  <span class='kw'>prob</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.18</span>, <span class='fl'>0.02</span>))
+<span class='kw'>b.scale</span> <span class='op'>&lt;-</span> <span class='fl'>0.6</span>
+<span class='kw'>r.scale</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>2</span>, <span class='fl'>10.2</span>), <span class='kw'>n</span>, replace=<span class='fl'>TRUE</span>,
+                  prob=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.18</span>, <span class='fl'>0.02</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>44</span>)
 
-<span class='no'>tms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2001</span>, <span class='fl'>1</span>, <span class='fl'>1</span>) + <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>trunc</a></span>(<span class='no'>days</span> * <span class='fl'>24</span> * <span class='fl'>60</span> * <span class='fl'>60</span> *<span class='no'>x</span>)
-<span class='no'>lon</span> <span class='kw'>&lt;-</span> <span class='fl'>120</span> + <span class='fl'>20</span> * <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>(<span class='fl'>2</span> * <span class='no'>pi</span> * <span class='no'>x</span>) +
-    <span class='fu'>brownian.bridge</span>(<span class='no'>n</span>, <span class='no'>b.scale</span>) + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='no'>r.scale</span>)</div><div class='output co'>#&gt; <span class='error'>Error in brownian.bridge(n, b.scale): could not find function "brownian.bridge"</span></div><div class='input'><span class='no'>lat</span> <span class='kw'>&lt;-</span> -<span class='fl'>40</span> + <span class='fl'>10</span> *(<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>(<span class='fl'>3</span> * <span class='fl'>2</span> * <span class='no'>pi</span> * <span class='no'>x</span>) + <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='fl'>2</span> * <span class='no'>pi</span> * <span class='no'>x</span>) - <span class='fl'>1</span>) +
-    <span class='fu'>brownian.bridge</span>(<span class='no'>n</span>, <span class='no'>b.scale</span>) + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>, <span class='fl'>0</span>, <span class='no'>r.scale</span>)</div><div class='output co'>#&gt; <span class='error'>Error in brownian.bridge(n, b.scale): could not find function "brownian.bridge"</span></div><div class='input'>
-<span class='no'>tr</span> <span class='kw'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"trip"</span>,
-          <span class='fu'>SpatialPointsDataFrame</span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>lon</span>, <span class='no'>lat</span>),
-                                 <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>gmt</span><span class='kw'>=</span><span class='no'>tms</span>, <span class='kw'>id</span><span class='kw'>=</span><span class='st'>"lbb"</span>)),
-                                 <span class='fu'><a href='TimeOrderedRecords.html'>TimeOrderedRecords</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; <span class='error'>Error in cbind(lon, lat): object 'lon' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'tr' not found</span></div><div class='input'>
+<span class='kw'>tms</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ISOdatetime.html'>ISOdate</a></span>(<span class='fl'>2001</span>, <span class='fl'>1</span>, <span class='fl'>1</span>) <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>trunc</a></span>(<span class='kw'>days</span> <span class='op'>*</span> <span class='fl'>24</span> <span class='op'>*</span> <span class='fl'>60</span> <span class='op'>*</span> <span class='fl'>60</span> <span class='op'>*</span><span class='kw'>x</span>)
+<span class='kw'>lon</span> <span class='op'>&lt;-</span> <span class='fl'>120</span> <span class='op'>+</span> <span class='fl'>20</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>(<span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>pi</span> <span class='op'>*</span> <span class='kw'>x</span>) <span class='op'>+</span>
+    <span class='fu'>brownian.bridge</span>(<span class='kw'>n</span>, <span class='kw'>b.scale</span>) <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span>, <span class='fl'>0</span>, <span class='kw'>r.scale</span>)</div><div class='output co'>#&gt; <span class='error'>Error in brownian.bridge(n, b.scale): could not find function "brownian.bridge"</span></div><div class='input'><span class='kw'>lat</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>40</span> <span class='op'>+</span> <span class='fl'>10</span> <span class='op'>*</span>(<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>(<span class='fl'>3</span> <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>pi</span> <span class='op'>*</span> <span class='kw'>x</span>) <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>pi</span> <span class='op'>*</span> <span class='kw'>x</span>) <span class='op'>-</span> <span class='fl'>1</span>) <span class='op'>+</span>
+    <span class='fu'>brownian.bridge</span>(<span class='kw'>n</span>, <span class='kw'>b.scale</span>) <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span>, <span class='fl'>0</span>, <span class='kw'>r.scale</span>)</div><div class='output co'>#&gt; <span class='error'>Error in brownian.bridge(n, b.scale): could not find function "brownian.bridge"</span></div><div class='input'>
+<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"trip"</span>,
+          <span class='fu'>SpatialPointsDataFrame</span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='kw'>lon</span>, <span class='kw'>lat</span>),
+                                 <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(gmt=<span class='kw'>tms</span>, id=<span class='st'>"lbb"</span>)),
+                                 <span class='fu'><a href='TimeOrderedRecords.html'>TimeOrderedRecords</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"gmt"</span>, <span class='st'>"id"</span>)))</div><div class='output co'>#&gt; <span class='error'>Error in cbind(lon, lat): object 'lon' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>tr</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'tr' not found</span></div><div class='input'>
 <span class='co'>## the filtered version</span>
-<span class='no'>trf</span> <span class='kw'>&lt;-</span> <span class='fu'>filter.penSS</span>(<span class='no'>tr</span>, <span class='kw'>lambda</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>iterlim</span><span class='kw'>=</span><span class='fl'>400</span>, <span class='kw'>print.level</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in filter.penSS(tr, lambda = 1, iterlim = 400, print.level = 1): could not find function "filter.penSS"</span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>trf</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'lines': object 'trf' not found</span></div><div class='input'>
-
+<span class='kw'>trf</span> <span class='op'>&lt;-</span> <span class='fu'>filter.penSS</span>(<span class='kw'>tr</span>, lambda=<span class='fl'>1</span>, iterlim=<span class='fl'>400</span>, print.level=<span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in filter.penSS(tr, lambda = 1, iterlim = 400, print.level = 1): could not find function "filter.penSS"</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='kw'>trf</span>)</div><div class='output co'>#&gt; <span class='error'>Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'lines': object 'trf' not found</span></div><div class='input'>
 
 
 </div></pre>
