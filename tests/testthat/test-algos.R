@@ -39,8 +39,7 @@ test_that("angle calculation works", {
 
   tra1 <- tra[1:5, ]
   tra1@coords <- cbind(1:5, 0)
-  ## we trigger the "all 180"
- expect_warning( expect_equal(unname(trackAngle(tra1)), c(NA, 180, 180, 180, NA)))
+
 })
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 sp::coordinates(d) <- ~x+y
