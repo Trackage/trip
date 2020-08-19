@@ -1,3 +1,9 @@
+# trip dev
+
+* New function `interp_equal()` for intermediate points by distance or duration. 
+
+* Fixed spurious warnings in tests, thanks to Roger Bivand #45. 
+
 # trip 1.7.1
 
 * Fixed documentation cross-references to sp topic, thanks to CRAN. 

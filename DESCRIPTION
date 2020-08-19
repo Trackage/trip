@@ -6,7 +6,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     person("Sebastian", "Luque", role = "ctb"), 
     person("Anthony", "Fischbach", role = "ctb"),
     person("Tomislav", "Hengl", role = "ctb"))
-Version: 1.7.1.9001
+Version: 1.7.1.9002
 Depends:
     R (>= 3.3.0)
 Imports:
@@ -21,11 +21,11 @@ Imports:
     glue,
     viridis,
     traipse,
-    crsmeta
+    crsmeta,
+    dplyr
 Suggests:
     adehabitatLT,
     knitr,
-    dplyr,
     testthat,
     covr,
     rmarkdown,
