@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Walrus tracking data set. — walrus818 • trip</title>
+<title>Track intermediate points — interp_equal • trip</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Walrus tracking data set. — walrus818" />
-<meta property="og:description" content="Behavior of Pacific Walruses Tracked from the Alaska Coast of the Chukchi Sea." />
+<meta property="og:title" content="Track intermediate points — interp_equal" />
+<meta property="og:description" content="Calculate great circle intermediate points on longitude, latitude input vectors. A spherical model is used, from the geosphere package." />
 
 
 
@@ -126,31 +126,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Walrus tracking data set.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Trackage/trip/blob/master/R/trip-package.R'><code>R/trip-package.R</code></a></small>
-    <div class="hidden name"><code>walrus818.Rd</code></div>
+    <h1>Track intermediate points</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Trackage/trip/blob/master/R/interp_equal.R'><code>R/interp_equal.R</code></a></small>
+    <div class="hidden name"><code>interp_equal.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Behavior of Pacific Walruses Tracked from the Alaska Coast of the Chukchi Sea.</p>
+    <p>Calculate great circle intermediate points on longitude, latitude input vectors. A spherical model is used, from the geosphere package.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>interp_equal</span>(<span class='kw'>x</span>, distance = <span class='kw'>NULL</span>, duration = <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>trip object</p></td>
+    </tr>
+    <tr>
+      <th>distance</th>
+      <td><p>optional minimum distance (metres) between interpolated points</p></td>
+    </tr>
+    <tr>
+      <th>duration</th>
+      <td><p>optional minimum duration (seconds) between interpolated points</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Data set is provided as a 'trip' object. This is the abstract for the work:</p>
-<p>"We tracked movements and haulout foraging behavior of walruses instrumented with
-satellite-linked data loggers from the Alaskan shores of the Chukchi Sea during the
-autumn of 2009 (n=13) and 2010 (n=2)."
-Jay, C. V. and Fischbach, A.S.</p>
+    <p>For the result to be sensible, the input must either be in longitude/latitude, or be in a projection and have a valid CRS. Great
+circle movement is assumed, there's no way to use this to interpolate equal-distance in the native projection.</p>
+<p>If no input <code>distance</code> or <code>duration</code> is provided a default is used of 15 points between each input point.</p>
+<p>if both <code>distance</code> AND <code>duration</code> is provided, <code>distance</code> is ignored.</p>
+<p>Note, the original implementation of this function was called 'interpequal()', and was used originaly for time spent
+calculations. The functionality is now provided by the traipse package.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>walrus818</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span>(<span class='kw'>walrus818</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='kw'>walrus818</span>)</div><div class='img'><img src='walrus818-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>##dontdoanything</span>
-<span class='co'>## library(mapview)</span>
-<span class='co'>##mapview(as(walrus818, "SpatialLinesDataFrame"), burst = TRUE)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

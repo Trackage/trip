@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1 data-toc-skip>The trip package</h1>
                         <h4 class="author">Michael Sumner</h4>
             
-            <h4 class="date">2020-08-19</h4>
+            <h4 class="date">2020-08-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Trackage/trip/blob/master/vignettes/trip.Rmd"><code>vignettes/trip.Rmd</code></a></small>
       <div class="hidden name"><code>trip.Rmd</code></div>
@@ -122,11 +122,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-## 1             1          5 2020-08-19 07:19:42 2020-08-19 07:19:46       4 secs
-## 2             2          5 2020-08-19 07:19:47 2020-08-19 07:19:51       4 secs
+## 1             1          5 2020-08-20 20:44:41 2020-08-20 20:44:45       4 secs
+## 2             2          5 2020-08-20 20:44:46 2020-08-20 20:44:50       4 secs
 ##   tripDistance meanSpeed maxSpeed
-## 1     634.7245  571252.0 924375.4
-## 2     643.4580  579112.2 659554.8
+## 1     703.0594  632753.5 955597.9
+## 2     594.0308  534627.7 719215.5
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -134,20 +134,20 @@
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##        min      max
-## x  1.00000 10.00000
-## y -1.25253  1.04065
+##        min       max
+## x  1.00000 10.000000
+## y -1.99132  1.196811
 ## Is projected: FALSE 
 ## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2020-08-19 07:19:42   1:5  
-##  1st Qu.:2020-08-19 07:19:44   2:5  
-##  Median :2020-08-19 07:19:46        
-##  Mean   :2020-08-19 07:19:46        
-##  3rd Qu.:2020-08-19 07:19:48        
-##  Max.   :2020-08-19 07:19:51</code></pre>
+##  Min.   :2020-08-20 20:44:41   1:5  
+##  1st Qu.:2020-08-20 20:44:44   2:5  
+##  Median :2020-08-20 20:44:46        
+##  Mean   :2020-08-20 20:44:46        
+##  3rd Qu.:2020-08-20 20:44:48        
+##  Max.   :2020-08-20 20:44:50</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
