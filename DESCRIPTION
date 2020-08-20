@@ -22,7 +22,8 @@ Imports:
     viridis,
     traipse,
     crsmeta,
-    dplyr
+    dplyr,
+    rlang
 Suggests:
     adehabitatLT,
     knitr,

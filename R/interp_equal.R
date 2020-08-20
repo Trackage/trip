@@ -34,7 +34,8 @@ interp_equal <- function(x, distance = NULL, duration = NULL) {
   xx <- data.frame(x = xy[,1L], y = xy[,2L],
                    time = x[[cl[1L]]], id = x[[cl[2L]]])
   xx1 <- dplyr::mutate(dplyr::group_by(xx, rlang::.data$id),
-                       inter = traipse::track_intermediate(x, y, time, distance = distance, duration = duration))
+                       inter = traipse::track_intermediate(.data$x, .data$y, .data$time,
+                                                           distance = distance, duration = duration))
 
   outid <- rep(xx1[["id"]],  unlist(lapply(xx1[["inter"]], function(df) dim(df)[1L])))
   out <- do.call(rbind, xx1[["inter"]])
