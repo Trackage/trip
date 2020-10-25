@@ -72,19 +72,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/trip.html">Get started</a>
 </li>
 <li>
@@ -158,16 +152,17 @@
     <p>RasterLayer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x=<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y=<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>), tms=<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>() <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, id=<span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span>(<span class='fl'>2</span>, <span class='fl'>5</span>))
-<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='op'>~</span><span class='kw'>x</span><span class='op'>+</span><span class='kw'>y</span>
+    <pre class="examples"><div class='input'> <span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, tms<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, id<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='op'>~</span><span class='va'>x</span><span class='op'>+</span><span class='va'>y</span>
 <span class='co'>## this avoids complaints later, but these are not real track data (!)</span>
-<span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span>(<span class='kw'>d</span>) <span class='op'>&lt;-</span> <span class='kw'>sp</span>::<span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span>(<span class='st'>"+proj=laea +ellps=sphere"</span>, doCheckCRSArgs = <span class='fl'>FALSE</span>)
-<span class='kw'>tr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span>(<span class='kw'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tms"</span>, <span class='st'>"id"</span>))
+<span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/is.projected.html'>proj4string</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>sp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/CRS-class.html'>CRS</a></span><span class='op'>(</span><span class='st'>"+proj=laea +ellps=sphere"</span>, doCheckCRSArgs <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>tr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='trip-methods.html'>trip</a></span><span class='op'>(</span><span class='va'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"tms"</span>, <span class='st'>"id"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='kw'>tr</span><span class='op'>$</span><span class='kw'>temp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>tr</span>)))
-<span class='kw'>r</span> <span class='op'>&lt;-</span> <span class='fu'>rasterize</span>(<span class='kw'>tr</span>)
+<span class='va'>tr</span><span class='op'>$</span><span class='va'>temp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>tr</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span><span class='op'>)</span>
 
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, grid = <span class='kw'>r</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, grid <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; class      : RasterLayer 
 #&gt; dimensions : 100, 100, 10000  (nrow, ncol, ncell)
 #&gt; resolution : 0.09090909, 0.02793937  (x, y)
 #&gt; extent     : 0.9545455, 10.04545, -1.863474, 0.9304629  (xmin, xmax, ymin, ymax)
@@ -175,7 +170,8 @@
 #&gt; source     : memory
 #&gt; names      : layer 
 #&gt; values     : 0, 0.04400829  (min, max)
-#&gt; </div><div class='input'><span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r</span>, field = <span class='st'>"temp"</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
+#&gt; </div><div class='input'><span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r</span>, field <span class='op'>=</span> <span class='st'>"temp"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; class      : RasterLayer 
 #&gt; dimensions : 100, 100, 10000  (nrow, ncol, ncell)
 #&gt; resolution : 0.09090909, 0.02793937  (x, y)
 #&gt; extent     : 0.9545455, 10.04545, -1.863474, 0.9304629  (xmin, xmax, ymin, ymax)
@@ -183,23 +179,24 @@
 #&gt; source     : memory
 #&gt; names      : layer 
 #&gt; values     : 0.007792683, 0.2859739  (min, max)
-#&gt; </div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, method = <span class='st'>"density"</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, method = <span class='st'>"density"</span>, grid = <span class='kw'>r</span>)
+#&gt; </div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, method <span class='op'>=</span> <span class='st'>"density"</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, method <span class='op'>=</span> <span class='st'>"density"</span>, grid <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
 
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r</span>, field = <span class='st'>"tms"</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r</span>)
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r</span>, field <span class='op'>=</span> <span class='st'>"tms"</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r</span><span class='op'>)</span>
 
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://rspatial.org/raster'>raster</a></span>)
-<span class='kw'>r2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/aggregate.html'>aggregate</a></span>(<span class='kw'>r</span>, fact = <span class='fl'>4</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, grid = <span class='kw'>r2</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, method = <span class='st'>"density"</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, method = <span class='st'>"density"</span>, grid = <span class='kw'>r2</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r2</span>, field = <span class='st'>"temp"</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r2</span>, field = <span class='st'>"tms"</span>)
-<span class='fu'>rasterize</span>(<span class='kw'>tr</span>, <span class='kw'>r2</span>)
-}
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span>
+<span class='va'>r2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>r</span>, fact <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, grid <span class='op'>=</span> <span class='va'>r2</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, method <span class='op'>=</span> <span class='st'>"density"</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, method <span class='op'>=</span> <span class='st'>"density"</span>, grid <span class='op'>=</span> <span class='va'>r2</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r2</span>, field <span class='op'>=</span> <span class='st'>"temp"</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r2</span>, field <span class='op'>=</span> <span class='st'>"tms"</span><span class='op'>)</span>
+<span class='fu'>rasterize</span><span class='op'>(</span><span class='va'>tr</span>, <span class='va'>r2</span><span class='op'>)</span>
+<span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -216,7 +213,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

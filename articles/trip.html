@@ -31,18 +31,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/trip.html">Get started</a>
 </li>
@@ -82,13 +76,14 @@
 
       
 
-      </header><script src="trip_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="trip_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="trip_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="trip_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The trip package</h1>
                         <h4 class="author">Michael Sumner</h4>
             
-            <h4 class="date">2020-08-20</h4>
+            <h4 class="date">2020-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Trackage/trip/blob/master/vignettes/trip.Rmd"><code>vignettes/trip.Rmd</code></a></small>
       <div class="hidden name"><code>trip.Rmd</code></div>
@@ -110,23 +105,21 @@
 <p>Commonly we have records in a data frame, and the primary workflow is to provide the <code><a href="../reference/trip-methods.html">trip()</a></code> function with information about the spatial locations, the temporal data, and the grouping.</p>
 <p>The data may contain any other columns, and in general they can be called anything and be in any order, but the simplest way to create a <code>trip</code> is to put the first four columns as X, Y, date-time, grouping.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/Trackage/trip">trip</a></span>)
-<span class="kw">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(x=<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,y=<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>), tms=<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span>() <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, id=<span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span>(<span class="fl">2</span>, <span class="fl">5</span>))
-<span class="kw">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trip-methods.html">trip</a></span>(<span class="kw">d</span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Trackage/trip">trip</a></span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, tms<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, id<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/gl.html">gl</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trip-methods.html">trip</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></pre></div>
 <pre><code>## Warning in assume_if_longlat(out): input looks like longitude/latitude data,
 ## assuming +proj=longlat +datum=WGS84</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">tr</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-## 1             1          5 2020-08-20 20:44:41 2020-08-20 20:44:45       4 secs
-## 2             2          5 2020-08-20 20:44:46 2020-08-20 20:44:50       4 secs
+## 1             1          5 2020-10-25 10:11:49 2020-10-25 10:11:53       4 secs
+## 2             2          5 2020-10-25 10:11:54 2020-10-25 10:11:58       4 secs
 ##   tripDistance meanSpeed maxSpeed
-## 1     703.0594  632753.5 955597.9
-## 2     594.0308  534627.7 719215.5
+## 1     570.1503  513135.3 640174.5
+## 2     821.9470  739752.3 997052.8
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -134,20 +127,20 @@
 ## 
 ## Object of class SpatialPointsDataFrame
 ## Coordinates:
-##        min       max
-## x  1.00000 10.000000
-## y -1.99132  1.196811
+##         min       max
+## x  1.000000 10.000000
+## y -2.000422  1.779659
 ## Is projected: FALSE 
 ## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2020-08-20 20:44:41   1:5  
-##  1st Qu.:2020-08-20 20:44:44   2:5  
-##  Median :2020-08-20 20:44:46        
-##  Mean   :2020-08-20 20:44:46        
-##  3rd Qu.:2020-08-20 20:44:48        
-##  Max.   :2020-08-20 20:44:50</code></pre>
+##  Min.   :2020-10-25 10:11:49   1:5  
+##  1st Qu.:2020-10-25 10:11:51   2:5  
+##  Median :2020-10-25 10:11:53        
+##  Mean   :2020-10-25 10:11:53        
+##  3rd Qu.:2020-10-25 10:11:56        
+##  Max.   :2020-10-25 10:11:58</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
@@ -157,15 +150,13 @@
 <a href="#simple-plotting" class="anchor"></a>Simple plotting</h1>
 <p>To plot a trip we use base graphics in the usual ways.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">tr</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">tr</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>The trip object acts as a <code>sp</code> data frame of points, but with the underlying grouping as lines when that is relevant.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">tr</span>,pch = <span class="st">"."</span>, col = <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span>(<span class="kw">tr</span>)))
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">tr</span>, col = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dodgerblue"</span>, <span class="st">"firebrick"</span>))
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tr</span>,pch <span class="op">=</span> <span class="st">"."</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">tr</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dodgerblue"</span>, <span class="st">"firebrick"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="gridding-for-time-spent" class="section level1">
@@ -173,9 +164,8 @@
 <a href="#gridding-for-time-spent" class="anchor"></a>Gridding for time spent</h1>
 <p>There is a key functionality to determine the <em>time spent in area</em> on a grid, by leveraging the <code><a href="../reference/rasterize.html">rasterize()</a></code> generic function in the raster package. Any raster object may be used, so the specification of pixel area, extent and map projection is up to the user. (The trip line segments must all fall within the raster).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">tg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rasterize.html">rasterize</a></span>(<span class="kw">tr</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">tg</span>, col = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"transparent"</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">heat.colors</a></span>(<span class="fl">25</span>)))
-</pre></div>
+<span class="va">tg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rasterize.html">rasterize</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tg</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">heat.colors</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>As with <code><a href="https://rdrr.io/pkg/raster/man/rasterize.html">raster::rasterize()</a></code> the <code>field</code> used may be chosen, by default the time difference between each point in a trip is used, and the final grid contains the sum of these durations.</p>
 <p>There is an older version of this in the <code>tripGrid.interp</code> function that uses approximate methods by allowing interpolation to an ‘equal time’ step.</p>
@@ -185,10 +175,9 @@
 <a href="#reading-from-argos-files" class="anchor"></a>Reading from Argos files</h1>
 <p>Service Argos has provide various message formats, and the <code><a href="../reference/readArgos.html">readArgos()</a></code> function understands some variants of the ‘PRV’ form. Multiple files can be provided, and all messages will be normalized and turned into a trip object with no need for the user to group or clean them in any way.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">argosfile</span> <span class="op">&lt;-</span> 
- <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/argos/98feb.dat"</span>, package = <span class="st">"trip"</span>, mustWork = <span class="fl">TRUE</span>)
-<span class="kw">argos</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readArgos.html">readArgos</a></span>(<span class="kw">argosfile</span>) 
-</pre></div>
+<span class="va">argosfile</span> <span class="op">&lt;-</span> 
+ <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/argos/98feb.dat"</span>, package <span class="op">=</span> <span class="st">"trip"</span>, mustWork <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">argos</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readArgos.html">readArgos</a></span><span class="op">(</span><span class="va">argosfile</span><span class="op">)</span> </pre></div>
 <pre><code>## 
 ## Longitudes contain values greater than 180, 
 ## 
@@ -197,8 +186,7 @@
 ## 
 ##  Data fully validated: returning object of class  trip</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">argos</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">argos</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Object of class trip
 ##    tripID ("ptt") No.Records   startTime ("gmt")     endTime ("gmt")
@@ -272,12 +260,11 @@
 <p>Note that the form of the coordinates is native to the PRV file, and in this case contains longitude values that are greater than 180. Some forms of these files provide wrapped forms, but in general the data are read as-is.</p>
 <p>(We need “world2” because we are at 40W, but +360).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">argos</span>, pch = <span class="st">"."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">argos</span>)
-<span class="kw">maps</span>::<span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html">map</a></span>(<span class="st">"world2"</span>, add = <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">1</span>)
-<span class="kw">sp</span>::<span class="fu"><a href="https://rdrr.io/pkg/sp/man/degaxis.html">degAxis</a></span>(<span class="fl">2</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">argos</span>, pch <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">argos</span><span class="op">)</span>
+<span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html">map</a></span><span class="op">(</span><span class="st">"world2"</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/degaxis.html">degAxis</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/plot-argos-anti-meridian-1.png" width="700"></p>
 </div>
 <div id="destructive-filtering" class="section level1">
@@ -285,24 +272,20 @@
 <a href="#destructive-filtering" class="anchor"></a>Destructive filtering</h1>
 <p>There are some classic data filters based on speed and angle, and we may chain these together for some cheap improvements to track data, or use them separately.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw">argos</span><span class="op">$</span><span class="kw">spd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/speedfilter.html">speedfilter</a></span>(<span class="kw">argos</span>, max.speed = <span class="fl">4</span>)  <span class="co">## km/h</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">argos</span><span class="op">$</span><span class="kw">spd</span>)  <span class="co">## more than 5% are too fast</span>
-</pre></div>
+<span class="va">argos</span><span class="op">$</span><span class="va">spd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/speedfilter.html">speedfilter</a></span><span class="op">(</span><span class="va">argos</span>, max.speed <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>  <span class="co">## km/h</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">argos</span><span class="op">$</span><span class="va">spd</span><span class="op">)</span>  <span class="co">## more than 5% are too fast</span></pre></div>
 <pre><code>## [1] 0.748503</code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">argos</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">argos</span>[<span class="kw">argos</span><span class="op">$</span><span class="kw">spd</span> <span class="op">&amp;</span> <span class="kw">argos</span><span class="op">$</span><span class="kw">class</span> <span class="op">&gt;</span> <span class="st">"A"</span>, ])
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">argos</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">argos</span><span class="op">[</span><span class="va">argos</span><span class="op">$</span><span class="va">spd</span> <span class="op">&amp;</span> <span class="va">argos</span><span class="op">$</span><span class="va">class</span> <span class="op">&gt;</span> <span class="st">"A"</span>, <span class="op">]</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/destructive-filters-1.png" width="700"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw">argos</span><span class="op">$</span><span class="kw">sda</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sda.html">sda</a></span>(<span class="kw">argos</span>, smax = <span class="fl">12</span>)  <span class="co">## defaults based on argosfilter, Freitas et al. (2008) </span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">argos</span><span class="op">$</span><span class="kw">sda</span>)
-</pre></div>
+<span class="va">argos</span><span class="op">$</span><span class="va">sda</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sda.html">sda</a></span><span class="op">(</span><span class="va">argos</span>, smax <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>  <span class="co">## defaults based on argosfilter, Freitas et al. (2008) </span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">argos</span><span class="op">$</span><span class="va">sda</span><span class="op">)</span></pre></div>
 <pre><code>## [1] 0.8687625</code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">argos</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">argos</span>[<span class="kw">argos</span><span class="op">$</span><span class="kw">sda</span>, ])
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">argos</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">argos</span><span class="op">[</span><span class="va">argos</span><span class="op">$</span><span class="va">sda</span>, <span class="op">]</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/destructive-filters-2.png" width="700"></p>
 </div>
 <div id="map-projections" class="section level1">
@@ -310,31 +293,27 @@
 <a href="#map-projections" class="anchor"></a>Map projections</h1>
 <p>Data may be stored in longitude latitude or using a map projection, an in-built data set uses the Azimuthal Equidistant family near the anti-meridian in the Bering Strait.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="kw">raster</span>::<span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span>(<span class="kw">walrus818</span>)
-</pre></div>
+<span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span><span class="op">(</span><span class="va">walrus818</span><span class="op">)</span></pre></div>
 <pre><code>## [1] "+proj=aeqd +lat_0=70 +lon_0=-170 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"walrus818"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"walrus818"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">walrus818</span>, pch = <span class="st">"."</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">walrus818</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">walrus818</span>, pch <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">walrus818</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">1</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">2</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"world_north"</span>, package= <span class="st">"trip"</span>)
-<span class="kw">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.5</span>, <span class="fl">4</span>))
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">raster</span>::<span class="fu"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span>(<span class="kw">walrus818</span>) <span class="op">+</span> <span class="fl">600000</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">walrus818</span>, pch = <span class="st">"."</span>, add = <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(<span class="kw">world_north</span>, add = <span class="fl">TRUE</span>, col = <span class="st">"grey"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw">walrus818</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"world_north"</span>, package<span class="op">=</span> <span class="st">"trip"</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span><span class="op">(</span><span class="va">walrus818</span><span class="op">)</span> <span class="op">+</span> <span class="fl">600000</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">walrus818</span>, pch <span class="op">=</span> <span class="st">"."</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">world_north</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">walrus818</span><span class="op">)</span></pre></div>
 <p><img src="trip_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">p</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></pre></div>
 </div>
 <div id="data-conversions" class="section level1">
 <h1 class="hasAnchor">
@@ -345,8 +324,7 @@
 <p>Conversion to points, in sp or spatstat.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="co">## as points</span>
-<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"SpatialPointsDataFrame"</span>)
-</pre></div>
+<span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"SpatialPointsDataFrame"</span><span class="op">)</span></pre></div>
 <pre><code>## class       : SpatialPointsDataFrame 
 ## features    : 10558 
 ## extent      : -117277, 307789, -412557, 84896  (xmin, xmax, ymin, ymax)
@@ -356,16 +334,14 @@
 ## min values  :        353, 1252987200,   0,      0 
 ## max values  :        444, 1287601200,   1,      1</code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"ppp"</span>)
-</pre></div>
+<span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"ppp"</span><span class="op">)</span></pre></div>
 <pre><code>## Marked planar point pattern: 10558 points
 ## Mark variables: Deployment, DataDT, Wet, Forage 
 ## window: rectangle = [-117277, 307789] x [-412557, 84896] units</code></pre>
 <p>Conversion to lines, in sp, sf, or adehabitatLT.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit">
 <span class="co">## as lines</span>
-<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"SpatialLinesDataFrame"</span>)
-</pre></div>
+<span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"SpatialLinesDataFrame"</span><span class="op">)</span></pre></div>
 <pre><code>## class       : SpatialLinesDataFrame 
 ## features    : 14 
 ## extent      : -117277, 307789, -412557, 84896  (xmin, xmax, ymin, ymax)
@@ -375,20 +351,17 @@
 ## min values  :    353, 1252987200, 1254337200, 1195200 
 ## max values  :    444, 1283878800, 1287601200, 5695200</code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"sf"</span>))
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"sf"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## Warning in sp::proj4string(from): CRS object has comment, which is lost in
 ## output</code></pre>
 <pre><code>## [1] "sf"         "data.frame"</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"sf"</span>)<span class="op">$</span><span class="kw">geom</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"sf"</span><span class="op">)</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></pre></div>
 <pre><code>## Warning in sp::proj4string(from): CRS object has comment, which is lost in
 ## output</code></pre>
 <pre><code>## [1] "sfc_LINESTRING" "sfc"</code></pre>
 <div class="sourceCode" id="cb36"><pre class="downlit">
-<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"ltraj"</span>)
-</pre></div>
+<span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"ltraj"</span><span class="op">)</span></pre></div>
 <pre><code>## Loading required namespace: adehabitatLT</code></pre>
 <pre><code>## Registered S3 methods overwritten by 'adehabitatMA':
 ##   method                       from
@@ -424,8 +397,7 @@
 <p>Conversions to segments, in sp, spatstat.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit">
 <span class="co">## as segments</span>
-<span class="fu"><a href="../reference/as.Other.html">explode</a></span>(<span class="kw">walrus818</span>)
-</pre></div>
+<span class="fu"><a href="../reference/as.Other.html">explode</a></span><span class="op">(</span><span class="va">walrus818</span><span class="op">)</span></pre></div>
 <pre><code>## class       : SpatialLinesDataFrame 
 ## features    : 10544 
 ## extent      : -117277, 307789, -412557, 84896  (xmin, xmax, ymin, ymax)
@@ -435,8 +407,7 @@
 ## min values  : 1252987200, 1252990800,    3600, 353 
 ## max values  : 1287597600, 1287601200, 2152800, 444</code></pre>
 <div class="sourceCode" id="cb42"><pre class="downlit">
-<span class="fu">as</span>(<span class="kw">walrus818</span>, <span class="st">"psp"</span>)
-</pre></div>
+<span class="fu">as</span><span class="op">(</span><span class="va">walrus818</span>, <span class="st">"psp"</span><span class="op">)</span></pre></div>
 <pre><code>## marked planar line segment pattern: 10544 line segments
 ## Mark variables:  origMarks, pattern
 ## window: rectangle = [-117277, 307789] x [-412557, 84896] units</code></pre>
@@ -482,7 +453,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

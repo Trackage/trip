@@ -71,19 +71,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/trip.html">Get started</a>
 </li>
 <li>
@@ -129,6 +123,16 @@
       <small>Source: <a href='https://github.com/Trackage/trip/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="trip-180" class="section level1">
+<h1 class="page-header" data-toc-text="1.8.0">
+<a href="#trip-180" class="anchor"></a>trip 1.8.0<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Updated and fixed some tests thanks to CRAN.</p></li>
+<li><p>New function <code><a href="../reference/interp_equal.html">interp_equal()</a></code> for intermediate points by distance or duration.</p></li>
+<li><p>Fixed spurious warnings in tests, thanks to Roger Bivand <a href='https://github.com/Trackage/trip/issues/45'>#45</a>.</p></li>
+</ul>
+</div>
     <div id="trip-171" class="section level1">
 <h1 class="page-header" data-toc-text="1.7.1">
 <a href="#trip-171" class="anchor"></a>trip 1.7.1<small> 2020-06-15 </small>
@@ -149,7 +153,7 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>MAJOR CHANGES</h2>
 <ul>
-<li><p>BREAKING change: the sp package is now imported rather than full Depends. This means that calls to its functions like <code>coordinates&lt;-</code>, <code>CRS&lt;-</code>, <code>proj4string&lt;-</code>, <code>spTransform</code> will need to be prefixed with <code>sp::</code>, or with the package explicitly attached with <code><a href="https://github.com/edzer/sp">library(sp)</a></code>. This may cause some pain but should be offset by improvements in helpful ways to create trip objects.</p></li>
+<li><p>BREAKING change: the sp package is now imported rather than full Depends. This means that calls to its functions like <code>coordinates&lt;-</code>, <code>CRS&lt;-</code>, <code>proj4string&lt;-</code>, <code>spTransform</code> will need to be prefixed with <code>sp::</code>, or with the package explicitly attached with <code><a href="https://github.com/edzer/sp/">library(sp)</a></code>. This may cause some pain but should be offset by improvements in helpful ways to create trip objects.</p></li>
 <li><p>The <code><a href="../reference/trip-methods.html">trip()</a></code> function now accepts raw data frames or grouped data frames, with the first four columns assumed to be the x, y, time coordinates and the ID column. If the data frame is grouped the first grouping column is used as the ID.</p></li>
 <li><p>When trip objects are created they are by default forced into basic data sense, and so will usually succeed on creation as long as the nominated coordinates, trip group ID and date-times are sensible. The data will be automatically cleaned up for 1) duplicated records 2) duplicated date-times 3) records out of order.</p></li>
 <li><p><code><a href="https://rdrr.io/r/base/summary.html">summary(trip)</a></code> now does not calculate the rolling RMS speed for performance reasons, this might be reviewed in future.</p></li>
@@ -195,7 +199,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

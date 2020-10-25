@@ -72,19 +72,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/trip.html">Get started</a>
 </li>
 <li>
@@ -135,7 +129,7 @@
     <p>Calculate great circle intermediate points on longitude, latitude input vectors. A spherical model is used, from the geosphere package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>interp_equal</span>(<span class='kw'>x</span>, distance = <span class='kw'>NULL</span>, duration = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>interp_equal</span><span class='op'>(</span><span class='va'>x</span>, distance <span class='op'>=</span> <span class='cn'>NULL</span>, duration <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,7 +154,7 @@
 circle movement is assumed, there's no way to use this to interpolate equal-distance in the native projection.</p>
 <p>If no input <code>distance</code> or <code>duration</code> is provided a default is used of 15 points between each input point.</p>
 <p>if both <code>distance</code> AND <code>duration</code> is provided, <code>distance</code> is ignored.</p>
-<p>Note, the original implementation of this function was called 'interpequal()', and was used originaly for time spent
+<p>Note, the original implementation of this function was called 'interpequal()', and was used for time spent
 calculations. The functionality is now provided by the traipse package.</p>
 
   </div>
@@ -178,7 +172,7 @@ calculations. The functionality is now provided by the traipse package.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

@@ -74,19 +74,13 @@ frame in turn.  Basic validation of the data is enforced by default." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trip</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/trip.html">Get started</a>
 </li>
 <li>
@@ -139,19 +133,19 @@ Multiple files may be read, and each set of records is appended to the data
 frame in turn.  Basic validation of the data is enforced by default.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>readArgos</span>(
-  <span class='kw'>x</span>,
-  correct.all = <span class='fl'>TRUE</span>,
-  dtFormat = <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
-  tz = <span class='st'>"GMT"</span>,
-  duplicateTimes.eps = <span class='fl'>0.01</span>,
-  p4 = <span class='st'>"+proj=longlat +ellps=WGS84"</span>,
-  verbose = <span class='fl'>FALSE</span>,
-  read_alt = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
-)
+    <pre class="usage"><span class='fu'>readArgos</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  correct.all <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dtFormat <span class='op'>=</span> <span class='st'>"%Y-%m-%d %H:%M:%S"</span>,
+  tz <span class='op'>=</span> <span class='st'>"GMT"</span>,
+  duplicateTimes.eps <span class='op'>=</span> <span class='fl'>0.01</span>,
+  p4 <span class='op'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  read_alt <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>readDiag</span>(<span class='kw'>x</span>, return_trip = <span class='fl'>FALSE</span>, read_alt = <span class='fl'>1L</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>readDiag</span><span class='op'>(</span><span class='va'>x</span>, return_trip <span class='op'>=</span> <span class='cn'>FALSE</span>, read_alt <span class='op'>=</span> <span class='fl'>1L</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -258,9 +252,10 @@ gap.</p>
 general manipulation of this type.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>argosfile</span> <span class='op'>&lt;-</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/argos/98feb.dat"</span>, package = <span class='st'>"trip"</span>, mustWork = <span class='fl'>TRUE</span>)
-<span class='kw'>argos</span> <span class='op'>&lt;-</span> <span class='fu'>readArgos</span>(<span class='kw'>argosfile</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='va'>argosfile</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/argos/98feb.dat"</span>, package <span class='op'>=</span> <span class='st'>"trip"</span>, mustWork <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>argos</span> <span class='op'>&lt;-</span> <span class='fu'>readArgos</span><span class='op'>(</span><span class='va'>argosfile</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Longitudes contain values greater than 180, 
 #&gt; 
 #&gt; 
@@ -282,7 +277,7 @@ general manipulation of this type.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
