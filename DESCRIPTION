@@ -6,7 +6,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     person("Sebastian", "Luque", role = "ctb"), 
     person("Anthony", "Fischbach", role = "ctb"),
     person("Tomislav", "Hengl", role = "ctb"))
-Version: 1.7.1.9002
+Version: 1.8.0
 Depends:
     R (>= 3.3.0)
 Imports:
@@ -20,7 +20,7 @@ Imports:
     spatstat,
     glue,
     viridis,
-    traipse,
+    traipse (>= 0.2.0),
     crsmeta,
     dplyr,
     rlang

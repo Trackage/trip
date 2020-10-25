@@ -16,6 +16,7 @@ clampToGround
 clampToSeaFloor
 cls
 CLS
+CRS
 colour
 colours
 countPoints
@@ -57,6 +58,7 @@ htm
 http
 IDL
 ious
+interpequal
 iq
 Karney
 kde

@@ -9,7 +9,7 @@
 #'
 #' if both `distance` AND `duration` is provided, `distance` is ignored.
 #'
-#' Note, the original implementation of this function was called 'interpequal()', and was used originaly for time spent
+#' Note, the original implementation of this function was called 'interpequal()', and was used for time spent
 #' calculations. The functionality is now provided by the traipse package.
 #' @param x trip object
 #'

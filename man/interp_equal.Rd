@@ -24,6 +24,6 @@ If no input \code{distance} or \code{duration} is provided a default is used of 
 
 if both \code{distance} AND \code{duration} is provided, \code{distance} is ignored.
 
-Note, the original implementation of this function was called 'interpequal()', and was used originaly for time spent
+Note, the original implementation of this function was called 'interpequal()', and was used for time spent
 calculations. The functionality is now provided by the traipse package.
 }

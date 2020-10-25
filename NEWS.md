@@ -1,4 +1,6 @@
-# trip dev
+# trip 1.8.0
+
+* Updated and fixed some tests thanks to CRAN. 
 
 * New function `interp_equal()` for intermediate points by distance or duration. 
 

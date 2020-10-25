@@ -1,12 +1,13 @@
-## trip 1.7.1
+## trip 1.8.0
 
-Second submit: Fixed cross references to non-file anchored help topic "SpatialPointsDataFrame-class"
+Fix errors on CRAN, some new features. 
 
-Fixes errors on CRAN and simplifies the package quite a bit. 
+Thank you. 
+
 
 ## Test environments
 
-* local Windows R 4.0.0
+* local R 4.0.3
 * win-builder (devel and release)
 
 ## R CMD check results
