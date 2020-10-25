@@ -16,5 +16,5 @@ Thank you.
 
 ## revdepcheck results
 
-We checked 4 reverse dependencies (4 from CRAN), no problems found. 
+We checked 3 reverse dependencies, no problems found. 
 
