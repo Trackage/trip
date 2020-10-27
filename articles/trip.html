@@ -83,7 +83,7 @@
       <h1 data-toc-skip>The trip package</h1>
                         <h4 class="author">Michael Sumner</h4>
             
-            <h4 class="date">2020-10-25</h4>
+            <h4 class="date">2020-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Trackage/trip/blob/master/vignettes/trip.Rmd"><code>vignettes/trip.Rmd</code></a></small>
       <div class="hidden name"><code>trip.Rmd</code></div>
@@ -115,11 +115,11 @@
 <pre><code>## 
 ## Object of class trip
 ##   tripID ("id") No.Records   startTime ("tms")     endTime ("tms") tripDuration
-## 1             1          5 2020-10-25 10:11:49 2020-10-25 10:11:53       4 secs
-## 2             2          5 2020-10-25 10:11:54 2020-10-25 10:11:58       4 secs
+## 1             1          5 2020-10-27 23:24:45 2020-10-27 23:24:49       4 secs
+## 2             2          5 2020-10-27 23:24:50 2020-10-27 23:24:54       4 secs
 ##   tripDistance meanSpeed maxSpeed
-## 1     570.1503  513135.3 640174.5
-## 2     821.9470  739752.3 997052.8
+## 1     566.1822  509563.9 531029.7
+## 2     690.8841  621795.7 987347.3
 ## 
 ## Total trip duration: 8 seconds (0 hours, 8 seconds)
 ## 
@@ -129,18 +129,18 @@
 ## Coordinates:
 ##         min       max
 ## x  1.000000 10.000000
-## y -2.000422  1.779659
+## y -1.573627  1.243202
 ## Is projected: FALSE 
 ## proj4string : [+proj=longlat +datum=WGS84]
 ## Number of points: 10
 ## Data attributes:
 ##       tms                      id   
-##  Min.   :2020-10-25 10:11:49   1:5  
-##  1st Qu.:2020-10-25 10:11:51   2:5  
-##  Median :2020-10-25 10:11:53        
-##  Mean   :2020-10-25 10:11:53        
-##  3rd Qu.:2020-10-25 10:11:56        
-##  Max.   :2020-10-25 10:11:58</code></pre>
+##  Min.   :2020-10-27 23:24:45   1:5  
+##  1st Qu.:2020-10-27 23:24:48   2:5  
+##  Median :2020-10-27 23:24:50        
+##  Mean   :2020-10-27 23:24:50        
+##  3rd Qu.:2020-10-27 23:24:52        
+##  Max.   :2020-10-27 23:24:54</code></pre>
 <p>(There may be only one group, but we have to be explicit, with a column that identifies at least one group).</p>
 <p>When a print or summary is made the data are presented in terms of their grouping, with some handy summary values. When converting to <code>sf</code> or <code>sp</code> form as lines these summary values are recorded with each “multi”-line.</p>
 </div>
