@@ -120,7 +120,7 @@ remotes::install_github("Trackage/trip")
   - ability to treat all line segments as continuous, as `cut.trip` can
     for rasterizing, possibly needs a second-level ID grouping
   - separate out reading functionality to
-    [rgos](https://github.com/mdsumner/rgos)
+    [rgos](https://github.com/Trackage/rgos)
   - separate out algorithm functions into a generic package that other
     tracking packages could use (distance, speed, angle filtering,
     rasterizing, time spent, interpolation etc.)

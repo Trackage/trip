@@ -6,7 +6,7 @@ bibentry(
   title="The Tag Location Problem",
   author=person(c("Michael", "Damien"),"Sumner",role="aut"),
   year="2011",
-  school="University of Tasmania", 
+  school="University of Tasmania",
   url = "https://eprints.utas.edu.au/12273/3/sumner.pdf"
 )
 
@@ -23,4 +23,4 @@ bibentry(
   publisher = "Public Library of Science",
   volume = "4",
   year = "2009",
-  url = "http://dx.plos.org/10.1371/journal.pone.0007324")
+  url = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007324")

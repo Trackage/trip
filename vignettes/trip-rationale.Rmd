@@ -30,7 +30,7 @@ Sadly it's the last item in the last that is in the worst shape, we don't have a
 
 I hope that trip can get tidied up in a sensible way, be based on the tidyverse more fully and abandon some of these messier bogeys. It's definitely possible to hide these details and change things in S4, but it's probably more sensible to start a `trip2` with tidyr bundling, and probably `vctrs` types. 
 
-At the time I thought that the [Argos Service](http://www.argos-system.org/) might become more transparent and that the tracking community would forever value a shared resource of global tracking data. But, to this day I think nobody knows why Argos would give records with a different location at the same date-time stamp, and we certainly haven't been careful to store and preserve all the biologging data that has been collected. 
+At the time I thought that the [Argos Service](https://www.argos-system.org/) might become more transparent and that the tracking community would forever value a shared resource of global tracking data. But, to this day I think nobody knows why Argos would give records with a different location at the same date-time stamp, and we certainly haven't been careful to store and preserve all the biologging data that has been collected. 
 
 It might seem like a modern approach in R spatial is the way to go, but I want to share my thoughts about why I don't think this is looking particularly good. 
 

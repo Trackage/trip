@@ -93,7 +93,7 @@ remotes::install_github("Trackage/trip")
 
 * trip should work with sf or sp, there's really no need to distinguish these
 * ability to treat all line segments as continuous, as `cut.trip` can for rasterizing, possibly needs a second-level ID grouping
-* separate out reading functionality to [rgos](https://github.com/mdsumner/rgos)
+* separate out reading functionality to [rgos](https://github.com/Trackage/rgos)
 * separate out algorithm functions into a generic package that other tracking packages could use (distance, speed, angle filtering, rasterizing, time spent, interpolation etc.)
 * Better summary tools, the SGAT (and tripEstimation) packages have functions for dealing with spatial 
  track summaries that are atomized to the level of each time step. 
