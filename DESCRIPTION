@@ -6,7 +6,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     person("Sebastian", "Luque", role = "ctb"), 
     person("Anthony", "Fischbach", role = "ctb"),
     person("Tomislav", "Hengl", role = "ctb"))
-Version: 1.8.0
+Version: 1.8.5
 Depends:
     R (>= 3.3.0)
 Imports:
@@ -17,7 +17,9 @@ Imports:
     raster,
     reproj,
     sp,
-    spatstat,
+    spatstat.geom,
+    spatstat.core,
+    spatstat (>= 2.0-0),
     glue,
     viridis,
     traipse (>= 0.2.0),

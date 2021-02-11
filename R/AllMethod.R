@@ -172,6 +172,10 @@ if (!isGeneric("subset"))
              function(x, ...) standardGeneric("subset"))
 
 
+if (!isGeneric("recenter"))
+  setGeneric("recenter",
+             function(x, ...) standardGeneric("recenter"))
+
 
 
 ##' TimeOrderedRecords
@@ -709,6 +713,7 @@ print.trip <- function(x, ...) {
 setMethod("show", signature(object="trip"),
           function(object) print.trip(object))
 
+#' @importFrom sp recenter
 setMethod("recenter", signature(obj="trip"),
           function(obj) {
               proj <- is.projected(obj)

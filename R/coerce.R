@@ -38,7 +38,7 @@ setAs("trip", "sf", function(from) {
   lns <- vector("list", nrow(df))
   for (i in 1:length(lns)) {
     ## keep time as numeric
-    lns[[i]] <- cbind(coordinates(split.from[[i]]), 
+    lns[[i]] <- cbind(coordinates(split.from[[i]]),
                       as.numeric(split.from[[i]][[getTORnames(from)[1]]]))
   }
   bb <- c(t(apply(do.call(rbind, lns)[, 1:2], 2, range)))
@@ -65,11 +65,11 @@ setAs("trip", "ltraj", function(from) {
 
 
 ## @importClassesFrom maptools owin ppp psp
-#' @importFrom spatstat as.ppp
+#' @importFrom spatstat.geom as.ppp
 #' @export as.ppp
 #' @importFrom maptools as.ppp.SpatialPointsDataFrame
 #' @param X \code{trip} object.
-#' @param fatal Logical value, see Details of \code{\link[spatstat]{as.ppp}}
+#' @param fatal Logical value, see Details of \code{\link[spatstat.geom]{as.ppp}}
 #' @return ppp object
 #' @rdname as.Other
 #' @method as.ppp trip
@@ -80,7 +80,7 @@ setAs("trip", "ltraj", function(from) {
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere",  doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #'  as(tr, "ppp")
 #' }
 as.ppp.trip <- function(X, ..., fatal) {
@@ -89,11 +89,11 @@ as.ppp.trip <- function(X, ..., fatal) {
 setAs("trip", "ppp", function(from) as.ppp.trip(from))
 
 #' @export
-#' @importFrom spatstat as.psp owin psp superimpose
+#' @importFrom spatstat.geom as.psp owin psp superimpose
 #' @export as.psp
 #' @param x \code{trip} object
-#' @param from see \code{\link[spatstat]{as.psp}} for that method.
-#' @param to See \code{\link[spatstat]{as.psp}}.
+#' @param from see \code{\link[spatstat.geom]{as.psp}} for that method.
+#' @param to See \code{\link[spatstat.geom]{as.psp}}.
 #' @return psp object
 #' @rdname as.Other
 #' @method as.psp trip
@@ -104,7 +104,7 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #'  as.psp.trip(tr)
 #' }
 as.psp.trip <- function(x, ..., from, to) {
@@ -133,10 +133,10 @@ as.track_xyt.trip <- function(x, ..., from, to) {
   xy <- sp::coordinates(x)
   tori <- match(tor, names(x@data))
   xd <- x@data[ , -tori, drop = FALSE]
-  structure(cbind(data.frame(x_ = xy[,1], y_ = xy[,2], t_ = x[[tor[1]]], id = x[[tor[2]]]), xd), 
-            class = c("track_xyt",  "track_xy",   "tbl_df",     "tbl",        "data.frame"), 
+  structure(cbind(data.frame(x_ = xy[,1], y_ = xy[,2], t_ = x[[tor[1]]], id = x[[tor[2]]]), xd),
+            class = c("track_xyt",  "track_xy",   "tbl_df",     "tbl",        "data.frame"),
             crs = x@proj4string)
-  
+
 }
 setAs("trip", "track_xyt", function(from) as.track_xyt.trip(from))
 
@@ -156,7 +156,7 @@ setAs("trip", "track_xyt", function(from) as.track_xyt.trip(from))
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #' spldf <- explode(tr)
 #' summary(tr)
 #' @return SpatialLinesDataFrame object with each individual line segment identified by start/end time and trip ID

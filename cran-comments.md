@@ -1,6 +1,6 @@
-## trip 1.8.0
+## trip 1.8.5
 
-Fix errors on CRAN, some new features. 
+Aligned to new spatstat packages. 
 
 Thank you. 
 

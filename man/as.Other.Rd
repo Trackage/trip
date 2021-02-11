@@ -23,13 +23,13 @@ explode(x, ...)
 
 \item{...}{reserved for future methods}
 
-\item{fatal}{Logical value, see Details of \code{\link[spatstat]{as.ppp}}}
+\item{fatal}{Logical value, see Details of \code{\link[spatstat.geom]{as.ppp}}}
 
 \item{x}{\code{trip} object}
 
-\item{from}{see \code{\link[spatstat]{as.psp}} for that method.}
+\item{from}{see \code{\link[spatstat.geom]{as.psp}} for that method.}
 
-\item{to}{See \code{\link[spatstat]{as.psp}}.}
+\item{to}{See \code{\link[spatstat.geom]{as.psp}}.}
 }
 \value{
 ppp object
