@@ -18,7 +18,6 @@ Imports:
     sp,
     spatstat.geom,
     spatstat.core,
-    spatstat (>= 2.0-0),
     glue,
     viridis,
     traipse (>= 0.2.0),
