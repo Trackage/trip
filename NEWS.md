@@ -2,6 +2,8 @@
 
 * Updated to new spatstat version 2. 
 
+* Removed import of maptools. 
+
 
 # trip 1.8.0
 

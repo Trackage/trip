@@ -9,7 +9,7 @@
 #' start and end point of each individual trip, with value NA.
 #'
 #' This is an optimized hybrid of "raster::bearing" and
-#' \code{\link[maptools]{gzAzimuth}}.
+#' "maptools::gzAzimuth". New code is in the traipse package.
 #'
 #' @rdname trackAngle
 #' @param x trip object, or matrix of 2-columns, with x/y coordinates

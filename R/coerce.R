@@ -67,7 +67,6 @@ setAs("trip", "ltraj", function(from) {
 ## @importClassesFrom maptools owin ppp psp
 #' @importFrom spatstat.geom as.ppp
 #' @export as.ppp
-#' @importFrom maptools as.ppp.SpatialPointsDataFrame
 #' @param X \code{trip} object.
 #' @param fatal Logical value, see Details of \code{\link[spatstat.geom]{as.ppp}}
 #' @return ppp object
@@ -84,7 +83,13 @@ setAs("trip", "ltraj", function(from) {
 #'  as(tr, "ppp")
 #' }
 as.ppp.trip <- function(X, ..., fatal) {
-  as.ppp.SpatialPointsDataFrame(X)
+  #as.ppp.SpatialPointsDataFrame(X)
+  xy <- sp::coordinates(X)
+  xx <- xy[,1L, drop = TRUE]
+  yy <- xy[,2L, drop = TRUE]
+  marks <- as.data.frame(X)[getTORnames(X)]
+  window <- spatstat.geom::owin(range(xx), range(yy))
+  spatstat.geom::ppp(xx, yy, window = window, marks = marks)
 }
 setAs("trip", "ppp", function(from) as.ppp.trip(from))
 
