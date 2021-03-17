@@ -37,15 +37,6 @@ rasterize(tr, method = "density", grid = r)
 rasterize(tr, r, field = "tms")
 rasterize(tr, r)
 
-
-library(raster)
-r2 <- aggregate(r, fact = 4)
-rasterize(tr, grid = r2)
-rasterize(tr, method = "density")
-rasterize(tr, method = "density", grid = r2)
-rasterize(tr, r2, field = "temp")
-rasterize(tr, r2, field = "tms")
-rasterize(tr, r2)
 }
 
 }

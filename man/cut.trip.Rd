@@ -31,7 +31,7 @@ This function was completely rewritten in version 1.1-20.
 }
 \examples{
 
-\dontrun{
+\donttest{
 set.seed(66)
 d <- data.frame(x=1:100, y=rnorm(100, 1, 10),
                 tms= as.POSIXct(as.character(Sys.time()), tz = "GMT") + c(seq(10, 1000, length=50),
@@ -43,7 +43,7 @@ cut(tr, "200 sec")
 
 bound.dates <- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)
 trip.list <- cut(tr, bound.dates)
-bb <- bbox(tr)
+bb <- sp::bbox(tr)
 cn <- c(20, 8)
 g <- sp::GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
 
@@ -95,7 +95,7 @@ print("you may need to resize the window to see the grid data")
 
 data("walrus818", package = "trip")
 library(lubridate)
-walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"), 
+walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"),
 ceiling_date(max(walrus818$DataDT), "month"), by = "1 month"))
 g <- rasterize(walrus818) * NA_real_
 stk <- raster::stack(lapply(walrus_list, rasterize, grid = g))

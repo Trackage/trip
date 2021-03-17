@@ -122,34 +122,6 @@
 #' mi_dat_polar <- reproj(mi_dat, "+proj=stere +lat_0=-90 +lon_0=154 +datum=WGS84")
 #' plot(mi_dat_polar, pch = ".")
 #' lines(mi_dat_polar)
-#' \dontrun{
-#' ## a simple example with the common fixes required for basic track data
-#'
-#' dat <- read.csv("trackfile.csv")
-#' names(dat)  ## e.g. [1] "long" "lat" "seal" "date" "local" "lq"
-#' library(sp)
-#' coordinates(dat) <- c("long", "lat")
-#'
-#' ## date/times may be in a particular time zone, please check
-#' dat$gmt <- as.POSIXct(strptime(paste(dat$date, dat$local),
-#'                       "%d-%b-%y %H:%M:%S"), tz="GMT")
-#'
-#' ## if there are problems in the data, this will error
-#' tr <- trip(dat, c("gmt", "seal"))
-#'
-#' ## the following code tries to fix common problems
-#'
-#' ## remove completely-duplicated rows
-#' dat <- dat[!duplicated(dat), ]
-#' ## order the rows by seal, then by time
-#' dat <- dat[order(dat$seal, dat$gmt), ]
-#' ## fudge duplicated times
-#' dat$gmt <- adjust.duplicateTimes(dat$gmt, dat$seal)
-#'
-#' ## finally, convert to Spatial and create trip object
-#' coordinates(dat) <- c("long", "lat")
-#' tr <- trip(dat, c("gmt", "seal"))
-#' }
 #'
 #'
 setGeneric("trip",

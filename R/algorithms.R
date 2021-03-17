@@ -89,12 +89,12 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 #'
 #' A list of trip objects, named by the time boundary in which they lie.
 #' @author Michael D. Sumner and Sebastian Luque
-#' @details This function was completely rewritten in version 1.1-20. 
+#' @details This function was completely rewritten in version 1.1-20.
 #' @seealso See also \code{\link{tripGrid}}.
 #' @keywords manip chron
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #' set.seed(66)
 #' d <- data.frame(x=1:100, y=rnorm(100, 1, 10),
 #'                 tms= as.POSIXct(as.character(Sys.time()), tz = "GMT") + c(seq(10, 1000, length=50),
@@ -106,7 +106,7 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 #'
 #' bound.dates <- seq(min(tr$tms) - 1, max(tr$tms) + 1, length=5)
 #' trip.list <- cut(tr, bound.dates)
-#' bb <- bbox(tr)
+#' bb <- sp::bbox(tr)
 #' cn <- c(20, 8)
 #' g <- sp::GridTopology(bb[, 1], apply(bb, 1, diff) / (cn - 1), cn)
 #'
@@ -155,16 +155,16 @@ sepIdGaps <- function(id, gapdata, minGap=3600 * 24 * 7) {
 #' print("you may need to resize the window to see the grid data")
 #'
 #' }
-#' 
+#'
 #' data("walrus818", package = "trip")
 #' library(lubridate)
-#' walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"), 
+#' walrus_list <- cut(walrus818, seq(floor_date(min(walrus818$DataDT), "month"),
 #' ceiling_date(max(walrus818$DataDT), "month"), by = "1 month"))
 #' g <- rasterize(walrus818) * NA_real_
 #' stk <- raster::stack(lapply(walrus_list, rasterize, grid = g))
 #' st <- raster::aggregate(stk, fact = 4, fun = sum, na.rm = TRUE)
 #' st[!st > 0] <- NA_real_
-#' 
+#'
 #' plot(st, col = oc.colors(52))
 #' @method cut trip
 #' @export
@@ -179,15 +179,15 @@ cut.trip <-
          datebounds <- seq(as.POSIXct(levs[1L], tz = "GMT"), by = breaks, length = length(levs) + 1)
          breaks <- datebounds
       }
-      
-      
+
+
       uid <- unique(x[[tor[2]]])
       l <- vector("list", length(uid))
       for (i in seq_along(l)) l[[i]] <- cut.one.trip(x[x[[tor[2]]] == uid[i], ], breaks)
       l2 <- vector("list", length(l[[1]]))
       for (j in seq_along(l2)) l2[[j]] <- do.call(rbind, lapply(l, function(x) x[[j]]) )
       lapply(l2[!sapply(l2, is.null)], function(xx) trip(SpatialPointsDataFrame(SpatialPoints(as.matrix(xx[,1:2]), proj4string = CRS(x@proj4string@projargs, doCheckCRSArgs = FALSE)), xx[,-c(1, 2)]), c("time", "id")))
-      
+
    }
 
 
@@ -205,10 +205,10 @@ cut.one.trip <- function(x, breaks, ...) {
    newbreaks <- sort(c(unbrks[-c(1, length(unbrks))], unbrks2[-c(1, length(unbrks2))], untime))
    newx <- approxfun(untime, coords[,1], rule = 2)(newbreaks)
    newy <- approxfun(untime, coords[,2], rule = 2)(newbreaks)
-   
-   ntrack <- list(x = newx, y = newy, time = ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC") + newbreaks, 
+
+   ntrack <- list(x = newx, y = newy, time = ISOdatetime(1970, 1, 1, 0, 0, 0, tz = "UTC") + newbreaks,
                   id = rep(id[1], length = length(newx)))
-   
+
    out <- split(as.data.frame(ntrack), cumsum(duplicated(newbreaks)))
    short <- sapply(out, nrow) < 3
    out <- lapply(out, function(x) if (nrow(x) < 3) NULL else x)
@@ -268,7 +268,7 @@ interpequal <- function(x, dur=NULL, quiet=FALSE) {
       newPts[[isub]] <- data.frame(x=nx, y=ny, time=nt, id=ni)
    }
    newPts <- do.call("rbind", newPts)
-   
+
    origTotal <- sum(tapply(time, id, function(x) {
       diff(range(as.numeric(x)))
    }))

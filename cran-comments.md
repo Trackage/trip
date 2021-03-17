@@ -7,7 +7,7 @@ Thank you.
 
 ## Test environments
 
-* local R 4.0.3
+* local R 4.0.4
 * win-builder (devel and release)
 
 ## R CMD check results
