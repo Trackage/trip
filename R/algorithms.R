@@ -15,7 +15,7 @@
 #' @return
 #'
 #' A new set of ID levels, named following the pattern that "ID" split into 3
-#' would provided "ID", "ID\_2" and "ID\_3".
+#' would provided "ID", "ID_2" and "ID_3".
 #' @section Warning:
 #'
 #' It is assumed that each vector provides is sorted by \code{gapdata} within
