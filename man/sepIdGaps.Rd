@@ -15,7 +15,7 @@ sepIdGaps(id, gapdata, minGap = 3600 * 24 * 7)
 }
 \value{
 A new set of ID levels, named following the pattern that "ID" split into 3
-would provided "ID", "ID\_2" and "ID\_3".
+would provided "ID", "ID_2" and "ID_3".
 }
 \description{
 A new set of ID levels can be created by separating those given based on a

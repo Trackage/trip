@@ -161,7 +161,7 @@ traipse_time_spent <- function(xx, grid = NULL) {
 #' one column "z" containing the time spent in each cell in seconds.
 #' @keywords manip
 #' @export tripGrid
-#' @importFrom spatstat.core density.ppp density.psp
+#' @importFrom spatstat.explore density.ppp density.psp
 #' @importFrom spatstat.geom psp ppp [.psp pixellate pixellate.psp lengths_psp  owin
 tripGrid <- function (x, grid=NULL, method="pixellate", ...)
 {
