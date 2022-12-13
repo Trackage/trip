@@ -56,11 +56,9 @@ Sadly the interactive time slider is only available with the desktop version of
 Google Earth, the data loads into the browser version but can't be interactive.
 }
 \examples{
-\dontrun{
 kfile <- write_track_kml(walrus818[seq(1, 1000, by = 5), ])
 print(kfile)
 unlink(kfile)
-}
 }
 \author{
 Original implementation by Tomislav Hengl in the 'plotKML' package for 'SpatialLinesDataFrame',

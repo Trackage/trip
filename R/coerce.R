@@ -73,15 +73,11 @@ setAs("trip", "ltraj", function(from) {
 #' @rdname as.Other
 #' @method as.ppp trip
 #' @examples
-#' \dontrun{
-#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+#' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
-#' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere",  doCheckCRSArgs = FALSE)
-#' tr <- trip(d, c("tms", "id"))
+#' tr <- trip(d, c("tms", "id"), crs = "+proj=laea")
 #'
 #'  as(tr, "ppp")
-#' }
 as.ppp.trip <- function(X, ..., fatal) {
   #as.ppp.SpatialPointsDataFrame(X)
   xy <- sp::coordinates(X)
@@ -103,15 +99,10 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' @rdname as.Other
 #' @method as.psp trip
 #' @examples
-#' \dontrun{
-#'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' sp::coordinates(d) <- ~x+y
-#' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
+#' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' tr <- trip(d, c("tms", "id"))
 #'
 #'  as.psp.trip(tr)
-#' }
 as.psp.trip <- function(x, ..., from, to) {
   tor <- getTORnames(x)
   split.X <- split(x, x[[tor[2L]]])

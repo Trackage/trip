@@ -20,17 +20,14 @@ Trip rasterize.
 }
 \examples{
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-sp::coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 tr <- trip(d, c("tms", "id"))
 
 tr$temp <- sort(runif(nrow(tr)))
 r <- rasterize(tr)
 
 rasterize(tr, grid = r)
+\donttest{
 rasterize(tr, r, field = "temp")
-\dontrun{
 rasterize(tr, method = "density")
 rasterize(tr, method = "density", grid = r)
 

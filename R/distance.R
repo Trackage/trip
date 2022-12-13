@@ -4,7 +4,7 @@
   proj <- is.projected(x)
   if (is.na(proj)) proj <- FALSE
   lapply(split(x, x[[getTORnames(x)[2]]]), function(x) trackDistance(coordinates(x), longlat = !proj))
-  
+
 }
 
 
@@ -43,11 +43,8 @@
 #' see the geodist package.
 #' @examples
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' sp::coordinates(d) <- ~x+y
-#' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
-#' tr <- trip(d, c("tms", "id"))
-#' 
+#'  tr <- trip(d, c("tms", "id"))
+#'
 #'  ## the method knows this is a trip, so there is a distance for every
 #'  ## point, including 0s as the start and at transitions between
 #'  ## individual trips
@@ -59,9 +56,7 @@
 #'
 #' ## we get NA at the start, end and at transitions between trips
 #'
-#'  \dontrun{
 #'  angles <- trackAngle(walrus818)
-#'  }
 #' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 
@@ -81,7 +76,7 @@ trackDistance.default <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) {
   if (nx != length(y1) | nx != length(x2) | nx != length(y2))
     stop("arguments must have equal lengths")
   if (longlat) {
-    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))), 
+    geodist::geodist(cbind(lon = c(x1, tail(x2, 1)), lat = c(y1, tail(y2, 1))),
                      sequential = TRUE, paired = FALSE, measure = "geodesic")/1000
   } else sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 }
@@ -94,14 +89,14 @@ trackDistance.trip <- function(x1, y1, x2, y2, longlat = TRUE, prev = FALSE) {
 
 ##' Calculate maximum distance from 'home' for each trip
 ##'
-##' This function returns a distance from a given 'home' coordinate for each individual trip. 
+##' This function returns a distance from a given 'home' coordinate for each individual trip.
 ##' Use the \code{home} argument to provide a single, common 2-element (x,y or lon,lat) coordinate. If \code{home}
-##' is \code{NULL} (the default), then each individual trip's first location is used. 
+##' is \code{NULL} (the default), then each individual trip's first location is used.
 ##' @param x trip object
 ##' @param home see details
 ##' @seealso \code{\link[sp]{spDistsN1}}
 ##' @export
-##' @return numeric vector of distances in km (for longlat), or in the units of the trip's projection 
+##' @return numeric vector of distances in km (for longlat), or in the units of the trip's projection
 ##' @export
 homedist <- function(x, home = NULL) {
   if (!is.null(home)) {
@@ -111,7 +106,7 @@ homedist <- function(x, home = NULL) {
     } else {
       stop("stop, home must be a 2-element numeric")
     }
-  }  
+  }
   ## iterate over individual trips
   tor <- trip::getTORnames(x)
   ids <- unique(x[[tor[2L]]])
@@ -127,7 +122,7 @@ homedist <- function(x, home = NULL) {
     if (is.null(home)) home <- x0[1, , drop = FALSE]
     if (longlat) {
       #colnames(x0) <- c("x", "y")
-      
+
       dists[i] <- suppressMessages(max(geodist::geodist(x0, home, measure = "geodesic"))/1000)
     } else {
       dists[i] <- max(sqrt((x0[,1] - home[1])^2 + (x0[,2] - home[2])^2))

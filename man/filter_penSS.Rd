@@ -43,7 +43,7 @@ expense of reproducing the original locations.
 \examples{
 
 
-\dontrun{## Example takes a few minutes
+\donttest{## Example takes a few minutes
 
 ## Fake some data
 
@@ -82,7 +82,7 @@ tr <- new("trip",
 plot(tr)
 
 ## the filtered version
-trf <- filter.penSS(tr, lambda=1, iterlim=400, print.level=1)
+trf <- filter_penSS(tr, lambda=1, iterlim=400, print.level=1)
 
 lines(trf)
 

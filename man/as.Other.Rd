@@ -48,24 +48,15 @@ a line segment for each implicit segment along the tracks. The object stores
 the start and end times, duration and the ID of the segment.
 }
 \examples{
-\dontrun{
- d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
+d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 sp::coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere",  doCheckCRSArgs = FALSE)
-tr <- trip(d, c("tms", "id"))
+tr <- trip(d, c("tms", "id"), crs = "+proj=laea")
 
  as(tr, "ppp")
-}
-\dontrun{
- d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-sp::coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
+d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 tr <- trip(d, c("tms", "id"))
 
  as.psp.trip(tr)
-}
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 sp::coordinates(d) <- ~x+y
 ## this avoids complaints later, but these are not real track data (!)

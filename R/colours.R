@@ -21,19 +21,14 @@
 #' \code{\link[sp]{bpy.colors}}
 #' @keywords color
 #' @examples
-#' \dontrun{
 #'  oc.colors(10)
 #'  library(lattice)
 #'  trellis.par.set(oc.theme())
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' sp::coordinates(d) <- ~x+y
-#' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
 #'
 #'  tg <- tripGrid(tr)
 #'  spplot(tg)
-#' }
 #' @export oc.theme
 oc.theme <- function(x=50) list(regions=list(col=oc.colors(x)))
 

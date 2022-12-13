@@ -1,47 +1,47 @@
 #' Filter track data for speed
-#' 
+#'
 #' Create a filter of a track for "bad" points implying a speed of motion that
 #' is unrealistic.
-#' 
+#'
 #' Using an algorithm (McConnnell et al., 1992), points are tested for speed
 #' between previous / next and 2nd previous / next points.  Contiguous sections
 #' with an root mean square speed above a given maximum have their highest rms
 #' point removed, then rms is recalculated, until all points are below the
 #' maximum.  By default an (internal) root mean square function is used, this
 #' can be specified by the user.
-#' 
+#'
 #' If the coordinates of the \code{trip} data are not projected, or NA the
 #' distance calculation assumes longlat and kilometres (great circle). For
 #' projected coordinates the speed must match the units of the coordinate
 #' system.  (The PROJ.4 argument "units=km" is suggested).
-#' 
+#'
 #' @param x trip object
-#' @param max.speed speed in kilometres (or other unit) per hour, the unit is kilometres 
-#' if the trip is in longitude latitude coordinates, or in the unit of the 
+#' @param max.speed speed in kilometres (or other unit) per hour, the unit is kilometres
+#' if the trip is in longitude latitude coordinates, or in the unit of the
 #' projection projection (usually metres per hour)
 #' @param test cut the algorithm short and just return first pass
 #' @return
-#' 
+#'
 #' Logical vector matching positions in the coordinate records that pass the
 #' filter.
 #' @note
-#' 
+#'
 #' This algorithm was originally taken from IDL code by David Watts at the
 #' Australian Antarctic Division, and used in various other environments before
 #' the development of this version.
 #' @section Warning:
-#' 
+#'
 #' This algorithm is destructive, and provides little information about
 #' location uncertainty.  It is provided because it's commonly used
-#' and provides an illustrative benchmark for further work. 
-#' 
+#' and provides an illustrative benchmark for further work.
+#'
 #' It is possible for the filter to become stuck in an infinite loop, depending
 #' on the function passed to the filter.  Several minutes is probably too long
 #' for hundreds of points, test on smaller sections if unsure.
 #' @author David Watts and Michael D. Sumner
 #' @seealso \code{\link{sda}} for a fast distance angle filter to combine with speed filtering
 #' @references
-#' 
+#'
 #' The algorithm comes from McConnell, B. J. and Chambers, C. and Fedak, M. A.
 #' (1992) Foraging ecology of southern elephant seals in relation to the
 #' bathymetry and productivity of the southern ocean.  Antarctic Science
@@ -147,8 +147,8 @@ speedfilter <- function (x, max.speed=NULL, test=FALSE) {
 
 
 
-##' Filter track for speed, distance and angle. 
-##' 
+##' Filter track for speed, distance and angle.
+##'
 ##' Create a filter index of a track for "bad" points with a
 ##' combination of speed, distance and angle tests.
 ##' @name sda
@@ -178,48 +178,48 @@ sda <- function(x, smax, ang = c(15, 25), distlim = c(2.5, 5.0), pre = NULL) {
 
 sda0 <- function(x, smax, ang, distlim, pre = NULL) {
     x$speed.ok <- speedfilter(x, max.speed = smax)
-    
+
     dsts <- trackDistance(x, longlat = TRUE)
     angs <- trackAngle(x)
-    ## simple way to deal with missing angles 
+    ## simple way to deal with missing angles
     ### (which don't make sense for first and last position or zero-movement)
     angs[is.na(angs)] <- 180
-    
+
     dprev <- dsts
     dnext <- c(dsts[-1L], 0)
-    
+
     ## No Argos quality filter, anyone can do that
     ok <- (x$speed.ok | dprev <= distlim[2]) ##&  (x$lc > -9)
-    
+
     if (!is.null(pre)) ok <- ok & pre
     x$filt.row <- 1:nrow(x)
-    
+
     x$ok <- rep(FALSE, nrow(x))
     df <- x
-    
-    
+
+
     ## first subset
-    
+
     df <- df[ok, ]
-    
+
     ## distlim and angles, progressively
-    
+
     for (i in 1:length(distlim)) {
         dsts <- trackDistance(df)
         angs <- trackAngle(df)
         dprev <- dsts
         dnext <- c(dsts[-1L], 0)
-        
-        
+
+
         angs[is.na(angs)] <- 180
         ok <- (dprev <= distlim[i] | dnext <= distlim[i])  | angs > ang[i]
         ok[c(1:2, (length(ok)-1):length(ok))] <- TRUE
         df <- df[ok, ]
         ok <- rep(TRUE, nrow(df))
     }
-    
+
     x$ok[ match(df$filt.row, x$filt.row)] <- ok
-    
+
     x$ok
 }
 
@@ -229,18 +229,18 @@ sda0 <- function(x, smax, ang, distlim, pre = NULL) {
 
 
 #' Non-destructive smoothing filter
-#' 
-#' 
+#'
+#'
 #' Non-destructive filter for track data using penalty smoothing on velocity.
-#' 
-#' 
+#'
+#'
 #' Destructive filters such as \code{\link{speedfilter}} can be recast using a
 #' penalty smoothing approach in the style of Green and Silverman (1994).
-#' 
+#'
 #' This filter works by penalizing the fit of the smoothed track to the
 #' observed locations by the sum of squared velocities.  That is, we trade off
 #' goodness of fit against increasing the total sum of squared velocities.
-#' 
+#'
 #' When lambda=0 the smoothed track reproduces the raw track exactly.
 #' Increasing lambda favours tracks requiring less extreme velocities, at the
 #' expense of reproducing the original locations.
@@ -254,66 +254,66 @@ sda0 <- function(x, smax, ang, distlim, pre = NULL) {
 #' filter.
 #' @param \dots Arguments passed on to \code{\link{nlm}}
 #' @return
-#' 
+#'
 #' A trip object with updated coordinate values based on the filter - all the
 #' data, including original coordinates which are maintained in the trip data
 #' frame.
 #' @author Simon Wotherspoon and Michael Sumner
 #' @seealso \code{\link{speedfilter}}
 #' @references
-#' 
+#'
 #' Green, P. J. and Silverman, B. W. (1994). Nonparametric regression and
 #' generalized linear models: a roughness penalty approach. CRC Press.
 #' @keywords manip misc
 #' @examples
-#' 
-#' 
-#' \dontrun{## Example takes a few minutes
-#' 
+#'
+#'
+#' \donttest{## Example takes a few minutes
+#'
 #' ## Fake some data
-#' 
+#'
 #' ## Brownian motion tethered at each end
 #' brownian.bridge <- function(n, r) {
 #'   x <- cumsum(rnorm(n, 0, 1))
 #'   x <- x - (x[1] + seq(0, 1, length=n) * (x[n] - x[1]))
 #'   r * x
 #' }
-#' 
+#'
 #' ## Number of days and number of obs
 #' days <- 50
 #' n <- 200
-#' 
+#'
 #' ## Make separation between obs gamma distributed
 #' x <- rgamma(n, 3)
 #' x <- cumsum(x)
 #' x <- x/x[n]
-#' 
+#'
 #' ## Track is lissajous + brownian bridge
 #' b.scale <- 0.6
 #' r.scale <- sample(c(0.1, 2, 10.2), n, replace=TRUE,
 #'                   prob=c(0.8, 0.18, 0.02))
 #' set.seed(44)
-#' 
+#'
 #' tms <- ISOdate(2001, 1, 1) + trunc(days * 24 * 60 * 60 *x)
 #' lon <- 120 + 20 * sin(2 * pi * x) +
 #'     brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)
 #' lat <- -40 + 10 *(sin(3 * 2 * pi * x) + cos(2 * pi * x) - 1) +
 #'     brownian.bridge(n, b.scale) + rnorm(n, 0, r.scale)
-#' 
+#'
 #' tr <- new("trip",
 #'           SpatialPointsDataFrame(cbind(lon, lat),
 #'                                  data.frame(gmt=tms, id="lbb")),
 #'                                  TimeOrderedRecords(c("gmt", "id")))
 #' plot(tr)
-#' 
+#'
 #' ## the filtered version
-#' trf <- filter.penSS(tr, lambda=1, iterlim=400, print.level=1)
-#' 
+#' trf <- filter_penSS(tr, lambda=1, iterlim=400, print.level=1)
+#'
 #' lines(trf)
-#' 
+#'
 #' }
-#' 
-#' 
+#'
+#'
 #' @export filter_penSS
 filter_penSS <- function(tr, lambda, first=TRUE, last=TRUE,...) {
 
