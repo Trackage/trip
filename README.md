@@ -1,21 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![R build
 status](https://github.com/Trackage/trip/workflows/R-CMD-check/badge.svg)](https://github.com/Trackage/trip/actions)
+[![R-CMD-check](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/trip)](https://CRAN.R-project.org/package=trip)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
+[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 <!-- badges: end -->
-
-[![Travis-CI Build
-Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/Trackage/trip)
-[![OSX Build
-Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/Trackage/trip)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/e2r8t15huw9yopbq?svg=true)](https://ci.appveyor.com/project/mdsumner/trip)
-[![Coverage\_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
-[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 
 # Tools for animal track data
 
@@ -49,14 +43,14 @@ the obvious way.
 
 Trip objects can be used to create other data types defined by
 `adehabitatLT`, `amt`, `sf`, `sp`, `spatstat`, and this is possible for
-conversion to point types or line types. For example, `as(trip,
-"SpatialLinesDataFrame")` creates a single multi-line for each trip,
-with start and end time properties. The `explode(trip)` function breaks
-a trip into individual line segments for every pair of coordinates, and
-`as(trip, "SpatialPointsDataFrame")` will create a standard sp points
-data frame. There are similar facilities for `sf` types, and for the
-`spatstat` types point pattern `as.ppp(trip)` or line segments
-`as.psp(trip)`.
+conversion to point types or line types. For example,
+`as(trip, "SpatialLinesDataFrame")` creates a single multi-line for each
+trip, with start and end time properties. The `explode(trip)` function
+breaks a trip into individual line segments for every pair of
+coordinates, and `as(trip, "SpatialPointsDataFrame")` will create a
+standard sp points data frame. There are similar facilities for `sf`
+types, and for the `spatstat` types point pattern `as.ppp(trip)` or line
+segments `as.psp(trip)`.
 
 Trips can be exported to Google Earth and explored using the continuous
 time slider with the `write_track_kml()` function.
@@ -115,20 +109,20 @@ remotes::install_github("Trackage/trip")
 
 # Development
 
-  - trip should work with sf or sp, there’s really no need to
+-   trip should work with sf or sp, there’s really no need to
     distinguish these
-  - ability to treat all line segments as continuous, as `cut.trip` can
+-   ability to treat all line segments as continuous, as `cut.trip` can
     for rasterizing, possibly needs a second-level ID grouping
-  - separate out reading functionality to
+-   separate out reading functionality to
     [rgos](https://github.com/Trackage/rgos)
-  - separate out algorithm functions into a generic package that other
+-   separate out algorithm functions into a generic package that other
     tracking packages could use (distance, speed, angle filtering,
     rasterizing, time spent, interpolation etc.)
-  - Better summary tools, the SGAT (and tripEstimation) packages have
+-   Better summary tools, the SGAT (and tripEstimation) packages have
     functions for dealing with spatial track summaries that are atomized
     to the level of each time step.
-  - More conversion tools between formats
-  - Validation must include a detailed report object of where the
+-   More conversion tools between formats
+-   Validation must include a detailed report object of where the
     problems are, and how to filter/fix/flush them.
 
 Trip would be better implemented on top of the ideas in [the silicate
@@ -138,9 +132,9 @@ twilight zone between MULTIPOINTs and LINESTRINGs as it is now.
 Please me know what you think via
 [Issues](https://github.com/Trackage/trip/issues).
 
------
+------------------------------------------------------------------------
 
-\#\# Code of Conduct
+\## Code of Conduct
 
 Please note that the trip project is released with a [Contributor Code
 of

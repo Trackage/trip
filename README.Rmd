@@ -16,14 +16,12 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R build status](https://github.com/Trackage/trip/workflows/R-CMD-check/badge.svg)](https://github.com/Trackage/trip/actions)
-<!-- badges: end -->
-
-[![Travis-CI Build Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/Trackage/trip)
-[![OSX Build Status](http://badges.herokuapp.com/travis/Trackage/trip?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/Trackage/trip)
-[![Build status](https://ci.appveyor.com/api/projects/status/e2r8t15huw9yopbq?svg=true)](https://ci.appveyor.com/project/mdsumner/trip)
-[![Coverage_Status](https://img.shields.io/codecov/c/github/Trackage/trip/master.svg)](https://codecov.io/github/Trackage/trip?branch=master)
+[![R-CMD-check](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/trip)](https://CRAN.R-project.org/package=trip)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
+<!-- badges: end -->
+
 
 
 
