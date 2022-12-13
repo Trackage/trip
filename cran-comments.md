@@ -1,8 +1,6 @@
-## trip 1.8.6
+## trip 1.8.7 
 
-Aligned to new spatstat packages. 
-
-Submit after being archived, I just missed this very sorry. 
+Fixed helpful CRAN feedback. 
 
 Thank you. 
 

@@ -7,7 +7,6 @@ status](https://github.com/Trackage/trip/workflows/R-CMD-check/badge.svg)](https
 [![R-CMD-check](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Trackage/trip/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/trip)](https://CRAN.R-project.org/package=trip)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/trip)](https://cran.r-project.org/package=trip)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/trip)](https://cran.r-project.org/package=trip)
 <!-- badges: end -->
 
