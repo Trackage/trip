@@ -17,6 +17,8 @@ the entire trip object.)}
 \item{\dots}{Unused arguments.}
 }
 \value{
+list of S4 trip objects, each with aligned boundaries in time based on cutting the input into intervals
+
 A list of trip objects, named by the time boundary in which they lie.
 }
 \description{

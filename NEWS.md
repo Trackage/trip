@@ -1,6 +1,7 @@
 # trip 1.8.7
 
-* Updated DESCRIPTION, citation, help examples thanks to CRAN. 
+* Updated DESCRIPTION, citation, help examples, removed disallowed warning suppression,
+added return value documentation, thanks to CRAN. 
 
 * Updated to new spatstat.explore (removed spatstat.core). 
 

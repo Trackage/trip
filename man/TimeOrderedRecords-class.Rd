@@ -4,6 +4,9 @@
 \name{TimeOrderedRecords-class}
 \alias{TimeOrderedRecords-class}
 \title{A class for the identifiers of DateTime and ID records in spatial data.}
+\value{
+S4 object, TimeOrderedRecords (a class to hold the names of the date-time and id columns)
+}
 \description{
 The main use of this class and creator function is for
 \code{\link[sp]{SpatialPointsDataFrame-class}}s which are used with

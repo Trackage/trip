@@ -18,6 +18,9 @@ as.trip(x, ...)
 \item{\dots}{Arguments passed to other methods. Ignored for \code{ltraj}
 method.}
 }
+\value{
+S4 trip object
+}
 \description{
 Coercing objects to \code{trip} class
 }

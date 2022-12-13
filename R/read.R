@@ -20,8 +20,6 @@ readPRVa <- function(x, altloc = 1) {
 }
 
 readAlt <- function(x) {
-  old.opt <- options(warn=-1)
-  on.exit(options(old.opt), add = TRUE)
 
   altlines <- grep("      Lat1:", x, value = TRUE)
   altlines
@@ -39,8 +37,6 @@ readPRV0 <- function(x) {
 
 }
 .readPRV0_old <- function(x) {
-  old.opt <- options(warn=-1)
-  on.exit(options(old.opt), add = TRUE)
   ## x is the text
   dlines <- strsplit(x, "\\s+", perl=TRUE)
   loclines <- unlist(lapply(dlines, length)) == 12

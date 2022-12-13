@@ -13,6 +13,7 @@
 ##' @import sp
 ##' @import methods
 ##' @exportClass TimeOrderedRecords
+##' @return S4 object, TimeOrderedRecords (a class to hold the names of the date-time and id columns)
 ##' @docType class
 ##' @note  Future versions may change significantly, this class is
 ##' very basic and could probably be implemented in a better

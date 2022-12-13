@@ -10,6 +10,7 @@
 #' @param x, ltr ltraj object
 #' @param \dots Arguments passed to other methods. Ignored for \code{ltraj}
 #' method.
+#' @return S4 trip object
 #' @section Methods:
 #'
 #' \describe{
