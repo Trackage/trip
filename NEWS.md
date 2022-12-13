@@ -1,4 +1,4 @@
-# trip dev
+# trip 1.8.6
 
 * Updated to new spatstat.explore (removed spatstat.core). 
 
