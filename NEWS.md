@@ -1,4 +1,6 @@
-# trip 1.8.6
+# trip 1.8.7
+
+* Updated DESCRIPTION, citation, help examples thanks to CRAN. 
 
 * Updated to new spatstat.explore (removed spatstat.core). 
 
