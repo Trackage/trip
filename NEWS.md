@@ -4,7 +4,6 @@
 
 * Updated to new spatstat.explore (removed spatstat.core). 
 
-
 # trip 1.8.5
 
 * Updated to new spatstat version 2. 

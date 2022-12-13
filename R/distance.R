@@ -29,6 +29,8 @@
 #' This originally used \code{\link[sp]{spDistsN1}}, then implemented the sp
 #' \code{gcdist} source directly in R, and now uses \code{\link[geodist]{geodist}}.
 #'
+#' Please see the traipse package for a more modern approach.
+#'
 #' @aliases trackDistance trackDistance.default trackDistance.trip
 #' @param x1 trip object, matrix of 2-columns, with x/y coordinates OR a vector
 #' of x start coordinates
@@ -52,7 +54,7 @@
 #'
 #' ## the default method does not know about the trips, so this is
 #' ##(n-1) distances between all points
-#' ## trackDistance(coordinates(tr), longlat = FALSE)
+#' trackDistance(coordinates(tr), longlat = FALSE)
 #'
 #' ## we get NA at the start, end and at transitions between trips
 #'

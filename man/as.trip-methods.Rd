@@ -41,8 +41,8 @@ sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE
 tr <- trip(d, c("tms", "id"))
 
 if (require(adehabitatLT)) {
-    ##l <- as.ltraj.trip(tr)
-    ##ltraj2trip(l)
-    ##as.trip(l)
+    l <- as(tr, "ltraj")
+    ltraj2trip(l)
+    as.trip(l)
 }
 }

@@ -5,7 +5,7 @@
 #'
 #' @name as.trip
 #' @aliases as.trip-methods as.trip as.trip,ltraj-method ltraj2trip
-#' coerce,trip,ltraj-method as.trip,track_xyt-method 
+#' coerce,trip,ltraj-method as.trip,track_xyt-method
 #' @docType methods
 #' @param x, ltr ltraj object
 #' @param \dots Arguments passed to other methods. Ignored for \code{ltraj}
@@ -25,11 +25,11 @@
 #' ## this avoids complaints later, but these are not real track data (!)
 #' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
 #' tr <- trip(d, c("tms", "id"))
-#' 
+#'
 #' if (require(adehabitatLT)) {
-#'     ##l <- as.ltraj.trip(tr)
-#'     ##ltraj2trip(l)
-#'     ##as.trip(l)
+#'     l <- as(tr, "ltraj")
+#'     ltraj2trip(l)
+#'     as.trip(l)
 #' }
 ##' @rdname as.trip-methods
 ##' @export
@@ -58,7 +58,7 @@ ltraj2trip <- function (ltr)
 
 telemetry2trip <- function(x) {
   dat <- as.data.frame(setNames(x@.Data, x@names), stringsAsFactors = FALSE)
-  
+
   if (!is.null(x@info$timezone) && !x@info$timezone == "UTC") warning("non-UTC timezone in telemetry (ctmm) object")
   dat[["identity"]] <- x@info$identity
   if (is.null(x@info$projection)) stop("variant of telemetry object not yet understood (gazelle)")
@@ -76,10 +76,10 @@ telemetry2trip <- function(x) {
 
 setMethod("as.trip", signature(x="ltraj"),
           function(x, ...) ltraj2trip(x))
-setMethod("as.trip", signature(x = "track_xyt"), 
+setMethod("as.trip", signature(x = "track_xyt"),
           function(x, ...) trip(x))
 setAs("ltraj", "trip", function(from) as.trip(from))
 
-setAs("track_xyt", "trip", 
+setAs("track_xyt", "trip",
       function(from) trip(from))
 
