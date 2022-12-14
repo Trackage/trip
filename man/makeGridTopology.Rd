@@ -31,6 +31,9 @@ work}
 \item{adjust2longlat}{assume cell size is in kilometres and provide simple
 adjustment for earth-radius cells at the north-south centre of the grid}
 }
+\value{
+S4 class GridTopology with properties set variously from input parameters
+}
 \description{
 Sensible defaults are assumed, to match the extents of data to a manageable
 grid.

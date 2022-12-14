@@ -395,7 +395,7 @@ countPoints <- function (x, dur=1, grid=NULL)
 #' @param adjust2longlat assume cell size is in kilometres and provide simple
 #' adjustment for earth-radius cells at the north-south centre of the grid
 #' @keywords manip
-#' @value S4 class GridTopology with properties set variously from input parameters
+#' @return S4 class GridTopology with properties set variously from input parameters
 #' @export makeGridTopology
 makeGridTopology <- function (obj, cells.dim=c(100, 100),
                               xlim=NULL, ylim=NULL, buffer=0, cellsize=NULL,

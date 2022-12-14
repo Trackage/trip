@@ -15,7 +15,7 @@
 #'
 #' @param distance 	optional minimum distance (metres) between interpolated points
 #' @param duration 	optional minimum duration (seconds) between interpolated points
-#' @value S4 trip object with interpolated new locations based on distance or duration parameters
+#' @return S4 trip object with interpolated new locations based on distance or duration parameters
 #' @importFrom rlang .data
 #' @importFrom dplyr group_by mutate
 interp_equal <- function(x, distance = NULL, duration = NULL) {

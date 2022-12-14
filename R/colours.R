@@ -25,10 +25,10 @@
 #'  library(lattice)
 #'  trellis.par.set(oc.theme())
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' tr <- trip(d, c("tms", "id"))
+#' tr <- trip(d)
 #'
 #'  tg <- tripGrid(tr)
-#'  spplot(tg)
+#'  plot(tg)
 #' @export oc.theme
 oc.theme <- function(x=50) list(regions=list(col=oc.colors(x)))
 

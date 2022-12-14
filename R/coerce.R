@@ -75,9 +75,9 @@ setAs("trip", "ltraj", function(from) {
 #' @examples
 #' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' sp::coordinates(d) <- ~x+y
-#' tr <- trip(d, c("tms", "id"), crs = "+proj=laea")
+#' tr <- trip(d, c("tms", "id"))
 #'
-#'  as(tr, "ppp")
+#' as(tr, "ppp")
 as.ppp.trip <- function(X, ..., fatal) {
   #as.ppp.SpatialPointsDataFrame(X)
   xy <- sp::coordinates(X)
@@ -102,7 +102,8 @@ setAs("trip", "ppp", function(from) as.ppp.trip(from))
 #' d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 #' tr <- trip(d, c("tms", "id"))
 #'
-#'  as.psp.trip(tr)
+#'  as(tr, "psp")
+#'  as.psp(tr)
 as.psp.trip <- function(x, ..., from, to) {
   tor <- getTORnames(x)
   split.X <- split(x, x[[tor[2L]]])
@@ -148,10 +149,7 @@ setAs("trip", "track_xyt", function(from) as.track_xyt.trip(from))
 #' @return SpatialLinesDataFrame
 #' @examples
 #'  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-#' sp::coordinates(d) <- ~x+y
-#' ## this avoids complaints later, but these are not real track data (!)
-#' sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
-#' tr <- trip(d, c("tms", "id"))
+#'  tr <- trip(d)
 #'
 #' spldf <- explode(tr)
 #' summary(tr)

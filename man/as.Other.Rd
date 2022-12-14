@@ -50,18 +50,16 @@ the start and end times, duration and the ID of the segment.
 \examples{
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 sp::coordinates(d) <- ~x+y
-tr <- trip(d, c("tms", "id"), crs = "+proj=laea")
+tr <- trip(d, c("tms", "id"))
 
- as(tr, "ppp")
+as(tr, "ppp")
 d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 tr <- trip(d, c("tms", "id"))
 
- as.psp.trip(tr)
+ as(tr, "psp")
+ as.psp(tr)
  d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
-sp::coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
-tr <- trip(d, c("tms", "id"))
+ tr <- trip(d)
 
 spldf <- explode(tr)
 summary(tr)

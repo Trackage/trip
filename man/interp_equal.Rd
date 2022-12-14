@@ -13,6 +13,9 @@ interp_equal(x, distance = NULL, duration = NULL)
 
 \item{duration}{optional minimum duration (seconds) between interpolated points}
 }
+\value{
+S4 trip object with interpolated new locations based on distance or duration parameters
+}
 \description{
 Calculate great circle intermediate points on longitude, latitude input vectors. A spherical model is used, from the geosphere package.
 }

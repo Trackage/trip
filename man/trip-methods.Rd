@@ -129,21 +129,10 @@ d <- data.frame(x=1:10, y=rnorm(10), tms=Sys.time() + 1:10, id=gl(2, 5))
 
 trip(d)
 
-## or a grouped data frame can be used, the grouping is used as the trip ID
-## library(dplyr)
-## # use everything() to keep all other columns
-## d \%>\% group_by(id) \%>\% select(x, y, tms, everything())
-
-sp::coordinates(d) <- ~x+y
-## this avoids complaints later, but these are not real track data (!)
-sp::proj4string(d) <- sp::CRS("+proj=laea +ellps=sphere", doCheckCRSArgs = FALSE)
-(tr <- trip(d, c("tms", "id")))
-
+tr <- trip(d)
  ## real world data in CSV
 mi_dat <- read.csv(system.file("extdata/MI_albatross_sub10.csv", package = "trip"),
             stringsAsFactors = FALSE)
-## installed subset because the data is quite dense
-## mi_dat <- mi_dat[seq(1, nrow(mi_dat), by = 10), ]
 mi_dat$gmt <- as.POSIXct(mi_dat$gmt, tz = "UTC")
 mi_dat$sp_id <-  sprintf("\%s\%s_\%s_\%s", mi_dat$species,
          substr(mi_dat$breeding_status, 1, 1), mi_dat$band, mi_dat$tag_ID)

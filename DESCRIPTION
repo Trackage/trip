@@ -1,6 +1,6 @@
 Package: trip
 Type: Package
-Title: Classes for Animal Track Data
+Title: Tracking Data
 Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     email = "mdsumner@gmail.com"),
     person("Sebastian", "Luque", role = "ctb"), 
@@ -32,14 +32,15 @@ Suggests:
     rmarkdown,
     lubridate,
     maps,
-    spelling
+    spelling,
+    lattice
 Description: Access and manipulate spatial tracking data, with straightforward 
-    coercion from and to other formats. Filter for speed and create time spent 
-    maps from tracking data. There are coercion methods to convert between 'trip'
-    and 'ltraj' from 'adehabitatLT', and between 'trip' and 'psp' and 'ppp' from 
-    'spatstat'. Trip objects can be created from raw or grouped data frames, and 
-     from types in the 'sp', sf', 'amt', 'trackeR', 'mousetrap', and other packages, 
-     Sumner, MD (2011) <https://eprints.utas.edu.au/12273/3/sumner.pdf>
+ coercion from and to other formats. Filter for speed and create time spent 
+ maps from tracking data. There are coercion methods to convert between 'trip'
+ and 'ltraj' from 'adehabitatLT', and between 'trip' and 'psp' and 'ppp' from 
+ 'spatstat'. Trip objects can be created from raw or grouped data frames, and 
+ from types in the 'sp', sf', 'amt', 'trackeR', 'mousetrap', and other packages, 
+ Sumner, MD (2011) <https://eprints.utas.edu.au/12273/3/sumner.pdf>.
 URL: https://github.com/Trackage/trip
 BugReports: https://github.com/Trackage/trip/issues
 NeedsCompilation: no

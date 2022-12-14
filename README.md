@@ -108,6 +108,7 @@ remotes::install_github("Trackage/trip")
 
 # Development
 
+-   we should start again with the wk package
 -   trip should work with sf or sp, there’s really no need to
     distinguish these
 -   ability to treat all line segments as continuous, as `cut.trip` can
@@ -126,14 +127,15 @@ remotes::install_github("Trackage/trip")
 
 Trip would be better implemented on top of the ideas in [the silicate
 package](https://github.com/hypertidy/silicate/), rather than the
-twilight zone between MULTIPOINTs and LINESTRINGs as it is now.
+twilight zone between MULTIPOINTs and LINESTRINGs as it is now. Since
+this was first written we now have some good spatial development
+packages in wk, geos, vapour, and traipse. At some point this will good
+a decent revisit.
 
 Please me know what you think via
 [Issues](https://github.com/Trackage/trip/issues).
 
-------------------------------------------------------------------------
-
-\## Code of Conduct
+## Code of Conduct
 
 Please note that the trip project is released with a [Contributor Code
 of
