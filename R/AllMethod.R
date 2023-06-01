@@ -31,7 +31,7 @@
 #' In time we can add support for all kinds of variants, detected by the names and contents.
 #'
 #'
-#' See [Chapter 2 of the trip thesis](https://eprints.utas.edu.au/12273/) for more details.
+#' See [Chapter 2 of the trip thesis](https://figshare.utas.edu.au/articles/thesis/The_tag_location_problem/23209538) for more details.
 #' @name trip-methods
 #' @aliases trip-methods trip trip,SpatialPointsDataFrame,ANY-method
 #' trip,SpatialPointsDataFrame,TimeOrderedRecords-method

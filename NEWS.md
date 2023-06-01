@@ -1,3 +1,7 @@
+# trip 1.9.0
+
+* Remove failing test. 
+
 # trip 1.8.7
 
 * `filter_penSS()` is removed, it didn't really work reliably and has no known users. 

@@ -1,7 +1,7 @@
 Azimuthal
 Bivand
 CLS
-CRC
+CMD
 CRS
 DIAG
 DateTime
@@ -28,7 +28,6 @@ MULTIPOINTs
 Mapbox
 McConnnell
 ONEWS
-OSX
 POSIXct
 PROJ
 PRV
@@ -40,7 +39,6 @@ Reprojection
 SGAT
 SPDF
 SeaWiFS
-Silverman
 SpatiaTemporal
 SpatialLinesDataFrame
 SpatialPointsDataFrame
@@ -48,7 +46,6 @@ TimeOrdered
 TimeOrderedRecords
 VTrack
 WGS
-Wotherspoon
 XYM
 XYZ
 XYZM
@@ -78,10 +75,10 @@ durations
 ellps
 et
 favour
-favours
 gapdata
 geo
 geodist
+geos
 geosphere
 ggplot
 gmt
@@ -147,4 +144,5 @@ tripEstimation
 tripGrid
 tripTransform
 utc
+vapour
 www

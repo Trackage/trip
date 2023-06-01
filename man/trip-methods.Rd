@@ -22,14 +22,13 @@
 \alias{[[<-,trip,ANY,missing-method}
 \alias{trip<-,data.frame,character-method}
 \alias{trip<-}
-\alias{split,trip-method}
 \title{Function to handle animal track data, organized as \code{trip} objects}
 \usage{
 trip(obj, TORnames, correct_all = TRUE)
 
 trip(obj) <- value
 
-\S4method{split}{trip}(x, f, drop = FALSE, ...)
+\S4method{split}{trip,ANY}(x, f, drop = FALSE, ...)
 
 \S4method{[}{trip,ANY,ANY,ANY}(x, i, j, ..., drop = TRUE)
 }
@@ -93,7 +92,7 @@ turned into a trip with
 \verb{trip(AATAMS1 \%>\% dplyr::select(longitude, latitude, timestamp, tag.ID, everything())}
 In time we can add support for all kinds of variants, detected by the names and contents.
 
-See \href{https://eprints.utas.edu.au/12273/}{Chapter 2 of the trip thesis} for more details.
+See \href{https://figshare.utas.edu.au/articles/thesis/The_tag_location_problem/23209538}{Chapter 2 of the trip thesis} for more details.
 }
 \section{Methods}{
 

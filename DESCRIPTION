@@ -6,7 +6,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     person("Sebastian", "Luque", role = "ctb"), 
     person("Anthony", "Fischbach", role = "ctb"),
     person("Tomislav", "Hengl", role = "ctb"))
-Version: 1.8.7
+Version: 1.9.0
 Depends:
     R (>= 3.3.0)
 Imports:
@@ -40,7 +40,7 @@ Description: Access and manipulate spatial tracking data, with straightforward
  and 'ltraj' from 'adehabitatLT', and between 'trip' and 'psp' and 'ppp' from 
  'spatstat'. Trip objects can be created from raw or grouped data frames, and 
  from types in the 'sp', sf', 'amt', 'trackeR', 'mousetrap', and other packages, 
- Sumner, MD (2011) <https://eprints.utas.edu.au/12273/3/sumner.pdf>.
+ Sumner, MD (2011) <https://figshare.utas.edu.au/articles/thesis/The_tag_location_problem/23209538>.
 URL: https://github.com/Trackage/trip
 BugReports: https://github.com/Trackage/trip/issues
 NeedsCompilation: no
@@ -51,4 +51,4 @@ VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

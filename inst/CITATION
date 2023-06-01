@@ -7,7 +7,7 @@ bibentry(
   author=person(c("Michael", "Damien"),"Sumner",role="aut"),
   year="2011",
   school="University of Tasmania",
-  url = "https://eprints.utas.edu.au/12273/3/sumner.pdf"
+  url = "https://figshare.utas.edu.au/articles/thesis/The_tag_location_problem/23209538"
 )
 
 bibentry(

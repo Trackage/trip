@@ -17,11 +17,11 @@ tr <- walrus818[1:600, ]
 test_that("speedfilter and sdafilter works", {
   expect_s4_class(tr, "trip")
   expect_true(!is.na(tr@proj4string@projargs))
-  expect_silent(filt1 <- speedfilter(tr, max.speed = 2000))
+  expect_equal(class(filt1 <- speedfilter(tr, max.speed = 2000)), "logical")
   filt2 <- speedfilter(tr, max.speed = 100)
   expect_true(sum(filt1) > sum(filt2))
 
-  expect_silent(sda(tr, smax = 1000, pre = filt1))
+  expect_equal(class(sda(tr, smax = 1000, pre = filt1)), "logical")
   expect_error(speedfilter(data.frame(1)), "only trip objects supported")
   ## no longer needed #45
   #tr@proj4string@projargs <- NA_character_

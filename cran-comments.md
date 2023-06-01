@@ -1,8 +1,6 @@
-## trip 1.8.7 
+## trip 1.9.0
 
-Fixed helpful CRAN feedback. 
-
-Thank you. 
+Fixed failing test by changing test, thanks to CRAN feedback. 
 
 
 ## Test environments
