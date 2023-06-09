@@ -25,7 +25,7 @@ interp_equal <- function(x, distance = NULL, duration = NULL) {
   }
   xy <- sp::coordinates(x)
   crs <- crsmeta::crs_proj(x)
-  if (sp::is.projected(x)) {
+  if (sp_is_projected(x)) {
     if (!is.na(crs)) {
       xy <- reproj::reproj(xy, target = 4326, source = crs)[, c(1L, 2L)]
     }

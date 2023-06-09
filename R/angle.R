@@ -24,7 +24,7 @@ trackAngle <- function(x) {
 
 #' @export
 trackAngle.trip <- function(x) {
-  isproj <- is.projected(x)
+  isproj <- sp_is_projected(x)
   if (is.na(isproj)) {
     warning("object CRS is NA, assuming longlat")
   } else {

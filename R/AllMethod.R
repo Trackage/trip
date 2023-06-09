@@ -212,7 +212,7 @@ trip.grouped_df <- function(obj, ..., crs = NULL) {
   if (!inherits(obj[[tor[1]]], "POSIXct")) stop(sprintf("3rd column [%s] must be date-time", tor[1]))
   obj <- as.data.frame(as.list(obj), stringsAsFactors = FALSE) ## remove grouping
   sp::coordinates(obj) <- names(obj)[1:2]
-  if (!is.null(crs)) sp::proj4string(obj)
+
   trip(obj, tor, ...)
 }
 
@@ -677,7 +677,7 @@ setMethod("show", signature(object="trip"),
 #' @importFrom sp recenter
 setMethod("recenter", signature(obj="trip"),
           function(obj) {
-              proj <- is.projected(obj)
+              proj <- sp_is_projected(obj)
               if (is.na(proj)) {
                   msg <- paste("unknown coordinate reference system:",
                                "assuming longlat")
@@ -709,18 +709,4 @@ setMethod("recenter", signature(obj="trip"),
                    obj@TOR.columns)
           })
 
-
-#' @importFrom sp spTransform
-setMethod("spTransform", signature=signature(x="trip", CRSobj="character"),
-         function(x, CRSobj, ...) {
-           .Deprecated("reproj", msg = "trip doesn't use sp/rgdal spTransform now, done with 'reproj')")
-           reproj(x, CRSobj)
-         })
-
-
-setMethod("spTransform", signature("trip", "CRS"),
-          function(x, CRSobj, ...) {
-            .Defunct("reproj", msg = "trip doesn't use sp/rgdal spTransform now\n (warning in case you should do your own reprojection with sf or whatever)")
-           reproj(x, CRSobj@proj4string@projargs)
-          })
 
