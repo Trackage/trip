@@ -58,7 +58,7 @@
 #'
 #' ## we get NA at the start, end and at transitions between trips
 #'
-#'  angles <- trackAngle(walrus818)
+#'  angles <- trackAngle(tr)
 #' @export trackDistance
 trackDistance <- function(x1, y1, x2, y2, longlat=TRUE, prev = FALSE) UseMethod("trackDistance")
 

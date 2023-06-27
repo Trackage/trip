@@ -60,7 +60,7 @@ trackDistance(coordinates(tr), longlat = FALSE)
 
 ## we get NA at the start, end and at transitions between trips
 
- angles <- trackAngle(walrus818)
+ angles <- trackAngle(tr)
 }
 \references{
 Original source taken from sp package, but now using Helmert from Karney (2013)
