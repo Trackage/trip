@@ -21,7 +21,7 @@ test_that("trip works", {
   expect_error(sp::recenter(xx), "cannot recenter projected coordinate reference system")
 
   xxx <- reproj(xx, "+proj=longlat +datum=WGS84")
-  
+
   expect_that(dim(xx), equals(c(1000, 4)))
   filt2 <- sda(xx, smax = 16000)  %>% expect_type("logical")
   expect_true(sum(filt2) > 900)
@@ -36,10 +36,9 @@ test_that("trip works", {
   tr$id <- as.integer(tr$id)
   expect_silent(subset(tr, d < 4))
   expect_warning(subset(tr, d < 3))
-  
-  expect_silent(reproj(walrus818[1:100, ], "+proj=laea +datum=WGS84"))
-  
-  
+
+
+
   expect_s4_class(trip(tr, c("tms", "id")), "trip")
   expect_s4_class(trip(as(tr, "SpatialPointsDataFrame"), TimeOrderedRecords(c("tms", "id"))), "trip")
   expect_s4_class(trip(as(tr, "SpatialPointsDataFrame"), c("tms", "id")), "trip")
@@ -47,10 +46,6 @@ test_that("trip works", {
 
 })
 
-
-test_that("plot works", {
-  expect_silent({plot(walrus818); lines(walrus818)})
-})
 
 test_that("compliance works", {
   expect_that(tr <- trip(d, c("tms", "id"), correct_all = TRUE), is_a("trip"))

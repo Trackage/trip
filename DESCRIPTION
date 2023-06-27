@@ -6,7 +6,7 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"),
     person("Sebastian", "Luque", role = "ctb"), 
     person("Anthony", "Fischbach", role = "ctb"),
     person("Tomislav", "Hengl", role = "ctb"))
-Version: 1.9.0.9001
+Version: 1.91.0
 Depends:
     R (>= 3.3.0)
 Imports:

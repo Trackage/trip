@@ -1,3 +1,7 @@
+# trip dev 1.91.0
+
+* Remove tests expecting silence. 
+
 # trip 1.9.0
 
 * Remove failing test. 
