@@ -1,4 +1,4 @@
-## trip 1.91.0
+## trip 1.10.0
 
 Fixed failing tests, thanks CRAN!
 
