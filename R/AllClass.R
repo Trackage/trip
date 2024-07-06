@@ -127,6 +127,7 @@ setClass("trip",
         return("id data contains missing values")
     if (is.numeric(id) & any(!is.finite(id)))
         return("id data contains non-finite values")
+    if (anyNA(time) || any(!is.finite(time))) return("date-times contain missing values")
     d <- unlist(tapply(time, id, diff))
     if (any(d < 0))
         return("date-times not in order within id")

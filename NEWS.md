@@ -2,6 +2,9 @@
 
 * Remove tests expecting silence. 
 
+* Fix situation where all date-times being NA resulted in 'Error: C stack usage  7975700 is too close to the limit'. 
+
+
 # trip 1.9.0
 
 * Remove failing test. 

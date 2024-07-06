@@ -38,6 +38,7 @@ force_internal <- function(x, tor) {
 
   }
 
+  if (anyNA(x[[tor[1]]]) || any(!is.finite(x[[tor[1]]]))) stop("date-times contain missing values")
 
   duperecords <- duplicated(x)
   if (any(duperecords)) {
@@ -61,6 +62,7 @@ force_internal <- function(x, tor) {
     x <- x[x[[tor[2]]] %in% levs[!tooshort], ]
   }
   if (is.factor(x[[tor[2]]])) x[[tor[2]]] <- factor(x[[tor[2]]])
+
   adjusted <- adjust.duplicateTimes(x[[tor[1]]], x[[tor[2]]])
 
   diffs <- abs(unclass(adjusted) - unclass(x[[tor[1]]])) > 0

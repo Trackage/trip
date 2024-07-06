@@ -13,3 +13,22 @@ and between 'trip' and 'psp' and 'ppp' from 'spatstat'. Trip objects
 can be created from raw or grouped data frames, and from types in the 'sp',
 'sf', 'amt', 'trackeR', and other packages.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Trackage/trip}
+  \item Report bugs at \url{https://github.com/Trackage/trip/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Michael D. Sumner \email{mdsumner@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Sebastian Luque [contributor]
+  \item Anthony Fischbach [contributor]
+  \item Tomislav Hengl [contributor]
+}
+
+}
